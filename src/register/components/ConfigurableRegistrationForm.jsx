@@ -9,6 +9,143 @@ import { FIELDS } from '../data/constants';
 import messages from '../messages';
 import { CountryField, HonorCode, TermsOfService } from '../RegistrationFields';
 
+const estadoList=[
+    {
+      code: '1',
+      name: 'Aguascalientes'
+    },
+    {
+      code: '2',
+      name: 'Baja California'
+    },
+    {
+      code: '3',
+      name: 'Baja California Sur'
+    },
+    {
+      code: '4',
+      name: 'Campeche'
+    },
+    {
+      code: '7',
+      name: 'Chiapas'
+    },
+    {
+      code: '8',
+      name: 'Chihuahua'
+    },
+    {
+      code: '9',
+      name: 'Ciudad de México'
+    },
+    {
+      code: '5',
+      name: 'Coahuila'
+    },
+    {
+      code: '6',
+      name: 'Colima'
+    },
+    {
+      code: '10',
+      name: 'Durango'
+    },
+    {
+      code: '11',
+      name: 'Guanajuato'
+    },
+    {
+      code: '12',
+      name: 'Guerrero'
+    },
+    {
+      code: '13',
+      name: 'Hidalgo'
+    },
+    {
+      code: '14',
+      name: 'Jalisco'
+    },
+    {
+      code: '15',
+      name: 'México'
+    },
+    {
+      code: '16',
+      name: 'Michoacán'
+    },
+    {
+      code: '17',
+      name: 'Morelos'
+    },
+    {
+      code: '18',
+      name: 'Nayarit'
+    },
+    {
+      code: '19',
+      name: 'Nuevo León'
+    },
+    {
+      code: '20',
+      name: 'Oaxaca'
+    },
+    {
+      code: '21',
+      name: 'Puebla'
+    },
+    {
+      code: '22',
+      name: 'Querétaro'
+    },
+    {
+      code: '23',
+      name: 'Quintana Roo'
+    },
+    {
+      code: '24',
+      name: 'San Luis Potosí'
+    },
+    {
+      code: '25',
+      name: 'Sinaloa'
+    },
+    {
+      code: '26',
+      name: 'Sonora'
+    },
+
+    {
+      code:'27',
+      name:'Tabasco'
+    },
+    {
+      code: '28',
+      name: 'Tamaulipas'
+    },
+    {
+      code: '29',
+      name: 'Tlaxcala'
+    },
+    {
+      code: '30',
+      name: 'Veracruz'
+
+    },
+    {
+      code: '31',
+      name: 'Yucatán'
+    },
+    {
+      code: '32',
+      name: 'Zacatecas'
+    },
+    {
+      code:'33',
+      name:'Fuera de México'
+    }
+  ]
+
 /**
  * Fields on registration page that are not the default required fields (name, email, username, password).
  * These configurable required fields are defined on the backend using REGISTRATION_EXTRA_FIELDS setting.
@@ -176,6 +313,8 @@ const ConfigurableRegistrationForm = (props) => {
       </span>,
     );
   }
+
+
 
   if (flags.showMarketingEmailOptInCheckbox) {
     formFieldDescriptions.push(

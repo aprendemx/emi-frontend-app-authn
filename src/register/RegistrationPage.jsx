@@ -30,7 +30,7 @@ import {
   isFormValid, prepareRegistrationPayload,
 } from './data/utils';
 import messages from './messages';
-import { EmailField, NameField, UsernameField } from './RegistrationFields';
+import {CountryField, EmailField, EstadoField, NameField, UsernameField} from './RegistrationFields';
 import {
   InstitutionLogistration,
   PasswordField,
@@ -97,6 +97,146 @@ const RegistrationPage = (props) => {
   const [formStartTime, setFormStartTime] = useState(null);
   // temporary error state for embedded experience because we don't want to show errors on blur
   const [temporaryErrors, setTemporaryErrors] = useState({ ...backedUpFormData.errors });
+
+  const estadoList=[
+    {
+      code: '1',
+      name: 'Aguascalientes'
+    },
+    {
+      code: '2',
+      name: 'Baja California'
+    },
+    {
+      code: '3',
+      name: 'Baja California Sur'
+    },
+    {
+      code: '4',
+      name: 'Campeche'
+    },
+    {
+      code: '7',
+      name: 'Chiapas'
+    },
+    {
+      code: '8',
+      name: 'Chihuahua'
+    },
+    {
+      code: '9',
+      name: 'Ciudad de México'
+    },
+    {
+      code: '5',
+      name: 'Coahuila'
+    },
+    {
+      code: '6',
+      name: 'Colima'
+    },
+    {
+      code: '10',
+      name: 'Durango'
+    },
+    {
+      code: '11',
+      name: 'Guanajuato'
+    },
+    {
+      code: '12',
+      name: 'Guerrero'
+    },
+    {
+      code: '13',
+      name: 'Hidalgo'
+    },
+    {
+      code: '14',
+      name: 'Jalisco'
+    },
+    {
+      code: '15',
+      name: 'México'
+    },
+    {
+      code: '16',
+      name: 'Michoacán'
+    },
+    {
+      code: '17',
+      name: 'Morelos'
+    },
+    {
+      code: '18',
+      name: 'Nayarit'
+    },
+    {
+      code: '19',
+      name: 'Nuevo León'
+    },
+    {
+      code: '20',
+      name: 'Oaxaca'
+    },
+    {
+      code: '21',
+      name: 'Puebla'
+    },
+    {
+      code: '22',
+      name: 'Querétaro'
+    },
+    {
+      code: '23',
+      name: 'Quintana Roo'
+    },
+    {
+      code: '24',
+      name: 'San Luis Potosí'
+    },
+    {
+      code: '25',
+      name: 'Sinaloa'
+    },
+    {
+      code: '26',
+      name: 'Sonora'
+    },
+
+    {
+      code:'27',
+      name:'Tabasco'
+    },
+    {
+      code: '28',
+      name: 'Tamaulipas'
+    },
+    {
+      code: '29',
+      name: 'Tlaxcala'
+    },
+    {
+      code: '30',
+      name: 'Veracruz'
+
+    },
+    {
+      code: '31',
+      name: 'Yucatán'
+    },
+    {
+      code: '32',
+      name: 'Zacatecas'
+    },
+    {
+      code:'33',
+      name:'Fuera de México'
+    }
+  ]
+
+
+
 
   const { cta, host } = queryParams;
   const buttonLabel = cta
@@ -309,15 +449,31 @@ const RegistrationPage = (props) => {
             />
             <Form id="registration-form" name="registration-form">
               <NameField
-                name="name"
-                value={formFields.name}
-                shouldFetchUsernameSuggestions={!formFields.username.trim()}
-                handleChange={handleOnChange}
-                handleErrorChange={handleErrorChange}
-                errorMessage={errors.name}
-                helpText={[formatMessage(messages['help.text.name'])]}
-                floatingLabel={formatMessage(messages['registration.fullname.label'])}
+                  name="name"
+                  value={formFields.name}
+                  shouldFetchUsernameSuggestions={!formFields.username.trim()}
+                  handleChange={handleOnChange}
+                  handleErrorChange={handleErrorChange}
+                  errorMessage={errors.name}
+                  helpText={[formatMessage(messages['help.text.name'])]}
+                  floatingLabel='Nombre'
               />
+
+              <NameField
+                  name="name"
+                  value={formFields.nombres}
+                  shouldFetchUsernameSuggestions={!formFields.username.trim()}
+                  handleChange={handleOnChange}
+                  handleErrorChange={handleErrorChange}
+                  errorMessage={errors.nombres}
+                  helpText={[formatMessage(messages['help.text.nombres'])]}
+                  floatingLabel='Nombre'
+              />
+
+
+
+
+
               <EmailField
                 name="email"
                 value={formFields.email}
@@ -328,6 +484,22 @@ const RegistrationPage = (props) => {
                 helpText={[formatMessage(messages['help.text.email'])]}
                 floatingLabel={formatMessage(messages['registration.email.label'])}
               />
+
+
+              <EstadoField
+                  estadoList={estadoList}
+                  selectedCountry={formFields.estado}
+                  errorMessage={fieldErrors.estado || ''}
+                  onChangeHandler={handleOnChange}
+                  handleErrorChange={handleErrorChange}
+                  onBlurHandler={()=>(e)}
+                  onFocusHandler={()=>(e)}
+              />
+
+
+
+
+
               {!flags.autoGeneratedUsernameEnabled && (
                 <UsernameField
                   name="username"

@@ -674,6 +674,12 @@ describe('RegistrationPage', () => {
             ...registrationFormData,
             formFields: {
               name: 'John Doe',
+              nombres:'John Doe',
+              primer_apellido:'Doe',
+              segundo_apellido:'González',
+              estado:9,
+              municipio:'Azcapotzalco',
+              ocupacion:'Maestro',
               username: 'john_doe',
               email: 'john.doe@yopmail.com',
               password: 'password1',

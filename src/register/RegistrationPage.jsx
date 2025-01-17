@@ -458,7 +458,6 @@ const RegistrationPage = (props) => {
                   helpText={[formatMessage(messages['help.text.name'])]}
                   floatingLabel='Nombre'
               />
-
               <NameField
                   name="name"
                   value={formFields.nombres}

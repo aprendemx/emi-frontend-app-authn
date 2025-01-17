@@ -472,8 +472,6 @@ const RegistrationPage = (props) => {
 
 
 
-
-
               <EmailField
                 name="email"
                 value={formFields.email}

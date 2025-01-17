@@ -459,13 +459,13 @@ const RegistrationPage = (props) => {
                   floatingLabel='Nombre'
               />
               <NameField
-                  name="name"
+                  name="nombres"
                   value={formFields.nombres}
                   shouldFetchUsernameSuggestions={!formFields.username.trim()}
                   handleChange={handleOnChange}
                   handleErrorChange={handleErrorChange}
                   errorMessage={errors.nombres}
-                  helpText={[formatMessage(messages['help.text.nombres'])]}
+                  helpText="Escribe tu nombre"
                   floatingLabel='Nombre'
               />
 

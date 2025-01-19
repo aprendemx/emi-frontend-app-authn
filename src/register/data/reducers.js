@@ -38,6 +38,10 @@ export const defaultState = {
             nivel_Educativo: {},
             funcion: {},
             ocupacion: {},
+            cuentanos: '',
+            curp: '',
+            cct:'',
+            pais:{}
         },
         emailSuggestion: {
             suggestion: '', type: '',
@@ -52,7 +56,15 @@ export const defaultState = {
             primer_apellido: '',
             segundo_apellido: '',
             ocupacion: '',
-            municipio: ''
+            municipio: '',
+            eres_docente: '',
+            asignatura: '',
+            nivel_Educativo: '',
+            funcion: '',
+            cuentanos: '',
+            curp: '',
+            cct:'',
+            pais:''
         },
     },
     validations: null,

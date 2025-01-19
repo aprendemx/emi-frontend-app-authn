@@ -6,6 +6,7 @@ import validateEmail from '../RegistrationFields/EmailField/validator';
 import validateName from '../RegistrationFields/NameField/validator';
 import validateUsername from '../RegistrationFields/UsernameField/validator';
 import validateEstado from '../RegistrationFields/EstadoField/validator';
+import validateCurp from '../RegistrationFields/CurpField/validator';
 
 /**
  * It validates the password field value
@@ -84,17 +85,29 @@ export const isFormValid = (
         if (!fieldErrors.estado) {
             fieldErrors.estado = validateEstado(payload.estado, formatMessage);
         }
+        if (fieldErrors.estado) { isValid = false; }
         break;
         case 'nombres':
         if (!fieldErrors.nombres) {
             fieldErrors.nombres = validateName(payload.nombres, formatMessage);
         }
+          if (fieldErrors.nombres) { isValid = false; }
         break;
         case 'primer_apellido':
         if (!fieldErrors.primer_apellido) {
             fieldErrors.primer_apellido = validateName(payload.primer_apellido, formatMessage);
         }
+          if (fieldErrors.primer_apellido) { isValid = false; }
         break;
+
+        case 'curp':
+        if (!fieldErrors.curp) {
+            fieldErrors.curp = validateCurp(payload.curp, formatMessage);
+        }
+          if (fieldErrors.curp) { isValid = false; }
+        break;
+
+
     default:
       break;
     }

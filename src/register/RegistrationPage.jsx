@@ -5,13 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getConfig } from '@edx/frontend-platform';
 import { sendPageEvent, sendTrackEvent } from '@edx/frontend-platform/analytics';
-import { useIntl } from '@edx/frontend-platform/i18n';
 import { Form, Spinner, StatefulButton } from '@openedx/paragon';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import Skeleton from 'react-loading-skeleton';
-
+import { getCountryList, getLocale, useIntl } from '@edx/frontend-platform/i18n';
 import ConfigurableRegistrationForm from './components/ConfigurableRegistrationForm';
 import RegistrationFailure from './components/RegistrationFailure';
 import {
@@ -30,7 +29,7 @@ import {
   isFormValid, prepareRegistrationPayload,
 } from './data/utils';
 import messages from './messages';
-import { EmailField, EstadoField, NameField, UsernameField} from './RegistrationFields';
+import {CountryField, EmailField, EstadoField, NameField, UsernameField} from './RegistrationFields';
 import {
   InstitutionLogistration,
   PasswordField,
@@ -48,6 +47,7 @@ import {
 } from '../data/utils';
 import CatalogoField from "./RegistrationFields/CatalogoField/CatalogoField";
 import EresDocente from "./RegistrationFields/EresDocenteField/EresDocente";
+import Cuentanos from "./RegistrationFields/CuentanosField/Cuentanos";
 
 /**
  * Main Registration Page component
@@ -295,6 +295,7 @@ const RegistrationPage = (props) => {
 
   ]},[])
 
+  const countryList = useMemo(() => getCountryList(getLocale()).concat([{ code: 'US', name: 'United States' }]), []);
 
   const nivelList=useMemo(() =>{ return [
 
@@ -310,6 +311,20 @@ const RegistrationPage = (props) => {
     {code:'9',name: "CAPACITACIÓN PARA TRABAJO"}
   ]},[])
 
+const maximoNivelList=useMemo(() =>{ return [
+  {code:'0',  name: "Preescolar"},
+  {code:'1',  name: "Primaria"},
+  {code:'2',  name: "Secundaria"},
+  {code:'3',  name: "Preparatoria o Bachillerato"},
+  {code:'4',  name: "Técnica-Profesional"},
+  {code:'5',  name: "Licenciatura"},
+  {code:'6',  name: "Especialidad"},
+  {code:'7',  name: "Maestría"},
+  {code:'8',  name: "Doctorado"},
+  {code:'9',  name: "Ninguna educación formal"}
+
+
+]},[])
 
 
 
@@ -450,6 +465,34 @@ const RegistrationPage = (props) => {
     formFields.estado=formFields.estado.estadoCode
     formFields.name=formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido
 
+    if (formFields.ocupacion) {
+        formFields.ocupacion = formFields.ocupacion.catalogoCode;
+
+    }
+
+    if (formFields.nivel_Educativo) {
+        formFields.nivel_Educativo = formFields.nivel_Educativo.catalogoCode;
+
+    }
+
+    if (formFields.funcion) {
+        formFields.funcion = formFields.funcion.catalogoCode;
+
+    }
+
+    if (formFields.maximo_nivel) {
+        formFields.maximo_nivel = formFields.funcion.catalogoCode;
+
+    }
+
+
+    if (formFields.pais) {
+        formFields.pais = formFields.funcion.countryCode;
+
+    }
+
+
+
     let payload = { ...formFields };
 
 
@@ -511,6 +554,7 @@ const RegistrationPage = (props) => {
         />
       );
     }
+
     return (
       <>
         <Helmet>
@@ -581,6 +625,16 @@ const RegistrationPage = (props) => {
                   floatingLabel='Segundo Apellido'
               />
 
+              <NameField
+                  name="curp"
+                  value={formFields.curp}
+                  handleChange={handleOnChange}
+                  handleErrorChange={handleErrorChange}
+                  errorMessage={errors.curp}
+                  helpText={[formatMessage(messages['help.text.curp'])]}
+                  floatingLabel='C.U.R.P.'
+              />
+
 
 
               <EmailField
@@ -606,15 +660,40 @@ const RegistrationPage = (props) => {
                   onFocusHandler={()=>{}}
               />
 
-              <NameField
-                  name="municipio"
-                  value={formFields.municipio}
-                  handleChange={handleOnChange}
-                  handleErrorChange={handleErrorChange}
-                  errorMessage={errors.municipio}
-                  helpText={[formatMessage(messages['help.text.municipio'])]}
-                  floatingLabel='Municipio'
-              />
+              { formFields.estado&& parseInt(formFields.estado.estadoCode)<= 32 &&(
+
+                  <NameField
+                      name="municipio"
+                      value={formFields.municipio}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.municipio}
+                      helpText={[formatMessage(messages['help.text.municipio'])]}
+                      floatingLabel='Municipio/Alcaldía'
+                  />
+
+
+
+
+            ) }
+              { formFields.estado&& parseInt(formFields.estado.estadoCode)> 32 &&(
+
+                  <CountryField
+                      countryList={countryList}
+                      selectedCountry={formFields.pais}
+                      errorMessage={errors.pais || ''}
+                      onChangeHandler={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      onBlurHandler={()=>{}}
+                      onFocusHandler={()=>{}}
+                  />
+
+
+            ) }
+
+
+
+
 
 
               {!flags.autoGeneratedUsernameEnabled && (
@@ -641,6 +720,18 @@ const RegistrationPage = (props) => {
               )}
 
               <CatalogoField
+                  catalogoList={maximoNivelList}
+                  selectedCatalogo={formFields.maximo_nivel}
+                  helpText={[formatMessage(messages['help.text.maximo_nivel'])]}
+                  errorMessage={errors.maximo_nivel || ''}
+                  onChangeHandler={handleOnChangeEstado}
+                  handleErrorChange={handleErrorChange}
+                  onBlurHandler={()=>{}}
+                  onFocusHandler={()=>{}}
+                  target={'maximo_nivel'}
+              />
+
+              <CatalogoField
                   catalogoList={ocupacionList}
                   selectedCatalogo={formFields.ocupacion}
                   helpText={[formatMessage(messages['help.text.ocupacion'])]}
@@ -651,9 +742,24 @@ const RegistrationPage = (props) => {
                   onFocusHandler={()=>{}}
                   target={'ocupacion'}
               />
+              <br/>
+              <EresDocente onChangeHandler={handleOnChange} value={formFields.eres_docente} errorMessage={errors.eres_docente} />
 
 
-              { (formFields.ocupacion && formFields.ocupacion.catalogoCode=='2') && (
+              { formFields.eres_docente &&(
+                  <NameField
+                      name="cct"
+                      value={formFields.cct}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.cct}
+                      helpText={[formatMessage(messages['help.text.cct'])]}
+                      floatingLabel='Clave del Centro de Trabajo CCT'
+                  />
+                  )}
+
+
+              { formFields.eres_docente &&(
                   <CatalogoField
                       catalogoList={funcionList}
                       selectedCatalogo={formFields.funcion}
@@ -665,16 +771,8 @@ const RegistrationPage = (props) => {
                       onFocusHandler={()=>{}}
                       target={'funcion'}
                   />
-
-
-              )
-              }
-
-              {(
-                  formFields.funcion&&formFields.funcion.catalogoCode=='0'||
-                  formFields.ocupacion && formFields.ocupacion.catalogoCode=='1'
-
-              ) && (
+                )}
+              { formFields.eres_docente &&(
                   <CatalogoField
                       catalogoList={nivelList}
                       selectedCatalogo={formFields.nivel_Educativo}
@@ -686,23 +784,20 @@ const RegistrationPage = (props) => {
                       onFocusHandler={()=>{}}
                       target={'nivel_Educativo'}
                   />
+                  )}
+              { formFields.eres_docente &&(
+                    <NameField
+                        name="asignatura"
+                        value={formFields.asignatura}
+                        handleChange={handleOnChange}
+                        handleErrorChange={handleErrorChange}
+                        errorMessage={errors.asignatura}
+                        helpText={[formatMessage(messages['help.text.asignatura'])]}
+                        floatingLabel='Campo formativo'
+                    />
+                )
 
-              )}
-
-              {(
-                  formFields.funcion&&formFields.funcion.catalogoCode=='0'
-              )&&(
-                  <NameField
-                      name="asignatura"
-                      value={formFields.asignatura}
-                      handleChange={handleOnChange}
-                      handleErrorChange={handleErrorChange}
-                      errorMessage={errors.asignatura}
-                      helpText={[formatMessage(messages['help.text.asignatura'])]}
-                      floatingLabel='Campo formativo'
-                  />
-              )}
-
+              }
 
               <ConfigurableRegistrationForm
                 email={formFields.email}
@@ -713,6 +808,9 @@ const RegistrationPage = (props) => {
                 autoSubmitRegisterForm={autoSubmitRegForm}
                 fieldDescriptions={fieldDescriptions}
               />
+              <Cuentanos onChangeHandler={handleOnChange} value={formFields.cuentanos} errorMessage={errors.cuentanos} />
+
+
               <StatefulButton
                 id="register-user"
                 name="register-user"

@@ -289,6 +289,8 @@ const messages = defineMessages({
     defaultMessage: 'Selecciona la ocupacion que desempeñas',
     description: 'Selecciona la ocupacion que desempeñas',
   },
+
+
   'help.text.nivel_Educativo': {
     id: 'help.text.nivel_Educativo',
     defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
@@ -309,11 +311,83 @@ const messages = defineMessages({
     defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
     description: 'Selecciona el nivel educativo en que desarrollas tu actividad',
   },
+
+
+  'help.text.maximo_nivel': {
+    id: 'help.text.maximo_nivel',
+    defaultMessage: 'Selecciona el máximo nivel educativo que cursaste',
+    description: 'Selecciona el máximo nivel educativo que cursaste',
+  },
+  'registration.maximo_nivel.label': {
+    id: 'registration.nivel_Educativo.label',
+    defaultMessage: 'Selecciona el máximo nivel educativo que cursaste',
+    description: 'Selecciona el máximo nivel educativo que cursaste',
+  },
+  'empty.maximo_nivel.field.error': {
+    id: 'empty.nivel_Educativo.field.error',
+    defaultMessage: 'Selecciona el máximo nivel educativo que cursaste',
+    description: 'Selecciona el máximo nivel educativo que cursaste',
+  },
+  'invalid.maximo_nivel.field.error': {
+    id: 'invalid.nivel_Educativo.field.error',
+    defaultMessage: 'Selecciona el máximo nivel educativo que cursaste',
+    description: 'Selecciona el máximo nivel educativo que cursaste',
+  },
+
+
+
+
+
   'help.text.asignatura': {
     id: 'help.text.asignatura',
     defaultMessage: 'Escribe el campo formativo en el que te especializas',
     description: 'Escribe el campo formativo en el que te especializas',
   },
+
+
+ 'help.text.cct': {
+    id: 'help.text.cct',
+    defaultMessage: 'Escribe la Clave del Centro de Trabajo donde te desarrollas',
+    description: 'Escribe la Clave del Centro de Trabajo donde te desarrollas',
+  },
+
+
+ 'help.text.curp': {
+    id: 'help.text.curp',
+    defaultMessage: 'Escribe tu CURP',
+    description: 'Escribe tu CURP',
+  },
+
+
+
+
+
+
+  'curp.validation.message': {
+    id: 'curp.validation.message',
+    defaultMessage: 'CURP inválido',
+    description: 'CURP inválido',
+  },
+
+
+
+  'registration.municipio.label': {
+    id: 'registration.municipio.label',
+    defaultMessage: 'Selecciona tu municipio',
+    description: 'Selecciona tu municipio',
+  },
+  'empty.municipio.field.error': {
+    id: 'empty.municipio.field.error',
+    defaultMessage: 'Selecciona tu municipio',
+    description: 'Selecciona tu municipio',
+  },
+  'invalid.municipio.field.error': {
+    id: 'invalid.municipio.field.error',
+    defaultMessage: 'Selecciona tu municipio',
+    description: 'Selecciona tu municipio',
+  },
+
+
 
 
 });

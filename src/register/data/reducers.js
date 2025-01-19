@@ -66,7 +66,9 @@ export const defaultState = {
             cuentanos: '',
             curp: '',
             cct:'',
-            pais:''
+            pais:'',
+            tos: '',
+            honor_code: '',
         },
     },
     validations: null,

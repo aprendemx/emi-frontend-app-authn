@@ -29,7 +29,15 @@ import {
   isFormValid, prepareRegistrationPayload,
 } from './data/utils';
 import messages from './messages';
-import {CountryField, EmailField, EstadoField, HonorCode, NameField, UsernameField} from './RegistrationFields';
+import {
+  CountryField,
+  EmailField,
+  EstadoField,
+  HonorCode,
+  NameField,
+  TermsOfService,
+  UsernameField
+} from './RegistrationFields';
 import {
   InstitutionLogistration,
   PasswordField,
@@ -472,25 +480,30 @@ const maximoNivelList=useMemo(() =>{ return [
   const registerUser = () => {
     const totalRegistrationTime = (Date.now() - formStartTime) / 1000;
 
+    let estado=null;
+    let funcion = null;
+    let nivel_Educativo = null;
+    let ocupacion = null;
+    let maximo_nivel = null;
 
     if (formFields.estado && formFields.estado.estadoCode) {
-        formFields.estado = formFields.estado.estadoCode;
+      estado = formFields.estado.estadoCode;
     }else{
         return handleErrorChange('estado', 'Estado es requerido');
     }
 
-    formFields.estado=formFields.estado.estadoCode
+
     formFields.name=formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido
 
     if (formFields.ocupacion?.catalogoCode) {
-        formFields.ocupacion = formFields.ocupacion.catalogoCode;
+      ocupacion = formFields.ocupacion.catalogoCode;
 
     } else{
       return handleErrorChange('ocupacion', 'Ocupación es requerida');
     }
 
     if (formFields.nivel_Educativo&& formFields.nivel_Educativo.catalogoCode) {
-        formFields.nivel_Educativo = formFields.nivel_Educativo.catalogoCode;
+        nivel_Educativo = formFields.nivel_Educativo.catalogoCode;
 
     }else{
         if (formFields.eres_docente){
@@ -503,7 +516,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
     if (formFields.funcion&& formFields.funcion.catalogoCode) {
-        formFields.funcion = formFields.funcion.catalogoCode;
+        funcion = formFields.funcion.catalogoCode;
     }else{
       if (formFields.eres_docente){
         return handleErrorChange('funcion', 'Función es requerida');
@@ -522,7 +535,7 @@ const maximoNivelList=useMemo(() =>{ return [
     }
 
     if (formFields.maximo_nivel?.catalogoCode) {
-        formFields.maximo_nivel = formFields.funcion.catalogoCode;
+        maximo_nivel = formFields.maximo_nivel.catalogoCode;
 
     }else{
         return handleErrorChange('maximo_nivel', 'Máximo nivel de estudios es requerido');
@@ -535,7 +548,20 @@ const maximoNivelList=useMemo(() =>{ return [
 
     }
 
+    if (!formFields.tos){
+        return handleErrorChange('tos', 'Debes aceptar los términos y condiciones');
+    }
 
+    if (!formFields.honor_code){
+        return handleErrorChange('honor_code', 'Debes aceptar el código de honor');
+    }
+
+
+    formFields.estado = estado;
+    formFields.funcion = funcion;
+    formFields.nivel_Educativo = nivel_Educativo;
+    formFields.ocupacion = ocupacion;
+    formFields.maximo_nivel = maximo_nivel;
 
     let payload = { ...formFields };
 
@@ -855,7 +881,7 @@ const maximoNivelList=useMemo(() =>{ return [
               <Cuentanos onChangeHandler={handleOnChange} value={formFields.cuentanos} errorMessage={errors.cuentanos} />
 
               <HonorCode value={formFields.honor_code} onChangeHandler={handleOnChange} errorMessage={errors.honor_code} />
-
+              <TermsOfService onChangeHandler={handleOnChange} value={formFields.tos} errorMessage={errors.tos} />
 
 
               <StatefulButton

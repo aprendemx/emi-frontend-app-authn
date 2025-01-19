@@ -16,15 +16,6 @@ const LargeLayout = () => {
         <div className="min-vh-100  align-items-center">
 
           <div className={classNames({'large-yellow-line mr-n4.5': getConfig().SITE_NAME === 'edX'})}/>
-          <h1
-              className={classNames(
-                  'display-2 text-white mw-xs',
-                  {'ml-6': getConfig().SITE_NAME !== 'edX'},
-              )}
-          >
-            {formatMessage(messages['start.learning'])}
-
-          </h1>
           <img src="https://sisadmin.mexicox.gob.mx/extramexicox/mexicox-amx.png" alt="AprendeMX-Logo" width="350px"/>
           <div></div>
         </div>

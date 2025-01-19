@@ -182,12 +182,12 @@ const messages = defineMessages({
   },
   'honor.code': {
     id: 'honor.code',
-    defaultMessage: 'Código de Honor Code',
+    defaultMessage: 'Leer Código de Honor Code',
     description: 'Texto hiperenlazado al código de honor',
   },
   'terms.of.service': {
     id: 'terms.of.service',
-    defaultMessage: 'Terms of Service',
+    defaultMessage: 'Aviso de privacidad',
     description: 'Text for the hyperlink that redirects user to the terms of service',
   },
   // miscellaneous strings
@@ -203,6 +203,11 @@ const messages = defineMessages({
   },
 
 
+  'empty.curp.field.error': {
+    id: 'empty.curp.field.error',
+    defaultMessage: 'CURP no puede estar vacío',
+    description: 'CURP no puede estar vacío',
+  },
   'empty.estado.field.error': {
     id: 'empty.estado.field.error',
     defaultMessage: 'Selecciona un estado',

@@ -17,25 +17,6 @@ const MediumLayout = () => {
         <div className="col-md-10 bg-primary-400">
 
           <div className="d-flex align-items-center justify-content-center mb-4 ">
-
-
-            <div className={classNames({'mt-1 medium-yellow-line': getConfig().SITE_NAME === 'edX'})}/>
-            <div>
-              <h1
-                  className={classNames(
-                      'display-1 text-white mt-5 mb-5 mr-2 main-heading',
-                      {'ml-4.5': getConfig().SITE_NAME !== 'edX'},
-                  )}
-              >
-
-                <span>
-                  {formatMessage(messages['start.learning'])}{' '}
-                  <span className="text-accent-a d-inline-block">
-                    {formatMessage(messages['with.site.name'], {siteName: getConfig().SITE_NAME})}
-                  </span>
-                </span>
-              </h1>
-            </div>
             <div><img src="https://sisadmin.mexicox.gob.mx/extramexicox/mexicox-amx.png" alt="AprendeMX-Logo" width="300px"/></div>
           </div>
         </div>

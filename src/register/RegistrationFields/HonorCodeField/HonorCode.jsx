@@ -56,7 +56,7 @@ const HonorCode = (props) => {
   }
 
   return (
-    <div id="honor-code" className="micro text-muted">
+    <div id="honor-code" className="micro text-muted text-muted pt-2">
       <Form.Checkbox
         className="form-field--checkbox mt-1"
         id="honor-code"
@@ -67,7 +67,7 @@ const HonorCode = (props) => {
       >
         <FormattedMessage
           id="register.page.honor.code"
-          defaultMessage="He leído y acepto el Código de honor de la Plataforma MéxicoX."
+          defaultMessage="He leído y acepto el Código de honor de la Plataforma {platformName}&nbsp;{tosAndHonorCode}."
           description="Text that appears on registration form stating honor code"
           values={{
             platformName: getConfig().SITE_NAME,

@@ -462,31 +462,64 @@ const maximoNivelList=useMemo(() =>{ return [
     const totalRegistrationTime = (Date.now() - formStartTime) / 1000;
 
 
+    if (formFields.estado && formFields.estado.estadoCode) {
+        formFields.estado = formFields.estado.estadoCode;
+    }else{
+        return handleErrorChange('estado', 'Estado es requerido');
+    }
+
     formFields.estado=formFields.estado.estadoCode
     formFields.name=formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido
 
-    if (formFields.ocupacion) {
+    if (formFields.ocupacion?.catalogoCode) {
         formFields.ocupacion = formFields.ocupacion.catalogoCode;
 
+    } else{
+      return handleErrorChange('ocupacion', 'Ocupación es requerida');
     }
 
-    if (formFields.nivel_Educativo) {
+    if (formFields.nivel_Educativo&& formFields.nivel_Educativo.catalogoCode) {
         formFields.nivel_Educativo = formFields.nivel_Educativo.catalogoCode;
 
+    }else{
+        if (formFields.eres_docente){
+            return handleErrorChange('nivel_Educativo', 'Nivel Educativo es requerido');
+        }else{
+            formFields.nivel_Educativo='0'
+        }
     }
 
-    if (formFields.funcion) {
+
+
+    if (formFields.funcion&& formFields.funcion.catalogoCode) {
         formFields.funcion = formFields.funcion.catalogoCode;
+    }else{
+      if (formFields.eres_docente){
+        return handleErrorChange('funcion', 'Función es requerida');
+      }else{
+        formFields.funcion='0'
+      }
 
     }
 
-    if (formFields.maximo_nivel) {
+    if (formFields.eres_docente){
+        if (formFields.cct){
+            formFields.cct=formFields.cct.toUpperCase()
+        }else{
+            return handleErrorChange('cct', 'CCT es requerida');
+        }
+    }
+
+    if (formFields.maximo_nivel?.catalogoCode) {
         formFields.maximo_nivel = formFields.funcion.catalogoCode;
 
+    }else{
+        return handleErrorChange('maximo_nivel', 'Máximo nivel de estudios es requerido');
+
     }
 
 
-    if (formFields.pais) {
+    if (formFields.pais?.countryCode) {
         formFields.pais = formFields.funcion.countryCode;
 
     }

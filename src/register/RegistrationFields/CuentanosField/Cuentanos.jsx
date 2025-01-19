@@ -26,7 +26,6 @@ const Cuentanos = (props) => {
           as="textarea"
         className="form-field--text mt-1"
         id="cuentanos"
-        checked={value}
         name="cuentanos"
         value={value}
         onChange={onChangeHandler}

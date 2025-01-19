@@ -29,7 +29,7 @@ import {
   isFormValid, prepareRegistrationPayload,
 } from './data/utils';
 import messages from './messages';
-import {CountryField, EmailField, EstadoField, NameField, UsernameField} from './RegistrationFields';
+import {CountryField, EmailField, EstadoField, HonorCode, NameField, UsernameField} from './RegistrationFields';
 import {
   InstitutionLogistration,
   PasswordField,
@@ -251,6 +251,14 @@ const RegistrationPage = (props) => {
       name: 'DIRECTIVAS'
     },
     {
+      code: '5',
+      name: 'SUPERVICIÓN'
+    },
+    {
+      code: '6',
+      name: 'ASESOR TÉCNICO PEDAGÓGICO'
+    },
+    {
       code: '3',
       name: 'TÉCNICAS'
     },
@@ -288,6 +296,9 @@ const RegistrationPage = (props) => {
       name: 'SALUD'
     },
       {
+      code: '8',
+        name: 'PRODUCCIÓN AUDIOVISUAL'
+    }, {
       code: '7',
       name: 'OTRO'
     },
@@ -842,6 +853,9 @@ const maximoNivelList=useMemo(() =>{ return [
                 fieldDescriptions={fieldDescriptions}
               />
               <Cuentanos onChangeHandler={handleOnChange} value={formFields.cuentanos} errorMessage={errors.cuentanos} />
+
+              <HonorCode value={formFields.honor_code} onChangeHandler={handleOnChange} errorMessage={errors.honor_code} />
+
 
 
               <StatefulButton

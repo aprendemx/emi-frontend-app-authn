@@ -18,8 +18,8 @@ const Cuentanos = (props) => {
 
       <FormattedMessage
           id="register.page.cuentanos"
-          defaultMessage="Cuéntenos por que está interesado en MéxicoX"
-          description="Cuéntenos por que está interesado en MéxicoX"
+          defaultMessage="Cuéntenos por qué estás interesado en MéxicoX"
+          description="Cuéntenos por qué estás interesado en MéxicoX"
 
       />
       <Form.Control

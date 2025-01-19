@@ -13,9 +13,6 @@ const LargeLayout = () => {
   return (
     <div className="w-50 d-flex">
       <div className="col-md-9 bg-primary-400">
-        <Hyperlink destination={getConfig().MARKETING_SITE_BASE_URL}>
-          <Image className="logo position-absolute" alt={getConfig().SITE_NAME} src={getConfig().LOGO_WHITE_URL} />
-        </Hyperlink>
         <div className="min-vh-100  align-items-center">
 
           <div className={classNames({'large-yellow-line mr-n4.5': getConfig().SITE_NAME === 'edX'})}/>
@@ -28,7 +25,7 @@ const LargeLayout = () => {
             {formatMessage(messages['start.learning'])}
 
           </h1>
-          <img src="/img/MexicoX-AprendeMx.png" alt="AprendeMX-Logo" width="350px"/>
+          <img src="https://sisadmin.mexicox.gob.mx/extramexicox/mexicox-amx.png" alt="AprendeMX-Logo" width="350px"/>
           <div></div>
         </div>
       </div>

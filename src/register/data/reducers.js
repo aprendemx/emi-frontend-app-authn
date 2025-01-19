@@ -41,7 +41,9 @@ export const defaultState = {
             cuentanos: '',
             curp: '',
             cct:'',
-            pais:{}
+            pais:{},
+            tos: false,
+            honor_code: false,
         },
         emailSuggestion: {
             suggestion: '', type: '',

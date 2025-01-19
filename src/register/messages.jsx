@@ -182,8 +182,8 @@ const messages = defineMessages({
   },
   'honor.code': {
     id: 'honor.code',
-    defaultMessage: 'Honor Code',
-    description: 'Text for the hyperlink that redirects user to the honor code',
+    defaultMessage: 'Código de Honor Code',
+    description: 'Texto hiperenlazado al código de honor',
   },
   'terms.of.service': {
     id: 'terms.of.service',

@@ -18,7 +18,7 @@ const LargeLayout = ({ fullName }) => {
         </Hyperlink>
         <div className="min-vh-100 d-flex align-items-center">
           <div className="large-screen-left-container mr-n4.5 large-yellow-line mt-5"/>
-          <img src="/img/MexicoX-AprendeMx.png" alt="AprendeMX-Logo" width="100%"/><br/>
+          <img src="https://sisadmin.mexicox.gob.mx/extramexicox/mexicox-amx.png" alt="AprendeMX-Logo" width="100%"/><br/>
           <div>
             <h1 className="welcome-to-platform data-hj-suppress">
               {formatMessage(messages['welcome.to.platform'], {siteName: getConfig().SITE_NAME, fullName})}

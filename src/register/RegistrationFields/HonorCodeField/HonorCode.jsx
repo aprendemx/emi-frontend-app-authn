@@ -67,12 +67,12 @@ const HonorCode = (props) => {
       >
         <FormattedMessage
           id="register.page.honor.code"
-          defaultMessage="I agree to the {platformName}&nbsp;{tosAndHonorCode}"
+          defaultMessage="He leído y acepto el Código de honor de la Plataforma MéxicoX."
           description="Text that appears on registration form stating honor code"
           values={{
             platformName: getConfig().SITE_NAME,
             tosAndHonorCode: (
-              <Hyperlink variant="muted" destination={getConfig().TOS_AND_HONOR_CODE || '#'} target="_blank">
+              <Hyperlink variant="muted" destination={"https://mexicox.gob.mx/honor"} target="_blank">
                 {formatMessage(messages['honor.code'])}
               </Hyperlink>
             ),

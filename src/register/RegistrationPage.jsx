@@ -30,7 +30,7 @@ import {
   isFormValid, prepareRegistrationPayload,
 } from './data/utils';
 import messages from './messages';
-import {CountryField, EmailField, EstadoField, NameField, UsernameField} from './RegistrationFields';
+import { EmailField, EstadoField, NameField, UsernameField} from './RegistrationFields';
 import {
   InstitutionLogistration,
   PasswordField,
@@ -46,6 +46,8 @@ import {
 import {
   getAllPossibleQueryParams, getTpaHint, getTpaProvider, isHostAvailableInQueryParams, setCookie,
 } from '../data/utils';
+import CatalogoField from "./RegistrationFields/CatalogoField/CatalogoField";
+import EresDocente from "./RegistrationFields/EresDocenteField/EresDocente";
 
 /**
  * Main Registration Page component
@@ -98,7 +100,7 @@ const RegistrationPage = (props) => {
   // temporary error state for embedded experience because we don't want to show errors on blur
   const [temporaryErrors, setTemporaryErrors] = useState({ ...backedUpFormData.errors });
 
-  const estadoList=[
+  const estadoList=useMemo(() =>{ return [
     {
       code: '1',
       name: 'Aguascalientes'
@@ -233,7 +235,80 @@ const RegistrationPage = (props) => {
       code:'33',
       name:'Fuera de México'
     }
-  ]
+  ]},[])
+
+  const funcionList=useMemo(() =>{ return [
+    {
+      code: '0',
+      name: 'DOCENTE FRENTE A GRUPO'
+    },
+    {
+      code: '1',
+      name: 'ADMINSTRATIVAS'
+    },
+    {
+      code: '2',
+      name: 'DIRECTIVAS'
+    },
+    {
+      code: '3',
+      name: 'TÉCNICAS'
+    },
+    {
+      code: '4',
+      name: 'OTRAS'
+    }
+  ]},[])
+
+
+  const ocupacionList=useMemo(() =>{ return [
+    {
+      code: '1',
+      name: 'ESTUDIANTE'
+    },
+    {
+      code: '2',
+      name: 'EDUCATIVO'
+    },
+    {
+      code: '3',
+      name: 'COMERCIAL'
+    },
+    {
+      code: '4',
+      name: 'GOBIERNO'
+    },
+      {
+      code: '5',
+      name: 'CULTURAL'
+    },
+
+      {
+      code: '6',
+      name: 'SALUD'
+    },
+      {
+      code: '7',
+      name: 'OTRO'
+    },
+
+
+  ]},[])
+
+
+  const nivelList=useMemo(() =>{ return [
+
+    {code:'0',name: "EDUCACIÓN PREESCOLAR"},
+    {code:'1',name: "EDUCACIÓN PRIMARIA"},
+    {code:'2',name: "EDUCACIÓN SECUNDARIA"},
+    {code:'3',name: "EDUCACIÓN MEDIA SUPERIOR"},
+    {code:'4',name: "EDUCACIÓN SUPERIOR"},
+    {code:'5',name: "FORMACIÓN DOCENTE (ESCUELA NORMAL)"},
+    {code:'6',name: "EDUCACIÓN ESPECIAL"},
+    {code:'7',name: "EDUCACIÓN INDÍGENA"},
+    {code:'8',name: "EDUCACIÓN PARA ADULTOS"},
+    {code:'9',name: "CAPACITACIÓN PARA TRABAJO"}
+  ]},[])
 
 
 
@@ -325,9 +400,29 @@ const RegistrationPage = (props) => {
       dispatch(clearRegistrationBackendError(name));
     }
     setErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
+
+    if (name === 'nombres'||name === 'primer_apellido'||name === 'segundo_apellido') {
+      setFormFields(prevState => ({ ...prevState, ['name']: formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido }));
+    }
+
+    setFormFields(prevState => ({ ...prevState, [name]: value }));
+    return;
+
+
+  };
+  const handleOnChangeEstado = (event, countryValue = null) => {
+    const { name } = event.target;
+    let value;
+    if (countryValue) {
+      value = { ...countryValue };
+    } else {
+      value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+      if (event.target.type === 'checkbox') {
+        setFieldErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
+      }
+    }
     setFormFields(prevState => ({ ...prevState, [name]: value }));
   };
-
   const handleErrorChange = (fieldName, error) => {
     if (registrationEmbedded) {
       setTemporaryErrors(prevErrors => ({
@@ -350,7 +445,14 @@ const RegistrationPage = (props) => {
 
   const registerUser = () => {
     const totalRegistrationTime = (Date.now() - formStartTime) / 1000;
+
+
+    formFields.estado=formFields.estado.estadoCode
+    formFields.name=formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido
+
     let payload = { ...formFields };
+
+
 
     if (currentProvider) {
       delete payload.password;
@@ -448,25 +550,35 @@ const RegistrationPage = (props) => {
               context={{ provider: currentProvider, errorMessage: thirdPartyAuthErrorMessage }}
             />
             <Form id="registration-form" name="registration-form">
-              <NameField
-                  name="name"
-                  value={formFields.name}
-                  shouldFetchUsernameSuggestions={!formFields.username.trim()}
-                  handleChange={handleOnChange}
-                  handleErrorChange={handleErrorChange}
-                  errorMessage={errors.name}
-                  helpText={[formatMessage(messages['help.text.name'])]}
-                  floatingLabel='Nombre'
-              />
+
               <NameField
                   name="nombres"
                   value={formFields.nombres}
-                  shouldFetchUsernameSuggestions={!formFields.username.trim()}
                   handleChange={handleOnChange}
                   handleErrorChange={handleErrorChange}
                   errorMessage={errors.nombres}
-                  helpText="Escribe tu nombre"
+                  helpText={[formatMessage(messages['help.text.nombres'])]}
                   floatingLabel='Nombre'
+              />
+
+              <NameField
+                  name="primer_apellido"
+                  value={formFields.primer_apellido}
+                  handleChange={handleOnChange}
+                  handleErrorChange={handleErrorChange}
+                  errorMessage={errors.primer_apellido}
+                  helpText={[formatMessage(messages['help.text.primer_apellido'])]}
+                  floatingLabel='Primer Apellido'
+              />
+
+              <NameField
+                  name="segundo_apellido"
+                  value={formFields.segundo_apellido}
+                  handleChange={handleOnChange}
+                  handleErrorChange={handleErrorChange}
+                  errorMessage={errors.segundo_apellido}
+                  helpText={[formatMessage(messages['help.text.segundo_apellido'])]}
+                  floatingLabel='Segundo Apellido'
               />
 
 
@@ -485,14 +597,24 @@ const RegistrationPage = (props) => {
 
               <EstadoField
                   estadoList={estadoList}
-                  selectedCountry={formFields.estado}
-                  errorMessage={fieldErrors.estado || ''}
-                  onChangeHandler={handleOnChange}
+                  selectedEstado={formFields.estado}
+                  helpText={[formatMessage(messages['help.text.estado'])]}
+                  errorMessage={errors.estado || ''}
+                  onChangeHandler={handleOnChangeEstado}
                   handleErrorChange={handleErrorChange}
-                  onBlurHandler={()=>(e)}
-                  onFocusHandler={()=>(e)}
+                  onBlurHandler={()=>{}}
+                  onFocusHandler={()=>{}}
               />
 
+              <NameField
+                  name="municipio"
+                  value={formFields.municipio}
+                  handleChange={handleOnChange}
+                  handleErrorChange={handleErrorChange}
+                  errorMessage={errors.municipio}
+                  helpText={[formatMessage(messages['help.text.municipio'])]}
+                  floatingLabel='Municipio'
+              />
 
 
               {!flags.autoGeneratedUsernameEnabled && (
@@ -517,6 +639,71 @@ const RegistrationPage = (props) => {
                   floatingLabel={formatMessage(messages['registration.password.label'])}
                 />
               )}
+
+              <CatalogoField
+                  catalogoList={ocupacionList}
+                  selectedCatalogo={formFields.ocupacion}
+                  helpText={[formatMessage(messages['help.text.ocupacion'])]}
+                  errorMessage={errors.ocupacion || ''}
+                  onChangeHandler={handleOnChangeEstado}
+                  handleErrorChange={handleErrorChange}
+                  onBlurHandler={()=>{}}
+                  onFocusHandler={()=>{}}
+                  target={'ocupacion'}
+              />
+
+
+              { (formFields.ocupacion && formFields.ocupacion.catalogoCode=='2') && (
+                  <CatalogoField
+                      catalogoList={funcionList}
+                      selectedCatalogo={formFields.funcion}
+                      helpText={[formatMessage(messages['help.text.funcion'])]}
+                      errorMessage={errors.funcion || ''}
+                      onChangeHandler={handleOnChangeEstado}
+                      handleErrorChange={handleErrorChange}
+                      onBlurHandler={()=>{}}
+                      onFocusHandler={()=>{}}
+                      target={'funcion'}
+                  />
+
+
+              )
+              }
+
+              {(
+                  formFields.funcion&&formFields.funcion.catalogoCode=='0'||
+                  formFields.ocupacion && formFields.ocupacion.catalogoCode=='1'
+
+              ) && (
+                  <CatalogoField
+                      catalogoList={nivelList}
+                      selectedCatalogo={formFields.nivel_Educativo}
+                      helpText={[formatMessage(messages['help.text.nivel_Educativo'])]}
+                      errorMessage={errors.nivel_Educativo || ''}
+                      onChangeHandler={handleOnChangeEstado}
+                      handleErrorChange={handleErrorChange}
+                      onBlurHandler={()=>{}}
+                      onFocusHandler={()=>{}}
+                      target={'nivel_Educativo'}
+                  />
+
+              )}
+
+              {(
+                  formFields.funcion&&formFields.funcion.catalogoCode=='0'
+              )&&(
+                  <NameField
+                      name="asignatura"
+                      value={formFields.asignatura}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.asignatura}
+                      helpText={[formatMessage(messages['help.text.asignatura'])]}
+                      floatingLabel='Campo formativo'
+                  />
+              )}
+
+
               <ConfigurableRegistrationForm
                 email={formFields.email}
                 fieldErrors={errors}

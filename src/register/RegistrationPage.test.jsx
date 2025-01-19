@@ -64,13 +64,13 @@ describe('RegistrationPage', () => {
       marketingEmailsOptIn: true,
     },
     formFields: {
-      name: '', email: '', username: '', password: '',
+      name: '', email: '', username: '', password: '',nombres:'',estado:'',municipio:'',ocupacion:'',primer_apellido:'',segundo_apellido:'',
     },
     emailSuggestion: {
       suggestion: '', type: '',
     },
     errors: {
-      name: '', email: '', username: '', password: '',
+      name: '', email: '', username: '', password: '',nombres:'',estado:'',municipio:'',ocupacion:'',primer_apellido:'',segundo_apellido:'',
     },
   };
 

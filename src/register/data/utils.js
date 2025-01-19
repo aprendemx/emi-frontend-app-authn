@@ -5,6 +5,7 @@ import messages from '../messages';
 import validateEmail from '../RegistrationFields/EmailField/validator';
 import validateName from '../RegistrationFields/NameField/validator';
 import validateUsername from '../RegistrationFields/UsernameField/validator';
+import validateEstado from '../RegistrationFields/EstadoField/validator';
 
 /**
  * It validates the password field value
@@ -39,7 +40,7 @@ export const isFormValid = (
   const fieldErrors = { ...errors };
   let isValid = true;
   let emailSuggestion = { suggestion: '', type: '' };
-
+  console.log(payload)
   Object.keys(payload).forEach(key => {
     switch (key) {
     case 'name':
@@ -78,6 +79,22 @@ export const isFormValid = (
       }
       if (fieldErrors.password) { isValid = false; }
       break;
+
+      case 'estado':
+        if (!fieldErrors.estado) {
+            fieldErrors.estado = validateEstado(payload.estado, formatMessage);
+        }
+        break;
+        case 'nombres':
+        if (!fieldErrors.nombres) {
+            fieldErrors.nombres = validateName(payload.nombres, formatMessage);
+        }
+        break;
+        case 'primer_apellido':
+        if (!fieldErrors.primer_apellido) {
+            fieldErrors.primer_apellido = validateName(payload.primer_apellido, formatMessage);
+        }
+        break;
     default:
       break;
     }

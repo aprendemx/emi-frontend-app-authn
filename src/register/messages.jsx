@@ -201,6 +201,121 @@ const messages = defineMessages({
     defaultMessage: 'Did you mean',
     description: 'Did you mean alert suggestion',
   },
+
+
+  'empty.estado.field.error': {
+    id: 'empty.estado.field.error',
+    defaultMessage: 'Selecciona un estado',
+    description: 'Debes seleccionar un estado',
+  },
+  'invalid.estado.field.error': {
+    id: 'invalid.estado.field.error',
+    defaultMessage: 'Selecciona un estado',
+    description: 'Debes seleccionar un estado',
+  },
+  'help.text.nombres': {
+    id: 'help.text.nombres',
+    defaultMessage: 'Escribe tu nombre(s)',
+    description: 'Debes Escribe tu nombre(s)',
+  },
+
+
+
+    'help.text.primer_apellido': {
+    id: 'help.text.primer_apellido',
+    defaultMessage: 'Escribe tu primer apellido',
+    description: 'Debes Escribe tu primer apellido',
+    },
+    'help.text.segundo_apellido': {
+    id: 'help.text.segundo_apellido',
+    defaultMessage: 'Escribe tu segundo apellido',
+    description: 'Debes Escribe tu segundo apellido'
+    },
+
+
+  'help.text.municipio': {
+    id: 'help.text.municipio',
+    defaultMessage: 'Escribe tu municipio',
+    description: 'Debes Escribe tu municipio',
+  },
+
+  'help.text.estado': {
+    id: 'help.text.estado',
+    defaultMessage: 'Selecciona tu estado',
+    description: 'Debes seleccionar tu estado',
+  },
+
+
+  'help.text.funcion': {
+    id: 'help.text.funcion',
+    defaultMessage: 'Selecciona tu función en tu escuela',
+    description: 'Selecciona tu función en tu escuela',
+  },
+
+  'registration.funcion.label': {
+    id: 'registration.funcion.label',
+    defaultMessage: 'Selecciona la función que desempeñas en tu escuela',
+    description: 'Selecciona la función que desempeñas en tu escuela',
+  },
+  'empty.funcion.field.error': {
+    id: 'empty.funcion.field.error',
+    defaultMessage: 'Selecciona la función que desempeñas en tu escuela',
+    description: 'Selecciona la función que desempeñas en tu escuela',
+  },
+  'invalid.funcion.field.error': {
+    id: 'invalid.funcion.field.error',
+    defaultMessage: 'Selecciona la función que desempeñas en tu escuela',
+    description: 'Selecciona la función que desempeñas en tu escuela',
+  },
+
+  'help.text.ocupacion': {
+    id: 'help.text.ocupacion',
+    defaultMessage: 'Escribe tu ocupación(s)',
+    description: 'Debes Escribe tu ocupación(s)',
+  },
+
+  'registration.ocupacion.label': {
+    id: 'registration.ocupacion.label',
+    defaultMessage: 'Selecciona la ocupacion que desempeñas',
+    description: 'Selecciona la función que desempeñas',
+  },
+  'empty.ocupacion.field.error': {
+    id: 'empty.ocupacion.field.error',
+    defaultMessage: 'Selecciona la ocupacion que desempeñas',
+    description: 'Selecciona la ocupacion que desempeñas',
+  },
+  'invalid.ocupacion.field.error': {
+    id: 'invalid.ocupacion.field.error',
+    defaultMessage: 'Selecciona la ocupacion que desempeñas',
+    description: 'Selecciona la ocupacion que desempeñas',
+  },
+  'help.text.nivel_Educativo': {
+    id: 'help.text.nivel_Educativo',
+    defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+    description: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+  },
+  'registration.nivel_Educativo.label': {
+    id: 'registration.nivel_Educativo.label',
+    defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+    description: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+  },
+  'empty.nivel_Educativo.field.error': {
+    id: 'empty.nivel_Educativo.field.error',
+    defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+    description: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+  },
+  'invalid.nivel_Educativo.field.error': {
+    id: 'invalid.nivel_Educativo.field.error',
+    defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+    description: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+  },
+  'help.text.asignatura': {
+    id: 'help.text.asignatura',
+    defaultMessage: 'Escribe el campo formativo en el que te especializas',
+    description: 'Escribe el campo formativo en el que te especializas',
+  },
+
+
 });
 
 export default messages;

@@ -514,7 +514,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
 
-    if (formFields.ocupacion?.catalogoCode) {
+    if (formFields.ocupacion&& formFields.ocupacion.catalogoCode) {
       _payload.ocupacion = formFields.ocupacion.catalogoCode;
 
     } else{
@@ -590,7 +590,7 @@ const maximoNivelList=useMemo(() =>{ return [
       fieldDescriptions,
       formatMessage,
     );
-    //setErrors({ ...fieldErrors });
+    setErrors({ ...fieldErrors });
     //dispatch(setEmailSuggestionInStore(emailSuggestion));
 
     // returning if not valid

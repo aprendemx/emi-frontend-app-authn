@@ -4,8 +4,6 @@ import messages from '../../messages';
 //regex for mexican curp
 export const URL_REGEX =  /[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}/gi;
 
-// regex from backend
-export const INVALID_NAME_REGEX = /https?:\/\/(?:[-\w.]|(?:%[\da-fA-F]{2}))*/g;
 
 const validateCurp = (value, formatMessage) => {
   let fieldError = '';

@@ -86,18 +86,7 @@ export const isFormValid = (
         }
         if (fieldErrors.estado) { isValid = false; }
         break;
-        case 'nombres':
-        if (!fieldErrors.nombres) {
-            fieldErrors.nombres = validateName(payload.nombres, formatMessage);
-        }
-          if (fieldErrors.nombres) { isValid = false; }
-        break;
-        case 'primer_apellido':
-        if (!fieldErrors.primer_apellido) {
-            fieldErrors.primer_apellido = validateName(payload.primer_apellido, formatMessage);
-        }
-          if (fieldErrors.primer_apellido) { isValid = false; }
-        break;
+
 
         case 'curp':
         if (!fieldErrors.curp) {

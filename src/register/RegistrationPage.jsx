@@ -504,11 +504,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
     let _payload = { ...formFields };
-    let estado=null;
-    let funcion = null;
-    let nivel_Educativo = null;
-    let ocupacion = null;
-    let maximo_nivel = null;
+
 
     if (formFields.estado && formFields.estado.estadoCode) {
       _payload.estado = formFields.estado.estadoCode;
@@ -600,6 +596,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
     // returning if not valid
     if (!isValid) {
+      console.log('errors', fieldErrors);
       setErrorCode(prevState => ({ type: FORM_SUBMISSION_ERROR, count: prevState.count + 1 }));
       return;
     }

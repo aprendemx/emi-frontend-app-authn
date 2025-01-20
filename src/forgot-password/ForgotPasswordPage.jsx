@@ -112,7 +112,7 @@ const ForgotPasswordPage = (props) => {
               {formatMessage(messages['forgot.password.page.heading'])}
             </h2>
             <p className="mb-4">
-              {formatMessage("Por favor, introduce tu dirección de correo electrónico y te enviaremos un mensaje con instrucciones sobre cómo restablecer tu contraseña.")}
+             Por favor, introduce tu dirección de correo electrónico y te enviaremos un mensaje con instrucciones sobre cómo restablecer tu contraseña.
             </p>
             <FormGroup
               floatingLabel={formatMessage(messages['forgot.password.page.email.field.label'])}

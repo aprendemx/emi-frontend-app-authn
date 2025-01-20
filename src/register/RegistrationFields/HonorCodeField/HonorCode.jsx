@@ -66,9 +66,9 @@ const HonorCode = (props) => {
         onChange={onChangeHandler}
       >
         <FormattedMessage
-          id="register.page.honor.code"
+          id="register.page.honor.code_"
           defaultMessage="He leído y acepto el Código de honor de la Plataforma {platformName}&nbsp;{tosAndHonorCode}."
-          description="Text that appears on registration form stating honor code"
+          description="He leído y acepto el Código de honor de la Plataforma {platformName}&nbsp;{tosAndHonorCode}."
           values={{
             platformName: 'MéxicoX',
             tosAndHonorCode: (

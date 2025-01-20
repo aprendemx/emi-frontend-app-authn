@@ -41,7 +41,6 @@ export const isFormValid = (
   const fieldErrors = { ...errors };
   let isValid = true;
   let emailSuggestion = { suggestion: '', type: '' };
-  console.log(payload)
   Object.keys(payload).forEach(key => {
     switch (key) {
     case 'name':

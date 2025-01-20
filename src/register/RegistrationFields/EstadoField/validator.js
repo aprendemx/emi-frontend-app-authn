@@ -10,8 +10,7 @@ const validateEstado =  (value, formatMessage)  => {
   try{
     parseInt(value)
   }catch (e){
-    console.log(e);
-    fieldError = formatMessage(messages['empty.estadi.field.error']);
+    fieldError = formatMessage(messages['empty.estado.field.error']);
   }
 
   return fieldError;

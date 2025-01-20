@@ -580,7 +580,7 @@ const maximoNivelList=useMemo(() =>{ return [
     }
 
     // Validating form data before submitting
-    const { isValid, fieldErrors, emailSuggestion } = isFormValid(
+    /*const { isValid, fieldErrors, emailSuggestion } = isFormValid(
       payload,
       registrationEmbedded ? temporaryErrors : errors,
       configurableFormFields,
@@ -596,7 +596,7 @@ const maximoNivelList=useMemo(() =>{ return [
       setErrorCode(prevState => ({ type: FORM_SUBMISSION_ERROR, count: prevState.count + 1 }));
       return;
     }
-  console.log(fieldErrors)
+  console.log(fieldErrors)*/
     // Preparing payload for submission
     payload = prepareRegistrationPayload(
       payload,

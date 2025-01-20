@@ -526,37 +526,13 @@ const maximoNivelList=useMemo(() =>{ return [
       return handleErrorChange('ocupacion', 'Ocupación es requerida');
     }
 
-    if (formFields.nivel_Educativo&& formFields.nivel_Educativo.catalogoCode) {
-      _payload.nivel_Educativo = formFields.nivel_Educativo.catalogoCode;
-
-    }else{
-        if (formFields.eres_docente){
-            return handleErrorChange('nivel_Educativo', 'Nivel Educativo es requerido');
-        }else{
-          _payload.nivel_Educativo='0'
-        }
-    }
 
 
 
-    if (formFields.funcion && formFields.funcion.catalogoCode) {
-      _payload.funcion = formFields.funcion.catalogoCode;
-    }else{
-      if (formFields.eres_docente){
-        return handleErrorChange('funcion', 'Función es requerida');
-      }else{
-        _payload.funcion='0'
-      }
 
-    }
 
-    if (formFields.eres_docente){
-        if (formFields.cct){
-          _payload.cct=formFields.cct.toUpperCase()
-        }else{
-            return handleErrorChange('cct', 'CCT es requerida');
-        }
-    }
+
+
 
     if (formFields.maximo_nivel&& formFields.maximo_nivel.catalogoCode) {
       _payload.maximo_nivel = formFields.maximo_nivel.catalogoCode;
@@ -572,6 +548,31 @@ const maximoNivelList=useMemo(() =>{ return [
     if (!formFields.honor_code){
         return handleErrorChange('honor_code', 'Debes aceptar el código de honor');
     }
+
+    if (formFields.eres_docente){
+      if (formFields.cct){
+        _payload.cct=formFields.cct.toUpperCase()
+      }else{
+        return handleErrorChange('cct', 'CCT es requerida');
+      }
+
+      if (formFields.funcion && formFields.funcion.catalogoCode) {
+        _payload.funcion = formFields.funcion.catalogoCode;
+      }else{
+          return handleErrorChange('funcion', 'Función es requerida');
+      }
+      if (formFields.nivel_Educativo&& formFields.nivel_Educativo.catalogoCode) {
+        _payload.nivel_Educativo = formFields.nivel_Educativo.catalogoCode;
+
+      }else{
+          return handleErrorChange('nivel_Educativo', 'Nivel Educativo es requerido');
+
+      }
+    } else{
+      _payload.funcion='0'
+      _payload.nivel_Educativo='0'
+    }
+
 
 
     let payload = _payload;

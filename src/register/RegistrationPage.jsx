@@ -649,7 +649,7 @@ const maximoNivelList=useMemo(() =>{ return [
           optionalFields={optionalFields}
           registrationEmbedded={registrationEmbedded}
           redirectToProgressiveProfilingPage={
-            getConfig().ENABLE_PROGRESSIVE_PROFILING_ON_AUTHN && !!Object.keys(optionalFields.fields).length
+            false
           }
         />
         {autoSubmitRegForm && !errorCode.type ? (

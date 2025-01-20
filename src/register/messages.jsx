@@ -190,6 +190,12 @@ const messages = defineMessages({
     defaultMessage: 'Aviso de privacidad',
     description: 'Text for the hyperlink that redirects user to the terms of service',
   },
+
+  'aviso.de.privacidad': {
+    id: 'aviso.de.privacidad',
+    defaultMessage: 'Aviso de privacidad',
+    description: 'Aviso de privacidad',
+  },
   // miscellaneous strings
   'registration.username.suggestion.label': {
     id: 'registration.username.suggestion.label',

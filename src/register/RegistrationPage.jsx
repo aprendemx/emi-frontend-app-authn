@@ -482,12 +482,11 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
     formFields.curp = formFields.curp.toUpperCase()
-    formFields.name=formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido
-    formFields.name=formFields.name.toUpperCase()
+
     formFields.nombres=formFields.nombres.toUpperCase()
     formFields.primer_apellido=formFields.primer_apellido.toUpperCase()
     formFields.segundo_apellido=formFields.segundo_apellido.toUpperCase()
-
+    formFields.name=formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido
 
     if (formFields.email==='') {
         return handleErrorChange('email', 'Correo es requerido');
@@ -574,7 +573,7 @@ const maximoNivelList=useMemo(() =>{ return [
     let payload = _payload;
 
 
-
+    console.log(payload)
     if (currentProvider) {
       delete payload.password;
       payload.social_auth_provider = currentProvider;

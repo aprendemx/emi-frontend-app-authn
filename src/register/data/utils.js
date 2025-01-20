@@ -43,12 +43,6 @@ export const isFormValid = (
   let emailSuggestion = { suggestion: '', type: '' };
   Object.keys(payload).forEach(key => {
     switch (key) {
-    case 'name':
-      if (!fieldErrors.name) {
-        fieldErrors.name = validateName(payload.name, formatMessage);
-      }
-      if (fieldErrors.name) { isValid = false; }
-      break;
     case 'email': {
       if (!fieldErrors.email) {
         const {

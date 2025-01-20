@@ -147,7 +147,7 @@ export const prepareRegistrationPayload = (
   }
 
   payload.totalRegistrationTime = totalRegistrationTime;
-try {
+
   payload.estado = payload.estado.estadoCode;
   payload.ocupacion = payload.ocupacion.catalogoCode;
   payload.maximo_nivel = payload.maximo_nivel.catalogoCode;
@@ -158,9 +158,7 @@ try {
     payload.funcion = '0'
     payload.nivel_Educativo = '0'
   }
-} catch (e) {
-  console.log(e)
-}
+
 
   // add query params to the payload
   payload = { ...payload, ...queryParams };

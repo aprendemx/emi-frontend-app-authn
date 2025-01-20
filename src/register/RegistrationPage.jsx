@@ -606,9 +606,12 @@ const maximoNivelList=useMemo(() =>{ return [
       flags.showMarketingEmailOptInCheckbox,
       totalRegistrationTime,
       queryParams);
-    alert('hola')
-    // making register call
-    dispatch(registerNewUser(payload));
+    try{
+        dispatch(registerNewUser(payload));
+    } catch (e) {
+      console.log(e)
+    }
+
   };
 
   const handleSubmit = (e) => {

@@ -480,17 +480,6 @@ const maximoNivelList=useMemo(() =>{ return [
   const registerUser = () => {
     const totalRegistrationTime = (Date.now() - formStartTime) / 1000;
 
-    let estado=null;
-    let funcion = null;
-    let nivel_Educativo = null;
-    let ocupacion = null;
-    let maximo_nivel = null;
-
-    if (formFields.estado && formFields.estado.estadoCode) {
-      estado = formFields.estado.estadoCode;
-    }else{
-        return handleErrorChange('estado', 'Estado es requerido');
-    }
 
     formFields.curp = formFields.curp.toUpperCase()
     formFields.name=formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido
@@ -499,48 +488,63 @@ const maximoNivelList=useMemo(() =>{ return [
     formFields.primer_apellido=formFields.primer_apellido.toUpperCase()
     formFields.segundo_apellido=formFields.segundo_apellido.toUpperCase()
 
+    let _payload = { ...formFields };
+    let estado=null;
+    let funcion = null;
+    let nivel_Educativo = null;
+    let ocupacion = null;
+    let maximo_nivel = null;
+
+    if (formFields.estado && formFields.estado.estadoCode) {
+      _payload.estado = formFields.estado.estadoCode;
+    }else{
+        return handleErrorChange('estado', 'Estado es requerido');
+    }
+
+
+
 
     if (formFields.ocupacion?.catalogoCode) {
-      ocupacion = formFields.ocupacion.catalogoCode;
+      _payload.ocupacion = formFields.ocupacion.catalogoCode;
 
     } else{
       return handleErrorChange('ocupacion', 'Ocupación es requerida');
     }
 
     if (formFields.nivel_Educativo&& formFields.nivel_Educativo.catalogoCode) {
-        nivel_Educativo = formFields.nivel_Educativo.catalogoCode;
+      _payload.nivel_Educativo = formFields.nivel_Educativo.catalogoCode;
 
     }else{
         if (formFields.eres_docente){
             return handleErrorChange('nivel_Educativo', 'Nivel Educativo es requerido');
         }else{
-            formFields.nivel_Educativo='0'
+          _payload.nivel_Educativo='0'
         }
     }
 
 
 
     if (formFields.funcion&& formFields.funcion.catalogoCode) {
-        funcion = formFields.funcion.catalogoCode;
+      _payload.funcion = formFields.funcion.catalogoCode;
     }else{
       if (formFields.eres_docente){
         return handleErrorChange('funcion', 'Función es requerida');
       }else{
-        formFields.funcion='0'
+        _payload.funcion='0'
       }
 
     }
 
     if (formFields.eres_docente){
         if (formFields.cct){
-            formFields.cct=formFields.cct.toUpperCase()
+          _payload.cct=formFields.cct.toUpperCase()
         }else{
             return handleErrorChange('cct', 'CCT es requerida');
         }
     }
 
     if (formFields.maximo_nivel?.catalogoCode) {
-        maximo_nivel = formFields.maximo_nivel.catalogoCode;
+      _payload.maximo_nivel = formFields.maximo_nivel.catalogoCode;
 
     }else{
         return handleErrorChange('maximo_nivel', 'Máximo nivel de estudios es requerido');
@@ -549,7 +553,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
     if (formFields.pais?.countryCode) {
-        formFields.pais = formFields.pais.countryCode;
+      _payload.pais = formFields.pais.countryCode;
 
     }
 
@@ -562,13 +566,9 @@ const maximoNivelList=useMemo(() =>{ return [
     }
 
 
-    formFields.estado = estado;
-    formFields.funcion = funcion;
-    formFields.nivel_Educativo = nivel_Educativo;
-    formFields.ocupacion = ocupacion;
-    formFields.maximo_nivel = maximo_nivel;
 
-    let payload = { ...formFields };
+
+    let payload = _payload;
 
 
 

@@ -492,8 +492,13 @@ const maximoNivelList=useMemo(() =>{ return [
         return handleErrorChange('estado', 'Estado es requerido');
     }
 
-
+    formFields.name.curp = formFields.curp.toUpperCase()
     formFields.name=formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido
+    formFields.name=formFields.name.toUpperCase()
+    formFields.nombres=formFields.nombres.toUpperCase()
+    formFields.primer_apellido=formFields.primer_apellido.toUpperCase()
+    formFields.segundo_apellido=formFields.segundo_apellido.toUpperCase()
+
 
     if (formFields.ocupacion?.catalogoCode) {
       ocupacion = formFields.ocupacion.catalogoCode;
@@ -544,7 +549,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
     if (formFields.pais?.countryCode) {
-        formFields.pais = formFields.funcion.countryCode;
+        formFields.pais = formFields.pais.countryCode;
 
     }
 

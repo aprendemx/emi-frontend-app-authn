@@ -56,6 +56,7 @@ import {
 import CatalogoField from "./RegistrationFields/CatalogoField/CatalogoField";
 import EresDocente from "./RegistrationFields/EresDocenteField/EresDocente";
 import Cuentanos from "./RegistrationFields/CuentanosField/Cuentanos";
+import TextoField from "./RegistrationFields/TextoField/TextoField";
 
 /**
  * Main Registration Page component
@@ -570,7 +571,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
 
-    let payload = _payload;
+    let payload = {...formFields};
 
 
     console.log(payload)
@@ -591,6 +592,7 @@ const maximoNivelList=useMemo(() =>{ return [
       formatMessage,
     );
     setErrors({ ...fieldErrors });
+    alert("hola")
     //dispatch(setEmailSuggestionInStore(emailSuggestion));
 
     // returning if not valid
@@ -673,7 +675,8 @@ const maximoNivelList=useMemo(() =>{ return [
             />
             <Form id="registration-form" name="registration-form">
 
-              <NameField
+              <TextoField
+
                   name="nombres"
                   value={formFields.nombres}
                   handleChange={handleOnChange}
@@ -683,7 +686,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   floatingLabel='Nombre'
               />
 
-              <NameField
+              <TextoField
                   name="primer_apellido"
                   value={formFields.primer_apellido}
                   handleChange={handleOnChange}
@@ -693,7 +696,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   floatingLabel='Primer Apellido'
               />
 
-              <NameField
+              <TextoField
                   name="segundo_apellido"
                   value={formFields.segundo_apellido}
                   handleChange={handleOnChange}
@@ -703,7 +706,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   floatingLabel='Segundo Apellido'
               />
 
-              <NameField
+              <TextoField
                   name="curp"
                   value={formFields.curp}
                   handleChange={handleOnChange}
@@ -740,7 +743,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
               { formFields.estado&& parseInt(formFields.estado.estadoCode)<= 32 &&(
 
-                  <NameField
+                  <TextoField
                       name="municipio"
                       value={formFields.municipio}
                       handleChange={handleOnChange}
@@ -825,7 +828,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
               { formFields.eres_docente &&(
-                  <NameField
+                  <TextoField
                       name="cct"
                       value={formFields.cct}
                       handleChange={handleOnChange}
@@ -864,7 +867,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   />
                   )}
               { formFields.eres_docente &&(
-                    <NameField
+                    <TextoField
                         name="asignatura"
                         value={formFields.asignatura}
                         handleChange={handleOnChange}

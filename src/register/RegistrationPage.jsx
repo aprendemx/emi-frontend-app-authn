@@ -492,7 +492,7 @@ const maximoNivelList=useMemo(() =>{ return [
         return handleErrorChange('estado', 'Estado es requerido');
     }
 
-    formFields.name.curp = formFields.curp.toUpperCase()
+    formFields.curp = formFields.curp.toUpperCase()
     formFields.name=formFields.nombres+' '+formFields.primer_apellido+' '+formFields.segundo_apellido
     formFields.name=formFields.name.toUpperCase()
     formFields.nombres=formFields.nombres.toUpperCase()

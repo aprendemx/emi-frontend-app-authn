@@ -590,7 +590,7 @@ const maximoNivelList=useMemo(() =>{ return [
     setErrors({ ...fieldErrors });
 
     dispatch(setEmailSuggestionInStore(emailSuggestion));
-
+    console.log(fieldErrors)
     // returning if not valid
     if (!isValid) {
       setErrorCode(prevState => ({ type: FORM_SUBMISSION_ERROR, count: prevState.count + 1 }));

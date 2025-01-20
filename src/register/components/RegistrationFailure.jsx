@@ -30,6 +30,7 @@ const RegistrationFailureMessage = (props) => {
   }
 
   let errorMessage;
+  alert(errorCode);
   switch (errorCode) {
     case INTERNAL_SERVER_ERROR:
       errorMessage = formatMessage(messages['registration.request.server.error']);

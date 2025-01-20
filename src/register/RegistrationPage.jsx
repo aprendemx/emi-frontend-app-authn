@@ -571,7 +571,6 @@ const maximoNivelList=useMemo(() =>{ return [
     let payload = {...formFields};
 
 
-    console.log(payload)
     if (currentProvider) {
       delete payload.password;
       payload.social_auth_provider = currentProvider;
@@ -590,7 +589,7 @@ const maximoNivelList=useMemo(() =>{ return [
     );
     setErrors({ ...fieldErrors });
 
-    //dispatch(setEmailSuggestionInStore(emailSuggestion));
+    dispatch(setEmailSuggestionInStore(emailSuggestion));
 
     // returning if not valid
     /*if (!isValid) {

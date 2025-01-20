@@ -17,7 +17,7 @@ const EresDocente = (props) => {
     <div id="eres-docente" className="micro text-muted">
       <Form.Checkbox
         className="form-field--checkbox mt-1"
-        id="tos"
+        id="eres_docente"
         checked={value}
         name="eres_docente"
         value={value}

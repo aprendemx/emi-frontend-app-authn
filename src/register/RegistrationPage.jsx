@@ -598,7 +598,7 @@ const maximoNivelList=useMemo(() =>{ return [
       setErrorCode(prevState => ({ type: FORM_SUBMISSION_ERROR, count: prevState.count + 1 }));
       return;
     }*/
-
+  console.log(fieldErrors)
     // Preparing payload for submission
     payload = prepareRegistrationPayload(
       payload,
@@ -606,7 +606,7 @@ const maximoNivelList=useMemo(() =>{ return [
       flags.showMarketingEmailOptInCheckbox,
       totalRegistrationTime,
       queryParams);
-
+    alert('hola')
     // making register call
     dispatch(registerNewUser(payload));
   };

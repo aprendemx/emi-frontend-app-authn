@@ -608,6 +608,7 @@ const maximoNivelList=useMemo(() =>{ return [
       queryParams);
     try{
         dispatch(registerNewUser(payload));
+        console.log("no es aquí")
     } catch (e) {
       console.log(e)
     }

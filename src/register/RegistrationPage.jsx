@@ -488,6 +488,21 @@ const maximoNivelList=useMemo(() =>{ return [
     formFields.primer_apellido=formFields.primer_apellido.toUpperCase()
     formFields.segundo_apellido=formFields.segundo_apellido.toUpperCase()
 
+
+    if (formFields.email==='') {
+        return handleErrorChange('email', 'Correo es requerido');
+    }
+    if (formFields.nombres==='') {
+        return handleErrorChange('nombres', 'Nombre es requerido');
+    }
+    if (formFields.primer_apellido==='') {
+        return handleErrorChange('primer_apellido', 'Primer Apellido es requerido');
+    }
+
+
+
+
+
     let _payload = { ...formFields };
     let estado=null;
     let funcion = null;
@@ -524,7 +539,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
 
-    if (formFields.funcion&& formFields.funcion.catalogoCode) {
+    if (formFields.funcion && formFields.funcion.catalogoCode) {
       _payload.funcion = formFields.funcion.catalogoCode;
     }else{
       if (formFields.eres_docente){
@@ -543,19 +558,12 @@ const maximoNivelList=useMemo(() =>{ return [
         }
     }
 
-    if (formFields.maximo_nivel?.catalogoCode) {
+    if (formFields.maximo_nivel&& formFields.maximo_nivel.catalogoCode) {
       _payload.maximo_nivel = formFields.maximo_nivel.catalogoCode;
-
     }else{
         return handleErrorChange('maximo_nivel', 'Máximo nivel de estudios es requerido');
-
     }
 
-
-    if (formFields.pais?.countryCode) {
-      _payload.pais = formFields.pais.countryCode;
-
-    }
 
     if (!formFields.tos){
         return handleErrorChange('tos', 'Debes aceptar los términos y condiciones');
@@ -564,8 +572,6 @@ const maximoNivelList=useMemo(() =>{ return [
     if (!formFields.honor_code){
         return handleErrorChange('honor_code', 'Debes aceptar el código de honor');
     }
-
-
 
 
     let payload = _payload;

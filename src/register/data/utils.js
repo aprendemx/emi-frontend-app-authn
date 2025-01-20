@@ -147,18 +147,20 @@ export const prepareRegistrationPayload = (
   }
 
   payload.totalRegistrationTime = totalRegistrationTime;
-
-  payload.estado=  payload.estado.estadoCode;
+try {
+  payload.estado = payload.estado.estadoCode;
   payload.ocupacion = payload.ocupacion.catalogoCode;
   payload.maximo_nivel = payload.maximo_nivel.catalogoCode;
-  if(payload.eres_docente){
+  if (payload.eres_docente) {
     payload.funcion = payload.funcion.catalogoCode;
     payload.nivel_Educativo = payload.nivel_Educativo.catalogoCode;
-  }else{
-    payload.funcion='0'
-    payload.nivel_Educativo='0'
+  } else {
+    payload.funcion = '0'
+    payload.nivel_Educativo = '0'
   }
-
+} catch (e) {
+  console.log(e)
+}
 
   // add query params to the payload
   payload = { ...payload, ...queryParams };

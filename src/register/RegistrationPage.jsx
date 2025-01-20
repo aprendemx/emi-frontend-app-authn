@@ -527,9 +527,6 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
 
-
-
-
     if (formFields.maximo_nivel&& formFields.maximo_nivel.catalogoCode) {
       _payload.maximo_nivel = formFields.maximo_nivel.catalogoCode;
     }else{
@@ -592,24 +589,24 @@ const maximoNivelList=useMemo(() =>{ return [
       formatMessage,
     );
     setErrors({ ...fieldErrors });
-    alert("hola")
+
     //dispatch(setEmailSuggestionInStore(emailSuggestion));
 
     // returning if not valid
-    if (!isValid) {
+    /*if (!isValid) {
       console.log('errors', fieldErrors);
       setErrorCode(prevState => ({ type: FORM_SUBMISSION_ERROR, count: prevState.count + 1 }));
       return;
-    }
+    }*/
 
     // Preparing payload for submission
-   /* payload = prepareRegistrationPayload(
+    payload = prepareRegistrationPayload(
       payload,
       configurableFormFields,
       flags.showMarketingEmailOptInCheckbox,
       totalRegistrationTime,
       queryParams);
-*/
+
     // making register call
     dispatch(registerNewUser(payload));
   };

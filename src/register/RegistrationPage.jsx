@@ -261,7 +261,7 @@ const RegistrationPage = (props) => {
     },
     {
       code: '5',
-      name: 'SUPERVICIÓN'
+      name: 'SUPERVISIÓN'
     },
     {
       code: '6',
@@ -459,6 +459,7 @@ const maximoNivelList=useMemo(() =>{ return [
     setFormFields(prevState => ({ ...prevState, [name]: value }));
   };
   const handleErrorChange = (fieldName, error) => {
+    console.log(error)
     if (registrationEmbedded) {
       setTemporaryErrors(prevErrors => ({
         ...prevErrors,
@@ -496,7 +497,7 @@ const maximoNivelList=useMemo(() =>{ return [
         return handleErrorChange('nombres', 'Nombre es requerido');
     }
     if (formFields.primer_apellido==='') {
-        return handleErrorChange('primer_apellido', 'Primer Apellido es requerido');
+        return handleErrorChange('primer_apellido', 'Primer apellido es requerido');
     }
 
 
@@ -580,7 +581,7 @@ const maximoNivelList=useMemo(() =>{ return [
     }
 
     // Validating form data before submitting
-    /*const { isValid, fieldErrors, emailSuggestion } = isFormValid(
+    const { isValid, fieldErrors, emailSuggestion } = isFormValid(
       payload,
       registrationEmbedded ? temporaryErrors : errors,
       configurableFormFields,
@@ -596,7 +597,7 @@ const maximoNivelList=useMemo(() =>{ return [
       setErrorCode(prevState => ({ type: FORM_SUBMISSION_ERROR, count: prevState.count + 1 }));
       return;
     }
-  console.log(fieldErrors)*/
+  console.log(fieldErrors)
     // Preparing payload for submission
     payload = prepareRegistrationPayload(
       payload,
@@ -693,7 +694,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   handleErrorChange={handleErrorChange}
                   errorMessage={errors.primer_apellido}
                   helpText={[formatMessage(messages['help.text.primer_apellido'])]}
-                  floatingLabel='Primer Apellido'
+                  floatingLabel='Primer apellido'
               />
 
               <TextoField
@@ -703,7 +704,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   handleErrorChange={handleErrorChange}
                   errorMessage={errors.segundo_apellido}
                   helpText={[formatMessage(messages['help.text.segundo_apellido'])]}
-                  floatingLabel='Segundo Apellido'
+                  floatingLabel='Segundo apellido'
               />
 
               <TextoField

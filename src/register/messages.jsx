@@ -287,17 +287,17 @@ const messages = defineMessages({
 
   'registration.ocupacion.label': {
     id: 'registration.ocupacion.label',
-    defaultMessage: 'Selecciona la ocupacion que desempeñas',
+    defaultMessage: 'Selecciona la ocupación que desempeñas',
     description: 'Selecciona la función que desempeñas',
   },
   'empty.ocupacion.field.error': {
     id: 'empty.ocupacion.field.error',
-    defaultMessage: 'Selecciona la ocupacion que desempeñas',
+    defaultMessage: 'Selecciona la ocupación que desempeñas',
     description: 'Selecciona la ocupacion que desempeñas',
   },
   'invalid.ocupacion.field.error': {
     id: 'invalid.ocupacion.field.error',
-    defaultMessage: 'Selecciona la ocupacion que desempeñas',
+    defaultMessage: 'Selecciona la ocupación que desempeñas',
     description: 'Selecciona la ocupacion que desempeñas',
   },
 

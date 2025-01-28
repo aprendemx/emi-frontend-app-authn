@@ -349,9 +349,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
   const { cta, host } = queryParams;
-  const buttonLabel = cta
-    ? formatMessage(messages['create.account.cta.button'], { label: cta })
-    : formatMessage(messages['create.account.for.free.button']);
+  const buttonLabel = "Crear una cuenta";
 
   /**
    * Set the userPipelineDetails data in formFields for only first time

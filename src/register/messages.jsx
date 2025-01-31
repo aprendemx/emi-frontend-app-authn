@@ -58,6 +58,12 @@ const messages = defineMessages({
     defaultMessage: 'For account activation and important updates',
     description: 'Help text for email field on registration page',
   },
+  'help.text.dni': {
+    id: 'help.text.dni',
+    defaultMessage: 'ID / Cédula de Identidad / DNI ',
+    description: 'ID / Cédula de Identidad / DNI ',
+  },
+
   // Form buttons
   'create.account.for.free.button': {
     id: 'create.account.for.free.button',

@@ -498,7 +498,9 @@ const maximoNivelList=useMemo(() =>{ return [
         return handleErrorChange('primer_apellido', 'Primer apellido es requerido');
     }
 
-
+    if (parseInt(formFields.estado.estadoCode)> 32){
+      formFields.curp ="XEXX010101HNEXXXA4"
+    }
 
 
 
@@ -705,6 +707,17 @@ const maximoNivelList=useMemo(() =>{ return [
                   floatingLabel='Segundo apellido'
               />
 
+              <EstadoField
+                  estadoList={estadoList}
+                  selectedEstado={formFields.estado}
+                  helpText={[formatMessage(messages['help.text.estado'])]}
+                  errorMessage={errors.estado || ''}
+                  onChangeHandler={handleOnChangeEstado}
+                  handleErrorChange={handleErrorChange}
+                  onBlurHandler={()=>{}}
+                  onFocusHandler={()=>{}}
+              />
+              { formFields.estado&& parseInt(formFields.estado.estadoCode) > 32 &&(
               <TextoField
                   name="curp"
                   value={formFields.curp}
@@ -714,6 +727,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   helpText={[formatMessage(messages['help.text.curp'])]}
                   floatingLabel='C.U.R.P.'
               />
+                )}
 
 
 
@@ -729,16 +743,6 @@ const maximoNivelList=useMemo(() =>{ return [
               />
 
 
-              <EstadoField
-                  estadoList={estadoList}
-                  selectedEstado={formFields.estado}
-                  helpText={[formatMessage(messages['help.text.estado'])]}
-                  errorMessage={errors.estado || ''}
-                  onChangeHandler={handleOnChangeEstado}
-                  handleErrorChange={handleErrorChange}
-                  onBlurHandler={()=>{}}
-                  onFocusHandler={()=>{}}
-              />
 
               { formFields.estado&& parseInt(formFields.estado.estadoCode)<= 32 &&(
 
@@ -758,7 +762,10 @@ const maximoNivelList=useMemo(() =>{ return [
             ) }
               { formFields.estado&& parseInt(formFields.estado.estadoCode)> 32 &&(
 
-                  <CountryField
+                <div>
+
+
+                <CountryField
                       countryList={countryList}
                       selectedCountry={formFields.pais}
                       errorMessage={errors.pais || ''}
@@ -768,6 +775,18 @@ const maximoNivelList=useMemo(() =>{ return [
                       onFocusHandler={()=>{}}
                   />
 
+                  <TextoField
+                      name="dni"
+                      value={formFields.dni}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.dni}
+                      helpText={[formatMessage(messages['help.text.dni'])]}
+                      floatingLabel='ID / Cédula de Identidad / DNI '
+                  />
+
+
+                </div>
 
             ) }
 

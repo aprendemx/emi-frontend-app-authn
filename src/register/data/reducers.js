@@ -44,6 +44,7 @@ export const defaultState = {
             pais:{},
             tos: false,
             honor_code: false,
+            dni:''
         },
         emailSuggestion: {
             suggestion: '', type: '',
@@ -69,6 +70,7 @@ export const defaultState = {
             pais:'',
             tos: '',
             honor_code: '',
+            dni:''
         },
     },
     validations: null,

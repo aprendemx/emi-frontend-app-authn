@@ -717,7 +717,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   onBlurHandler={()=>{}}
                   onFocusHandler={()=>{}}
               />
-              { formFields.estado&& parseInt(formFields.estado.estadoCode) > 32 &&(
+              { formFields.estado&& parseInt(formFields.estado.estadoCode) < 32 &&(
               <TextoField
                   name="curp"
                   value={formFields.curp}

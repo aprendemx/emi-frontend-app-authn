@@ -149,6 +149,7 @@ export const prepareRegistrationPayload = (
   payload.totalRegistrationTime = totalRegistrationTime;
 
   payload.estado = payload.estado.estadoCode;
+  payload.pais = payload.pais.estadoCode;
   payload.ocupacion = payload.ocupacion.catalogoCode;
   payload.maximo_nivel = payload.maximo_nivel.catalogoCode;
   if (payload.eres_docente) {

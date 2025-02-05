@@ -63,6 +63,11 @@ const messages = defineMessages({
     defaultMessage: 'ID / Cédula de Identidad / DNI ',
     description: 'ID / Cédula de Identidad / DNI ',
   },
+  'help.text.pais': {
+    id: 'help.text.pais',
+    defaultMessage: 'País de origen ',
+    description: 'País de origen ',
+  },
 
   // Form buttons
   'create.account.for.free.button': {
@@ -107,11 +112,34 @@ const messages = defineMessages({
     defaultMessage: 'Select your country or region of residence',
     description: 'Error message when no country/region is selected',
   },
+
+
+
   'invalid.country.field.error': {
     id: 'invalid.country.field.error',
     defaultMessage: 'Country must match with an option available in the dropdown.',
     description: 'Error message when country is invalid',
   },
+
+
+
+  'empty.pais.field.error': {
+    id: 'empty.pais.field.error',
+    defaultMessage: 'Select your country or region of residence',
+    description: 'Error message when no country/region is selected',
+  },
+
+
+
+  'invalid.pais.field.error': {
+    id: 'invalid.pais.field.error',
+    defaultMessage: 'Country must match with an option available in the dropdown.',
+    description: 'Error message when country is invalid',
+  },
+
+
+
+
   'email.do.not.match': {
     id: 'email.do.not.match',
     defaultMessage: 'The email addresses do not match.',
@@ -235,8 +263,16 @@ const messages = defineMessages({
     defaultMessage: 'Escribe tu nombre(s)',
     description: 'Debes Escribe tu nombre(s)',
   },
-
-
+  'registration.pais.label': {
+    id: 'registration.pais.label',
+    defaultMessage: 'País de orígen',
+    description: 'Selecciona el país de origen',
+  },
+  'registration.estado.label': {
+    id: 'registration.estado.label',
+    defaultMessage: 'Estado de residencia',
+    description: 'Selecciona el  estado de residencia',
+  },
 
     'help.text.primer_apellido': {
     id: 'help.text.primer_apellido',

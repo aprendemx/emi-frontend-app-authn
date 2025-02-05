@@ -28,6 +28,7 @@ const EstadoField = (props) => {
     onChangeHandler,
     handleErrorChange,
     onFocusHandler,
+      target
   } = props;
   const { formatMessage } = useIntl();
   const dispatch = useDispatch();
@@ -53,12 +54,12 @@ const EstadoField = (props) => {
         estadoDisplayValue = estadoVal[COUNTRY_DISPLAY_KEY];
       }
       onChangeHandler(
-          { target: { name: 'estado' } },
+          { target: { name: target } },
           { estadoCode, displayValue: estadoDisplayValue },
       );
     } else if (!selectedEstado.displayValue) {
       onChangeHandler(
-          { target: { name: 'estado' } },
+          { target: { name: target } },
           { estadoCode: '', displayValue: '' },
       );
     }
@@ -73,26 +74,26 @@ const EstadoField = (props) => {
     const { value } = event.target;
 
     const { error } = validateEstadoField(
-        value.trim(), estadoList, formatMessage(messages['empty.estado.field.error']), formatMessage(messages['invalid.estado.field.error']),
+        value.trim(), estadoList, formatMessage(messages['empty.'+target+'.field.error']), formatMessage(messages['invalid.'+target+'.field.error']),
     );
-    handleErrorChange('estado', error);
+    handleErrorChange(target, error);
   };
 
   const handleOnFocus = (event) => {
-    handleErrorChange('estado', '');
-    dispatch(clearRegistrationBackendError('estado'));
+    handleErrorChange(target, '');
+    dispatch(clearRegistrationBackendError(target));
     onFocusHandler(event);
   };
 
   const handleOnChange = (value) => {
-    onChangeHandler({ target: { name: 'estado' } }, { estadoCode: value.selectionId, displayValue: value.userProvidedText });
+    onChangeHandler({ target: { name: target } }, { estadoCode: value.selectionId, displayValue: value.userProvidedText });
 
     // We have put this check because proviously we also had onSelected event handler and we call
     // the onBlur on that event handler but now there is no such handler and we only have
     // onChange so we check the is there is proper sectionId which only be
     // proper one when we select it from dropdown's item otherwise its null.
     if (value.selectionId !== '') {
-      handleOnBlur({ target: { name: 'estado', value: value.userProvidedText } });
+      handleOnBlur({ target: { name: target, value: value.userProvidedText } });
     }
   };
 
@@ -105,9 +106,9 @@ const EstadoField = (props) => {
   return (
       <div className="mb-4">
         <FormAutosuggest
-            floatingLabel="Estado"
+            floatingLabel={messages['empty.'+props.target+'.field.error'].defaultMessage}
             aria-label="form autosuggest"
-            name="estado"
+            name={target}
             value={estadoFieldValue || {}}
             className={classNames({ 'form-field-error': props.errorMessage })}
             onFocus={(e) => handleOnFocus(e)}
@@ -121,7 +122,7 @@ const EstadoField = (props) => {
                 key="error"
                 className="form-text-size"
                 hasIcon={false}
-                feedback-for="estado"
+                feedback-for={props.target}
                 type="invalid"
             >
               {props.errorMessage}
@@ -146,6 +147,7 @@ EstadoField.propTypes = {
     displayValue: PropTypes.string,
     estadoCode: PropTypes.string,
   }),
+  target:PropTypes.string
 };
 
 EstadoField.defaultProps = {

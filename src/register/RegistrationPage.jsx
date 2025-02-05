@@ -456,6 +456,7 @@ const maximoNivelList=useMemo(() =>{ return [
     }
     setFormFields(prevState => ({ ...prevState, [name]: value }));
   };
+
   const handleErrorChange = (fieldName, error) => {
     console.log(error)
     if (registrationEmbedded) {
@@ -499,7 +500,8 @@ const maximoNivelList=useMemo(() =>{ return [
     }
 
     if (parseInt(formFields.estado.estadoCode)> 32){
-      formFields.curp ="XEXX010101HNEXXXA4"
+      formFields.curp ="XEXX010101HDFXXX04"
+      formFields.municipio ="FUERA DE MÉXICO"
     }
 
 
@@ -716,6 +718,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   handleErrorChange={handleErrorChange}
                   onBlurHandler={()=>{}}
                   onFocusHandler={()=>{}}
+                  target={'estado'}
               />
               { formFields.estado&& parseInt(formFields.estado.estadoCode) < 32 &&(
               <TextoField
@@ -763,18 +766,17 @@ const maximoNivelList=useMemo(() =>{ return [
               { formFields.estado&& parseInt(formFields.estado.estadoCode)> 32 &&(
 
                 <div>
-
-
-                <CountryField
-                      countryList={countryList}
-                      selectedCountry={formFields.pais}
+                  <EstadoField
+                      estadoList={countryList}
+                      selectedEstado={formFields.pais}
+                      helpText={[formatMessage(messages['help.text.pais'])]}
                       errorMessage={errors.pais || ''}
-                      onChangeHandler={handleOnChange}
+                      onChangeHandler={handleOnChangeEstado}
                       handleErrorChange={handleErrorChange}
                       onBlurHandler={()=>{}}
                       onFocusHandler={()=>{}}
+                      target={'pais'}
                   />
-
                   <TextoField
                       name="dni"
                       value={formFields.dni}

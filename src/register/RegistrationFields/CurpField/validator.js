@@ -14,5 +14,4 @@ const validateCurp = (value, formatMessage) => {
   }
   return fieldError;
 };
-
 export default validateCurp;

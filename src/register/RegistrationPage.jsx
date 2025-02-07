@@ -455,8 +455,6 @@ const maximoNivelList=useMemo(() =>{ return [
       }
     }
     if ( name ==='pais'){
-      console.log(...prevState)
-
       formFields.curp='XEXX010101HDFXXX04'
       formFields.municipio = 'FUERA DE MÉXICO'
 

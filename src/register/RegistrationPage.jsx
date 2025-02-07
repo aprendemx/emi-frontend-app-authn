@@ -454,6 +454,14 @@ const maximoNivelList=useMemo(() =>{ return [
         setFieldErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
       }
     }
+    if ( name ==='pais'){
+      setFormFields(prevState => ({ ...prevState, ['curp']: 'XEXX010101HDFXXX04' }));
+      setFormFields(prevState => ({ ...prevState, ['municipio']: 'FUERA DE MÉXICO' }));
+    } else if (name ==='estado') {
+        setFormFields(prevState => ({ ...prevState, ['curp']: '' }));
+        setFormFields(prevState => ({ ...prevState, ['municipio']: '' }));
+    }
+
     setFormFields(prevState => ({ ...prevState, [name]: value }));
   };
 

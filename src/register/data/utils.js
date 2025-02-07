@@ -83,6 +83,9 @@ export const isFormValid = (
 
 
         case 'curp':
+          if (parseInt(fieldErrors.estado)>32) {
+            break;
+          }
         if (!fieldErrors.curp) {
             fieldErrors.curp = validateCurp(payload.curp, formatMessage);
         }

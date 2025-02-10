@@ -30,7 +30,7 @@ const TermsOfService = (props) => {
           values={{
             platformName: 'MéxicoX',
             termsOfService: (
-              <Hyperlink variant="muted" destination={"https://mexicox.gob.mx/toc"} target="_blank">
+              <Hyperlink variant="muted" destination={"https://mexicox.gob.mx/tos"} target="_blank">
                 {formatMessage(messages['aviso.de.privacidad'])}
               </Hyperlink>
             ),

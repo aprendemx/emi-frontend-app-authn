@@ -684,7 +684,7 @@ const maximoNivelList=useMemo(() =>{ return [
               failureCount={errorCode.count}
               context={{ provider: currentProvider, errorMessage: thirdPartyAuthErrorMessage }}
             />
-            <Form id="registration-form" name="registration-form" autoComplete={false} >
+            <Form id="registration-form" name="registration-form" autoComplete={"off"} >
 
               <TextoField
 

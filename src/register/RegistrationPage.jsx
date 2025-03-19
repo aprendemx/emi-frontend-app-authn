@@ -825,6 +825,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   helpText={[formatMessage(messages['help.text.username.1']), formatMessage(messages['help.text.username.2'])]}
                   floatingLabel={formatMessage(messages['registration.username.label'])}
                   autoComplete={"off"}
+
                 />
               )}
               {!currentProvider && (
@@ -875,6 +876,7 @@ const maximoNivelList=useMemo(() =>{ return [
                       errorMessage={errors.cct}
                       helpText={[formatMessage(messages['help.text.cct'])]}
                       floatingLabel='Clave del Centro de Trabajo CCT'
+                      autoComplete={"off"}
                   />
                   )}
 

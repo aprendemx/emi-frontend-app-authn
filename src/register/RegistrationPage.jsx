@@ -695,6 +695,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   errorMessage={errors.nombres}
                   helpText={[formatMessage(messages['help.text.nombres'])]}
                   floatingLabel='Nombre'
+                  autoComplete={"off"}
               />
 
               <TextoField
@@ -705,6 +706,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   errorMessage={errors.primer_apellido}
                   helpText={[formatMessage(messages['help.text.primer_apellido'])]}
                   floatingLabel='Primer apellido'
+                  autoComplete={"off"}
               />
 
               <TextoField
@@ -715,6 +717,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   errorMessage={errors.segundo_apellido}
                   helpText={[formatMessage(messages['help.text.segundo_apellido'])]}
                   floatingLabel='Segundo apellido'
+                  autoComplete={"off"}
               />
 
               <EstadoField
@@ -727,6 +730,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   onBlurHandler={()=>{}}
                   onFocusHandler={()=>{}}
                   target={'estado'}
+                  autoComplete={"off"}
               />
               { formFields.estado&& parseInt(formFields.estado.estadoCode) < 32 &&(
               <TextoField
@@ -737,6 +741,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   errorMessage={errors.curp}
                   helpText={[formatMessage(messages['help.text.curp'])]}
                   floatingLabel='C.U.R.P.'
+                  autoComplete={"off"}
               />
                 )}
 
@@ -751,6 +756,7 @@ const maximoNivelList=useMemo(() =>{ return [
                 errorMessage={errors.email}
                 helpText={[formatMessage(messages['help.text.email'])]}
                 floatingLabel={formatMessage(messages['registration.email.label'])}
+                autoComplete={"off"}
               />
 
 
@@ -765,6 +771,7 @@ const maximoNivelList=useMemo(() =>{ return [
                       errorMessage={errors.municipio}
                       helpText={[formatMessage(messages['help.text.municipio'])]}
                       floatingLabel='Municipio/Alcaldía'
+                      autoComplete={"off"}
                   />
 
 
@@ -784,6 +791,7 @@ const maximoNivelList=useMemo(() =>{ return [
                       onBlurHandler={()=>{}}
                       onFocusHandler={()=>{}}
                       target={'pais'}
+                      autoComplete={"off"}
                   />
                   <TextoField
                       name="dni"
@@ -793,6 +801,7 @@ const maximoNivelList=useMemo(() =>{ return [
                       errorMessage={errors.dni}
                       helpText={[formatMessage(messages['help.text.dni'])]}
                       floatingLabel='ID / Cédula de Identidad / DNI '
+                      autoComplete={"off"}
                   />
 
 
@@ -815,6 +824,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   errorMessage={errors.username}
                   helpText={[formatMessage(messages['help.text.username.1']), formatMessage(messages['help.text.username.2'])]}
                   floatingLabel={formatMessage(messages['registration.username.label'])}
+                  autoComplete={"off"}
                 />
               )}
               {!currentProvider && (
@@ -825,6 +835,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   handleErrorChange={handleErrorChange}
                   errorMessage={errors.password}
                   floatingLabel={formatMessage(messages['registration.password.label'])}
+                  autoComplete={"off"}
                 />
               )}
 

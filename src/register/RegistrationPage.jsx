@@ -778,7 +778,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
             ) }
-              { formFields.estado&& parseInt(formFields.estado.estadoCode)>= 32 &&(
+              { formFields.estado&& parseInt(formFields.estado.estadoCode)> 32 &&(
 
                 <div>
                   <EstadoField

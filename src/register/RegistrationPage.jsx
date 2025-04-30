@@ -507,7 +507,7 @@ const maximoNivelList=useMemo(() =>{ return [
         return handleErrorChange('primer_apellido', 'Primer apellido es requerido');
     }
 
-    if (parseInt(formFields.estado.estadoCode)> 32){
+    if (parseInt(formFields.estado.estadoCode)>= 32){
       formFields.curp ="XEXX010101HDFXXX04"
       formFields.municipio ="FUERA DE MÉXICO"
     }
@@ -732,7 +732,7 @@ const maximoNivelList=useMemo(() =>{ return [
                   target={'estado'}
                   autoComplete={"off"}
               />
-              { formFields.estado&& parseInt(formFields.estado.estadoCode) < 32 &&(
+              { formFields.estado&& parseInt(formFields.estado.estadoCode) <= 32 &&(
               <TextoField
                   name="curp"
                   value={formFields.curp}
@@ -778,7 +778,7 @@ const maximoNivelList=useMemo(() =>{ return [
 
 
             ) }
-              { formFields.estado&& parseInt(formFields.estado.estadoCode)> 32 &&(
+              { formFields.estado&& parseInt(formFields.estado.estadoCode)>= 32 &&(
 
                 <div>
                   <EstadoField
@@ -876,7 +876,7 @@ const maximoNivelList=useMemo(() =>{ return [
                       errorMessage={errors.cct}
                       helpText={[formatMessage(messages['help.text.cct'])]}
                       floatingLabel='Clave del Centro de Trabajo CCT'
-                      autoComplete={"off"}
+
                   />
                   )}
 

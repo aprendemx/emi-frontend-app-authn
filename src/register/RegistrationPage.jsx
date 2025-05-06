@@ -507,7 +507,7 @@ const maximoNivelList=useMemo(() =>{ return [
         return handleErrorChange('primer_apellido', 'Primer apellido es requerido');
     }
 
-    if (parseInt(formFields.estado.estadoCode)>= 32){
+    if (parseInt(formFields.estado.estadoCode)>= 33){
       formFields.curp ="XEXX010101HDFXXX04"
       formFields.municipio ="FUERA DE MÉXICO"
     }

@@ -70,9 +70,9 @@ const HonorCode = (props) => {
           defaultMessage="He leído y acepto el Código de honor de la Plataforma {platformName}&nbsp;{tosAndHonorCode}."
           description="He leído y acepto el Código de honor de la Plataforma {platformName}&nbsp;{tosAndHonorCode}."
           values={{
-            platformName: 'MéxicoX',
+            platformName: ' Cursos @prende.mx',
             tosAndHonorCode: (
-              <Hyperlink variant="muted" destination={"https://mexicox.gob.mx/honor"} target="_blank">
+              <Hyperlink variant="muted" destination={"https://cursos.aprende.gob.mx/honor"} target="_blank">
                 {formatMessage(messages['honor.code'])}
               </Hyperlink>
             ),

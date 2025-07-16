@@ -28,9 +28,9 @@ const TermsOfService = (props) => {
           description="Text that appears on registration form stating terms of service.
                        It is a legal document that users must agree to."
           values={{
-            platformName: 'MéxicoX',
+            platformName: 'Cursos @prende.mx',
             termsOfService: (
-              <Hyperlink variant="muted" destination={"https://mexicox.gob.mx/tos"} target="_blank">
+              <Hyperlink variant="muted" destination={"https://cursos.aprende.gob.mx/tos"} target="_blank">
                 {formatMessage(messages['aviso.de.privacidad'])}
               </Hyperlink>
             ),

@@ -17,7 +17,7 @@ const MediumLayout = () => {
         <div className="col-md-10 bg-primary-400">
 
           <div className="d-flex align-items-center justify-content-center mb-4 ">
-            <div><img src="https://sisadmin.mexicox.gob.mx/extramexicox/mexicox-amx.png" alt="AprendeMX-Logo" width="300px"/></div>
+            <div><img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" width="300px"/></div>
           </div>
         </div>
         <div className="col-md-2 bg-white p-0">

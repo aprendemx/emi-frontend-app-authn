@@ -16,7 +16,7 @@ const SmallLayout = () => {
       <div>
 
         <div className="d-flex align-items-center m-3.5">
-           <img src="https://sisadmin.mexicox.gob.mx/extramexicox/mexicox-amx.png" alt="AprendeMX-Logo" width="100%"/><br/>
+           <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" width="100%"/><br/>
           <div className={classNames({'small-yellow-line mr-n2.5': getConfig().SITE_NAME === 'edX'})}/>
         </div>
       </div>

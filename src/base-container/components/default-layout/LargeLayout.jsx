@@ -16,7 +16,7 @@ const LargeLayout = () => {
         <div className="min-vh-100  align-items-center">
 
           <div className={classNames({'large-yellow-line mr-n4.5': getConfig().SITE_NAME === 'edX'})}/>
-          <img src="https://sisadmin.mexicox.gob.mx/extramexicox/mexicox-amx.png" alt="AprendeMX-Logo" width="350px"/>
+          <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" width="350px"/>
           <div></div>
         </div>
       </div>

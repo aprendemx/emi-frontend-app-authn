@@ -41,9 +41,7 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 
 .main-content {
   @extend .pt-4;
-  max-width: 464px !important;
-  width: 100%;
-  margin: 0 auto;
+  min-width: 464px !important;
 }
 
 .welcome-page-content {

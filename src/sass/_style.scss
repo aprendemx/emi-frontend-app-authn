@@ -429,12 +429,12 @@ select.form-control {
 }
 
 .pgn__form-group {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
 }
 
 // Estilos adicionales para mejorar la apariencia del formulario
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 // Mejorar la apariencia de los campos de entrada con floating labels
@@ -540,7 +540,7 @@ select.form-control {
 .layout {
   justify-content: center !important;
   align-items: center !important;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 // Centrar el formulario correctamente
@@ -548,21 +548,22 @@ select.form-control {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100% !important;
+  padding: 1rem !important;
 }
 
 // Asegurar que el contenedor del formulario esté centrado
 .mw-xs {
   width: 100%;
-  max-width: 420px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
 // Centrar específicamente el formulario de registro e inicio de sesión
 #registration-form,
 #sign-in-form {
-  max-width: 420px;
+  max-width: 500px;
   width: 100%;
   margin: 0 auto;
 }
@@ -575,6 +576,8 @@ select.form-control {
   justify-content: center;
   width: 100%;
   text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 // Ajustar elementos del formulario para mantener alineación correcta
@@ -589,13 +592,20 @@ select.form-control {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 90vh;
   }
   
   .content {
     width: auto !important;
     margin-top: 0 !important;
     padding: 2rem !important;
+  }
+  
+  .mw-xs,
+  #registration-form,
+  #sign-in-form,
+  #main-content {
+    max-width: 600px;
   }
 }
 

@@ -92,7 +92,13 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
   font-size: 0.875rem;
   line-height: 1.5;
   height: 2.75rem;
-
+  border-radius: 8px !important;
+  border: 1px solid #d1d5db !important;
+  
+  &:focus {
+    border-color: rgb(139, 31, 65) !important;
+    box-shadow: 0 0 0 1px rgb(139, 31, 65) !important;
+  }
 }
 
 .btn-social {
@@ -211,6 +217,28 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
   display: inherit;
   margin: 0 auto;
   margin-bottom: 2rem;
+}
+
+// Estilos para el botón principal de login/registro
+.btn-brand {
+  background-color: rgb(166, 39, 81) !important;
+  border-color: rgb(166, 39, 81) !important;
+  border-radius: 8px !important;
+  color: white !important;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem !important;
+  
+  &:hover,
+  &:focus {
+    background-color: rgb(139, 31, 65) !important;
+    border-color: rgb(139, 31, 65) !important;
+    color: white !important;
+  }
+  
+  &:active {
+    background-color: rgb(120, 25, 55) !important;
+    border-color: rgb(120, 25, 55) !important;
+  }
 }
 
 .institute-icon {
@@ -348,6 +376,24 @@ select.form-control {
   }
 }
 
+// Mejorar el estilo del enlace de "forgot password"
+#forgot-password.btn-link {
+  color: rgb(139, 31, 65) !important;
+  font-size: 0.875rem;
+  text-decoration: none;
+  padding: 0;
+  
+  &:hover {
+    color: rgb(120, 25, 55) !important;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    color: rgb(120, 25, 55) !important;
+    box-shadow: none;
+  }
+}
+
 .icon-size {
   width: 2.3rem;
 }
@@ -376,6 +422,29 @@ select.form-control {
 
 .pgn__form-group {
   margin-bottom: 1.75rem;
+}
+
+// Estilos adicionales para mejorar la apariencia del formulario
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+// Mejorar la apariencia de los campos de entrada con floating labels
+.has-floating-label .pgn__form-control-floating-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+// Espaciado entre elementos del formulario
+#sign-in-form {
+  .form-group:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-brand {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .form-text-size {

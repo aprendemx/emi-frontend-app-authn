@@ -42,10 +42,18 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 .main-content {
   @extend .pt-4;
   min-width: 464px !important;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .welcome-page-content {
   min-width: 464px !important;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .stateful-button-width {
@@ -521,6 +529,74 @@ select.form-control {
   font-size: 0.875rem;
   line-height: 1.5rem;
   color: $primary-700
+}
+
+// Estilos para centrar el formulario y ocultar elementos laterales
+.layout .w-50 {
+  display: none !important;
+}
+
+// Hacer que el layout ocupe todo el ancho cuando se oculta el lado izquierdo
+.layout {
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: 100vh;
+}
+
+// Centrar el formulario correctamente
+.content {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: 100vh;
+  width: 100% !important;
+}
+
+// Asegurar que el contenedor del formulario esté centrado
+.mw-xs {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+// Centrar específicamente el formulario de registro e inicio de sesión
+#registration-form,
+#sign-in-form {
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+// Centrar también el contenedor principal del contenido
+#main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+// Ajustar elementos del formulario para mantener alineación correcta
+#main-content .form-group,
+#main-content .pgn__form-group {
+  text-align: left;
+}
+
+// Centrar el layout en pantallas grandes
+@media (min-width: 1200px) {
+  .layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .content {
+    width: auto !important;
+    margin-top: 0 !important;
+    padding: 2rem !important;
+  }
 }
 
 .pgn__form-control-decorator-trailing {

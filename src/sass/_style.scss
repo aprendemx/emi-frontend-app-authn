@@ -42,10 +42,37 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 .main-content {
   @extend .pt-4;
   min-width: 464px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
 }
 
 .welcome-page-content {
   min-width: 464px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+// Centrado mejorado para formularios
+.layout .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  
+  @media (min-width: 1200px) {
+    width: 50vw;
+  }
+}
+
+// Asegurar que el formulario esté centrado en todas las resoluciones
+.mw-xs {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .stateful-button-width {

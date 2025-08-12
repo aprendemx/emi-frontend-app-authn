@@ -17,8 +17,10 @@
   @include media-breakpoint-up('xl') {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 50vw;
-    margin-top: 4rem;
+    margin-top: 0;
+    min-height: 100vh;
   }
 }
 
@@ -87,9 +89,9 @@
   height: 0.25rem;
   background-image: linear-gradient(
     102.02deg,
-    $brand-700,
-    $brand-700 20%,
-    $brand 20%,
+    rgb(166, 39, 81),
+    rgb(166, 39, 81) 20%,
+    rgb(139, 31, 65) 20%,
   );
   background-repeat: no-repeat;
 }
@@ -100,12 +102,12 @@
     height: 0.5rem;
     background-image: linear-gradient(
       102.02deg,
-      $brand-700,
-      $brand-700 10%,
-      $brand 10%,
-      $brand 90%,
-      $primary-700 90%,
-      $primary-700 100%,
+      rgb(166, 39, 81),
+      rgb(166, 39, 81) 10%,
+      rgb(139, 31, 65) 10%,
+      rgb(139, 31, 65) 90%,
+      rgb(120, 25, 55) 90%,
+      rgb(120, 25, 55) 100%,
     );
     background-repeat: no-repeat;
   }
@@ -117,13 +119,13 @@
     height: 0.5rem;
     background-image: linear-gradient(
       102.02deg,
-      $brand-700 10%,
-      $brand 10%,
-      $brand 65%,
-      $primary-700 65%,
-      $primary-700 75%,
-      $accent-a 75%,
-      $accent-a 75%
+      rgb(166, 39, 81) 10%,
+      rgb(139, 31, 65) 10%,
+      rgb(139, 31, 65) 65%,
+      rgb(120, 25, 55) 65%,
+      rgb(120, 25, 55) 75%,
+      rgb(139, 31, 65) 75%,
+      rgb(139, 31, 65) 75%
     );
     background-repeat: no-repeat;
   }
@@ -137,14 +139,14 @@
    height: 0.5rem;
    background-image: linear-gradient(
      102.02deg,
-     $brand-700 10%,
-     $brand 10%,
-     $brand 45%,
-     $primary-700 45%,
-     $primary-700 55%,
-     $accent-a 55%,
-     $accent-a 75%,
-     $info-200 75%,
+     rgb(166, 39, 81) 10%,
+     rgb(139, 31, 65) 10%,
+     rgb(139, 31, 65) 45%,
+     rgb(120, 25, 55) 45%,
+     rgb(120, 25, 55) 55%,
+     rgb(139, 31, 65) 55%,
+     rgb(139, 31, 65) 75%,
+     rgb(166, 39, 81) 75%,
   );
    background-repeat: no-repeat;
  }
@@ -157,19 +159,17 @@
   position: absolute;
 }
 
+// Degradado guinda personalizado
+.bg-primary-400 {
+  background: linear-gradient(135deg, rgb(166, 39, 81) 0%, rgb(139, 31, 65) 50%, rgb(120, 25, 55) 100%) !important;
+}
+
 .large-screen-svg-primary {
-  fill: $primary-400;
-}
-
-.medium-screen-svg-light,
-.medium-screen-svg-primary {
-  fill: $light-200;
-  overflow: inherit;
-  position: absolute;
+  fill: rgb(139, 31, 65) !important;
 }
 
 .medium-screen-svg-primary {
-  fill: $primary-400;
+  fill: rgb(139, 31, 65) !important;
 }
 
 [dir=rtl]{

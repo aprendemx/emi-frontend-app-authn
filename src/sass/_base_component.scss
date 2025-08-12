@@ -6,10 +6,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(135deg, rgb(166, 39, 81) 0%, rgb(139, 31, 65) 50%, rgb(120, 25, 55) 100%);
+    min-height: 100vh;
   }
 
   @include media-breakpoint-up('xl') {
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, rgb(166, 39, 81) 0%, rgb(139, 31, 65) 50%, rgb(120, 25, 55) 100%);
+    min-height: 100vh;
   }
 }
 
@@ -18,9 +23,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50vw;
-    margin-top: 0;
+    width: 100vw;
     min-height: 100vh;
+    margin-top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    max-width: 500px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  @include media-breakpoint-down('lg') {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    max-width: 500px;
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -131,7 +155,26 @@
   }
 }
 
-.extra-large-screen-top-stripe { display: none; }
+.extra-large-screen-top-stripe { 
+  display: none !important; 
+}
+
+.medium-screen-top-stripe {
+  display: none !important;
+}
+
+.small-screen-top-stripe {
+  display: none !important;
+}
+
+// Ocultar los elementos del layout lateral
+.col-md-10.bg-primary-400,
+.col-md-2.bg-white,
+.medium-screen-svg-primary,
+.large-screen-svg-primary,
+.bg-primary-400 {
+  display: none !important;
+}
 
 @include media-breakpoint-up('xl') {
  .extra-large-screen-top-stripe {

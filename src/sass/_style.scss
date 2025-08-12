@@ -7,22 +7,6 @@
 @import "_login_page.scss";
 @import "_forgot_password.scss";
 @import "_recommendations_card_base.scss";
-
-// Fondo completo guinda para toda la aplicación
-body {
-  background: linear-gradient(135deg, rgb(166, 39, 81) 0%, rgb(139, 31, 65) 50%, rgb(120, 25, 55) 100%) !important;
-  min-height: 100vh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-#root {
-  min-height: 100vh !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
 //
 // ----------------------------
 // #COLORS
@@ -58,37 +42,10 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 .main-content {
   @extend .pt-4;
   min-width: 464px !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
 }
 
 .welcome-page-content {
   min-width: 464px !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-}
-
-// Centrado mejorado para formularios
-.layout .content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  
-  @media (min-width: 1200px) {
-    width: 50vw;
-  }
-}
-
-// Asegurar que el formulario esté centrado en todas las resoluciones
-.mw-xs {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
 }
 
 .stateful-button-width {

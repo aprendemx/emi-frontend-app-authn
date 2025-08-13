@@ -580,6 +580,12 @@ select.form-control {
   padding-top: 2.5rem; // give some top space similar to reference
 }
 
+// Show only the content column; hide decorative layout siblings that push content to the right
+.layout > :not(.content) { display: none !important; }
+
+// Footer should be centered and span full width
+.login-footer { width: 100%; text-align: center; margin-left: auto; margin-right: auto; }
+
 // Centrar el formulario correctamente
 .content {
   display: flex !important;
@@ -672,19 +678,28 @@ select.form-control {
   border: 1px solid #e5e7eb; // make edges visible and consistent
   box-shadow: 0 10px 20px rgba(0,0,0,0.06);
   overflow: hidden; // clip children to the rounded corners
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  border-radius: 12px !important; // enforce radius
+  overflow: hidden; // clip inner children to corners
 }
 
-// Unify radii of inputs and primary button to match container
-.form-control,
-.btn-brand {
-  border-radius: 12px !important;
-}
+// Avoid any child creating square edges at top/bottom
+.login-card > *:first-child { border-top-left-radius: 12px; border-top-right-radius: 12px; }
+.login-card > *:last-child  { border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
 
-// Footer under the card
-.login-footer {
-  color: #6b7280;
-  font-size: 0.8125rem;
-}
+// Make sure the container inside main-content also centers
+.main-content > .mw-xs { margin-left: auto; margin-right: auto; }
+
+// Buttons should follow the same curvature
+.btn,
+.btn-brand { border-radius: 12px !important; }
+
+// Tabs header should not overflow the card radius
+.nav-tabs { border-top-left-radius: 12px; border-top-right-radius: 12px; overflow: hidden; }
 
 .emi-brand-logo {
   height: 56px;

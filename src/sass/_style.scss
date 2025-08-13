@@ -669,6 +669,9 @@ select.form-control {
   background: #fff;
   border-radius: 12px; // unified radius for container
   padding: 1.75rem 1.5rem 1.5rem;
+  border: 1px solid #e5e7eb; // make edges visible and consistent
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+  overflow: hidden; // clip children to the rounded corners
 }
 
 // Unify radii of inputs and primary button to match container

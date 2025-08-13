@@ -136,10 +136,12 @@ const Logistration = (props) => {
                 </Tabs>
               )}
               <div id="main-content" className="main-content">
-                {!institutionLogin && (
-                  <h3 className="mb-4.5">{formatMessage(messages['logistration.sign.in'])}</h3>
-                )}
-                <LoginPage institutionLogin={institutionLogin} handleInstitutionLogin={handleInstitutionLogin} />
+                <div className="mw-xs login-card mt-3 mb-2">
+                  {!institutionLogin && (
+                    <h3 className="mb-4.5">{formatMessage(messages['logistration.sign.in'])}</h3>
+                  )}
+                  <LoginPage institutionLogin={institutionLogin} handleInstitutionLogin={handleInstitutionLogin} />
+                </div>
               </div>
             </>
           )
@@ -161,19 +163,21 @@ const Logistration = (props) => {
                 <Navigate to={updatePathWithQueryParams(key)} replace />
               )}
               <div id="main-content" className="main-content">
-                {!institutionLogin && !isValidTpaHint() && hideRegistrationLink && (
-                  <h3 className="mb-4.5">
-                    {formatMessage(messages[selectedPage === LOGIN_PAGE ? 'logistration.sign.in' : 'logistration.register'])}
-                  </h3>
-                )}
-                {selectedPage === LOGIN_PAGE
-                  ? <LoginPage institutionLogin={institutionLogin} handleInstitutionLogin={handleInstitutionLogin} />
-                  : (
-                    <RegistrationPage
-                      institutionLogin={institutionLogin}
-                      handleInstitutionLogin={handleInstitutionLogin}
-                    />
+                <div className="mw-xs login-card mt-3 mb-2">
+                  {!institutionLogin && !isValidTpaHint() && hideRegistrationLink && (
+                    <h3 className="mb-4.5">
+                      {formatMessage(messages[selectedPage === LOGIN_PAGE ? 'logistration.sign.in' : 'logistration.register'])}
+                    </h3>
                   )}
+                  {selectedPage === LOGIN_PAGE
+                    ? <LoginPage institutionLogin={institutionLogin} handleInstitutionLogin={handleInstitutionLogin} />
+                    : (
+                      <RegistrationPage
+                        institutionLogin={institutionLogin}
+                        handleInstitutionLogin={handleInstitutionLogin}
+                      />
+                    )}
+                </div>
               </div>
             </div>
           )}

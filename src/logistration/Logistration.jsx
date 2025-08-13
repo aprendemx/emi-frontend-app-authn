@@ -98,6 +98,14 @@ const Logistration = (props) => {
 
   return (
     <BaseContainer>
+      {/* Brand logo above Register / Sign in */}
+      <div className="text-center mt-3">
+        <img
+          src="/images/Logo_EMI_largo.png"
+          alt="Escuela Mexicana de Inglés"
+          className="emi-brand-logo"
+        />
+      </div>
       <div>
         {disablePublicAccountCreation
           ? (

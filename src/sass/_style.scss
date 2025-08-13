@@ -681,3 +681,14 @@ select.form-control {
   color: #6b7280;
   font-size: 0.8125rem;
 }
+
+.emi-brand-logo {
+  height: 56px;
+  width: auto;
+}
+
+@media (max-width: 464px) {
+  .emi-brand-logo {
+    height: 48px;
+  }
+}

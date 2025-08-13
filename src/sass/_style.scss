@@ -41,7 +41,7 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 
 .main-content {
   @extend .pt-2;
-  min-width: 464px !important;
+  min-width: 500px !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 }
 
 .welcome-page-content {
-  min-width: 464px !important;
+  min-width: 500px !important;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -592,16 +592,16 @@ select.form-control {
 // Asegurar que el contenedor del formulario esté centrado
 .mw-xs {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
 // Centrar específicamente el formulario de registro e inicio de sesión
 #registration-form,
 #sign-in-form {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 2rem;
   
   // Compactar elementos del formulario
   .form-group,
@@ -623,7 +623,7 @@ select.form-control {
   justify-content: center;
   width: 100%;
   text-align: center;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -652,7 +652,7 @@ select.form-control {
   #registration-form,
   #sign-in-form,
   #main-content {
-    max-width: 600px;
+    max-width: 650px;
   }
 }
 

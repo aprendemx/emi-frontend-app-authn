@@ -40,12 +40,13 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 }
 
 .main-content {
-  @extend .pt-4;
+  @extend .pt-2;
   min-width: 464px !important;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
+  min-height: 80vh;
 }
 
 .welcome-page-content {
@@ -99,9 +100,10 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
   background-color: $white !important;
   font-size: 0.875rem;
   line-height: 1.5;
-  height: 2.75rem;
+  height: 2.5rem;
   border-radius: 8px !important;
   border: 1px solid #d1d5db !important;
+  margin-bottom: 0.75rem;
   
   &:focus {
     border-color: rgb(139, 31, 65) !important;
@@ -434,7 +436,18 @@ select.form-control {
 
 // Estilos adicionales para mejorar la apariencia del formulario
 .form-group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+// Reducir espaciado en elementos específicos del formulario
+.pgn__form-group {
+  margin-bottom: 1rem !important;
+}
+
+// Compactar botones
+.btn {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
 }
 
 // Mejorar la apariencia de los campos de entrada con floating labels
@@ -445,13 +458,36 @@ select.form-control {
 
 // Espaciado entre elementos del formulario
 #sign-in-form {
-  .form-group:not(:last-child) {
-    margin-bottom: 1.5rem;
+  .pgn__form-group,
+  .form-group {
+    margin-bottom: 1rem;
   }
   
-  .btn-brand {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  .form-text {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  // Reducir espaciado general del formulario
+  padding: 1rem;
+  
+  // Compactar el contenedor del formulario
+  .mw-xs {
+    padding: 0;
+    max-width: 400px;
+  }
+  
+  // Espaciado más compacto para elementos específicos
+  .alert {
+    margin-bottom: 0.75rem;
+  }
+  
+  // Botones más compactos
+  .btn-brand,
+  .logistration-button {
+    padding: 0.625rem 1rem;
+    margin-bottom: 0.75rem;
+    height: auto;
   }
 }
 
@@ -563,9 +599,20 @@ select.form-control {
 // Centrar específicamente el formulario de registro e inicio de sesión
 #registration-form,
 #sign-in-form {
-  max-width: 500px;
-  width: 100%;
+  max-width: 400px;
   margin: 0 auto;
+  padding: 1.5rem;
+  
+  // Compactar elementos del formulario
+  .form-group,
+  .pgn__form-group {
+    margin-bottom: 1rem;
+  }
+  
+  // Reducir altura de campos
+  .form-control {
+    height: 2.5rem;
+  }
 }
 
 // Centrar también el contenedor principal del contenido

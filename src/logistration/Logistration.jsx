@@ -42,6 +42,14 @@ const Logistration = (props) => {
   const disablePublicAccountCreation = getConfig().ALLOW_PUBLIC_ACCOUNT_CREATION === false;
   const hideRegistrationLink = getConfig().SHOW_REGISTRATION_LINKS === false;
 
+  // Helper to build URLs to static assets bundled under the MFE base path
+  const assetUrl = (relativePath) => {
+    const base = getConfig().BASE_URL || '';
+    const baseNoSlash = base.endsWith('/') ? base.slice(0, -1) : base;
+    const relNoSlash = relativePath.replace(/^\//, '');
+    return `${baseNoSlash}/${relNoSlash}`;
+  };
+
   useEffect(() => {
     const authService = getAuthService();
     if (authService) {
@@ -101,7 +109,7 @@ const Logistration = (props) => {
       {/* Brand logo above Register / Sign in */}
       <div className="text-center mt-3">
         <img
-          src={getConfig().BASE_URL.concat('/EMI_completo_negro.png')}
+          src={assetUrl('EMI_completo_negro.png')}
           alt="Escuela Mexicana de Inglés"
           className="emi-brand-logo"
         />

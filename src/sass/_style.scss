@@ -515,6 +515,18 @@ a[data-rb-event-key="/login"]:focus {
   color: $emi-logistration-accent !important;
 }
 
+// Ensure the bottom border (underline) uses the guinda brand color only for Register/Sign in tabs
+#root .layout .content .nav.nav-tabs a[data-rb-event-key="/register"].active,
+#root .layout .content .nav.nav-tabs a[data-rb-event-key="/login"].active,
+#root .layout .content .nav.nav-tabs a[data-rb-event-key="/register"]:hover,
+#root .layout .content .nav.nav-tabs a[data-rb-event-key="/login"]:hover,
+.nav.nav-tabs a[data-rb-event-key="/register"].active,
+.nav.nav-tabs a[data-rb-event-key="/login"].active,
+.nav.nav-tabs a[data-rb-event-key="/register"]:hover,
+.nav.nav-tabs a[data-rb-event-key="/login"]:hover {
+  border-bottom: 2px solid $emi-logistration-accent !important;
+}
+
 @media (min-width: 1024px) {
   .mw-500 {
     width: 500px;

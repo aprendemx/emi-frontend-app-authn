@@ -101,7 +101,7 @@ const Logistration = (props) => {
       {/* Brand logo above Register / Sign in */}
       <div className="text-center mt-3">
         <img
-          src="/images/Logo_EMI_largo.png"
+          src={`${getConfig().BASE_URL}/images/Logo_EMI_largo.png`}
           alt="Escuela Mexicana de Inglés"
           className="emi-brand-logo"
         />

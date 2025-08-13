@@ -209,7 +209,7 @@ const LoginPage = (props) => {
         redirectUrl={loginResult.redirectUrl}
         finishAuthUrl={finishAuthUrl}
       />
-      <div className="mw-xs mt-3 mb-2">
+      <div className="mw-xs mt-3 mb-2 login-card">
         <LoginFailureMessage
           errorCode={errorCode.type}
           errorCount={errorCode.count}
@@ -276,6 +276,9 @@ const LoginPage = (props) => {
             isLoginPage
           />
         </Form>
+      </div>
+      <div className="text-center mt-3 mb-4 login-footer">
+        © 2025 Escuela Mexicana de Inglés. Todos los derechos reservados.
       </div>
     </>
   );

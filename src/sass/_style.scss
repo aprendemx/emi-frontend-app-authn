@@ -101,7 +101,7 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
   font-size: 0.875rem;
   line-height: 1.5;
   height: 2.5rem;
-  border-radius: 8px !important;
+  border-radius: 8px !important; // restore original control radius
   border: 1px solid #d1d5db !important;
   margin-bottom: 0.75rem;
   
@@ -660,21 +660,16 @@ select.form-control {
   height: 100% !important;
   border: 0 !important;
   background: transparent !important;
-  border-radius: 0 12px 12px 0 !important; // mismo radio que el input en el lado derecho
+  border-radius: 0 12px 12px 0 !important; // restore previous radius for trailing decorator
   box-shadow: none !important;
 }
 
 // Consistent card styling
 .login-card {
   background: #fff;
-  border-radius: 12px; // unified radius for container
+  border-radius: 12px; // keep outer container radius
+  overflow: hidden; // clip inner content so all 4 corners look rounded
   padding: 1.75rem 1.5rem 1.5rem;
-}
-
-// Unify radii of inputs and primary button to match container
-.form-control,
-.btn-brand {
-  border-radius: 12px !important;
 }
 
 // Footer under the card

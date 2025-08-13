@@ -698,3 +698,17 @@ select.form-control {
     border-radius: 50px !important; // cuatro esquinas iguales
   }
 }
+
+// Global background overrides to ensure full-white backgrounds
+.bg-primary-400,
+.bg-light-200 {
+  background-color: #ffffff !important;
+}
+
+// Remove any gradient backgrounds on layout stripes just in case
+.small-screen-top-stripe,
+.medium-screen-top-stripe,
+.extra-large-screen-top-stripe {
+  background: none !important;
+  background-image: none !important;
+}

@@ -1,4 +1,3 @@
-
 .layout {
   display: flex;
 
@@ -85,91 +84,63 @@
 
 .small-screen-top-stripe {
   height: 0.25rem;
-  background-image: linear-gradient(
-    102.02deg,
-    $brand-700,
-    $brand-700 20%,
-    $brand 20%,
-  );
-  background-repeat: no-repeat;
+  // Remove decorative gradient stripe
+  background-image: none !important;
+  background: none !important;
+  display: none !important;
 }
 
 @include media-breakpoint-only('md') {
   .medium-screen-top-stripe {
-    display: flex;
-    height: 0.5rem;
-    background-image: linear-gradient(
-      102.02deg,
-      $brand-700,
-      $brand-700 10%,
-      $brand 10%,
-      $brand 90%,
-      $primary-700 90%,
-      $primary-700 100%,
-    );
-    background-repeat: no-repeat;
+    // Remove decorative gradient stripe
+    display: none !important;
+    background-image: none !important;
+    background: none !important;
   }
 }
 
 @include media-breakpoint-only('lg') {
   .medium-screen-top-stripe {
-    display: flex;
-    height: 0.5rem;
-    background-image: linear-gradient(
-      102.02deg,
-      $brand-700 10%,
-      $brand 10%,
-      $brand 65%,
-      $primary-700 65%,
-      $primary-700 75%,
-      $accent-a 75%,
-      $accent-a 75%
-    );
-    background-repeat: no-repeat;
+    // Remove decorative gradient stripe
+    display: none !important;
+    background-image: none !important;
+    background: none !important;
   }
 }
 
-.extra-large-screen-top-stripe { display: none; }
+.extra-large-screen-top-stripe { display: none !important; }
 
 @include media-breakpoint-up('xl') {
  .extra-large-screen-top-stripe {
-   display: flex;
-   height: 0.5rem;
-   background-image: linear-gradient(
-     102.02deg,
-     $brand-700 10%,
-     $brand 10%,
-     $brand 45%,
-     $primary-700 45%,
-     $primary-700 55%,
-     $accent-a 55%,
-     $accent-a 75%,
-     $info-200 75%,
-  );
-   background-repeat: no-repeat;
+   // Remove decorative gradient stripe
+   display: none !important;
+   background-image: none !important;
+   background: none !important;
  }
 }
 
 .large-screen-svg-light,
 .large-screen-svg-primary {
-  fill: $light-200;
+  // Ensure SVG background shapes are white (invisible on white pages)
+  fill: var(--pgn-color-white) !important;
   overflow: hidden;
   position: absolute;
 }
 
 .large-screen-svg-primary {
-  fill: $primary-400;
+  fill: var(--pgn-color-white) !important;
 }
 
 .medium-screen-svg-light,
 .medium-screen-svg-primary {
-  fill: $light-200;
+  // Ensure SVG background shapes are white (invisible on white pages)
+  fill: var(--pgn-color-white) !important;
   overflow: inherit;
   position: absolute;
 }
 
 .medium-screen-svg-primary {
-  fill: $primary-400;
+  fill: var(--pgn-color-white) !important;
 }
 
 [dir=rtl]{

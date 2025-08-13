@@ -113,12 +113,7 @@ const Logistration = (props) => {
           alt="Escuela Mexicana de Inglés"
           className="emi-brand-logo"
         />
-        {/* Educación Aprende logo below EMI */}
-        <img
-          src="https://aprende.gob.mx/images/logo_educacion_aprende_negro.png"
-          alt="Gobierno de México - Secretaría de Educación Pública"
-          className="gov-edu-logo"
-        />
+        {/* Educación Aprende logo removed from header; shown in page footers */}
       </div>
       <div>
         {disablePublicAccountCreation

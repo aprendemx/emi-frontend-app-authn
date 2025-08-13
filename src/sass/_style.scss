@@ -583,8 +583,9 @@ select.form-control {
 // Centrar el formulario correctamente
 .content {
   display: flex !important;
-  justify-content: center !important;
-  align-items: flex-start !important; // top align
+  flex-direction: column !important; // stack children vertically (logo above form)
+  justify-content: flex-start !important;
+  align-items: center !important; // center horizontally
   min-height: auto; // remove 90vh stretch
   width: 100% !important;
   padding: 2rem 1rem 3rem !important; // a bit more breathing room

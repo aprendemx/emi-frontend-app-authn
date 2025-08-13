@@ -1,87 +1,85 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
 
 const messages = defineMessages({
-  'sign.in': {
-    id: 'sign.in',
-    defaultMessage: 'Sign in',
-    description: 'Sign in toggle text',
+  'sign.in.text': {
+    id: 'sign.in.text',
+    defaultMessage: 'Iniciar sesión',
+    description: 'login page link on reset password page',
   },
   'reset.password.page.title': {
     id: 'reset.password.page.title',
-    defaultMessage: 'Reset Password | {siteName}',
-    description: 'page title',
+    defaultMessage: 'Restablecer contraseña | {siteName}',
+    description: 'reset password page title',
   },
-  'reset.password': {
-    id: 'reset.password',
-    defaultMessage: 'Reset password',
-    description: 'The page heading and button text for reset password page.',
+  'reset.password.page.heading': {
+    id: 'reset.password.page.heading',
+    defaultMessage: 'Restablecer contraseña',
+    description: 'Reset password page heading',
   },
-  'reset.password.page.instructions': {
-    id: 'reset.password.page.instructions',
-    defaultMessage: 'Enter and confirm your new password.',
-    description: 'Instructions message for reset password page.',
+  'reset.password.page.subheading': {
+    id: 'reset.password.page.subheading',
+    defaultMessage: 'Ingresa y confirma tu nueva contraseña.',
+    description: 'Reset password page subheading',
   },
-  'new.password.label': {
-    id: 'new.password.label',
-    defaultMessage: 'New password',
-    description: 'New password field label for the reset password page.',
+  'reset.password.new.password.label': {
+    id: 'reset.password.new.password.label',
+    defaultMessage: 'Nueva contraseña',
+    description: 'New password input label',
   },
-  'confirm.password.label': {
-    id: 'confirm.password.label',
-    defaultMessage: 'Confirm password',
-    description: 'Confirm password field label for the reset password page.',
+  'reset.password.confirm.password.label': {
+    id: 'reset.password.confirm.password.label',
+    defaultMessage: 'Confirmar contraseña',
+    description: 'Confirm password input label',
   },
-  // validation errors
-  'password.validation.message': {
-    id: 'password.validation.message',
-    defaultMessage: 'Password criteria has not been met',
-    description: 'Error message for empty or invalid password',
+  'password.criteria.not.met': {
+    id: 'password.criteria.not.met',
+    defaultMessage: 'La contraseña no cumple con los criterios',
+    description: 'Password criteria not met message',
   },
-  'passwords.do.not.match': {
-    id: 'passwords.do.not.match',
-    defaultMessage: 'Passwords do not match',
-    description: 'Password format error.',
+  'password.do.not.match': {
+    id: 'password.do.not.match',
+    defaultMessage: 'Las contraseñas no coinciden',
+    description: 'Passwords do not match message',
   },
-  'confirm.your.password': {
-    id: 'confirm.your.password',
-    defaultMessage: 'Confirm your password',
-    description: 'Field validation message when confirm password is empty',
+  'confirm.password.placeholder': {
+    id: 'confirm.password.placeholder',
+    defaultMessage: 'Confirma tu contraseña',
+    description: 'Placeholder confirm password',
   },
-  // alert banner strings
-  'reset.password.failure.heading': {
-    id: 'reset.password.failure.heading',
-    defaultMessage: 'We couldn\'t reset your password.',
-    description: 'Heading for reset password request failure',
+  'reset.password.request.failure.header': {
+    id: 'reset.password.request.failure.header',
+    defaultMessage: 'No pudimos restablecer tu contraseña.',
+    description: 'Reset password failure header message.',
   },
-  'reset.password.form.submission.error': {
-    id: 'reset.password.form.submission.error',
-    defaultMessage: 'Please check your responses and try again.',
-    description: 'Error message for reset password page',
+  'reset.password.request.server.error': {
+    id: 'reset.password.request.server.error',
+    defaultMessage: 'Ocurrió un error. Intenta refrescar la página o verifica tu conexión a internet.',
+    description: 'Server error message',
   },
   'reset.server.rate.limit.error': {
     id: 'reset.server.rate.limit.error',
-    defaultMessage: 'Too many requests.',
-    description: 'Too many request at server end point',
+    defaultMessage: 'Demasiadas solicitudes.',
+    description: 'Rate limit error title',
   },
   'reset.password.success.heading': {
     id: 'reset.password.success.heading',
-    defaultMessage: 'Password reset complete.',
-    description: 'Heading for alert box when reset password is successful',
+    defaultMessage: 'Contraseña restablecida',
+    description: 'Reset password success heading',
   },
   'reset.password.success': {
     id: 'reset.password.success',
-    defaultMessage: 'Your password has been reset. Sign in to your account.',
+    defaultMessage: 'Tu contraseña se ha restablecido. Inicia sesión en tu cuenta.',
     description: 'Reset password success message',
   },
-  'internal.server.error': {
-    id: 'internal.server.error',
-    defaultMessage: 'An error has occurred. Try refreshing the page, or check your internet connection.',
-    description: 'Error message that appears when server responds with 500 error code',
+  'internal.server.error.message': {
+    id: 'internal.server.error.message',
+    defaultMessage: 'Ocurrió un error. Intenta refrescar la página o verifica tu conexión a internet.',
+    description: 'General server error message',
   },
-  'rate.limit.error': {
-    id: 'rate.limit.error',
-    defaultMessage: 'An error has occurred because of too many requests. Please try again after some time.',
-    description: 'Error message that appears when server responds with 429 error code',
+  'rate.limit.message': {
+    id: 'rate.limit.message',
+    defaultMessage: 'Se produjeron demasiadas solicitudes. Inténtalo más tarde.',
+    description: 'Rate limit generic message',
   },
 });
 

@@ -683,15 +683,12 @@ a[data-rb-event-key="/login"]:focus {
 .pgn__form-control-decorator-trailing {
   right: 0 !important;
   top: 0;
-  height: 100%;
+  height: 80%;
   border-left: 0 !important; // quitar división
-  display: flex;               // centrar contenido verticalmente
-  align-items: center;         // centrar vertical
-  justify-content: center;     // centrar horizontal
 }
 .pgn__form-control-decorator-trailing .btn,
 .pgn__form-control-decorator-trailing button {
-  height: 80% !important;      // antes 100%, mejor proporción con el input
+  height: 100% !important;
   border: 0 !important;
   background: transparent !important;
   border-radius: 0 12px 12px 0 !important; // restore previous radius for trailing decorator
@@ -700,8 +697,8 @@ a[data-rb-event-key="/login"]:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.6rem; // ligero ajuste
-  line-height: 1;
+  padding: 0 0.75rem; // espacio horizontal cómodo
+  line-height: 1; // evitar que el ícono herede alturas extrañas
 }
 
 // Consistent card styling

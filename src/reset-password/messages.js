@@ -81,6 +81,68 @@ const messages = defineMessages({
     defaultMessage: 'Se produjeron demasiadas solicitudes. Inténtalo más tarde.',
     description: 'Rate limit generic message',
   },
+
+  // --- Compat: claves usadas por componentes ---
+  'password.validation.message': {
+    id: 'password.validation.message',
+    defaultMessage: 'La contraseña no cumple con los criterios',
+    description: 'Validation error shown under password field',
+  },
+  'confirm.your.password': {
+    id: 'confirm.your.password',
+    defaultMessage: 'Confirma tu contraseña',
+    description: 'Validation error shown under confirm password field when empty',
+  },
+  'passwords.do.not.match': {
+    id: 'passwords.do.not.match',
+    defaultMessage: 'Las contraseñas no coinciden',
+    description: 'Validation error when passwords do not match',
+  },
+  'sign.in': {
+    id: 'sign.in',
+    defaultMessage: 'Iniciar sesión',
+    description: 'Tab link text to go back to login',
+  },
+  'reset.password': {
+    id: 'reset.password',
+    defaultMessage: 'Restablecer contraseña',
+    description: 'Generic reset password label',
+  },
+  'reset.password.page.instructions': {
+    id: 'reset.password.page.instructions',
+    defaultMessage: 'Ingresa y confirma tu nueva contraseña.',
+    description: 'Instructions shown on reset page',
+  },
+  'new.password.label': {
+    id: 'new.password.label',
+    defaultMessage: 'Nueva contraseña',
+    description: 'Floating label for new password field',
+  },
+  'confirm.password.label': {
+    id: 'confirm.password.label',
+    defaultMessage: 'Confirmar contraseña',
+    description: 'Floating label for confirm password field',
+  },
+  'reset.password.failure.heading': {
+    id: 'reset.password.failure.heading',
+    defaultMessage: 'No pudimos restablecer tu contraseña.',
+    description: 'Heading for reset password failure alert',
+  },
+  'rate.limit.error': {
+    id: 'rate.limit.error',
+    defaultMessage: 'Se produjeron demasiadas solicitudes. Inténtalo más tarde.',
+    description: 'Alias for rate limit message',
+  },
+  'internal.server.error': {
+    id: 'internal.server.error',
+    defaultMessage: 'Ocurrió un error. Intenta refrescar la página o verifica tu conexión a internet.',
+    description: 'Alias for internal server error message',
+  },
+  'reset.password.form.submission.error': {
+    id: 'reset.password.form.submission.error',
+    defaultMessage: 'Revisa tus respuestas e inténtalo de nuevo.',
+    description: 'Form submission generic error',
+  },
 });
 
 export default messages;

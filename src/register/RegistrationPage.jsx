@@ -293,7 +293,7 @@ const RegistrationPage = (props) => {
         ) : (
           <div
             className={classNames(
-              'mw-xs mt-3',
+              'mw-xs mt-3 login-card', // add card when not embedded
               { 'w-100 m-auto pt-4 main-content': registrationEmbedded },
             )}
           >
@@ -383,6 +383,13 @@ const RegistrationPage = (props) => {
                 />
               )}
             </Form>
+          </div>
+        )}
+
+        {/* Footer under registration card */}
+        {!registrationEmbedded && (
+          <div className="text-center mt-3 mb-4 login-footer">
+            © 2025 Escuela Mexicana de Inglés. Todos los derechos reservados.
           </div>
         )}
 

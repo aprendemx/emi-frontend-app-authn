@@ -46,7 +46,7 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 80vh;
+  min-height: auto; // remove 80vh
 }
 
 .welcome-page-content {
@@ -575,44 +575,34 @@ select.form-control {
 // Hacer que el layout ocupe todo el ancho cuando se oculta el lado izquierdo
 .layout {
   justify-content: center !important;
-  align-items: center !important;
-  min-height: 90vh;
+  align-items: flex-start !important; // top align, not vertically centered
+  min-height: auto; // remove 90vh
+  padding-top: 2.5rem; // give some top space similar to reference
 }
 
 // Centrar el formulario correctamente
 .content {
   display: flex !important;
   justify-content: center !important;
-  align-items: center !important;
-  min-height: 90vh;
+  align-items: flex-start !important; // top align
+  min-height: auto; // remove 90vh stretch
   width: 100% !important;
-  padding: 1rem !important;
+  padding: 2rem 1rem 3rem !important; // a bit more breathing room
 }
 
 // Asegurar que el contenedor del formulario esté centrado
 .mw-xs {
   width: 100%;
-  max-width: 600px;
+  max-width: 640px; // widen a bit more
   margin: 0 auto;
 }
 
 // Centrar específicamente el formulario de registro e inicio de sesión
 #registration-form,
 #sign-in-form {
-  max-width: 500px;
+  max-width: 520px; // slightly wider than before
   margin: 0 auto;
-  padding: 2rem;
-  
-  // Compactar elementos del formulario
-  .form-group,
-  .pgn__form-group {
-    margin-bottom: 1rem;
-  }
-  
-  // Reducir altura de campos
-  .form-control {
-    height: 2.5rem;
-  }
+  padding: 2rem; // keep comfortable padding
 }
 
 // Centrar también el contenedor principal del contenido
@@ -623,7 +613,7 @@ select.form-control {
   justify-content: center;
   width: 100%;
   text-align: center;
-  max-width: 600px;
+  max-width: 640px; // match mw-xs width increase
   margin: 0 auto;
 }
 
@@ -638,21 +628,22 @@ select.form-control {
   .layout {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 90vh;
+    align-items: flex-start; // stay top aligned
+    min-height: auto; // no forced viewport height
+    padding-top: 4rem; // a bit more top spacing on large screens
   }
   
   .content {
     width: auto !important;
     margin-top: 0 !important;
-    padding: 2rem !important;
+    padding: 2rem 2rem 3rem !important;
   }
   
   .mw-xs,
   #registration-form,
   #sign-in-form,
   #main-content {
-    max-width: 650px;
+    max-width: 680px; // give extra width on very large screens
   }
 }
 

@@ -100,7 +100,7 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
   background-color: $white !important;
   font-size: 0.875rem;
   line-height: 1.5;
-  height: 2.5rem;
+  height: 3rem; // antes 2.5rem; aumenta altura para que el ojo no se vea comprimido
   border-radius: 8px !important; // restore original control radius
   border: 1px solid #d1d5db !important;
   margin-bottom: 0.75rem;
@@ -681,7 +681,7 @@ a[data-rb-event-key="/login"]:focus {
 
 // Unificar bordes entre campo y decorador (icono de mostrar/ocultar)
 .pgn__form-control-decorator-trailing {
-  right: 0 !important; // ya existía
+  right: 0 !important;
   top: 0;
   height: 100%;
   border-left: 0 !important; // quitar división
@@ -693,6 +693,12 @@ a[data-rb-event-key="/login"]:focus {
   background: transparent !important;
   border-radius: 0 12px 12px 0 !important; // restore previous radius for trailing decorator
   box-shadow: none !important;
+  // centrar el ícono vertical y horizontalmente
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.75rem; // espacio horizontal cómodo
+  line-height: 1; // evitar que el ícono herede alturas extrañas
 }
 
 // Consistent card styling

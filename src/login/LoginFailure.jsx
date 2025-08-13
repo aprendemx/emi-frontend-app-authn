@@ -72,9 +72,9 @@ const LoginFailureMessage = (props) => {
         <p>
           <FormattedMessage
             id="login.inactive.user.error"
-            defaultMessage="In order to sign in, you need to activate your account.{lineBreak}
-            {lineBreak}We just sent an activation link to {email}. If you do not receive an email,
-            check your spam folders or {supportLink}."
+            defaultMessage="Para iniciar sesión, necesitas activar tu cuenta.{lineBreak}
+            {lineBreak}Acabamos de enviar un enlace de activación a {email}. Si no recibes el correo,
+            revisa tu carpeta de spam o {supportLink}."
             values={{
               lineBreak: <br />,
               email: <strong className="data-hj-suppress">{context.email}</strong>,
@@ -97,7 +97,7 @@ const LoginFailureMessage = (props) => {
           <FormattedMessage
             id="allowed.domain.login.error"
             description="Display this error message when staff user try to login through password"
-            defaultMessage="As {allowedDomain} user, You must login with your {allowedDomain} {tpaLink}."
+            defaultMessage="Como usuario de {allowedDomain}, debes iniciar sesión con tu {allowedDomain} a través de {tpaLink}."
             values={{ allowedDomain: context.allowedDomain, tpaLink }}
           />
         </p>
@@ -119,8 +119,8 @@ const LoginFailureMessage = (props) => {
             <FormattedMessage
               id="login.incorrect.credentials.error.attempts.text.1"
               description="Error message for incorrect email or password"
-              defaultMessage="The username, email or password you entered is incorrect. You have {remainingAttempts} more sign in
-                attempts before your account is temporarily locked."
+              defaultMessage="El usuario, correo o contraseña que ingresaste es incorrecto. Te quedan {remainingAttempts} intentos de inicio de sesión
+                antes de que tu cuenta se bloquee temporalmente."
               values={{ remainingAttempts: context.remainingAttempts }}
             />
           </p>
@@ -128,7 +128,7 @@ const LoginFailureMessage = (props) => {
             <FormattedMessage
               id="login.incorrect.credentials.error.attempts.text.2"
               description="Part of error message for incorrect email or password"
-              defaultMessage="If you've forgotten your password, {resetLink}"
+              defaultMessage="Si olvidaste tu contraseña, {resetLink}"
               values={{ resetLink }}
             />
           </p>
@@ -144,7 +144,7 @@ const LoginFailureMessage = (props) => {
             <FormattedMessage
               id="account.locked.out.message.2"
               description="Part of message for when user account has been locked out after multiple failed login attempts"
-              defaultMessage="To be on the safe side, you can {resetLink} before trying again."
+              defaultMessage="Para mayor seguridad, puedes {resetLink} antes de intentarlo de nuevo."
               values={{ resetLink }}
             />
           </p>
@@ -160,7 +160,7 @@ const LoginFailureMessage = (props) => {
           <p>
             <FormattedMessage
               id="login.incorrect.credentials.error.with.reset.link"
-              defaultMessage="The username, email, or password you entered is incorrect. Please try again or {resetLink}."
+              defaultMessage="El usuario, correo o contraseña que ingresaste es incorrecto. Inténtalo de nuevo o {resetLink}."
               values={{ resetLink }}
             />
           </p>

@@ -25,7 +25,7 @@ const TermsOfService = (props) => {
       >
         <FormattedMessage
           id="register.page.terms.of.service"
-          defaultMessage="I agree to the {platformName}&nbsp;{termsOfService}"
+          defaultMessage="Acepto los {termsOfService} de {platformName}"
           description="Text that appears on registration form stating terms of service.
                        It is a legal document that users must agree to."
           values={{

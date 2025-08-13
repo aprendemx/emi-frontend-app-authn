@@ -688,3 +688,13 @@ select.form-control {
     height: 48px;
   }
 }
+
+// Fix: asegurar borde redondeado uniforme SOLO para el contenedor exterior
+// sin afectar elementos internos. Sobrescribe la regla de _breakpoints.scss
+// que aplica `border-radius: 50px 0` a `.layout .content`.
+@media (min-width: 576px) {
+  [dir='ltr'] #root .layout > .content,
+  [dir='rtl'] #root .layout > .content {
+    border-radius: 50px !important; // cuatro esquinas iguales
+  }
+}

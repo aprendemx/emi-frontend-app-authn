@@ -96,12 +96,15 @@ const Logistration = (props) => {
     return !!provider;
   };
 
+  const baseUrl = getConfig().BASE_URL || '';
+  const logoSrc = new URL('images/Logo_EMI_largo.png', baseUrl).toString();
+
   return (
     <BaseContainer>
       {/* Brand logo above Register / Sign in */}
       <div className="text-center mt-3">
         <img
-          src={`${getConfig().BASE_URL}/images/Logo_EMI_largo.png`}
+          src={logoSrc}
           alt="Escuela Mexicana de Inglés"
           className="emi-brand-logo"
         />

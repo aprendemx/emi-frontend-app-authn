@@ -778,3 +778,17 @@ html, body, #root { background: #fff !important; }
   background: none !important;
   content: none !important;
 }
+
+.gov-edu-logo {
+  display: block;
+  margin: 0.5rem auto 0; // pequeño espacio debajo del logo EMI
+  height: 28px; // 80% aprox. del alto del logo principal (35px-40px habitual)
+  width: auto;
+  opacity: 0.95; // ligero suavizado visual
+}
+
+@media (max-width: 464px) {
+  .gov-edu-logo {
+    height: 24px;
+  }
+}

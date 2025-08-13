@@ -496,6 +496,25 @@ select.form-control {
   line-height: 1.25rem;
 }
 
+// Brand color for Sign in / Register tab labels
+$emi-logistration-accent: rgb(166, 39, 81);
+
+// Target React-Bootstrap Tabs anchors via event keys used in this app
+// Applies to Logistration, Forgot Password, and Reset Password tabs
+a[data-rb-event-key="/register"],
+a[data-rb-event-key="/login"] {
+  color: $emi-logistration-accent !important;
+}
+
+a[data-rb-event-key="/register"].active,
+a[data-rb-event-key="/login"].active,
+a[data-rb-event-key="/register"]:hover,
+a[data-rb-event-key="/login"]:hover,
+a[data-rb-event-key="/register"]:focus,
+a[data-rb-event-key="/login"]:focus {
+  color: $emi-logistration-accent !important;
+}
+
 @media (min-width: 1024px) {
   .mw-500 {
     width: 500px;

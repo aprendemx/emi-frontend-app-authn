@@ -96,32 +96,12 @@ const Logistration = (props) => {
     return !!provider;
   };
 
-  // Build logo URLs and provide fallbacks (MFE public path -> LMS theming)
-  const mfeBase = (getConfig().BASE_URL || '').replace(/\/$/, '');
-  const lmsBase = (getConfig().LMS_BASE_URL || '').replace(/\/$/, '');
-  const logoCandidates = [
-    `${mfeBase}/images/EMI_completo_negro.png`,
-    `${lmsBase}/theming/asset/images/EMI_completo_negro.png`,
-    `${lmsBase}/theming/asset/images/logo.png`,
-  ];
-
-  const handleLogoError = (e) => {
-    const idx = Number(e.currentTarget.dataset.idx || 0);
-    const next = logoCandidates[idx + 1];
-    if (next) {
-      e.currentTarget.dataset.idx = String(idx + 1);
-      e.currentTarget.src = next;
-    }
-  };
-
   return (
     <BaseContainer>
       {/* Brand logo above Register / Sign in */}
       <div className="text-center mt-3">
         <img
-          src={logoCandidates[0]}
-          data-idx="0"
-          onError={handleLogoError}
+          src="../public/images/EMI_completo_negro.png"
           alt="Escuela Mexicana de Inglés"
           className="emi-brand-logo"
         />

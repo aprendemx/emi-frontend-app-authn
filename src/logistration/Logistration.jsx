@@ -100,8 +100,8 @@ const Logistration = (props) => {
   const mfeBase = (getConfig().BASE_URL || '').replace(/\/$/, '');
   const lmsBase = (getConfig().LMS_BASE_URL || '').replace(/\/$/, '');
   const logoCandidates = [
-    `${mfeBase}/images/EMI_completo_guinda.png`,
-    `${lmsBase}/theming/asset/images/EMI_completo_guinda.png`,
+    `${mfeBase}/images/EMI_completo_negro.png`,
+    `${lmsBase}/theming/asset/images/EMI_completo_negro.png`,
     `${lmsBase}/theming/asset/images/logo.png`,
   ];
 

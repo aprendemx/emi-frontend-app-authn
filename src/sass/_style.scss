@@ -695,7 +695,12 @@ select.form-control {
 @media (min-width: 576px) {
   [dir='ltr'] #root .layout > .content,
   [dir='rtl'] #root .layout > .content {
-    border-radius: 50px !important; // cuatro esquinas iguales
+    // asegurar cuatro esquinas iguales
+    border-radius: 50px !important;
+    // hacer visible el contorno del contenedor exterior
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important; // gris claro para delinear
+    box-shadow: $elevation-level-2-shadow; // sombra sutil
   }
 }
 

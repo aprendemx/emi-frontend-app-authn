@@ -209,7 +209,7 @@ const LoginPage = (props) => {
         redirectUrl={loginResult.redirectUrl}
         finishAuthUrl={finishAuthUrl}
       />
-      <div className="mw-xs mt-3 mb-2">
+      <div className="mw-xs mt-3 mb-2 login-card">
         <LoginFailureMessage
           errorCode={errorCode.type}
           errorCount={errorCode.count}

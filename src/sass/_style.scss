@@ -712,3 +712,27 @@ select.form-control {
   background: none !important;
   background-image: none !important;
 }
+
+// Force a clean white background and remove brand blue blobs on layout pseudo-elements
+html, body, #root { background: #fff !important; }
+#root .layout { background: #fff !important; }
+
+// The brand stylesheet adds big blue shadows using ::before/::after on .layout. Disable them.
+[dir='ltr'] #root .layout::before,
+[dir='ltr'] #root .layout::after,
+[dir='rtl'] #root .layout::before,
+[dir='rtl'] #root .layout::after {
+  box-shadow: none !important;
+  background: none !important;
+  content: none !important;
+}
+
+// In case alternative selectors are used without #root
+[dir='ltr'] .layout::before,
+[dir='ltr'] .layout::after,
+[dir='rtl'] .layout::before,
+[dir='rtl'] .layout::after {
+  box-shadow: none !important;
+  background: none !important;
+  content: none !important;
+}

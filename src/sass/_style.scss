@@ -716,13 +716,15 @@ a[data-rb-event-key="/login"]:focus {
 }
 
 .emi-brand-logo {
-  height: 56px;
+  height: 80px;
   width: auto;
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 464px) {
   .emi-brand-logo {
-    height: 48px;
+    height: 88px;
+    margin-bottom: 2rem;
   }
 }
 

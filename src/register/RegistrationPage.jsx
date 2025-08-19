@@ -25,12 +25,21 @@ import {
   FORM_SUBMISSION_ERROR,
   TPA_AUTHENTICATION_FAILURE,
 } from './data/constants';
+import { ESTADOS_MEXICO } from './data/estadosList';
 import getBackendValidations from './data/selectors';
 import {
   isFormValid, prepareRegistrationPayload,
 } from './data/utils';
 import messages from './messages';
-import { EmailField, NameField, UsernameField } from './RegistrationFields';
+import { 
+  EmailField, 
+  NameField, 
+  UsernameField,
+  ApellidoField,
+  PhoneField,
+  EstadoField,
+  CurpField
+} from './RegistrationFields';
 import {
   InstitutionLogistration,
   PasswordField,
@@ -90,9 +99,41 @@ const RegistrationPage = (props) => {
   const queryParams = useMemo(() => getAllPossibleQueryParams(), []);
   const tpaHint = useMemo(() => getTpaHint(), []);
 
-  const [formFields, setFormFields] = useState({ ...backedUpFormData.formFields });
-  const [configurableFormFields, setConfigurableFormFields] = useState({ ...backedUpFormData.configurableFormFields });
-  const [errors, setErrors] = useState({ ...backedUpFormData.errors });
+  const [formFields, setFormFields] = useState({ 
+    ...backedUpFormData.formFields,
+    // Inicializar nuevos campos
+    primer_apellido: '',
+    segundo_apellido: '',
+    numero_telefono: '',
+    estado: '',
+    municipio: '',
+    nombre_escuela: '',
+    cct: '',
+    grado: '',
+    curp: ''
+  });
+  const [configurableFormFields, setConfigurableFormFields] = useState({ 
+    ...backedUpFormData.configurableFormFields,
+    // Estados para campos tipo selector
+    estado: {
+      displayValue: '',
+      estadoCode: '',
+      estadoName: ''
+    }
+  });
+  const [errors, setErrors] = useState({ 
+    ...backedUpFormData.errors,
+    // Inicializar errores para nuevos campos
+    primer_apellido: '',
+    segundo_apellido: '',
+    numero_telefono: '',
+    estado: '',
+    municipio: '',
+    nombre_escuela: '',
+    cct: '',
+    grado: '',
+    curp: ''
+  });
   const [errorCode, setErrorCode] = useState({ type: '', count: 0 });
   const [formStartTime, setFormStartTime] = useState(null);
   // temporary error state for embedded experience because we don't want to show errors on blur
@@ -178,14 +219,37 @@ const RegistrationPage = (props) => {
     }
   }, [registrationResult]);
 
-  const handleOnChange = (event) => {
+  const handleOnChange = (event, countryValue = null, estadoValue = null) => {
     const { name } = event.target;
-    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+    let value;
+    
+    if (countryValue) {
+      // Para el campo country (ya existente)
+      value = countryValue;
+    } else if (estadoValue) {
+      // Para el nuevo campo estado
+      value = estadoValue;
+      // Actualizar configurableFormFields para estado
+      setConfigurableFormFields(prevState => ({ 
+        ...prevState, 
+        [name]: estadoValue 
+      }));
+    } else {
+      value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+    }
+    
     if (registrationError[name]) {
       dispatch(clearRegistrationBackendError(name));
     }
     setErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
-    setFormFields(prevState => ({ ...prevState, [name]: value }));
+    
+    // Actualizar formFields apropiadamente
+    if (estadoValue) {
+      // Para estado, guardamos el displayValue en formFields
+      setFormFields(prevState => ({ ...prevState, [name]: estadoValue.displayValue }));
+    } else {
+      setFormFields(prevState => ({ ...prevState, [name]: value }));
+    }
   };
 
   const handleErrorChange = (fieldName, error) => {
@@ -244,6 +308,9 @@ const RegistrationPage = (props) => {
       flags.showMarketingEmailOptInCheckbox,
       totalRegistrationTime,
       queryParams);
+
+    // Debug: Log payload para verificar los campos
+    console.log('Payload de registro:', payload);
 
     // making register call
     dispatch(registerNewUser(payload));
@@ -316,7 +383,25 @@ const RegistrationPage = (props) => {
                 handleErrorChange={handleErrorChange}
                 errorMessage={errors.name}
                 helpText={[formatMessage(messages['help.text.name'])]}
-                floatingLabel={formatMessage(messages['registration.fullname.label'])}
+                floatingLabel="Nombre(s)"
+              />
+              <ApellidoField
+                name="primer_apellido"
+                value={formFields.primer_apellido}
+                handleChange={handleOnChange}
+                handleErrorChange={handleErrorChange}
+                errorMessage={errors.primer_apellido}
+                floatingLabel={formatMessage(messages['registration.primer.apellido.label'])}
+                helpText={[formatMessage(messages['help.text.apellido'])]}
+              />
+              <ApellidoField
+                name="segundo_apellido"
+                value={formFields.segundo_apellido}
+                handleChange={handleOnChange}
+                handleErrorChange={handleErrorChange}
+                errorMessage={errors.segundo_apellido}
+                floatingLabel={formatMessage(messages['registration.segundo.apellido.label'])}
+                helpText={[formatMessage(messages['help.text.apellido'])]}
               />
               <EmailField
                 name="email"
@@ -327,6 +412,72 @@ const RegistrationPage = (props) => {
                 errorMessage={errors.email}
                 helpText={[formatMessage(messages['help.text.email'])]}
                 floatingLabel={formatMessage(messages['registration.email.label'])}
+              />
+              <PhoneField
+                name="numero_telefono"
+                value={formFields.numero_telefono}
+                handleChange={handleOnChange}
+                handleErrorChange={handleErrorChange}
+                errorMessage={errors.numero_telefono}
+                floatingLabel={formatMessage(messages['registration.telefono.label'])}
+                helpText={[formatMessage(messages['help.text.telefono'])]}
+              />
+              <EstadoField
+                name="estado"
+                estadoList={ESTADOS_MEXICO}
+                selectedEstado={configurableFormFields.estado}
+                onChangeHandler={handleOnChange}
+                handleErrorChange={handleErrorChange}
+                onBlurHandler={(e) => {}}
+                onFocusHandler={(e) => {}}
+                errorMessage={errors.estado}
+                floatingLabel={formatMessage(messages['registration.estado.label'])}
+              />
+              <ApellidoField
+                name="municipio"
+                value={formFields.municipio}
+                handleChange={handleOnChange}
+                handleErrorChange={handleErrorChange}
+                errorMessage={errors.municipio}
+                floatingLabel={formatMessage(messages['registration.municipio.label'])}
+                helpText={[formatMessage(messages['help.text.municipio'])]}
+              />
+              <ApellidoField
+                name="nombre_escuela"
+                value={formFields.nombre_escuela}
+                handleChange={handleOnChange}
+                handleErrorChange={handleErrorChange}
+                errorMessage={errors.nombre_escuela}
+                floatingLabel={formatMessage(messages['registration.nombre.escuela.label'])}
+                helpText={[formatMessage(messages['help.text.escuela'])]}
+              />
+              <ApellidoField
+                name="cct"
+                value={formFields.cct}
+                handleChange={handleOnChange}
+                handleErrorChange={handleErrorChange}
+                errorMessage={errors.cct}
+                floatingLabel={formatMessage(messages['registration.cct.label'])}
+                helpText={[formatMessage(messages['help.text.cct'])]}
+                maxLength={10}
+              />
+              <ApellidoField
+                name="grado"
+                value={formFields.grado}
+                handleChange={handleOnChange}
+                handleErrorChange={handleErrorChange}
+                errorMessage={errors.grado}
+                floatingLabel={formatMessage(messages['registration.grado.label'])}
+                helpText={[formatMessage(messages['help.text.grado'])]}
+              />
+              <CurpField
+                name="curp"
+                value={formFields.curp}
+                handleChange={handleOnChange}
+                handleErrorChange={handleErrorChange}
+                errorMessage={errors.curp}
+                floatingLabel={formatMessage(messages['registration.curp.label'])}
+                helpText={[formatMessage(messages['help.text.curp'])]}
               />
               {!flags.autoGeneratedUsernameEnabled && (
                 <UsernameField

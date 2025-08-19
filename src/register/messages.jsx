@@ -190,6 +190,68 @@ const messages = defineMessages({
     defaultMessage: 'Términos del servicio',
     description: 'Text for the hyperlink that redirects user to the terms of service',
   },
+  // Nuevos campos EMI
+  'registration.primer.apellido.label': {
+    id: 'registration.primer.apellido.label',
+    defaultMessage: 'Primer apellido',
+    description: 'Label for primer apellido field',
+  },
+  'registration.segundo.apellido.label': {
+    id: 'registration.segundo.apellido.label',
+    defaultMessage: 'Segundo apellido',
+    description: 'Label for segundo apellido field',
+  },
+  'registration.telefono.label': {
+    id: 'registration.telefono.label',
+    defaultMessage: 'Número de teléfono',
+    description: 'Label for telefono field',
+  },
+  'registration.estado.label': {
+    id: 'registration.estado.label',
+    defaultMessage: 'Estado',
+    description: 'Label for estado field',
+  },
+  'registration.municipio.label': {
+    id: 'registration.municipio.label',
+    defaultMessage: 'Municipio',
+    description: 'Label for municipio field',
+  },
+  'registration.nombre.escuela.label': {
+    id: 'registration.nombre.escuela.label',
+    defaultMessage: 'Nombre de la escuela',
+    description: 'Label for nombre escuela field',
+  },
+  'registration.cct.label': {
+    id: 'registration.cct.label',
+    defaultMessage: 'CCT (Clave del Centro de Trabajo)',
+    description: 'Label for CCT field',
+  },
+  'registration.grado.label': {
+    id: 'registration.grado.label',
+    defaultMessage: 'Grado escolar',
+    description: 'Label for grado field',
+  },
+  'registration.curp.label': {
+    id: 'registration.curp.label',
+    defaultMessage: 'CURP',
+    description: 'Label for CURP field',
+  },
+  // Help text para nuevos campos
+  'help.text.apellido': {
+    id: 'help.text.apellido',
+    defaultMessage: 'Introduce tu apellido como aparece en documentos oficiales.',
+    description: 'Help text for apellido fields',
+  },
+  'help.text.telefono': {
+    id: 'help.text.telefono',
+    defaultMessage: 'Introduce tu número de teléfono móvil (10 dígitos).',
+    description: 'Help text for telefono field',
+  },
+  'help.text.curp': {
+    id: 'help.text.curp',
+    defaultMessage: 'Introduce tu CURP de 18 caracteres.',
+    description: 'Help text for CURP field',
+  },
   // miscellaneous strings
   'registration.username.suggestion.label': {
     id: 'registration.username.suggestion.label',
@@ -200,6 +262,18 @@ const messages = defineMessages({
     id: 'did.you.mean.alert.text',
     defaultMessage: '¿Quisiste decir',
     description: 'Did you mean alert suggestion',
+  },
+  
+  // Validation messages for new fields
+  'registration.primer.apellido.validation.message': {
+    id: 'registration.primer.apellido.validation.message',
+    defaultMessage: 'El primer apellido es requerido',
+    description: 'Error message for required primer apellido field',
+  },
+  'registration.segundo.apellido.validation.message': {
+    id: 'registration.segundo.apellido.validation.message',
+    defaultMessage: 'El segundo apellido es requerido',
+    description: 'Error message for required segundo apellido field',
   },
 });
 

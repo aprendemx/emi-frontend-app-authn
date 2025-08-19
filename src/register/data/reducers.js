@@ -22,15 +22,44 @@ export const defaultState = {
   registrationFormData: {
     configurableFormFields: {
       marketingEmailsOptIn: true,
+      estado: {
+        displayValue: '',
+        estadoCode: '',
+        estadoName: ''
+      },
     },
     formFields: {
-      name: '', email: '', username: '', password: '',
+      name: '', 
+      email: '', 
+      username: '', 
+      password: '',
+      primer_apellido: '',
+      segundo_apellido: '',
+      numero_telefono: '',
+      estado: '',
+      municipio: '',
+      nombre_escuela: '',
+      cct: '',
+      grado: '',
+      curp: ''
     },
     emailSuggestion: {
       suggestion: '', type: '',
     },
     errors: {
-      name: '', email: '', username: '', password: '',
+      name: '', 
+      email: '', 
+      username: '', 
+      password: '',
+      primer_apellido: '',
+      segundo_apellido: '',
+      numero_telefono: '',
+      estado: '',
+      municipio: '',
+      nombre_escuela: '',
+      cct: '',
+      grado: '',
+      curp: ''
     },
   },
   validations: null,

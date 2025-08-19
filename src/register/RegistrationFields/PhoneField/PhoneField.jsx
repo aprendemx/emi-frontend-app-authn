@@ -17,7 +17,6 @@ const PhoneField = (props) => {
     errorMessage,
     floatingLabel,
     helpText,
-    ...otherProps
   } = props;
 
   const handleOnFocus = () => {
@@ -39,7 +38,6 @@ const PhoneField = (props) => {
 
   return (
     <FormGroup
-      {...otherProps}
       name={name}
       value={value}
       handleChange={handleOnChange}

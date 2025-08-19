@@ -17,7 +17,7 @@ const ApellidoField = (props) => {
     errorMessage,
     floatingLabel,
     helpText,
-    ...otherProps
+    maxLength,
   } = props;
 
   const handleOnFocus = () => {
@@ -26,7 +26,6 @@ const ApellidoField = (props) => {
 
   return (
     <FormGroup
-      {...otherProps}
       name={name}
       value={value}
       handleChange={handleChange}
@@ -34,7 +33,7 @@ const ApellidoField = (props) => {
       errorMessage={errorMessage}
       helpText={helpText}
       floatingLabel={floatingLabel}
-      maxLength={150}
+      maxLength={maxLength || 150}
     />
   );
 };
@@ -52,6 +51,7 @@ ApellidoField.propTypes = {
   errorMessage: PropTypes.string,
   floatingLabel: PropTypes.string.isRequired,
   helpText: PropTypes.arrayOf(PropTypes.string),
+  maxLength: PropTypes.number,
 };
 
 export default ApellidoField;

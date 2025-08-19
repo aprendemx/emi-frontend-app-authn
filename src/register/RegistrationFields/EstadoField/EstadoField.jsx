@@ -47,16 +47,15 @@ const EstadoField = (props) => {
 
   return (
     <FormGroup
-      {...otherProps}
-      type="select"
       name="estado"
+      type="select"
       value={selectedEstado?.estadoCode || ''}
       options={estadoOptions}
       handleChange={handleOnChange}
       handleBlur={onBlurHandler}
       handleFocus={onFocusHandler}
       errorMessage={errorMessage}
-      floatingLabel="Estado"
+      floatingLabel={props.floatingLabel || "Estado"}
       trailingElement={<i className="fa fa-angle-down" />}
     />
   );

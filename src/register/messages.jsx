@@ -252,6 +252,26 @@ const messages = defineMessages({
     defaultMessage: 'Introduce tu CURP de 18 caracteres.',
     description: 'Help text for CURP field',
   },
+  'help.text.municipio': {
+    id: 'help.text.municipio',
+    defaultMessage: 'Ingresa tu municipio o delegación.',
+    description: 'Help text for municipio field',
+  },
+  'help.text.escuela': {
+    id: 'help.text.escuela',
+    defaultMessage: 'Nombre completo de tu escuela o institución educativa.',
+    description: 'Help text for nombre escuela field',
+  },
+  'help.text.cct': {
+    id: 'help.text.cct',
+    defaultMessage: 'Clave del Centro de Trabajo de tu escuela (10 caracteres).',
+    description: 'Help text for CCT field',
+  },
+  'help.text.grado': {
+    id: 'help.text.grado',
+    defaultMessage: 'Grado escolar actual (ej: 6to grado, 1ro secundaria).',
+    description: 'Help text for grado field',
+  },
   // miscellaneous strings
   'registration.username.suggestion.label': {
     id: 'registration.username.suggestion.label',

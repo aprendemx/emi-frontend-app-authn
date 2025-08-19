@@ -36,11 +36,14 @@ const EstadoField = (props) => {
     }
   };
 
-  const estadoOptions = estadoList.map(estado => (
-    <option key={estado.code} value={estado.code}>
-      {estado.name}
-    </option>
-  ));
+  const estadoOptions = () => [
+    <option key="" value="">Selecciona tu estado</option>,
+    ...estadoList.map(estado => (
+      <option key={estado.code} value={estado.code}>
+        {estado.name}
+      </option>
+    )),
+  ];
 
   return (
     <FormGroup
@@ -48,10 +51,7 @@ const EstadoField = (props) => {
       type="select"
       name="estado"
       value={selectedEstado?.estadoCode || ''}
-      options={[
-        <option key="" value="">Selecciona tu estado</option>,
-        ...estadoOptions,
-      ]}
+      options={estadoOptions}
       handleChange={handleOnChange}
       handleBlur={onBlurHandler}
       handleFocus={onFocusHandler}

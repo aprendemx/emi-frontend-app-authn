@@ -78,36 +78,6 @@ export const isFormValid = (
       }
       if (fieldErrors.password) { isValid = false; }
       break;
-    case 'primer_apellido':
-      if (!payload.primer_apellido || payload.primer_apellido.trim() === '') {
-        fieldErrors.primer_apellido = formatMessage(messages['registration.primer.apellido.validation.message']);
-        isValid = false;
-      }
-      break;
-    case 'segundo_apellido':
-      if (!payload.segundo_apellido || payload.segundo_apellido.trim() === '') {
-        fieldErrors.segundo_apellido = formatMessage(messages['registration.segundo.apellido.validation.message']);
-        isValid = false;
-      }
-      break;
-    case 'numero_telefono':
-      if (!payload.numero_telefono || payload.numero_telefono.trim() === '') {
-        fieldErrors.numero_telefono = 'El número de teléfono es requerido';
-        isValid = false;
-      } else if (!/^\d{10}$/.test(payload.numero_telefono)) {
-        fieldErrors.numero_telefono = 'El número de teléfono debe tener exactamente 10 dígitos';
-        isValid = false;
-      }
-      break;
-    case 'curp':
-      if (!payload.curp || payload.curp.trim() === '') {
-        fieldErrors.curp = 'La CURP es requerida';
-        isValid = false;
-      } else if (payload.curp.length !== 18) {
-        fieldErrors.curp = 'La CURP debe tener exactamente 18 caracteres';
-        isValid = false;
-      }
-      break;
     default:
       break;
     }
@@ -119,12 +89,6 @@ export const isFormValid = (
     isValid = false;
   } else if (configurableFormFields?.country && !configurableFormFields.country?.countryCode) {
     fieldErrors.country = formatMessage(messages['invalid.country.field.error']);
-    isValid = false;
-  }
-
-  // Validate estado field
-  if (configurableFormFields?.estado && !configurableFormFields.estado?.estadoCode) {
-    fieldErrors.estado = 'Debes seleccionar un estado';
     isValid = false;
   }
 

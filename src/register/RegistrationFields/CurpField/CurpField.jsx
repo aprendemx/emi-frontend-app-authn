@@ -18,28 +18,9 @@ const CurpField = (props) => {
 
   const { handleErrorChange } = props;
 
-  const validateCurp = (value) => {
-    if (!value || !value.trim()) {
-      return 'Ingresa tu CURP';
-    }
-    // CURP debe tener 18 caracteres
-    if (value.length !== 18) {
-      return 'La CURP debe tener exactamente 18 caracteres';
-    }
-    // Validación básica del formato CURP
-    const curpRegex = /^[A-Z][AEIOUX][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][HM][A-Z]{2}[BCDFGHJKLMNPQRSTVWXYZ][0-9A-Z][0-9]$/;
-    if (!curpRegex.test(value.toUpperCase())) {
-      return 'Ingresa una CURP válida';
-    }
-    return '';
-  };
-
-  const handleOnBlur = (e) => {
-    const { value } = e.target;
-    const fieldError = validateCurp(value);
-    if (fieldError) {
-      handleErrorChange('curp', fieldError);
-    }
+  const handleOnBlur = () => {
+    // Limpiar cualquier error previo
+    handleErrorChange('curp', '');
   };
 
   const handleOnFocus = () => {
@@ -59,7 +40,6 @@ const CurpField = (props) => {
       handleChange={handleOnChange}
       handleBlur={handleOnBlur}
       handleFocus={handleOnFocus}
-      maxLength={18}
     />
   );
 };

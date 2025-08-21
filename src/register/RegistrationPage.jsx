@@ -209,44 +209,12 @@ const RegistrationPage = (props) => {
     }
   }, [registrationErrorCode]);
 
-useEffect(() => {
-  if (registrationResult.success) {
-    // Evento ya existente...
-    sendTrackEvent('edx.bi.user.account.registered.client', {});
-    setCookie(getConfig().USER_RETENTION_COOKIE_NAME, true);
-
-    // === NUEVO: enviar campos extra al backend EMI ===
-    const LMS_BASE_URL = getConfig().LMS_BASE_URL; // ya lo usas en el MFE
-    const EMI_EXTRA_SECRET = getConfig().EMI_EXTRA_SECRET; // define esta env en el build del MFE
-
-    // Ojo: aquí usamos tus states actuales
-    const payloadExtra = {
-      username: formFields.username,
-      email: formFields.email,
-      // si quieres, puedes mapear 'name' -> 'nombres'
-      nombres: formFields.name, 
-      primer_apellido: formFields.primer_apellido,
-      segundo_apellido: formFields.segundo_apellido,
-      numero_telefono: formFields.numero_telefono,
-      estado: formFields.estado, // en tu flujo es el NOMBRE, p. ej. "Ciudad de México"
-      municipio: formFields.municipio,
-      nombre_escuela: formFields.nombre_escuela,
-      cct: formFields.cct,
-      grado: formFields.grado,
-      curp: formFields.curp,
-    };
-
-    fetch(`${LMS_BASE_URL}/emi/api/registro-extra/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Emi-Secret": EMI_EXTRA_SECRET,
-      },
-      body: JSON.stringify(payloadExtra),
-      keepalive: true,
-    }).catch((e) => console.warn("EMI extra POST failed:", e));
-  }
-}, [registrationResult]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (registrationResult.success) {
+      sendTrackEvent('edx.bi.user.account.registered.client', {});
+      setCookie(getConfig().USER_RETENTION_COOKIE_NAME, true);
+    }
+  }, [registrationResult]);
 
 
   const handleOnChange = (event, countryValue = null, estadoValue = null) => {

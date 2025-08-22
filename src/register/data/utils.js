@@ -137,6 +137,10 @@ export const prepareRegistrationPayload = (
     delete payload.marketingEmailsOptIn;
   }
 
+  // Agregar campos requeridos de términos y condiciones
+  payload.terms_of_service = true;
+  payload.honor_code = true;
+
   payload.totalRegistrationTime = totalRegistrationTime;
   payload = snakeCaseObject(payload);
 

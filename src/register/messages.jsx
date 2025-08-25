@@ -94,7 +94,7 @@ const messages = defineMessages({
   'empty.password.field.error': {
     id: 'empty.password.field.error',
     defaultMessage: 'La contraseña no cumple con los criterios',
-    description: 'Error message for empty password field',
+    description: 'Error message for empty or invalid password',
   },
   'empty.country.field.error': {
     id: 'empty.country.field.error',
@@ -164,9 +164,7 @@ const messages = defineMessages({
   },
   'registration.tpa.authentication.failure': {
     id: 'registration.tpa.authentication.failure',
-    defaultMessage: 'Lo sentimos, no estás autorizado para acceder a {platform_name} por este medio. '
-        + 'Contacta a tu administrador o responsable de aprendizaje para obtener acceso a {platform_name}. '
-        + '{lineBreak}{lineBreak}Detalles del error:{lineBreak}{errorMessage}',
+    defaultMessage: 'Lo sentimos, no estás autorizado para acceder a {platform_name} por este medio. Contacta a tu administrador. {lineBreak}{lineBreak}Detalles del error:{lineBreak}{errorMessage}',
     description: 'Error message third party authentication pipeline fails',
   },
   // Terms of Service and Honor Code
@@ -190,7 +188,7 @@ const messages = defineMessages({
     defaultMessage: 'Términos del servicio',
     description: 'Text for the hyperlink that redirects user to the terms of service',
   },
-  // Nuevos campos EMI
+  // Nuevos campos EMI (labels y help)
   'registration.primer.apellido.label': {
     id: 'registration.primer.apellido.label',
     defaultMessage: 'Primer apellido',
@@ -272,19 +270,7 @@ const messages = defineMessages({
     defaultMessage: 'Grado escolar actual (ej: 6to grado, 1ro secundaria).',
     description: 'Help text for grado field',
   },
-  // miscellaneous strings
-  'registration.username.suggestion.label': {
-    id: 'registration.username.suggestion.label',
-    defaultMessage: 'Sugerido:',
-    description: 'Suggested usernames label text.',
-  },
-  'did.you.mean.alert.text': {
-    id: 'did.you.mean.alert.text',
-    defaultMessage: '¿Quisiste decir',
-    description: 'Did you mean alert suggestion',
-  },
-  
-  // Validation messages for new fields
+  // Mensajes de validación para campos nuevos
   'registration.primer.apellido.validation.message': {
     id: 'registration.primer.apellido.validation.message',
     defaultMessage: 'El primer apellido es requerido',
@@ -294,6 +280,41 @@ const messages = defineMessages({
     id: 'registration.segundo.apellido.validation.message',
     defaultMessage: 'El segundo apellido es requerido',
     description: 'Error message for required segundo apellido field',
+  },
+  'registration.curp.invalid': {
+    id: 'registration.curp.invalid',
+    defaultMessage: 'CURP inválida. Debe tener 18 caracteres con el formato oficial.',
+    description: 'Invalid CURP message',
+  },
+  'registration.cct.invalid': {
+    id: 'registration.cct.invalid',
+    defaultMessage: 'CCT inválido. Debe ser de 10 caracteres alfanuméricos.',
+    description: 'Invalid CCT message',
+  },
+  'registration.telefono.invalid': {
+    id: 'registration.telefono.invalid',
+    defaultMessage: 'Ingresa un teléfono válido de 10 dígitos.',
+    description: 'Invalid phone message',
+  },
+  'registration.municipio.invalid': {
+    id: 'registration.municipio.invalid',
+    defaultMessage: 'Ingresa un municipio válido (solo letras y mínimo 2 caracteres).',
+    description: 'Invalid municipio message',
+  },
+  'registration.escuela.invalid': {
+    id: 'registration.escuela.invalid',
+    defaultMessage: 'Ingresa un nombre de escuela válido (mínimo 3 caracteres).',
+    description: 'Invalid school name',
+  },
+  'registration.grado.invalid': {
+    id: 'registration.grado.invalid',
+    defaultMessage: 'Selecciona o ingresa un grado válido.',
+    description: 'Invalid grade message',
+  },
+  'registration.estado.required': {
+    id: 'registration.estado.required',
+    defaultMessage: 'Selecciona un estado.',
+    description: 'Estado required message',
   },
 });
 

@@ -121,7 +121,8 @@ export const prepareRegistrationPayload = (
   Object.keys(configurableFormFields).forEach((fieldName) => {
     if (fieldName === 'country') {
       payload[fieldName] = configurableFormFields[fieldName].countryCode;
-    } else if (fieldName === 'estado') {
+    } else if (fieldName === 'state') {
+      // Para el campo state, enviar el código del estado
       payload[fieldName] = configurableFormFields[fieldName].estadoCode || configurableFormFields[fieldName].displayValue;
     } else {
       payload[fieldName] = configurableFormFields[fieldName];

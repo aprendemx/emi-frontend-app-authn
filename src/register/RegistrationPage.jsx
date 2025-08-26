@@ -96,19 +96,19 @@ const RegistrationPage = (props) => {
 
   const [formFields, setFormFields] = useState({
     ...backedUpFormData.formFields,
-    primer_apellido: '',
-    segundo_apellido: '',
-    numero_telefono: '',
-    estado: '',
-    municipio: '',
-    nombre_escuela: '',
+    first_lastname: '',
+    second_lastname: '',
+    phone_number: '',
+    state: '',
+    municipality: '',
+    school_name: '',
     cct: '',
-    grado: '',
+    grade: '',
     curp: '',
   });
   const [configurableFormFields, setConfigurableFormFields] = useState({
     ...backedUpFormData.configurableFormFields,
-    estado: {
+    state: {
       displayValue: '',
       estadoCode: '',
       estadoName: '',
@@ -116,14 +116,14 @@ const RegistrationPage = (props) => {
   });
   const [errors, setErrors] = useState({
     ...backedUpFormData.errors,
-    primer_apellido: '',
-    segundo_apellido: '',
-    numero_telefono: '',
-    estado: '',
-    municipio: '',
-    nombre_escuela: '',
+    first_lastname: '',
+    second_lastname: '',
+    phone_number: '',
+    state: '',
+    municipality: '',
+    school_name: '',
     cct: '',
-    grado: '',
+    grade: '',
     curp: '',
   });
   const [errorCode, setErrorCode] = useState({ type: '', count: 0 });
@@ -346,20 +346,20 @@ const RegistrationPage = (props) => {
                 floatingLabel="Nombre(s)"
               />
               <ApellidoField
-                name="primer_apellido"
-                value={formFields.primer_apellido}
+                name="first_lastname"
+                value={formFields.first_lastname}
                 handleChange={handleOnChange}
                 handleErrorChange={handleErrorChange}
-                errorMessage={errors.primer_apellido}
+                errorMessage={errors.first_lastname}
                 floatingLabel={formatMessage(messages['registration.primer.apellido.label'])}
                 helpText={[formatMessage(messages['help.text.apellido'])]}
               />
               <ApellidoField
-                name="segundo_apellido"
-                value={formFields.segundo_apellido}
+                name="second_lastname"
+                value={formFields.second_lastname}
                 handleChange={handleOnChange}
                 handleErrorChange={handleErrorChange}
-                errorMessage={errors.segundo_apellido}
+                errorMessage={errors.second_lastname}
                 floatingLabel={formatMessage(messages['registration.segundo.apellido.label'])}
                 helpText={[formatMessage(messages['help.text.apellido'])]}
               />
@@ -374,40 +374,40 @@ const RegistrationPage = (props) => {
                 floatingLabel={formatMessage(messages['registration.email.label'])}
               />
               <PhoneField
-                name="numero_telefono"
-                value={formFields.numero_telefono}
+                name="phone_number"
+                value={formFields.phone_number}
                 handleChange={handleOnChange}
                 handleErrorChange={handleErrorChange}
-                errorMessage={errors.numero_telefono}
+                errorMessage={errors.phone_number}
                 floatingLabel={formatMessage(messages['registration.telefono.label'])}
                 helpText={[formatMessage(messages['help.text.telefono'])]}
               />
               <EstadoField
-                name="estado"
+                name="state"
                 estadoList={ESTADOS_MEXICO}
-                selectedEstado={configurableFormFields.estado}
+                selectedEstado={configurableFormFields.state}
                 onChangeHandler={handleOnChange}
                 handleErrorChange={handleErrorChange}
                 onBlurHandler={(e) => {}}
                 onFocusHandler={(e) => {}}
-                errorMessage={errors.estado}
+                errorMessage={errors.state}
                 floatingLabel={formatMessage(messages['registration.estado.label'])}
               />
               <ApellidoField
-                name="municipio"
-                value={formFields.municipio}
+                name="municipality"
+                value={formFields.municipality}
                 handleChange={handleOnChange}
                 handleErrorChange={handleErrorChange}
-                errorMessage={errors.municipio}
+                errorMessage={errors.municipality}
                 floatingLabel={formatMessage(messages['registration.municipio.label'])}
                 helpText={[formatMessage(messages['help.text.municipio'])]}
               />
               <ApellidoField
-                name="nombre_escuela"
-                value={formFields.nombre_escuela}
+                name="school_name"
+                value={formFields.school_name}
                 handleChange={handleOnChange}
                 handleErrorChange={handleErrorChange}
-                errorMessage={errors.nombre_escuela}
+                errorMessage={errors.school_name}
                 floatingLabel={formatMessage(messages['registration.nombre.escuela.label'])}
                 helpText={[formatMessage(messages['help.text.escuela'])]}
               />
@@ -422,11 +422,11 @@ const RegistrationPage = (props) => {
                 maxLength={10}
               />
               <ApellidoField
-                name="grado"
-                value={formFields.grado}
+                name="grade"
+                value={formFields.grade}
                 handleChange={handleOnChange}
                 handleErrorChange={handleErrorChange}
-                errorMessage={errors.grado}
+                errorMessage={errors.grade}
                 floatingLabel={formatMessage(messages['registration.grado.label'])}
                 helpText={[formatMessage(messages['help.text.grado'])]}
               />

@@ -122,11 +122,14 @@ export const prepareRegistrationPayload = (
     const nameParts = payload.name.trim().split(' ');
     payload.first_name = nameParts[0] || '';
     payload.last_name = nameParts.slice(1).join(' ') || '';
-    delete payload.name; // No enviar name
+    // MANTENER name porque el endpoint base lo requiere
+    // No eliminar payload.name
   }
 
-  // Campos que van directamente a auth_userprofile
-  // phone_number y state ya están correctos desde formFields
+  // Campos que van directamente a auth_userprofile (predefinidos por edX)
+  // phone_number: reconocido por la API, va directo a auth_userprofile
+  // state: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile  
+  // country: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile
 
   // Para state: enviar solo el código de 2 letras
   if (configurableFormFields?.state?.estadoCode) {
@@ -139,6 +142,7 @@ export const prepareRegistrationPayload = (
   }
 
   // Campos mexicanos adicionales van en meta como JSON
+  // Solo los no reconocidos por edX van a meta
   const metaFields = {};
   if (payload.first_lastname) {
     metaFields.first_lastname = payload.first_lastname;

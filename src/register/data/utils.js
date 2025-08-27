@@ -117,17 +117,62 @@ export const prepareRegistrationPayload = (
 ) => {
   let payload = { ...initPayload };
 
-  // Merge configurable fields
-  Object.keys(configurableFormFields).forEach((fieldName) => {
-    if (fieldName === 'country') {
-      payload[fieldName] = configurableFormFields[fieldName].countryCode;
-    } else if (fieldName === 'state') {
-      // Para el campo state, enviar el código del estado
-      payload[fieldName] = configurableFormFields[fieldName].estadoCode || configurableFormFields[fieldName].displayValue;
-    } else {
-      payload[fieldName] = configurableFormFields[fieldName];
-    }
-  });
+  // Mapear name a first_name y last_name para auth_user
+  if (payload.name) {
+    const nameParts = payload.name.trim().split(' ');
+    payload.first_name = nameParts[0] || '';
+    payload.last_name = nameParts.slice(1).join(' ') || '';
+    delete payload.name; // No enviar name
+  }
+
+  // Campos que van directamente a auth_userprofile
+  // phone_number y state ya están correctos desde formFields
+
+  // Para state: enviar solo el código de 2 letras
+  if (configurableFormFields?.state?.estadoCode) {
+    payload.state = configurableFormFields.state.estadoCode; // ej. "NL", "CDMX"
+  }
+
+  // Country si existe
+  if (configurableFormFields?.country?.countryCode) {
+    payload.country = configurableFormFields.country.countryCode;
+  }
+
+  // Campos mexicanos adicionales van en meta como JSON
+  const metaFields = {};
+  if (payload.first_lastname) {
+    metaFields.first_lastname = payload.first_lastname;
+    delete payload.first_lastname;
+  }
+  if (payload.second_lastname) {
+    metaFields.second_lastname = payload.second_lastname;
+    delete payload.second_lastname;
+  }
+  if (payload.municipality) {
+    metaFields.municipality = payload.municipality;
+    delete payload.municipality;
+  }
+  if (payload.school_name) {
+    metaFields.school_name = payload.school_name;
+    delete payload.school_name;
+  }
+  if (payload.cct) {
+    metaFields.cct = payload.cct;
+    delete payload.cct;
+  }
+  if (payload.grade) {
+    metaFields.grade = payload.grade;
+    delete payload.grade;
+  }
+  if (payload.curp) {
+    metaFields.curp = payload.curp;
+    delete payload.curp;
+  }
+
+  // Si hay campos meta, agregarlos como JSON string
+  if (Object.keys(metaFields).length > 0) {
+    payload.meta = JSON.stringify(metaFields);
+  }
 
   // Marketing opt-in
   if (!showMarketingEmailOptInCheckbox) {

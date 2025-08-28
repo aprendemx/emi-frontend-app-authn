@@ -206,31 +206,26 @@ const RegistrationPage = (props) => {
     const { name } = event.target;
     let value;
 
-    console.log('RegistrationPage handleOnChange:', { name, countryValue, estadoValue });
-
     if (countryValue) {
       value = countryValue;
+      setConfigurableFormFields((prevState) => ({ ...prevState, country: countryValue }));
+      setFormFields((prevState) => ({ ...prevState, country: countryValue.displayValue }));
     } else if (estadoValue) {
-      console.log('Processing estadoValue:', estadoValue);
-      value = estadoValue;
-      // Para estado, usar 'state' como key, no el name del evento
+      // Para estado, actualizar configurableFormFields con el objeto estado completo
       setConfigurableFormFields((prevState) => ({ ...prevState, state: estadoValue }));
+      // Y formFields con el código para envío al backend (compatible con BD varchar(2))
+      setFormFields((prevState) => ({ ...prevState, state: estadoValue.estadoCode }));
+      value = estadoValue;
     } else {
       value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+      setFormFields((prevState) => ({ ...prevState, [name]: value }));
     }
 
     // Clear per-field errors
-    if (errors[name]) {
+    if (errors[name] && !estadoValue && !countryValue) {
       dispatch(clearRegistrationBackendError(name));
     }
     setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
-
-    if (estadoValue) {
-      // Para estado, actualizar el formField con el displayValue
-      setFormFields((prevState) => ({ ...prevState, state: estadoValue.displayValue }));
-    } else {
-      setFormFields((prevState) => ({ ...prevState, [name]: value }));
-    }
   };
 
   const handleErrorChange = (fieldName, error) => {
@@ -279,8 +274,13 @@ const RegistrationPage = (props) => {
       queryParams,
     );
 
-    // Debug
-    // console.log('Payload de registro:', payload);
+    // Debug del payload final
+    console.log('=== PAYLOAD DE REGISTRO ===');
+    console.log('formFields:', formFields);
+    console.log('configurableFormFields:', configurableFormFields);
+    console.log('payload final:', payload);
+    console.log('========================');
+
     dispatch(registerNewUser(payload));
   };
 

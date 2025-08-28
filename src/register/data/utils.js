@@ -142,24 +142,12 @@ export const prepareRegistrationPayload = (
   // state: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile  
   // country: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile
 
-  // Para state: enviar solo el código de 2 letras (compatible con BD)
+  // Para state: ahora todos los códigos son de 2 caracteres
   if (configurableFormFields?.state?.estadoCode) {
-    // Mapear códigos largos a códigos de 2 letras para la BD
-    const codeMapping = {
-      'AGS': 'AG', 'BC': 'BC', 'BCS': 'BS', 'CAMP': 'CM', 'CHIS': 'CS',
-      'CHIH': 'CH', 'CDMX': 'DF', 'COAH': 'CO', 'COL': 'CL', 'DGO': 'DG',
-      'MEX': 'MX', 'GTO': 'GT', 'GRO': 'GR', 'HGO': 'HG', 'JAL': 'JA',
-      'MICH': 'MI', 'MOR': 'MO', 'NAY': 'NA', 'NL': 'NL', 'OAX': 'OA',
-      'PUE': 'PU', 'QRO': 'QT', 'QROO': 'QR', 'SLP': 'SL', 'SIN': 'SI',
-      'SON': 'SO', 'TAB': 'TB', 'TAMPS': 'TM', 'TLAX': 'TL', 'VER': 'VE',
-      'YUC': 'YU', 'ZAC': 'ZA'
-    };
-    
-    const shortCode = codeMapping[configurableFormFields.state.estadoCode] || configurableFormFields.state.estadoCode.substring(0, 2);
-    payload.state = shortCode;
+    payload.state = configurableFormFields.state.estadoCode;
   } else if (payload?.state) {
-    // Asegurar que no sea más de 2 caracteres
-    payload.state = payload.state.substring(0, 2).toUpperCase();
+    // Asegurar que sea uppercase
+    payload.state = payload.state.toUpperCase();
   }
 
   // Country si existe
@@ -202,6 +190,10 @@ export const prepareRegistrationPayload = (
   // Si hay campos meta, agregarlos como JSON string
   if (Object.keys(metaFields).length > 0) {
     payload.meta = JSON.stringify(metaFields);
+    console.log('=== META FIELDS ===');
+    console.log('metaFields object:', metaFields);
+    console.log('meta JSON string:', payload.meta);
+    console.log('===================');
   }
 
   // Marketing opt-in

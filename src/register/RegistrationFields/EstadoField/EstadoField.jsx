@@ -28,16 +28,8 @@ const EstadoField = (props) => {
     ...otherProps
   } = props || {};
 
-  // Debug temporal
-  console.log('EstadoField render - props:', {
-    estadoListLength: estadoList?.length,
-    selectedEstado,
-    errorMessage
-  });
-
   // Función simple para manejar cambios
   const handleOnChange = (event) => {
-    console.log('EstadoField onChange triggered:', event.target.value);
     const selectedValue = event.target.value;
     
     if (!Array.isArray(estadoList)) {
@@ -46,7 +38,6 @@ const EstadoField = (props) => {
     }
     
     const selectedEstadoData = estadoList.find(estado => estado.code === selectedValue);
-    console.log('Selected estado data:', selectedEstadoData);
     
     if (selectedEstadoData) {
       const estadoValue = {
@@ -54,7 +45,6 @@ const EstadoField = (props) => {
         estadoCode: selectedEstadoData.code,
         estadoName: selectedEstadoData.name,
       };
-      console.log('Calling onChangeHandler with:', estadoValue);
       handleErrorChange('state', '');
       onChangeHandler(event, null, estadoValue);
     } else {

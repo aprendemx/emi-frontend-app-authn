@@ -89,12 +89,23 @@ export const isFormValid = (
     isValid = false;
   }
 
+  // Validación de estado si está configurado
+  if (configurableFormFields?.state && !configurableFormFields.state?.estadoCode) {
+    fieldErrors.state = formatMessage(messages['registration.estado.required']);
+    isValid = false;
+  }
+
   // Validación de campos requeridos desde backend
   Object.keys(fieldDescriptions).forEach((key) => {
     if (key === 'country' && !configurableFormFields?.country?.displayValue) {
       fieldErrors[key] = formatMessage(messages['empty.country.field.error']);
-    } else if (!configurableFormFields[key]) {
-      fieldErrors[key] = fieldDescriptions[key].error_message;
+    } else if (key === 'state' && !configurableFormFields?.state?.estadoCode) {
+      fieldErrors[key] = formatMessage(messages['registration.estado.required']);
+    } else if (!configurableFormFields[key] && key !== 'country' && key !== 'state') {
+      // Para otros campos configurables, verificar si tienen valor
+      if (fieldDescriptions[key] && fieldDescriptions[key].error_message) {
+        fieldErrors[key] = fieldDescriptions[key].error_message;
+      }
     }
     if (fieldErrors[key]) isValid = false;
   });
@@ -117,6 +128,10 @@ export const prepareRegistrationPayload = (
 ) => {
   let payload = { ...initPayload };
 
+  console.log('DEBUG - prepareRegistrationPayload:');
+  console.log('- initPayload:', initPayload);
+  console.log('- configurableFormFields:', configurableFormFields);
+
   // Mapear name a first_name y last_name para auth_user
   if (payload.name) {
     const nameParts = payload.name.trim().split(' ');
@@ -134,9 +149,13 @@ export const prepareRegistrationPayload = (
   // Para state: enviar el código si está disponible
   if (configurableFormFields?.state?.estadoCode) {
     payload.state = configurableFormFields.state.estadoCode; // ej. "NL", "CDMX"
+    console.log('DEBUG - Estado con código:', configurableFormFields.state.estadoCode);
   } else if (payload?.state) {
     // Si no hay código pero hay valor de state en payload, mantenerlo
+    console.log('DEBUG - Estado desde payload:', payload.state);
     // No hacer nada, ya está en payload
+  } else {
+    console.log('DEBUG - No hay estado definido');
   }
 
   // Country si existe
@@ -199,5 +218,6 @@ export const prepareRegistrationPayload = (
   // Añade query params
   payload = { ...payload, ...queryParams };
 
+  console.log('DEBUG - Payload final:', payload);
   return payload;
 };

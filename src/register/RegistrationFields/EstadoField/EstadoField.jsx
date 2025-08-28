@@ -30,38 +30,53 @@ const EstadoField = (props) => {
 
   const handleOnChange = (event) => {
     const selectedValue = event.target.value;
-    const selectedEstadoData = estadoList.find(estado => estado.code === selectedValue);
     
-    if (selectedEstadoData) {
-      const estadoValue = {
-        displayValue: selectedEstadoData.name,
-        estadoCode: selectedEstadoData.code,
-        estadoName: selectedEstadoData.name,
-      };
-      // Limpiar error al seleccionar
-      handleErrorChange('state', '');
-      onChangeHandler(event, null, estadoValue);
-    } else {
-      // Si no se selecciona nada, limpiar el estado
-      onChangeHandler(event, null, {
-        displayValue: '',
-        estadoCode: '',
-        estadoName: ''
-      });
+    try {
+      const selectedEstadoData = estadoList.find(estado => estado.code === selectedValue);
+      
+      if (selectedEstadoData) {
+        const estadoValue = {
+          displayValue: selectedEstadoData.name,
+          estadoCode: selectedEstadoData.code,
+          estadoName: selectedEstadoData.name,
+        };
+        // Limpiar error al seleccionar
+        handleErrorChange('state', '');
+        onChangeHandler(event, null, estadoValue);
+      } else {
+        // Si no se selecciona nada, limpiar el estado
+        onChangeHandler(event, null, {
+          displayValue: '',
+          estadoCode: '',
+          estadoName: ''
+        });
+      }
+    } catch (error) {
+      console.error('Error in EstadoField handleOnChange:', error);
+      // En caso de error, al menos intentar llamar el handler básico
+      onChangeHandler(event);
     }
   };
 
   const handleOnBlur = () => {
-    if (!selectedEstado?.estadoCode) {
-      handleErrorChange('state', formatMessage(messages['registration.estado.required']));
-    } else {
-      handleErrorChange('state', '');
+    try {
+      if (!selectedEstado?.estadoCode) {
+        handleErrorChange('state', formatMessage(messages['registration.estado.required']));
+      } else {
+        handleErrorChange('state', '');
+      }
+    } catch (error) {
+      console.error('Error in EstadoField handleOnBlur:', error);
     }
   };
 
   const handleOnFocus = () => {
-    handleErrorChange('state', '');
-    dispatch(clearRegistrationBackendError('state'));
+    try {
+      handleErrorChange('state', '');
+      dispatch(clearRegistrationBackendError('state'));
+    } catch (error) {
+      console.error('Error in EstadoField handleOnFocus:', error);
+    }
   };
 
   return (

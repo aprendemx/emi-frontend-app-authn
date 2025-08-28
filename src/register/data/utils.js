@@ -1,8 +1,8 @@
 import { snakeCaseObject } from '@edx/frontend-platform';
 
 import {
-    LETTER_REGEX,
-    NUMBER_REGEX,
+  LETTER_REGEX,
+  NUMBER_REGEX,
 } from '../../data/constants';
 import messages from '../messages';
 import validateEmail from '../RegistrationFields/EmailField/validator';
@@ -89,23 +89,12 @@ export const isFormValid = (
     isValid = false;
   }
 
-  // Validación de estado si está configurado
-  if (configurableFormFields?.state && !configurableFormFields.state?.estadoCode) {
-    fieldErrors.state = formatMessage(messages['registration.estado.required']);
-    isValid = false;
-  }
-
   // Validación de campos requeridos desde backend
   Object.keys(fieldDescriptions).forEach((key) => {
     if (key === 'country' && !configurableFormFields?.country?.displayValue) {
       fieldErrors[key] = formatMessage(messages['empty.country.field.error']);
-    } else if (key === 'state' && !configurableFormFields?.state?.estadoCode) {
-      fieldErrors[key] = formatMessage(messages['registration.estado.required']);
-    } else if (!configurableFormFields[key] && key !== 'country' && key !== 'state') {
-      // Para otros campos configurables, verificar si tienen valor
-      if (fieldDescriptions[key] && fieldDescriptions[key].error_message) {
-        fieldErrors[key] = fieldDescriptions[key].error_message;
-      }
+    } else if (!configurableFormFields[key]) {
+      fieldErrors[key] = fieldDescriptions[key].error_message;
     }
     if (fieldErrors[key]) isValid = false;
   });
@@ -142,12 +131,9 @@ export const prepareRegistrationPayload = (
   // state: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile  
   // country: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile
 
-  // Para state: ahora todos los códigos son de 2 caracteres
+  // Para state: enviar solo el código de 2 letras
   if (configurableFormFields?.state?.estadoCode) {
-    payload.state = configurableFormFields.state.estadoCode;
-  } else if (payload?.state) {
-    // Asegurar que sea uppercase
-    payload.state = payload.state.toUpperCase();
+    payload.state = configurableFormFields.state.estadoCode; // ej. "NL", "CDMX"
   }
 
   // Country si existe
@@ -190,10 +176,6 @@ export const prepareRegistrationPayload = (
   // Si hay campos meta, agregarlos como JSON string
   if (Object.keys(metaFields).length > 0) {
     payload.meta = JSON.stringify(metaFields);
-    console.log('=== META FIELDS ===');
-    console.log('metaFields object:', metaFields);
-    console.log('meta JSON string:', payload.meta);
-    console.log('===================');
   }
 
   // Marketing opt-in

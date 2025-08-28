@@ -1,42 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { Form } from '@openedx/paragon';
-import { useIntl } from '@edx/frontend-platform/i18n';
 
-import { clearRegistrationBackendError } from '../../data/actions';
-import messages from '../../messages';
+import { FormGroup } from '../../../common-components';
 
 /**
  * Estado selector field wrapper. It accepts following handlers
- * - onChangeHandler for setting value change and
+ * - handleChange for setting value change and
  * - handleErrorChange for setting error
  */
 const EstadoField = (props) => {
-  const { formatMessage } = useIntl();
-  const dispatch = useDispatch();
-  
   const {
-    estadoList = [],
-    selectedEstado = null,
-    errorMessage = '',
-    onChangeHandler = () => {},
-    handleErrorChange = () => {},
-    onBlurHandler = () => {},
-    onFocusHandler = () => {},
-    floatingLabel = 'Estado',
+    estadoList,
+    selectedEstado,
+    errorMessage,
+    onChangeHandler,
+    handleErrorChange,
+    onBlurHandler,
+    onFocusHandler,
     ...otherProps
-  } = props || {};
+  } = props;
 
-  // Función simple para manejar cambios
   const handleOnChange = (event) => {
     const selectedValue = event.target.value;
-    
-    if (!Array.isArray(estadoList)) {
-      console.error('EstadoField: estadoList is not an array:', estadoList);
-      return;
-    }
-    
     const selectedEstadoData = estadoList.find(estado => estado.code === selectedValue);
     
     if (selectedEstadoData) {
@@ -45,59 +30,34 @@ const EstadoField = (props) => {
         estadoCode: selectedEstadoData.code,
         estadoName: selectedEstadoData.name,
       };
-      handleErrorChange('state', '');
       onChangeHandler(event, null, estadoValue);
     } else {
-      // Si no se selecciona nada, limpiar
-      onChangeHandler(event, null, {
-        displayValue: '',
-        estadoCode: '',
-        estadoName: ''
-      });
+      onChangeHandler(event);
     }
   };
 
-  const handleOnBlur = () => {
-    if (!selectedEstado?.estadoCode) {
-      const message = formatMessage(messages['registration.estado.required']) || 'Selecciona un estado';
-      handleErrorChange('state', message);
-    } else {
-      handleErrorChange('state', '');
-    }
-  };
+  const estadoOptions = () => [
+    <option key="" value="">Selecciona tu estado</option>,
+    ...estadoList.map(estado => (
+      <option key={estado.code} value={estado.code}>
+        {estado.name}
+      </option>
+    )),
+  ];
 
-  const handleOnFocus = () => {
-    handleErrorChange('state', '');
-    if (dispatch) {
-      dispatch(clearRegistrationBackendError('state'));
-    }
-  };
-
-  // Asegurar que siempre retornamos JSX válido
   return (
-    <Form.Group controlId="state" isInvalid={!!errorMessage} className="mb-4">
-      <Form.Label>{floatingLabel}</Form.Label>
-      <Form.Select
-        name="state"
-        value={selectedEstado?.estadoCode || ''}
-        onChange={handleOnChange}
-        onBlur={handleOnBlur}
-        onFocus={handleOnFocus}
-        isInvalid={!!errorMessage}
-      >
-        <option value="">Selecciona tu estado</option>
-        {estadoList && estadoList.map((estado) => (
-          <option key={estado.code} value={estado.code}>
-            {estado.name}
-          </option>
-        ))}
-      </Form.Select>
-      {errorMessage && (
-        <Form.Control.Feedback type="invalid">
-          {errorMessage}
-        </Form.Control.Feedback>
-      )}
-    </Form.Group>
+    <FormGroup
+      name="estado"
+      as="select"
+      value={selectedEstado?.estadoCode || ''}
+      options={estadoOptions}
+      handleChange={handleOnChange}
+      handleBlur={onBlurHandler}
+      handleFocus={onFocusHandler}
+      errorMessage={errorMessage}
+      floatingLabel={props.floatingLabel || "Estado"}
+      trailingElement={<i className="fa fa-angle-down" />}
+    />
   );
 };
 
@@ -105,29 +65,22 @@ EstadoField.propTypes = {
   estadoList: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.string,
     name: PropTypes.string,
-  })),
+  })).isRequired,
   selectedEstado: PropTypes.shape({
     displayValue: PropTypes.string,
     estadoCode: PropTypes.string,
     estadoName: PropTypes.string,
   }),
   errorMessage: PropTypes.string,
-  onChangeHandler: PropTypes.func,
-  handleErrorChange: PropTypes.func,
-  onBlurHandler: PropTypes.func,
-  onFocusHandler: PropTypes.func,
-  floatingLabel: PropTypes.string,
+  onChangeHandler: PropTypes.func.isRequired,
+  handleErrorChange: PropTypes.func.isRequired,
+  onBlurHandler: PropTypes.func.isRequired,
+  onFocusHandler: PropTypes.func.isRequired,
 };
 
 EstadoField.defaultProps = {
-  estadoList: [],
   selectedEstado: null,
   errorMessage: '',
-  floatingLabel: 'Estado',
-  onChangeHandler: () => {},
-  handleErrorChange: () => {},
-  onBlurHandler: () => {},
-  onFocusHandler: () => {},
 };
 
 export default EstadoField;

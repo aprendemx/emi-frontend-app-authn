@@ -46,54 +46,35 @@ import ResetPasswordSuccess from '../reset-password/ResetPasswordSuccess';
 
 const LoginPage = (props) => {
   const {
-    backedUpFormData = {
-      formFields: { emailOrUsername: '', password: '' },
-      errors: { emailOrUsername: '', password: '' }
-    },
+    backedUpFormData,
     loginErrorCode,
-    loginErrorContext = {},
-    loginResult = {},
-    shouldBackupState = false,
-    thirdPartyAuthContext = {
-      providers: [],
-      currentProvider: null,
-      secondaryProviders: [],
-      finishAuthUrl: null,
-      platformName: null,
-      errorMessage: null,
+    loginErrorContext,
+    loginResult,
+    shouldBackupState,
+    thirdPartyAuthContext: {
+      providers,
+      currentProvider,
+      secondaryProviders,
+      finishAuthUrl,
+      platformName,
+      errorMessage: thirdPartyErrorMessage,
     },
-    thirdPartyAuthApiStatus = PENDING_STATE,
-    institutionLogin = false,
-    showResetPasswordSuccessBanner = false,
-    submitState = DEFAULT_STATE,
+    thirdPartyAuthApiStatus,
+    institutionLogin,
+    showResetPasswordSuccessBanner,
+    submitState,
     // Actions
     backupFormState,
     handleInstitutionLogin,
     getTPADataFromBackend,
   } = props;
-
-  // Destructuring seguro de thirdPartyAuthContext
-  const {
-    providers = [],
-    currentProvider = null,
-    secondaryProviders = [],
-    finishAuthUrl = null,
-    platformName = null,
-    errorMessage: thirdPartyErrorMessage = null,
-  } = thirdPartyAuthContext;
   const { formatMessage } = useIntl();
   const activationMsgType = getActivationStatus();
   const queryParams = useMemo(() => getAllPossibleQueryParams(), []);
 
-  // Estado inicial defensivo
-  const safeBackedUpFormData = backedUpFormData || {
-    formFields: { emailOrUsername: '', password: '' },
-    errors: { emailOrUsername: '', password: '' }
-  };
-
-  const [formFields, setFormFields] = useState({ ...safeBackedUpFormData.formFields });
+  const [formFields, setFormFields] = useState({ ...backedUpFormData.formFields });
   const [errorCode, setErrorCode] = useState({ type: '', count: 0, context: {} });
-  const [errors, setErrors] = useState({ ...safeBackedUpFormData.errors });
+  const [errors, setErrors] = useState({ ...backedUpFormData.errors });
   const tpaHint = getTpaHint();
 
   useEffect(() => {
@@ -105,16 +86,13 @@ const LoginPage = (props) => {
     if (tpaHint) {
       payload.tpa_hint = tpaHint;
     }
-    // Verificación defensiva antes de llamar la función
-    if (getTPADataFromBackend && typeof getTPADataFromBackend === 'function') {
-      getTPADataFromBackend(payload);
-    }
+    getTPADataFromBackend(payload);
   }, [getTPADataFromBackend, queryParams, tpaHint]);
   /**
    * Backup the login form in redux when login page is toggled.
    */
   useEffect(() => {
-    if (shouldBackupState && backupFormState && typeof backupFormState === 'function') {
+    if (shouldBackupState) {
       backupFormState({
         formFields: { ...formFields },
         errors: { ...errors },
@@ -314,32 +292,17 @@ const LoginPage = (props) => {
 };
 
 const mapStateToProps = state => {
-  const loginPageState = state.login || {};
-  const commonComponents = state.commonComponents || {};
-  
-  // Selector defensivo para evitar crashes al recargar
-  const safeThirdPartyAuthContext = thirdPartyAuthContextSelector(state) || {
-    currentProvider: null,
-    errorMessage: null,
-    finishAuthUrl: null,
-    providers: [],
-    secondaryProviders: [],
-    platformName: null,
-  };
-  
+  const loginPageState = state.login;
   return {
-    backedUpFormData: loginPageState.loginFormData || {
-      formFields: { emailOrUsername: '', password: '' },
-      errors: { emailOrUsername: '', password: '' },
-    },
-    loginErrorCode: loginPageState.loginErrorCode || null,
-    loginErrorContext: loginPageState.loginErrorContext || {},
-    loginResult: loginPageState.loginResult || {},
-    shouldBackupState: loginPageState.shouldBackupState || false,
-    showResetPasswordSuccessBanner: loginPageState.showResetPasswordSuccessBanner || false,
-    submitState: loginPageState.submitState || DEFAULT_STATE,
-    thirdPartyAuthContext: safeThirdPartyAuthContext,
-    thirdPartyAuthApiStatus: commonComponents.thirdPartyAuthApiStatus || PENDING_STATE,
+    backedUpFormData: loginPageState.loginFormData,
+    loginErrorCode: loginPageState.loginErrorCode,
+    loginErrorContext: loginPageState.loginErrorContext,
+    loginResult: loginPageState.loginResult,
+    shouldBackupState: loginPageState.shouldBackupState,
+    showResetPasswordSuccessBanner: loginPageState.showResetPasswordSuccessBanner,
+    submitState: loginPageState.submitState,
+    thirdPartyAuthContext: thirdPartyAuthContextSelector(state),
+    thirdPartyAuthApiStatus: state.commonComponents.thirdPartyAuthApiStatus,
   };
 };
 

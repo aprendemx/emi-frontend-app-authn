@@ -208,24 +208,24 @@ const RegistrationPage = (props) => {
 
     if (countryValue) {
       value = countryValue;
-      setConfigurableFormFields((prevState) => ({ ...prevState, country: countryValue }));
-      setFormFields((prevState) => ({ ...prevState, country: countryValue.displayValue }));
     } else if (estadoValue) {
-      // Para estado, actualizar configurableFormFields con el objeto estado completo
-      setConfigurableFormFields((prevState) => ({ ...prevState, state: estadoValue }));
-      // Y formFields con el código para envío al backend (compatible con BD varchar(2))
-      setFormFields((prevState) => ({ ...prevState, state: estadoValue.estadoCode }));
       value = estadoValue;
+      setConfigurableFormFields((prevState) => ({ ...prevState, [name]: estadoValue }));
     } else {
       value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
-      setFormFields((prevState) => ({ ...prevState, [name]: value }));
     }
 
     // Clear per-field errors
-    if (errors[name] && !estadoValue && !countryValue) {
+    if (errors[name]) {
       dispatch(clearRegistrationBackendError(name));
     }
     setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
+
+    if (estadoValue) {
+      setFormFields((prevState) => ({ ...prevState, [name]: estadoValue.displayValue }));
+    } else {
+      setFormFields((prevState) => ({ ...prevState, [name]: value }));
+    }
   };
 
   const handleErrorChange = (fieldName, error) => {
@@ -274,13 +274,8 @@ const RegistrationPage = (props) => {
       queryParams,
     );
 
-    // Debug del payload final
-    console.log('=== PAYLOAD DE REGISTRO ===');
-    console.log('formFields:', formFields);
-    console.log('configurableFormFields:', configurableFormFields);
-    console.log('payload final:', payload);
-    console.log('========================');
-
+    // Debug
+    // console.log('Payload de registro:', payload);
     dispatch(registerNewUser(payload));
   };
 

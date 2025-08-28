@@ -1,14 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { Form } from '@openedx/paragon';
+import { useIntl } from '@edx/frontend-platform/i18n';
 
-import { FormGroup } from '../../../common-components';
+import { clearRegistrationBackendError } from '../../data/actions';
+import messages from '../../messages';
 
 /**
  * Estado selector field wrapper. It accepts following handlers
- * - handleChange for setting value change and
+ * - onChangeHandler for setting value change and
  * - handleErrorChange for setting error
  */
 const EstadoField = (props) => {
+  const { formatMessage } = useIntl();
+  const dispatch = useDispatch();
+  
   const {
     estadoList,
     selectedEstado,
@@ -17,6 +24,7 @@ const EstadoField = (props) => {
     handleErrorChange,
     onBlurHandler,
     onFocusHandler,
+    floatingLabel,
     ...otherProps
   } = props;
 
@@ -30,34 +38,56 @@ const EstadoField = (props) => {
         estadoCode: selectedEstadoData.code,
         estadoName: selectedEstadoData.name,
       };
+      // Limpiar error al seleccionar
+      handleErrorChange('state', '');
       onChangeHandler(event, null, estadoValue);
     } else {
-      onChangeHandler(event);
+      // Si no se selecciona nada, limpiar el estado
+      onChangeHandler(event, null, {
+        displayValue: '',
+        estadoCode: '',
+        estadoName: ''
+      });
     }
   };
 
-  const estadoOptions = () => [
-    <option key="" value="">Selecciona tu estado</option>,
-    ...estadoList.map(estado => (
-      <option key={estado.code} value={estado.code}>
-        {estado.name}
-      </option>
-    )),
-  ];
+  const handleOnBlur = () => {
+    if (!selectedEstado?.estadoCode) {
+      handleErrorChange('state', formatMessage(messages['registration.estado.required']));
+    } else {
+      handleErrorChange('state', '');
+    }
+  };
+
+  const handleOnFocus = () => {
+    handleErrorChange('state', '');
+    dispatch(clearRegistrationBackendError('state'));
+  };
 
   return (
-    <FormGroup
-      name="estado"
-      as="select"
-      value={selectedEstado?.estadoCode || ''}
-      options={estadoOptions}
-      handleChange={handleOnChange}
-      handleBlur={onBlurHandler}
-      handleFocus={onFocusHandler}
-      errorMessage={errorMessage}
-      floatingLabel={props.floatingLabel || "Estado"}
-      trailingElement={<i className="fa fa-angle-down" />}
-    />
+    <Form.Group controlId="state" isInvalid={!!errorMessage} className="mb-4">
+      <Form.Label>{floatingLabel || 'Estado'}</Form.Label>
+      <Form.Select
+        name="state"
+        value={selectedEstado?.estadoCode || ''}
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}
+        onFocus={handleOnFocus}
+        isInvalid={!!errorMessage}
+      >
+        <option value="">Selecciona tu estado</option>
+        {estadoList.map(estado => (
+          <option key={estado.code} value={estado.code}>
+            {estado.name}
+          </option>
+        ))}
+      </Form.Select>
+      {errorMessage && (
+        <Form.Control.Feedback type="invalid">
+          {errorMessage}
+        </Form.Control.Feedback>
+      )}
+    </Form.Group>
   );
 };
 
@@ -76,11 +106,13 @@ EstadoField.propTypes = {
   handleErrorChange: PropTypes.func.isRequired,
   onBlurHandler: PropTypes.func.isRequired,
   onFocusHandler: PropTypes.func.isRequired,
+  floatingLabel: PropTypes.string,
 };
 
 EstadoField.defaultProps = {
   selectedEstado: null,
   errorMessage: '',
+  floatingLabel: 'Estado',
 };
 
 export default EstadoField;

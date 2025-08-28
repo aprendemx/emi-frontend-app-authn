@@ -1,8 +1,8 @@
 import { snakeCaseObject } from '@edx/frontend-platform';
 
 import {
-  LETTER_REGEX,
-  NUMBER_REGEX,
+    LETTER_REGEX,
+    NUMBER_REGEX,
 } from '../../data/constants';
 import messages from '../messages';
 import validateEmail from '../RegistrationFields/EmailField/validator';
@@ -131,9 +131,12 @@ export const prepareRegistrationPayload = (
   // state: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile  
   // country: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile
 
-  // Para state: enviar solo el código de 2 letras
+  // Para state: enviar el código si está disponible
   if (configurableFormFields?.state?.estadoCode) {
     payload.state = configurableFormFields.state.estadoCode; // ej. "NL", "CDMX"
+  } else if (payload?.state) {
+    // Si no hay código pero hay valor de state en payload, mantenerlo
+    // No hacer nada, ya está en payload
   }
 
   // Country si existe

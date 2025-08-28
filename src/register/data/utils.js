@@ -128,10 +128,6 @@ export const prepareRegistrationPayload = (
 ) => {
   let payload = { ...initPayload };
 
-  console.log('DEBUG - prepareRegistrationPayload:');
-  console.log('- initPayload:', initPayload);
-  console.log('- configurableFormFields:', configurableFormFields);
-
   // Mapear name a first_name y last_name para auth_user
   if (payload.name) {
     const nameParts = payload.name.trim().split(' ');
@@ -146,16 +142,24 @@ export const prepareRegistrationPayload = (
   // state: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile  
   // country: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile
 
-  // Para state: enviar el código si está disponible
+  // Para state: enviar solo el código de 2 letras (compatible con BD)
   if (configurableFormFields?.state?.estadoCode) {
-    payload.state = configurableFormFields.state.estadoCode; // ej. "NL", "CDMX"
-    console.log('DEBUG - Estado con código:', configurableFormFields.state.estadoCode);
+    // Mapear códigos largos a códigos de 2 letras para la BD
+    const codeMapping = {
+      'AGS': 'AG', 'BC': 'BC', 'BCS': 'BS', 'CAMP': 'CM', 'CHIS': 'CS',
+      'CHIH': 'CH', 'CDMX': 'DF', 'COAH': 'CO', 'COL': 'CL', 'DGO': 'DG',
+      'MEX': 'MX', 'GTO': 'GT', 'GRO': 'GR', 'HGO': 'HG', 'JAL': 'JA',
+      'MICH': 'MI', 'MOR': 'MO', 'NAY': 'NA', 'NL': 'NL', 'OAX': 'OA',
+      'PUE': 'PU', 'QRO': 'QT', 'QROO': 'QR', 'SLP': 'SL', 'SIN': 'SI',
+      'SON': 'SO', 'TAB': 'TB', 'TAMPS': 'TM', 'TLAX': 'TL', 'VER': 'VE',
+      'YUC': 'YU', 'ZAC': 'ZA'
+    };
+    
+    const shortCode = codeMapping[configurableFormFields.state.estadoCode] || configurableFormFields.state.estadoCode.substring(0, 2);
+    payload.state = shortCode;
   } else if (payload?.state) {
-    // Si no hay código pero hay valor de state en payload, mantenerlo
-    console.log('DEBUG - Estado desde payload:', payload.state);
-    // No hacer nada, ya está en payload
-  } else {
-    console.log('DEBUG - No hay estado definido');
+    // Asegurar que no sea más de 2 caracteres
+    payload.state = payload.state.substring(0, 2).toUpperCase();
   }
 
   // Country si existe
@@ -218,6 +222,5 @@ export const prepareRegistrationPayload = (
   // Añade query params
   payload = { ...payload, ...queryParams };
 
-  console.log('DEBUG - Payload final:', payload);
   return payload;
 };

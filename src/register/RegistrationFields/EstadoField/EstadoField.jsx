@@ -17,34 +17,38 @@ const EstadoField = (props) => {
   const dispatch = useDispatch();
   
   const {
-    estadoList,
-    selectedEstado,
-    errorMessage,
-    onChangeHandler,
-    handleErrorChange,
-    onBlurHandler,
-    onFocusHandler,
-    floatingLabel,
+    estadoList = [],
+    selectedEstado = null,
+    errorMessage = '',
+    onChangeHandler = () => {},
+    handleErrorChange = () => {},
+    onBlurHandler = () => {},
+    onFocusHandler = () => {},
+    floatingLabel = 'Estado',
     ...otherProps
-  } = props;
+  } = props || {};
 
-  const handleOnChange = (event) => {
-    const selectedValue = event.target.value;
-    
+  // Función defensiva para manejar cambios
+  const handleOnChange = React.useCallback((event) => {
     try {
-      const selectedEstadoData = estadoList.find(estado => estado.code === selectedValue);
+      const selectedValue = event?.target?.value || '';
+      
+      if (!Array.isArray(estadoList)) {
+        console.warn('EstadoField: estadoList is not an array:', estadoList);
+        return;
+      }
+      
+      const selectedEstadoData = estadoList.find(estado => estado?.code === selectedValue);
       
       if (selectedEstadoData) {
         const estadoValue = {
-          displayValue: selectedEstadoData.name,
-          estadoCode: selectedEstadoData.code,
-          estadoName: selectedEstadoData.name,
+          displayValue: selectedEstadoData.name || '',
+          estadoCode: selectedEstadoData.code || '',
+          estadoName: selectedEstadoData.name || '',
         };
-        // Limpiar error al seleccionar
         handleErrorChange('state', '');
         onChangeHandler(event, null, estadoValue);
       } else {
-        // Si no se selecciona nada, limpiar el estado
         onChangeHandler(event, null, {
           displayValue: '',
           estadoCode: '',
@@ -52,82 +56,121 @@ const EstadoField = (props) => {
         });
       }
     } catch (error) {
-      console.error('Error in EstadoField handleOnChange:', error);
-      // En caso de error, al menos intentar llamar el handler básico
-      onChangeHandler(event);
+      console.error('EstadoField handleOnChange error:', error);
     }
-  };
+  }, [estadoList, handleErrorChange, onChangeHandler]);
 
-  const handleOnBlur = () => {
+  const handleOnBlur = React.useCallback(() => {
     try {
       if (!selectedEstado?.estadoCode) {
-        handleErrorChange('state', formatMessage(messages['registration.estado.required']));
+        const message = formatMessage(messages['registration.estado.required']) || 'Selecciona un estado';
+        handleErrorChange('state', message);
       } else {
         handleErrorChange('state', '');
       }
     } catch (error) {
-      console.error('Error in EstadoField handleOnBlur:', error);
+      console.error('EstadoField handleOnBlur error:', error);
     }
-  };
+  }, [selectedEstado, handleErrorChange, formatMessage]);
 
-  const handleOnFocus = () => {
+  const handleOnFocus = React.useCallback(() => {
     try {
       handleErrorChange('state', '');
-      dispatch(clearRegistrationBackendError('state'));
+      if (dispatch && clearRegistrationBackendError) {
+        dispatch(clearRegistrationBackendError('state'));
+      }
     } catch (error) {
-      console.error('Error in EstadoField handleOnFocus:', error);
+      console.error('EstadoField handleOnFocus error:', error);
     }
+  }, [handleErrorChange, dispatch]);
+
+  // Renderizar las opciones de manera segura
+  const renderOptions = () => {
+    if (!Array.isArray(estadoList)) {
+      return null;
+    }
+
+    return estadoList.map((estado, index) => {
+      if (!estado || typeof estado.code !== 'string' || typeof estado.name !== 'string') {
+        console.warn(`EstadoField: Invalid estado at index ${index}:`, estado);
+        return null;
+      }
+      
+      return (
+        <option key={estado.code} value={estado.code}>
+          {estado.name}
+        </option>
+      );
+    }).filter(Boolean);
   };
 
-  return (
-    <Form.Group controlId="state" isInvalid={!!errorMessage} className="mb-4">
-      <Form.Label>{floatingLabel || 'Estado'}</Form.Label>
-      <Form.Select
-        name="state"
-        value={selectedEstado?.estadoCode || ''}
-        onChange={handleOnChange}
-        onBlur={handleOnBlur}
-        onFocus={handleOnFocus}
-        isInvalid={!!errorMessage}
-      >
-        <option value="">Selecciona tu estado</option>
-        {estadoList.map(estado => (
-          <option key={estado.code} value={estado.code}>
-            {estado.name}
-          </option>
-        ))}
-      </Form.Select>
-      {errorMessage && (
-        <Form.Control.Feedback type="invalid">
-          {errorMessage}
-        </Form.Control.Feedback>
-      )}
-    </Form.Group>
-  );
+  // Asegurar que siempre retornamos JSX válido
+  try {
+    return (
+      <Form.Group controlId="state" isInvalid={!!errorMessage} className="mb-4">
+        <Form.Label>{floatingLabel}</Form.Label>
+        <Form.Select
+          name="state"
+          value={selectedEstado?.estadoCode || ''}
+          onChange={handleOnChange}
+          onBlur={onBlurHandler || handleOnBlur}
+          onFocus={onFocusHandler || handleOnFocus}
+          isInvalid={!!errorMessage}
+        >
+          <option value="">Selecciona tu estado</option>
+          {renderOptions()}
+        </Form.Select>
+        {errorMessage && (
+          <Form.Control.Feedback type="invalid">
+            {errorMessage}
+          </Form.Control.Feedback>
+        )}
+      </Form.Group>
+    );
+  } catch (error) {
+    console.error('EstadoField render error:', error);
+    // Retorno fallback en caso de error
+    return (
+      <div className="mb-4">
+        <label>Estado</label>
+        <select name="state" defaultValue="">
+          <option value="">Selecciona tu estado</option>
+        </select>
+        <div style={{color: 'red', fontSize: '0.8rem'}}>
+          Error cargando selector de estados
+        </div>
+      </div>
+    );
+  }
 };
 
 EstadoField.propTypes = {
   estadoList: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.string,
     name: PropTypes.string,
-  })).isRequired,
+  })),
   selectedEstado: PropTypes.shape({
     displayValue: PropTypes.string,
     estadoCode: PropTypes.string,
     estadoName: PropTypes.string,
   }),
   errorMessage: PropTypes.string,
-  onChangeHandler: PropTypes.func.isRequired,
-  handleErrorChange: PropTypes.func.isRequired,
-  onBlurHandler: PropTypes.func.isRequired,
-  onFocusHandler: PropTypes.func.isRequired,
+  onChangeHandler: PropTypes.func,
+  handleErrorChange: PropTypes.func,
+  onBlurHandler: PropTypes.func,
+  onFocusHandler: PropTypes.func,
   floatingLabel: PropTypes.string,
 };
 
 EstadoField.defaultProps = {
+  estadoList: [],
   selectedEstado: null,
   errorMessage: '',
   floatingLabel: 'Estado',
+  onChangeHandler: () => {},
+  handleErrorChange: () => {},
+  onBlurHandler: () => {},
+  onFocusHandler: () => {},
 };
 
 export default EstadoField;

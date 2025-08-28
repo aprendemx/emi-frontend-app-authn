@@ -28,120 +28,87 @@ const EstadoField = (props) => {
     ...otherProps
   } = props || {};
 
-  // Función defensiva para manejar cambios
-  const handleOnChange = React.useCallback((event) => {
-    try {
-      const selectedValue = event?.target?.value || '';
-      
-      if (!Array.isArray(estadoList)) {
-        console.warn('EstadoField: estadoList is not an array:', estadoList);
-        return;
-      }
-      
-      const selectedEstadoData = estadoList.find(estado => estado?.code === selectedValue);
-      
-      if (selectedEstadoData) {
-        const estadoValue = {
-          displayValue: selectedEstadoData.name || '',
-          estadoCode: selectedEstadoData.code || '',
-          estadoName: selectedEstadoData.name || '',
-        };
-        handleErrorChange('state', '');
-        onChangeHandler(event, null, estadoValue);
-      } else {
-        onChangeHandler(event, null, {
-          displayValue: '',
-          estadoCode: '',
-          estadoName: ''
-        });
-      }
-    } catch (error) {
-      console.error('EstadoField handleOnChange error:', error);
-    }
-  }, [estadoList, handleErrorChange, onChangeHandler]);
+  // Debug temporal
+  console.log('EstadoField render - props:', {
+    estadoListLength: estadoList?.length,
+    selectedEstado,
+    errorMessage
+  });
 
-  const handleOnBlur = React.useCallback(() => {
-    try {
-      if (!selectedEstado?.estadoCode) {
-        const message = formatMessage(messages['registration.estado.required']) || 'Selecciona un estado';
-        handleErrorChange('state', message);
-      } else {
-        handleErrorChange('state', '');
-      }
-    } catch (error) {
-      console.error('EstadoField handleOnBlur error:', error);
-    }
-  }, [selectedEstado, handleErrorChange, formatMessage]);
-
-  const handleOnFocus = React.useCallback(() => {
-    try {
-      handleErrorChange('state', '');
-      if (dispatch && clearRegistrationBackendError) {
-        dispatch(clearRegistrationBackendError('state'));
-      }
-    } catch (error) {
-      console.error('EstadoField handleOnFocus error:', error);
-    }
-  }, [handleErrorChange, dispatch]);
-
-  // Renderizar las opciones de manera segura
-  const renderOptions = () => {
+  // Función simple para manejar cambios
+  const handleOnChange = (event) => {
+    console.log('EstadoField onChange triggered:', event.target.value);
+    const selectedValue = event.target.value;
+    
     if (!Array.isArray(estadoList)) {
-      return null;
+      console.error('EstadoField: estadoList is not an array:', estadoList);
+      return;
     }
+    
+    const selectedEstadoData = estadoList.find(estado => estado.code === selectedValue);
+    console.log('Selected estado data:', selectedEstadoData);
+    
+    if (selectedEstadoData) {
+      const estadoValue = {
+        displayValue: selectedEstadoData.name,
+        estadoCode: selectedEstadoData.code,
+        estadoName: selectedEstadoData.name,
+      };
+      console.log('Calling onChangeHandler with:', estadoValue);
+      handleErrorChange('state', '');
+      onChangeHandler(event, null, estadoValue);
+    } else {
+      // Si no se selecciona nada, limpiar
+      onChangeHandler(event, null, {
+        displayValue: '',
+        estadoCode: '',
+        estadoName: ''
+      });
+    }
+  };
 
-    return estadoList.map((estado, index) => {
-      if (!estado || typeof estado.code !== 'string' || typeof estado.name !== 'string') {
-        console.warn(`EstadoField: Invalid estado at index ${index}:`, estado);
-        return null;
-      }
-      
-      return (
-        <option key={estado.code} value={estado.code}>
-          {estado.name}
-        </option>
-      );
-    }).filter(Boolean);
+  const handleOnBlur = () => {
+    if (!selectedEstado?.estadoCode) {
+      const message = formatMessage(messages['registration.estado.required']) || 'Selecciona un estado';
+      handleErrorChange('state', message);
+    } else {
+      handleErrorChange('state', '');
+    }
+  };
+
+  const handleOnFocus = () => {
+    handleErrorChange('state', '');
+    if (dispatch) {
+      dispatch(clearRegistrationBackendError('state'));
+    }
   };
 
   // Asegurar que siempre retornamos JSX válido
-  try {
-    return (
-      <Form.Group controlId="state" isInvalid={!!errorMessage} className="mb-4">
-        <Form.Label>{floatingLabel}</Form.Label>
-        <Form.Select
-          name="state"
-          value={selectedEstado?.estadoCode || ''}
-          onChange={handleOnChange}
-          onBlur={onBlurHandler || handleOnBlur}
-          onFocus={onFocusHandler || handleOnFocus}
-          isInvalid={!!errorMessage}
-        >
-          <option value="">Selecciona tu estado</option>
-          {renderOptions()}
-        </Form.Select>
-        {errorMessage && (
-          <Form.Control.Feedback type="invalid">
-            {errorMessage}
-          </Form.Control.Feedback>
-        )}
-      </Form.Group>
-    );
-  } catch (error) {
-    console.error('EstadoField render error:', error);
-    // Retorno fallback en caso de error
-    return (
-      <div className="mb-4">
-        <label>Estado</label>
-        <select name="state" defaultValue="">
-          <option value="">Selecciona tu estado</option>
-        </select>
-        <div style={{color: 'red', fontSize: '0.8rem'}}>
-          Error cargando selector de estados
-        </div>
-      </div>
-    );
-  }
+  return (
+    <Form.Group controlId="state" isInvalid={!!errorMessage} className="mb-4">
+      <Form.Label>{floatingLabel}</Form.Label>
+      <Form.Select
+        name="state"
+        value={selectedEstado?.estadoCode || ''}
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}
+        onFocus={handleOnFocus}
+        isInvalid={!!errorMessage}
+      >
+        <option value="">Selecciona tu estado</option>
+        {estadoList && estadoList.map((estado) => (
+          <option key={estado.code} value={estado.code}>
+            {estado.name}
+          </option>
+        ))}
+      </Form.Select>
+      {errorMessage && (
+        <Form.Control.Feedback type="invalid">
+          {errorMessage}
+        </Form.Control.Feedback>
+      )}
+    </Form.Group>
+  );
 };
 
 EstadoField.propTypes = {

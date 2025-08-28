@@ -206,11 +206,15 @@ const RegistrationPage = (props) => {
     const { name } = event.target;
     let value;
 
+    console.log('RegistrationPage handleOnChange:', { name, countryValue, estadoValue });
+
     if (countryValue) {
       value = countryValue;
     } else if (estadoValue) {
+      console.log('Processing estadoValue:', estadoValue);
       value = estadoValue;
-      setConfigurableFormFields((prevState) => ({ ...prevState, [name]: estadoValue }));
+      // Para estado, usar 'state' como key, no el name del evento
+      setConfigurableFormFields((prevState) => ({ ...prevState, state: estadoValue }));
     } else {
       value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
     }
@@ -222,7 +226,8 @@ const RegistrationPage = (props) => {
     setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
 
     if (estadoValue) {
-      setFormFields((prevState) => ({ ...prevState, [name]: estadoValue.displayValue }));
+      // Para estado, actualizar el formField con el displayValue
+      setFormFields((prevState) => ({ ...prevState, state: estadoValue.displayValue }));
     } else {
       setFormFields((prevState) => ({ ...prevState, [name]: value }));
     }

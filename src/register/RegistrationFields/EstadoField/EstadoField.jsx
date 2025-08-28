@@ -47,7 +47,7 @@ const EstadoField = (props) => {
 
   return (
     <FormGroup
-      name="estado"
+      name={props.name}
       as="select"
       value={selectedEstado?.estadoCode || ''}
       options={estadoOptions}

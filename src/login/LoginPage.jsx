@@ -72,20 +72,9 @@ const LoginPage = (props) => {
   const activationMsgType = getActivationStatus();
   const queryParams = useMemo(() => getAllPossibleQueryParams(), []);
 
-  const [formFields, setFormFields] = useState({ 
-    ...backedUpFormData.formFields,
-    isStudent: false,
-    schoolName: '',
-    cct: '',
-    grade: '',
-  });
+  const [formFields, setFormFields] = useState({ ...backedUpFormData.formFields });
   const [errorCode, setErrorCode] = useState({ type: '', count: 0, context: {} });
-  const [errors, setErrors] = useState({ 
-    ...backedUpFormData.errors,
-    schoolName: '',
-    cct: '',
-    grade: '',
-  });
+  const [errors, setErrors] = useState({ ...backedUpFormData.errors });
   const tpaHint = getTpaHint();
 
   useEffect(() => {
@@ -167,23 +156,14 @@ const LoginPage = (props) => {
     const payload = {
       email_or_username: formData.emailOrUsername,
       password: formData.password,
-      // Campos escolares: siempre se envían, vacíos si no es estudiante
-      school_name: formData.isStudent ? formData.schoolName : '',
-      cct: formData.isStudent ? formData.cct : '',
-      grade: formData.isStudent ? formData.grade : '',
       ...queryParams,
     };
     props.loginRequest(payload);
   };
 
   const handleOnChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    const fieldValue = type === 'checkbox' ? checked : value;
-    
-    setFormFields(prevState => ({ 
-      ...prevState, 
-      [name]: fieldValue 
-    }));
+    const { name, value } = event.target;
+    setFormFields(prevState => ({ ...prevState, [name]: value }));
   };
 
   const handleOnFocus = (event) => {
@@ -264,49 +244,6 @@ const LoginPage = (props) => {
             errorMessage={errors.password}
             floatingLabel={formatMessage(messages['login.password.label'])}
           />
-          
-          {/* Checkbox para estudiante */}
-          <Form.Group className="mb-3">
-            <Form.Check
-              type="checkbox"
-              id="isStudent"
-              name="isStudent"
-              checked={formFields.isStudent}
-              onChange={handleOnChange}
-              label="¿Eres estudiante?"
-            />
-          </Form.Group>
-
-          {/* Campos escolares - solo se muestran si es estudiante */}
-          {formFields.isStudent && (
-            <>
-              <FormGroup
-                name="schoolName"
-                value={formFields.schoolName}
-                handleChange={handleOnChange}
-                handleFocus={handleOnFocus}
-                errorMessage={errors.schoolName}
-                floatingLabel="Nombre de la escuela"
-              />
-              <FormGroup
-                name="cct"
-                value={formFields.cct}
-                handleChange={handleOnChange}
-                handleFocus={handleOnFocus}
-                errorMessage={errors.cct}
-                floatingLabel="CCT (Clave del Centro de Trabajo)"
-                maxLength={10}
-              />
-              <FormGroup
-                name="grade"
-                value={formFields.grade}
-                handleChange={handleOnChange}
-                handleFocus={handleOnFocus}
-                errorMessage={errors.grade}
-                floatingLabel="Grado escolar"
-              />
-            </>
-          )}
           <StatefulButton
             name="sign-in"
             id="sign-in"

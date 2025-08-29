@@ -101,6 +101,7 @@ const RegistrationPage = (props) => {
     phone_number: '',
     state: '',
     municipality: '',
+    isStudent: false,
     school_name: '',
     cct: '',
     grade: '',
@@ -394,34 +395,52 @@ const RegistrationPage = (props) => {
                 floatingLabel={formatMessage(messages['registration.municipio.label'])}
                 helpText={[formatMessage(messages['help.text.municipio'])]}
               />
-              <ApellidoField
-                name="school_name"
-                value={formFields.school_name}
-                handleChange={handleOnChange}
-                handleErrorChange={handleErrorChange}
-                errorMessage={errors.school_name}
-                floatingLabel={formatMessage(messages['registration.nombre.escuela.label'])}
-                helpText={[formatMessage(messages['help.text.escuela'])]}
-              />
-              <ApellidoField
-                name="cct"
-                value={formFields.cct}
-                handleChange={handleOnChange}
-                handleErrorChange={handleErrorChange}
-                errorMessage={errors.cct}
-                floatingLabel={formatMessage(messages['registration.cct.label'])}
-                helpText={[formatMessage(messages['help.text.cct'])]}
-                maxLength={10}
-              />
-              <ApellidoField
-                name="grade"
-                value={formFields.grade}
-                handleChange={handleOnChange}
-                handleErrorChange={handleErrorChange}
-                errorMessage={errors.grade}
-                floatingLabel={formatMessage(messages['registration.grado.label'])}
-                helpText={[formatMessage(messages['help.text.grado'])]}
-              />
+              
+              {/* Checkbox para estudiante */}
+              <Form.Group className="mb-3">
+                <Form.Check
+                  type="checkbox"
+                  id="isStudent"
+                  name="isStudent"
+                  checked={formFields.isStudent}
+                  onChange={handleOnChange}
+                  label="¿Eres estudiante?"
+                />
+              </Form.Group>
+
+              {/* Campos escolares - solo se muestran si es estudiante */}
+              {formFields.isStudent && (
+                <>
+                  <ApellidoField
+                    name="school_name"
+                    value={formFields.school_name}
+                    handleChange={handleOnChange}
+                    handleErrorChange={handleErrorChange}
+                    errorMessage={errors.school_name}
+                    floatingLabel={formatMessage(messages['registration.nombre.escuela.label'])}
+                    helpText={[formatMessage(messages['help.text.escuela'])]}
+                  />
+                  <ApellidoField
+                    name="cct"
+                    value={formFields.cct}
+                    handleChange={handleOnChange}
+                    handleErrorChange={handleErrorChange}
+                    errorMessage={errors.cct}
+                    floatingLabel={formatMessage(messages['registration.cct.label'])}
+                    helpText={[formatMessage(messages['help.text.cct'])]}
+                    maxLength={10}
+                  />
+                  <ApellidoField
+                    name="grade"
+                    value={formFields.grade}
+                    handleChange={handleOnChange}
+                    handleErrorChange={handleErrorChange}
+                    errorMessage={errors.grade}
+                    floatingLabel={formatMessage(messages['registration.grado.label'])}
+                    helpText={[formatMessage(messages['help.text.grado'])]}
+                  />
+                </>
+              )}
               <CurpField
                 name="curp"
                 value={formFields.curp}

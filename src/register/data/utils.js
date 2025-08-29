@@ -159,18 +159,30 @@ export const prepareRegistrationPayload = (
     metaFields.municipality = payload.municipality;
     delete payload.municipality;
   }
-  if (payload.school_name) {
-    metaFields.school_name = payload.school_name;
-    delete payload.school_name;
+  
+  // Campos escolares: si es estudiante los envía, si no los envía vacíos
+  if (payload.isStudent) {
+    if (payload.school_name) {
+      metaFields.school_name = payload.school_name;
+    }
+    if (payload.cct) {
+      metaFields.cct = payload.cct;
+    }
+    if (payload.grade) {
+      metaFields.grade = payload.grade;
+    }
+  } else {
+    // No es estudiante: campos vacíos
+    metaFields.school_name = '';
+    metaFields.cct = '';
+    metaFields.grade = '';
   }
-  if (payload.cct) {
-    metaFields.cct = payload.cct;
-    delete payload.cct;
-  }
-  if (payload.grade) {
-    metaFields.grade = payload.grade;
-    delete payload.grade;
-  }
+  // Remover estos campos del payload principal
+  delete payload.school_name;
+  delete payload.cct;
+  delete payload.grade;
+  delete payload.isStudent; // No enviar el checkbox al backend
+  
   if (payload.curp) {
     metaFields.curp = payload.curp;
     delete payload.curp;

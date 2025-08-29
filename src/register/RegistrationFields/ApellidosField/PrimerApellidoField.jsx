@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import { FormGroup } from '../../../common-components';
 import { clearRegistrationBackendError } from '../../data/actions';
+import messages from '../../messages';
 
 /**
  * Primer apellido field wrapper. It accepts following handlers

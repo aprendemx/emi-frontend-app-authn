@@ -417,8 +417,8 @@ const RegistrationPage = (props) => {
                     handleChange={handleOnChange}
                     handleErrorChange={handleErrorChange}
                     errorMessage={errors.school_name}
-                    floatingLabel={formatMessage(messages['registration.nombre.escuela.label'])}
-                    helpText={[formatMessage(messages['help.text.escuela'])]}
+                    floatingLabel="Nombre de la escuela"
+                    helpText={["Nombre completo de tu escuela o institución educativa."]}
                   />
                   <ApellidoField
                     name="cct"
@@ -426,8 +426,8 @@ const RegistrationPage = (props) => {
                     handleChange={handleOnChange}
                     handleErrorChange={handleErrorChange}
                     errorMessage={errors.cct}
-                    floatingLabel={formatMessage(messages['registration.cct.label'])}
-                    helpText={[formatMessage(messages['help.text.cct'])]}
+                    floatingLabel="CCT (Clave del Centro de Trabajo)"
+                    helpText={["Clave del Centro de Trabajo de tu escuela (10 caracteres)."]}
                     maxLength={10}
                   />
                   <ApellidoField
@@ -436,8 +436,8 @@ const RegistrationPage = (props) => {
                     handleChange={handleOnChange}
                     handleErrorChange={handleErrorChange}
                     errorMessage={errors.grade}
-                    floatingLabel={formatMessage(messages['registration.grado.label'])}
-                    helpText={[formatMessage(messages['help.text.grado'])]}
+                    floatingLabel="Grado escolar"
+                    helpText={["Grado escolar actual (ej: 6to grado, 1ro secundaria)."]}
                   />
                 </>
               )}

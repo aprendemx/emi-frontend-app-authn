@@ -5,6 +5,7 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import PropTypes from 'prop-types';
 
 import { FormGroup } from '../../../common-components';
+import messages from '../../messages';
 import { clearRegistrationBackendError } from '../../data/actions';
 
 /**

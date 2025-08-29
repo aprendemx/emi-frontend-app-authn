@@ -4,7 +4,6 @@ import {
   LETTER_REGEX,
   NUMBER_REGEX,
 } from '../../data/constants';
-import messages from '../messages';
 import validateEmail from '../RegistrationFields/EmailField/validator';
 import validateName from '../RegistrationFields/NameField/validator';
 import validateUsername from '../RegistrationFields/UsernameField/validator';
@@ -15,7 +14,7 @@ import validateUsername from '../RegistrationFields/UsernameField/validator';
 export const validatePasswordField = (value, formatMessage) => {
   let fieldError = '';
   if (!value || !LETTER_REGEX.test(value) || !NUMBER_REGEX.test(value) || value.length < 8) {
-    fieldError = formatMessage(messages['password.validation.message']);
+    fieldError = 'La contraseña debe tener al menos 8 caracteres, incluyendo letras y números';
   }
   return fieldError;
 };
@@ -82,17 +81,17 @@ export const isFormValid = (
 
   // Validación de country si está
   if (configurableFormFields?.country && !configurableFormFields.country?.displayValue) {
-    fieldErrors.country = formatMessage(messages['empty.country.field.error']);
+    fieldErrors.country = 'Selecciona un país';
     isValid = false;
   } else if (configurableFormFields?.country && !configurableFormFields.country?.countryCode) {
-    fieldErrors.country = formatMessage(messages['invalid.country.field.error']);
+    fieldErrors.country = 'Selecciona un país válido';
     isValid = false;
   }
 
   // Validación de campos requeridos desde backend
   Object.keys(fieldDescriptions).forEach((key) => {
     if (key === 'country' && !configurableFormFields?.country?.displayValue) {
-      fieldErrors[key] = formatMessage(messages['empty.country.field.error']);
+      fieldErrors[key] = 'Selecciona un país';
     } else if (!configurableFormFields[key]) {
       fieldErrors[key] = fieldDescriptions[key].error_message;
     }

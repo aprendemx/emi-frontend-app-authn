@@ -102,7 +102,7 @@ const UsernameField = (props) => {
 
   const suggestedUsernames = () => (
     <div className={className}>
-      <span className="text-gray username-suggestion--label">{formatMessage(messages['registration.username.suggestion.label'])}</span>
+      <span className="text-gray username-suggestion--label">Nombres de usuario sugeridos</span>
       <div className="username-scroll-suggested--form-field">
         {usernameSuggestions.map((username, index) => (
           <Button

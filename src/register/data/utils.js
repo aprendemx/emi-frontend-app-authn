@@ -131,6 +131,9 @@ export const prepareRegistrationPayload = (
   // state: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile  
   // country: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile
 
+  // Para phone_number: enviar vacío siempre
+  payload.phone_number = '';
+
   // Para state: enviar solo el código de 2 letras
   if (configurableFormFields?.state?.estadoCode) {
     payload.state = configurableFormFields.state.estadoCode; // ej. "NL", "CDMX"

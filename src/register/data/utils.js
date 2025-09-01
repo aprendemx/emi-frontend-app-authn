@@ -98,6 +98,17 @@ export const isFormValid = (
     if (fieldErrors[key]) isValid = false;
   });
 
+  // Validación de términos y condiciones (ambos requeridos)
+  if (!payload.honorCode) {
+    fieldErrors.honorCode = 'Debes aceptar el código de honor para continuar';
+    isValid = false;
+  }
+
+  if (!payload.privacyPolicy) {
+    fieldErrors.privacyPolicy = 'Debes aceptar el aviso de privacidad para continuar';
+    isValid = false;
+  }
+
   return { isValid, fieldErrors, emailSuggestion };
 };
 
@@ -197,9 +208,13 @@ export const prepareRegistrationPayload = (
     delete payload.marketingEmailsOptIn;
   }
 
-  // Requeridos por API
-  payload.terms_of_service = true;
-  payload.honor_code = true;
+  // Requeridos por API - basados en los checkboxes reales
+  payload.terms_of_service = Boolean(payload.privacyPolicy);
+  payload.honor_code = Boolean(payload.honorCode);
+
+  // Remover los campos de checkbox del payload final
+  delete payload.honorCode;
+  delete payload.privacyPolicy;
 
   // Tiempo total
   payload.totalRegistrationTime = totalRegistrationTime;

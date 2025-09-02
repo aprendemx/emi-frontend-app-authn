@@ -10,15 +10,16 @@ const TermsAndPrivacy = ({
   honorCodeError,
   privacyPolicyError,
 }) => {
-  // URL temporal mientras se crean las páginas específicas
-  const redirectUrl = 'https://emi.aprende.gob.mx/news';
+  // URLs específicas para los documentos
+  const honorCodeUrl = 'https://emi.aprende.gob.mx/honor';
+  const privacyPolicyUrl = 'https://emi.aprende.gob.mx/privacy';
 
   const handleHonorCodeClick = () => {
-    window.open(redirectUrl, '_blank', 'noopener,noreferrer');
+    window.open(honorCodeUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handlePrivacyPolicyClick = () => {
-    window.open(redirectUrl, '_blank', 'noopener,noreferrer');
+    window.open(privacyPolicyUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (

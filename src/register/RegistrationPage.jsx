@@ -360,9 +360,28 @@ const maximoNivelList=useMemo(() =>{ return [
         setErrorCode(prevState => ({ type: TPA_AUTHENTICATION_FAILURE, count: prevState.count + 1 }));
       }
       if (pipelineUserDetails && Object.keys(pipelineUserDetails).length !== 0) {
-        const { name = '', username = '', email = '' } = pipelineUserDetails;
+        const { 
+          name = '', 
+          username = '', 
+          email = '',
+          nombres = '',
+          primer_apellido = '',
+          segundo_apellido = '',
+          curp = '',
+          estado = '',
+          municipio = ''
+        } = pipelineUserDetails;
         setFormFields(prevState => ({
-          ...prevState, name, username, email,
+          ...prevState, 
+          name, 
+          username, 
+          email,
+          nombres,
+          primer_apellido,
+          segundo_apellido,
+          curp,
+          estado: estado ? { estadoCode: estado, estadoName: '' } : '',
+          municipio
         }));
         dispatch(setUserPipelineDataLoaded(true));
       }

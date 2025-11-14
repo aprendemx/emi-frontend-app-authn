@@ -355,11 +355,19 @@ const maximoNivelList=useMemo(() =>{ return [
    * Set the userPipelineDetails data in formFields for only first time
    */
   useEffect(() => {
+    console.log('[LLAVE MX] useEffect ejecutándose...', {
+      userPipelineDataLoaded,
+      thirdPartyAuthApiStatus,
+      pipelineUserDetails
+    });
+    
     if (!userPipelineDataLoaded && thirdPartyAuthApiStatus === COMPLETE_STATE) {
       if (thirdPartyAuthErrorMessage) {
         setErrorCode(prevState => ({ type: TPA_AUTHENTICATION_FAILURE, count: prevState.count + 1 }));
       }
       if (pipelineUserDetails && Object.keys(pipelineUserDetails).length !== 0) {
+        console.log('[LLAVE MX] pipelineUserDetails recibido:', pipelineUserDetails);
+        
         const { 
           name = '', 
           username = '', 
@@ -369,20 +377,73 @@ const maximoNivelList=useMemo(() =>{ return [
           segundo_apellido = '',
           curp = '',
           estado = '',
-          municipio = ''
+          municipio = '',
+          sexo = '',
+          fechaNacimiento = ''
         } = pipelineUserDetails;
-        setFormFields(prevState => ({
-          ...prevState, 
-          name, 
-          username, 
-          email,
-          nombres,
-          primer_apellido,
-          segundo_apellido,
-          curp,
-          estado: estado ? { estadoCode: estado, estadoName: '' } : '',
-          municipio
-        }));
+        
+        console.log('[LLAVE MX] Campos extraídos:', {
+          name, username, email, nombres, primer_apellido, segundo_apellido,
+          curp, estado, municipio, sexo, fechaNacimiento
+        });
+        
+        // Mapear nombre del estado a código
+        const estadoMap = {
+          'Aguascalientes': '1',
+          'Baja California': '2',
+          'Baja California Sur': '3',
+          'Campeche': '4',
+          'Coahuila': '5',
+          'Colima': '6',
+          'Chiapas': '7',
+          'Chihuahua': '8',
+          'Ciudad de México': '9',
+          'Durango': '10',
+          'Guanajuato': '11',
+          'Guerrero': '12',
+          'Hidalgo': '13',
+          'Jalisco': '14',
+          'México': '15',
+          'Michoacán': '16',
+          'Morelos': '17',
+          'Nayarit': '18',
+          'Nuevo León': '19',
+          'Oaxaca': '20',
+          'Puebla': '21',
+          'Querétaro': '22',
+          'Quintana Roo': '23',
+          'San Luis Potosí': '24',
+          'Sinaloa': '25',
+          'Sonora': '26',
+          'Tabasco': '27',
+          'Tamaulipas': '28',
+          'Tlaxcala': '29',
+          'Veracruz': '30',
+          'Yucatán': '31',
+          'Zacatecas': '32'
+        };
+        const estadoCode = estadoMap[estado] || estado;
+        
+        console.log('[LLAVE MX] Estado mapeado:', { estado, estadoCode });
+        
+        setFormFields(prevState => {
+          const newState = {
+            ...prevState, 
+            name, 
+            username, 
+            email,
+            nombres,
+            primer_apellido,
+            segundo_apellido,
+            curp,
+            estado: estadoCode ? { estadoCode, estadoName: estado } : '',
+            municipio,
+            sexo,
+            fechaNacimiento
+          };
+          console.log('[LLAVE MX] Actualizando formFields a:', newState);
+          return newState;
+        });
         dispatch(setUserPipelineDataLoaded(true));
       }
     }

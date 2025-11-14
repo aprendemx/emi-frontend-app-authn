@@ -520,7 +520,7 @@ const maximoNivelList=useMemo(() =>{ return [
         return handleErrorChange('email', 'Correo es requerido');
     }
     if (formFields.nombres==='') {
-        return handleErrorChange('nombres', 'Nombre es requerido');
+        return handleErrorChange('nombres', 'Nombre es requerido12345');
     }
     if (formFields.primer_apellido==='') {
         return handleErrorChange('primer_apellido', 'Primer apellido es requerido');

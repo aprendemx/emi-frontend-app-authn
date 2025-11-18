@@ -368,78 +368,42 @@ const maximoNivelList=useMemo(() =>{ return [
       if (pipelineUserDetails && Object.keys(pipelineUserDetails).length !== 0) {
         console.log('[LLAVE MX] pipelineUserDetails recibido:', pipelineUserDetails);
         
+        // ✅ MAPEO CORRECTO: usar firstName y lastName que SÍ vienen
         const { 
-          name = '', 
           username = '', 
           email = '',
-          nombres = '',
-          primer_apellido = '',
-          segundo_apellido = '',
-          curp = '',
-          estado = '',
-          municipio = '',
-          sexo = '',
-          fechaNacimiento = ''
+          firstName = '',  // ✅ Este campo SÍ viene
+          lastName = ''    // ✅ Este campo SÍ viene
         } = pipelineUserDetails;
         
-        console.log('[LLAVE MX] Campos extraídos:', {
-          name, username, email, nombres, primer_apellido, segundo_apellido,
-          curp, estado, municipio, sexo, fechaNacimiento
+        // Separar lastName en primer_apellido y segundo_apellido
+        const apellidos = lastName.trim().split(' ');
+        const primer_apellido = apellidos[0] || '';
+        const segundo_apellido = apellidos.slice(1).join(' ') || '';
+        
+        // Construir name completo
+        const name = `${firstName} ${lastName}`.trim();
+        
+        console.log('[LLAVE MX] Campos mapeados:', {
+          username,
+          email,
+          firstName,
+          lastName,
+          name,
+          primer_apellido,
+          segundo_apellido
         });
-        
-        // Mapear nombre del estado a código
-        const estadoMap = {
-          'Aguascalientes': '1',
-          'Baja California': '2',
-          'Baja California Sur': '3',
-          'Campeche': '4',
-          'Coahuila': '5',
-          'Colima': '6',
-          'Chiapas': '7',
-          'Chihuahua': '8',
-          'Ciudad de México': '9',
-          'Durango': '10',
-          'Guanajuato': '11',
-          'Guerrero': '12',
-          'Hidalgo': '13',
-          'Jalisco': '14',
-          'México': '15',
-          'Michoacán': '16',
-          'Morelos': '17',
-          'Nayarit': '18',
-          'Nuevo León': '19',
-          'Oaxaca': '20',
-          'Puebla': '21',
-          'Querétaro': '22',
-          'Quintana Roo': '23',
-          'San Luis Potosí': '24',
-          'Sinaloa': '25',
-          'Sonora': '26',
-          'Tabasco': '27',
-          'Tamaulipas': '28',
-          'Tlaxcala': '29',
-          'Veracruz': '30',
-          'Yucatán': '31',
-          'Zacatecas': '32'
-        };
-        const estadoCode = estadoMap[estado] || estado;
-        
-        console.log('[LLAVE MX] Estado mapeado:', { estado, estadoCode });
         
         setFormFields(prevState => {
           const newState = {
             ...prevState, 
-            name, 
-            username, 
-            email,
-            nombres,
-            primer_apellido,
-            segundo_apellido,
-            curp,
-            estado: estadoCode ? { estadoCode, estadoName: estado } : '',
-            municipio,
-            sexo,
-            fechaNacimiento
+            name,              // ✅ firstName + lastName
+            username,          // ✅ CURP
+            email,             // ✅ Email temporal
+            nombres: firstName,          // ✅ Nombres
+            primer_apellido,   // ✅ Primer apellido
+            segundo_apellido,  // ✅ Segundo apellido
+            curp: username,    // ✅ El username ES el CURP
           };
           console.log('[LLAVE MX] Actualizando formFields a:', newState);
           return newState;

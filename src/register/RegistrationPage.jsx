@@ -368,44 +368,92 @@ const maximoNivelList=useMemo(() =>{ return [
       if (pipelineUserDetails && Object.keys(pipelineUserDetails).length !== 0) {
         console.log('[LLAVE MX] pipelineUserDetails recibido:', pipelineUserDetails);
         
-        // ✅ MAPEO CORRECTO: usar firstName y lastName que SÍ vienen
+        // ✅ Extraer TODOS los campos que vienen del backend (después de serializer update)
         const { 
           username = '', 
           email = '',
-          firstName = '',  // ✅ Este campo SÍ viene
-          lastName = ''    // ✅ Este campo SÍ viene
+          name = '',
+          firstName = '',
+          lastName = '',
+          // Campos personalizados de MéxicoX que ahora SÍ vienen del serializer
+          nombres = '',
+          primer_apellido = '',
+          segundo_apellido = '',
+          curp = '',
+          estado = '',
+          municipio = '',
+          telefono = '',
+          fechaNacimiento = '',
+          sexo = '',
+          pais = '',
+          dni = '',
+          ocupacion = '',
+          maximo_nivel = '',
+          eres_docente = false,
+          cct = '',
+          funcion = '',
+          nivel_Educativo = '',
+          asignatura = '',
+          cuentanos = '',
+          correoVerificado = false,
+          telefonoVerificado = false,
         } = pipelineUserDetails;
         
-        // Separar lastName en primer_apellido y segundo_apellido
-        const apellidos = lastName.trim().split(' ');
-        const primer_apellido = apellidos[0] || '';
-        const segundo_apellido = apellidos.slice(1).join(' ') || '';
-        
-        // Construir name completo
-        const fullName = `${firstName} ${lastName}`.trim();
-        
-        console.log('[LLAVE MX] Campos mapeados:', {
+        console.log('[LLAVE MX] Campos extraídos:', {
           username,
           email,
-          firstName,
-          lastName,
-          fullName,
+          name,
+          nombres,
           primer_apellido,
-          segundo_apellido
+          segundo_apellido,
+          curp,
+          estado,
+          municipio
         });
+        
+        // Mapear estado de string a objeto para el EstadoField
+        let estadoObj = { estadoCode: '', displayValue: '' };
+        if (estado) {
+          // Buscar el estado en estadoList por nombre
+          const estadoEncontrado = estadoList.find(e => e.name === estado);
+          if (estadoEncontrado) {
+            estadoObj = {
+              estadoCode: estadoEncontrado.code,
+              displayValue: estadoEncontrado.name
+            };
+          }
+        }
         
         setFormFields(prevState => {
           const newState = {
-            ...prevState, 
-            name: fullName,              // ✅ firstName + lastName
-            username,                    // ✅ CURP
-            email,                       // ✅ Email temporal
-            nombres: firstName,          // ✅ Nombres
-            primer_apellido,             // ✅ Primer apellido extraído
-            segundo_apellido,            // ✅ Segundo apellido extraído
-            curp: username,              // ✅ El username ES el CURP
-            // Dejar los demás campos como están (usuario los llenará)
+            ...prevState,
+            // Usar el 'name' completo que viene del backend (ya arreglado en serializer)
+            name: name || `${firstName} ${lastName}`.trim(),
+            username: username || curp,  // username ES el CURP
+            email,
+            
+            // ✅ Campos personalizados que AHORA SÍ vienen del backend
+            nombres: nombres || firstName,
+            primer_apellido: primer_apellido || (lastName ? lastName.split(' ')[0] : ''),
+            segundo_apellido: segundo_apellido || (lastName ? lastName.split(' ').slice(1).join(' ') : ''),
+            curp: curp || username,
+            estado: estadoObj,
+            municipio,
+            telefono,
+            
+            // Campos que el usuario completará (ya vienen vacíos del backend)
+            pais: pais ? { code: '', name: pais } : {},
+            dni,
+            ocupacion: ocupacion ? { catalogoCode: ocupacion, displayValue: '' } : {},
+            maximo_nivel: maximo_nivel ? { catalogoCode: maximo_nivel, displayValue: '' } : {},
+            eres_docente,
+            cct,
+            funcion: funcion ? { catalogoCode: funcion, displayValue: '' } : {},
+            nivel_Educativo: nivel_Educativo ? { catalogoCode: nivel_Educativo, displayValue: '' } : {},
+            asignatura,
+            cuentanos,
           };
+          
           console.log('[LLAVE MX] Actualizando formFields a:', newState);
           return newState;
         });

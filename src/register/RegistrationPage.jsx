@@ -382,14 +382,14 @@ const maximoNivelList=useMemo(() =>{ return [
         const segundo_apellido = apellidos.slice(1).join(' ') || '';
         
         // Construir name completo
-        const name = `${firstName} ${lastName}`.trim();
+        const fullName = `${firstName} ${lastName}`.trim();
         
         console.log('[LLAVE MX] Campos mapeados:', {
           username,
           email,
           firstName,
           lastName,
-          name,
+          fullName,
           primer_apellido,
           segundo_apellido
         });
@@ -397,13 +397,14 @@ const maximoNivelList=useMemo(() =>{ return [
         setFormFields(prevState => {
           const newState = {
             ...prevState, 
-            name,              // ✅ firstName + lastName
-            username,          // ✅ CURP
-            email,             // ✅ Email temporal
+            name: fullName,              // ✅ firstName + lastName
+            username,                    // ✅ CURP
+            email,                       // ✅ Email temporal
             nombres: firstName,          // ✅ Nombres
-            primer_apellido,   // ✅ Primer apellido
-            segundo_apellido,  // ✅ Segundo apellido
-            curp: username,    // ✅ El username ES el CURP
+            primer_apellido,             // ✅ Primer apellido extraído
+            segundo_apellido,            // ✅ Segundo apellido extraído
+            curp: username,              // ✅ El username ES el CURP
+            // Dejar los demás campos como están (usuario los llenará)
           };
           console.log('[LLAVE MX] Actualizando formFields a:', newState);
           return newState;

@@ -368,14 +368,12 @@ const maximoNivelList=useMemo(() =>{ return [
       if (pipelineUserDetails && Object.keys(pipelineUserDetails).length !== 0) {
         console.log('[LLAVE MX] pipelineUserDetails recibido:', pipelineUserDetails);
         
-        // ✅ Extraer TODOS los campos que vienen del backend (después de serializer update)
+        // ✅ Extraer campos directamente como vienen del backend (sin fallbacks cruzados)
         const { 
           username = '', 
           email = '',
           name = '',
-          firstName = '',
-          lastName = '',
-          // Campos personalizados de MéxicoX que ahora SÍ vienen del serializer
+          // Campos personalizados de MéxicoX
           nombres = '',
           primer_apellido = '',
           segundo_apellido = '',
@@ -395,6 +393,8 @@ const maximoNivelList=useMemo(() =>{ return [
           nivel_Educativo = '',
           asignatura = '',
           cuentanos = '',
+          tos = false,
+          honor_code = false,
           correoVerificado = false,
           telefonoVerificado = false,
         } = pipelineUserDetails;
@@ -427,31 +427,41 @@ const maximoNivelList=useMemo(() =>{ return [
         setFormFields(prevState => {
           const newState = {
             ...prevState,
-            // Usar el 'name' completo que viene del backend (ya arreglado en serializer)
-            name: name || `${firstName} ${lastName}`.trim(),
-            username: username || curp,  // username ES el CURP
-            email,
+            // Campos estándar (tal como vienen del backend, sin fallbacks)
+            name: name || '',
+            username: username || '',
+            email: email || '',
             
-            // ✅ Campos personalizados que AHORA SÍ vienen del backend
-            nombres: nombres || firstName,
-            primer_apellido: primer_apellido || (lastName ? lastName.split(' ')[0] : ''),
-            segundo_apellido: segundo_apellido || (lastName ? lastName.split(' ').slice(1).join(' ') : ''),
-            curp: curp || username,
+            // Campos personalizados de nombres (sin reconstruir desde firstName/lastName)
+            nombres: nombres || '',
+            primer_apellido: primer_apellido || '',
+            segundo_apellido: segundo_apellido || '',
+            curp: curp || '',
+            
+            // Estado (convertido a objeto de catálogo)
             estado: estadoObj,
-            municipio,
-            telefono,
+            municipio: municipio || '',
+            telefono: telefono || '',
             
-            // Campos que el usuario completará (ya vienen vacíos del backend)
-            pais: pais ? { code: '', name: pais } : {},
-            dni,
-            ocupacion: ocupacion ? { catalogoCode: ocupacion, displayValue: '' } : {},
-            maximo_nivel: maximo_nivel ? { catalogoCode: maximo_nivel, displayValue: '' } : {},
-            eres_docente,
-            cct,
-            funcion: funcion ? { catalogoCode: funcion, displayValue: '' } : {},
-            nivel_Educativo: nivel_Educativo ? { catalogoCode: nivel_Educativo, displayValue: '' } : {},
-            asignatura,
-            cuentanos,
+            // País y DNI (solo objeto si tiene valor)
+            pais: pais ? { code: '', name: pais } : '',
+            dni: dni || '',
+            
+            // Catálogos (solo objeto si tiene valor, sino string vacío)
+            ocupacion: ocupacion ? { catalogoCode: ocupacion, displayValue: '' } : '',
+            maximo_nivel: maximo_nivel ? { catalogoCode: maximo_nivel, displayValue: '' } : '',
+            
+            // Docente y campos relacionados
+            eres_docente: !!eres_docente,
+            cct: cct || '',
+            funcion: funcion ? { catalogoCode: funcion, displayValue: '' } : '',
+            nivel_Educativo: nivel_Educativo ? { catalogoCode: nivel_Educativo, displayValue: '' } : '',
+            asignatura: asignatura || '',
+            cuentanos: cuentanos || '',
+            
+            // Términos y condiciones
+            tos: !!tos,
+            honor_code: !!honor_code,
           };
           
           console.log('[LLAVE MX] Actualizando formFields a:', newState);

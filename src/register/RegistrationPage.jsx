@@ -368,35 +368,23 @@ const maximoNivelList=useMemo(() =>{ return [
       if (pipelineUserDetails && Object.keys(pipelineUserDetails).length !== 0) {
         console.log('[LLAVE MX] pipelineUserDetails recibido:', pipelineUserDetails);
         
-        // ✅ Extraer campos directamente como vienen del backend (sin fallbacks cruzados)
+        // ✅ Extraer SOLO los campos que Llave MX entrega (sin fallbacks cruzados)
         const { 
-          username = '', 
-          email = '',
-          name = '',
-          // Campos personalizados de MéxicoX
-          nombres = '',
-          primer_apellido = '',
-          segundo_apellido = '',
-          curp = '',
-          estado = '',
-          municipio = '',
-          telefono = '',
-          fechaNacimiento = '',
-          sexo = '',
-          pais = '',
-          dni = '',
-          ocupacion = '',
-          maximo_nivel = '',
-          eres_docente = false,
-          cct = '',
-          funcion = '',
-          nivel_Educativo = '',
-          asignatura = '',
-          cuentanos = '',
-          tos = false,
-          honor_code = false,
-          correoVerificado = false,
-          telefonoVerificado = false,
+          username, 
+          email,
+          name,
+          // Campos personalizados que Llave MX SÍ envía
+          nombres,
+          primer_apellido,
+          segundo_apellido,
+          curp,
+          estado,
+          municipio,
+          telefono,
+          fechaNacimiento,
+          sexo,
+          correoVerificado,
+          telefonoVerificado,
         } = pipelineUserDetails;
         
         console.log('[LLAVE MX] Campos extraídos:', {
@@ -411,10 +399,9 @@ const maximoNivelList=useMemo(() =>{ return [
           municipio
         });
         
-        // Mapear estado de string a objeto para el EstadoField
-        let estadoObj = { estadoCode: '', displayValue: '' };
+        // ✅ Mapear estado usando estadoList
+        let estadoObj = '';
         if (estado) {
-          // Buscar el estado en estadoList por nombre
           const estadoEncontrado = estadoList.find(e => e.name === estado);
           if (estadoEncontrado) {
             estadoObj = {
@@ -424,49 +411,43 @@ const maximoNivelList=useMemo(() =>{ return [
           }
         }
         
-        setFormFields(prevState => {
-          const newState = {
-            ...prevState,
-            // Campos estándar (tal como vienen del backend, sin fallbacks)
-            name: name || '',
-            username: username || '',
-            email: email || '',
-            
-            // Campos personalizados de nombres (sin reconstruir desde firstName/lastName)
-            nombres: nombres || '',
-            primer_apellido: primer_apellido || '',
-            segundo_apellido: segundo_apellido || '',
-            curp: curp || '',
-            
-            // Estado (convertido a objeto de catálogo)
-            estado: estadoObj,
-            municipio: municipio || '',
-            telefono: telefono || '',
-            
-            // País y DNI (solo objeto si tiene valor)
-            pais: pais ? { code: '', name: pais } : '',
-            dni: dni || '',
-            
-            // Catálogos (solo objeto si tiene valor, sino string vacío)
-            ocupacion: ocupacion ? { catalogoCode: ocupacion, displayValue: '' } : '',
-            maximo_nivel: maximo_nivel ? { catalogoCode: maximo_nivel, displayValue: '' } : '',
-            
-            // Docente y campos relacionados
-            eres_docente: !!eres_docente,
-            cct: cct || '',
-            funcion: funcion ? { catalogoCode: funcion, displayValue: '' } : '',
-            nivel_Educativo: nivel_Educativo ? { catalogoCode: nivel_Educativo, displayValue: '' } : '',
-            asignatura: asignatura || '',
-            cuentanos: cuentanos || '',
-            
-            // Términos y condiciones
-            tos: !!tos,
-            honor_code: !!honor_code,
-          };
+        // ✅ Solo asignar valores reales, sin inventar datos
+        setFormFields(prev => ({
+          ...prev,
+          // Campos estándar que Llave MX entrega
+          name: name || '',
+          username: username || '',
+          email: email || '',
           
-          console.log('[LLAVE MX] Actualizando formFields a:', newState);
-          return newState;
-        });
+          // Campos de nombres que Llave MX entrega
+          nombres: nombres || '',
+          primer_apellido: primer_apellido || '',
+          segundo_apellido: segundo_apellido || '',
+          curp: curp || '',
+          
+          // Estado mapeado a objeto
+          estado: estadoObj,
+          municipio: municipio || '',
+          telefono: telefono || '',
+          
+          // Campos que Llave MX NO manda: quedan vacíos
+          pais: '',
+          dni: '',
+          
+          // Catálogos que Llave MX NO manda: quedan vacíos (string, no objeto)
+          ocupacion: '',
+          maximo_nivel: '',
+          
+          // Campos de docente que Llave MX NO manda
+          eres_docente: false,
+          cct: '',
+          funcion: '',
+          nivel_Educativo: '',
+          asignatura: '',
+          cuentanos: '',
+        }));
+        
+        console.log('[LLAVE MX] formFields actualizado con datos reales de Llave MX');
         dispatch(setUserPipelineDataLoaded(true));
       }
     }

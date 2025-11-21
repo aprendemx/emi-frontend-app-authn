@@ -610,30 +610,17 @@ const RegistrationPage = (props) => {
       return handleErrorChange('estado', 'Estado es requerido');
     }
 
-    // 🔹 Validaciones condicionales según proveedor
-    //    - Si NO es Llave MX -> ocupación y máximo nivel SON requeridos
-    //    - Si ES Llave MX -> se permiten vacíos, pero si vienen llenos se envían
-
-    // Ocupación
+    // SOLO validar estos campos si NO es Llave MX
     if (!isLlaveMX) {
-      if (formFields.ocupacion && formFields.ocupacion.catalogoCode) {
-        _payload.ocupacion = formFields.ocupacion.catalogoCode;
-      } else {
+      // Ocupación
+      if (!formFields.ocupacion || !formFields.ocupacion.catalogoCode) {
         return handleErrorChange('ocupacion', 'Ocupación es requerida');
       }
-    } else if (formFields.ocupacion && formFields.ocupacion.catalogoCode) {
-      _payload.ocupacion = formFields.ocupacion.catalogoCode;
-    }
 
-    // Máximo nivel de estudios
-    if (!isLlaveMX) {
-      if (formFields.maximo_nivel && formFields.maximo_nivel.catalogoCode) {
-        _payload.maximo_nivel = formFields.maximo_nivel.catalogoCode;
-      } else {
+      // Máximo nivel
+      if (!formFields.maximo_nivel || !formFields.maximo_nivel.catalogoCode) {
         return handleErrorChange('maximo_nivel', 'Máximo nivel de estudios es requerido');
       }
-    } else if (formFields.maximo_nivel && formFields.maximo_nivel.catalogoCode) {
-      _payload.maximo_nivel = formFields.maximo_nivel.catalogoCode;
     }
 
     if (!formFields.tos) {
@@ -644,28 +631,45 @@ const RegistrationPage = (props) => {
       return handleErrorChange('honor_code', 'Debes aceptar el código de honor');
     }
 
-    if (formFields.eres_docente) {
-      if (formFields.cct) {
-        _payload.cct = formFields.cct.toUpperCase();
-      } else {
+    // Validaciones de campos docente - SOLO si NO es Llave MX
+    if (!isLlaveMX && formFields.eres_docente) {
+      if (!formFields.cct) {
         return handleErrorChange('cct', 'CCT es requerida');
       }
 
-      if (formFields.funcion && formFields.funcion.catalogoCode) {
-        _payload.funcion = formFields.funcion.catalogoCode;
-      } else {
+      if (!formFields.funcion || !formFields.funcion.catalogoCode) {
         return handleErrorChange('funcion', 'Función es requerida');
       }
-      if (formFields.nivel_Educativo && formFields.nivel_Educativo.catalogoCode) {
-        _payload.nivel_Educativo = formFields.nivel_Educativo.catalogoCode;
 
-      } else {
+      if (!formFields.nivel_Educativo || !formFields.nivel_Educativo.catalogoCode) {
         return handleErrorChange('nivel_Educativo', 'Nivel Educativo es requerido');
-
       }
+    }
+
+    // 🟧 BLOQUE 3: Ajuste del payload antes del envío
+    if (isLlaveMX) {
+      // Para Llave MX: enviar campos vacíos (el backend no los requiere)
+      _payload.ocupacion = '';
+      _payload.maximo_nivel = '';
+      _payload.funcion = '';
+      _payload.nivel_Educativo = '';
+      _payload.asignatura = '';
+      _payload.cuentanos = '';
     } else {
-      _payload.funcion = '0';
-      _payload.nivel_Educativo = '0';
+      // Para registro normal: enviar los valores del formulario
+      _payload.ocupacion = formFields.ocupacion?.catalogoCode || '';
+      _payload.maximo_nivel = formFields.maximo_nivel?.catalogoCode || '';
+      
+      if (formFields.eres_docente) {
+        _payload.cct = formFields.cct?.toUpperCase() || '';
+        _payload.funcion = formFields.funcion?.catalogoCode || '';
+        _payload.nivel_Educativo = formFields.nivel_Educativo?.catalogoCode || '';
+        _payload.asignatura = formFields.asignatura || '';
+      } else {
+        _payload.funcion = '0';
+        _payload.nivel_Educativo = '0';
+      }
+      _payload.cuentanos = formFields.cuentanos || '';
     }
 
     let payload = { ...formFields };

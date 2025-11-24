@@ -408,19 +408,15 @@
   display: none !important;
 }
 
+// Ocultar las tabs de Paragon porque usamos los botones de arriba
+.right-section .form-content .pgn__tabs {
+  display: none !important;
+}
+
 // Estilos para el contenedor de formularios dentro de right-section
 .right-section .form-content {
   width: 100%;
   margin-top: 30px;
-}
-
-// Estilos para tabs dentro de form-content
-.right-section .form-content .pgn__tabs .nav-link {
-  font-family: "Noto Sans", sans-serif !important;
-  color: #611232;
-  border: none;
-  border-bottom: 2px solid transparent;
-  padding: 10px 20px;
 }
 
 .content .pgn__tabs .nav-link {
@@ -438,33 +434,72 @@
   padding: 10px 20px;
 }
 
-.right-section .form-content .pgn__tabs .nav-link.active {
-  color: #611232;
-  font-weight: bold;
-  border-bottom: 2px solid #611232;
-  background-color: transparent;
+// Ocultar las tabs de Paragon porque usamos los botones de arriba
+.right-section .form-content .pgn__tabs {
+  display: none !important;
+}
+
+// Estilos para el contenedor de formularios dentro de right-section
+.right-section .form-content {
+  width: 100%;
+  margin-top: 30px;
+}
+
+// OCULTAR formulario por defecto
+.right-section .form-content > div {
+  display: none;
+}
+
+// MOSTRAR formulario solo cuando estamos en /login o /register
+body:has([href="/login"].active) .right-section .form-content > div,
+body:has([href="/register"].active) .right-section .form-content > div {
+  display: block;
+}
+
+// Alternativa más compatible: mostrar cuando hay clase active en los botones
+.container-llaveMX:has(.login-button.active) .form-content > div,
+.container-llaveMX:has(.create-button.active) .form-content > div {
+  display: block;
 }
 
 .right-section .form-content .main-content {
   padding: 0;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .right-section .form-content .mw-xs {
   max-width: 100% !important;
 }
 
+// Estilos para el botón de "Crear una cuenta" del formulario
 .right-section .form-content .register-button,
 .right-section .form-content button[type="submit"] {
-  background-color: #0C3B5D !important;
-  border-color: #0C3B5D !important;
+  background-color: #611232 !important;
+  border-color: #611232 !important;
+  color: white !important;
   width: 100%;
   font-family: "Noto Sans", sans-serif !important;
   font-weight: 500;
-  padding: 10px;
+  padding: 6px;
+  margin: 0;
   border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
 }
 
+// Estilos para el botón de llave MX (social auth)
 .right-section .form-content .btn-social {
   font-family: "Noto Sans", sans-serif !important;
+  background-color: white;
+  color: #611232;
+  border: 1px solid #611232 !important;
+  border-radius: 5px;
+  width: 100%;
+  padding: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.right-section .form-content .btn-social:hover {
+  background-color: #f5f5f5;
 }

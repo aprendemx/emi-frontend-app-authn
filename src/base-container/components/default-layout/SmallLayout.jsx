@@ -4,15 +4,12 @@ import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Hyperlink, Image } from '@openedx/paragon';
 import classNames from 'classnames';
-import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import messages from './messages';
 
-const SmallLayout = () => {
+const SmallLayout = ({ children }) => {
   const { formatMessage } = useIntl();
-  const location = useLocation();
-  const isLoginPage = location.pathname === '/login';
-  const isRegisterPage = location.pathname === '/register';
 
   return (
     <div className="fondo-llaveMX">
@@ -28,29 +25,28 @@ const SmallLayout = () => {
           </div>
         </div>
         <div className="right-section">
-          <img src="https://aprende.gob.mx/images/llavemx-logo.svg" alt="LlaveMX-Logo" />
+          <img src="https://aprende.gob.mx/images/llaveMX.png" alt="LlaveMX-Logo" />
           <p className="terminos">
             Al iniciar sesión declaro que he leído los{' '}
             <a href="#" target="_blank" rel="noopener noreferrer">Términos y Condiciones</a>
             {' '}y nuestro{' '}
             <a href="#" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>
           </p>
-          <div className="acciones">
-            <div className="col-6">
-              <a href="/login" className="login-button">
-                Iniciar sesión
-              </a>
-            </div>
-            <div className="col-6">
-              <a href="/register" className="create-button">
-                Crear cuenta
-              </a>
-            </div>
+          <div className="content-wrapper">
+            {children}
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+SmallLayout.propTypes = {
+  children: PropTypes.node,
+};
+
+SmallLayout.defaultProps = {
+  children: null,
 };
 
 export default SmallLayout;

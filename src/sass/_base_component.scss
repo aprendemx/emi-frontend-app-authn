@@ -393,26 +393,56 @@
   }
 }
 
-// Ocultar tabs de Paragon en favor de los botones del layout LlaveMX
-.fondo-llaveMX ~ .content .pgn__tabs {
-  display: none !important;
+// Ocultar tabs de Paragon en favor de los botones del layout LlaveMX - REMOVIDO, se mantienen tabs
+// Ajustar estilos para el contenido dentro de right-section
+.container-llaveMX .content-wrapper {
+  width: 100%;
+  margin-top: 20px;
 }
 
-// Ajustar contenedor principal para el diseño LlaveMX
-.fondo-llaveMX ~ .content {
-  width: 100% !important;
+.container-llaveMX .content-wrapper .pgn__tabs {
+  margin-bottom: 20px;
+}
+
+.container-llaveMX .content-wrapper .nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.container-llaveMX .content-wrapper .nav-tabs .nav-link {
+  font-family: "Noto Sans", sans-serif !important;
+  color: #611232;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 20px;
+}
+
+.container-llaveMX .content-wrapper .nav-tabs .nav-link.active {
+  color: #611232;
+  font-weight: bold;
+  border-bottom: 2px solid #611232;
+  background-color: transparent;
+}
+
+.container-llaveMX .content-wrapper .main-content {
+  padding: 0;
+  margin-top: 20px;
+}
+
+.container-llaveMX .content-wrapper .mw-xs {
   max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
-.fondo-llaveMX ~ .content .main-content {
-  max-width: 554px;
-  margin: 0 auto;
-  padding: 32px;
+.container-llaveMX .content-wrapper .register-button,
+.container-llaveMX .content-wrapper button[type="submit"] {
+  background-color: #0C3B5D !important;
+  border-color: #0C3B5D !important;
+  width: 100%;
+  font-family: "Noto Sans", sans-serif !important;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-// Estilos para formularios dentro del diseño LlaveMX
-.container-llaveMX + .content .main-content .mw-xs {
-  max-width: 100% !important;
+.container-llaveMX .content-wrapper .btn-social {
+  font-family: "Noto Sans", sans-serif !important;
 }

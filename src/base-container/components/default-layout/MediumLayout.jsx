@@ -3,49 +3,31 @@ import React from 'react';
 import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Hyperlink, Image } from '@openedx/paragon';
-import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import messages from './messages';
 
-const MediumLayout = ({ children }) => {
+const MediumLayout = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="fondo-llaveMX">
-      <div className="container-llaveMX">
-        <div className="left-section">
-          <div className="boxLogin">
-            <h1>
-              Nombre del Sistema
-              <br />
-              (ACRÓNIMO)
-            </h1>
-            <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" />
+    <>
+      <div className="medium-screen-top-stripe" />
+      <div className="w-100 medium-layout">
+        <div className="col-md-10 p-0 mb-4 medium-layout-col position-relative">
+          <svg className="ml-n1 w-100 h-100 medium-screen-svg-primary" preserveAspectRatio="xMinYMin meet">
+            <g transform="skewX(168.2)">
+              <rect x="0" y="0" height="100%" width="101.5%" />
+            </g>
+          </svg>
+          <div className="d-flex align-items-center justify-content-center py-5">
+            <div className={classNames({'medium-yellow-line mr-n4.5 mt-n5.5': getConfig().SITE_NAME === 'edX'})}/>
           </div>
-        </div>
-        <div className="right-section">
-          <img src="https://aprende.gob.mx/images/llaveMX.png" alt="LlaveMX-Logo" />
-          <p className="terminos">
-            Al iniciar sesión declaro que he leído los{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer">Términos y Condiciones</a>
-            {' '}y nuestro{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>
-          </p>
-          <div className="form-content">
-            {children}
-          </div>
+          <Image className="logo" alt={getConfig().SITE_NAME} src={getConfig().LOGO_WHITE_URL} />
         </div>
       </div>
-    </div>
+    </>
   );
-};
-
-MediumLayout.propTypes = {
-  children: PropTypes.node,
-};
-
-MediumLayout.defaultProps = {
-  children: null,
 };
 
 export default MediumLayout;

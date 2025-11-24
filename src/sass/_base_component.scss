@@ -309,6 +309,11 @@
   width: 100%;
 }
 
+.container-llaveMX .login-button.active {
+  opacity: 0.9;
+  box-shadow: 0px 2px 8px rgba(97, 18, 50, 0.4);
+}
+
 .container-llaveMX .acciones {
   width: 100%;
   padding: 0px;
@@ -332,6 +337,11 @@
   border-radius: 5px;
   width: 100%;
   margin: 0px;
+}
+
+.container-llaveMX .create-button.active {
+  background-color: #f5f5f5;
+  box-shadow: 0px 2px 8px rgba(97, 18, 50, 0.2);
 }
 
 @media (max-width: 1040px) {
@@ -381,4 +391,28 @@
   .container-llaveMX .create-button {
     width: 100%;
   }
+}
+
+// Ocultar tabs de Paragon en favor de los botones del layout LlaveMX
+.fondo-llaveMX ~ .content .pgn__tabs {
+  display: none !important;
+}
+
+// Ajustar contenedor principal para el diseño LlaveMX
+.fondo-llaveMX ~ .content {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.fondo-llaveMX ~ .content .main-content {
+  max-width: 554px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+// Estilos para formularios dentro del diseño LlaveMX
+.container-llaveMX + .content .main-content .mw-xs {
+  max-width: 100% !important;
 }

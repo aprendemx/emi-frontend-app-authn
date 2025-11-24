@@ -37,12 +37,18 @@ const LargeLayout = () => {
           </p>
           <div className="acciones">
             <div className="col-6">
-              <a href="/login" className="login-button">
+              <a 
+                href="/login" 
+                className={classNames('login-button', { 'active': isLoginPage })}
+              >
                 Iniciar sesión
               </a>
             </div>
             <div className="col-6">
-              <a href="/register" className="create-button">
+              <a 
+                href="/register" 
+                className={classNames('create-button', { 'active': isRegisterPage })}
+              >
                 Crear cuenta
               </a>
             </div>

@@ -28,7 +28,7 @@ const LargeLayout = () => {
           </div>
         </div>
         <div className="right-section">
-          <img src="https://aprende.gob.mx/images/llavemx-logo.svg" alt="LlaveMX-Logo" />
+          <img src="https://aprende.gob.mx/images/llaveMX.png" alt="LlaveMX-Logo" />
           <p className="terminos">
             Al iniciar sesión declaro que he leído los{' '}
             <a href="#" target="_blank" rel="noopener noreferrer">Términos y Condiciones</a>

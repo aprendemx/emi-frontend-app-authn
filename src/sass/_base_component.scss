@@ -393,56 +393,29 @@
   }
 }
 
-// Layout principal - mantener dos columnas
+// Layout principal - diseño de dos columnas
 .layout {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .fondo-llaveMX {
   width: 100%;
 }
 
-// Ocultar contenido hasta que se haga clic en un botón
-.content {
-  display: none;
-  width: 100%;
-  max-width: 1170px;
-  margin: 0 auto;
-  padding: 0 30px 40px;
-}
-
-// Mostrar contenido solo cuando estamos en /login o /register
-body:has([href="/login"].active) ~ .layout .content,
-body:has([href="/register"].active) ~ .layout .content,
-.layout:has([href="/login"].active) .content,
-.layout:has([href="/register"].active) .content {
-  display: block !important;
-}
-
-// Alternativa: usar JavaScript/CSS para mostrar cuando hay una ruta activa
+// Ocultar el div.content que ya no se usa
 .fondo-llaveMX ~ .content {
-  display: block;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px 0px #00000040;
-  padding: 32px;
-  margin-top: -50px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 554px;
+  display: none !important;
 }
 
-.container-llaveMX .content-wrapper .pgn__tabs {
-  margin-bottom: 20px;
+// Estilos para el contenedor de formularios dentro de right-section
+.right-section .form-content {
+  width: 100%;
+  margin-top: 30px;
 }
 
-.container-llaveMX .content-wrapper .nav-tabs {
-  border-bottom: 1px solid #dee2e6;
-}
-
-.container-llaveMX .content-wrapper .nav-tabs .nav-link {
+// Estilos para tabs dentro de form-content
+.right-section .form-content .pgn__tabs .nav-link {
   font-family: "Noto Sans", sans-serif !important;
   color: #611232;
   border: none;
@@ -450,24 +423,39 @@ body:has([href="/register"].active) ~ .layout .content,
   padding: 10px 20px;
 }
 
-.container-llaveMX .content-wrapper .nav-tabs .nav-link.active {
+.content .pgn__tabs .nav-link {
+  font-family: "Noto Sans", sans-serif !important;
+  color: #611232;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.right-section .form-content .pgn__tabs .nav-link {
+  font-family: "Noto Sans", sans-serif !important;
+  color: #611232;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 20px;
+}
+
+.right-section .form-content .pgn__tabs .nav-link.active {
   color: #611232;
   font-weight: bold;
   border-bottom: 2px solid #611232;
   background-color: transparent;
 }
 
-.container-llaveMX .content-wrapper .main-content {
+.right-section .form-content .main-content {
   padding: 0;
   margin-top: 20px;
 }
 
-.container-llaveMX .content-wrapper .mw-xs {
+.right-section .form-content .mw-xs {
   max-width: 100% !important;
 }
 
-.container-llaveMX .content-wrapper .register-button,
-.container-llaveMX .content-wrapper button[type="submit"] {
+.right-section .form-content .register-button,
+.right-section .form-content button[type="submit"] {
   background-color: #0C3B5D !important;
   border-color: #0C3B5D !important;
   width: 100%;
@@ -477,36 +465,6 @@ body:has([href="/register"].active) ~ .layout .content,
   border-radius: 5px;
 }
 
-.container-llaveMX .content-wrapper .btn-social {
+.right-section .form-content .btn-social {
   font-family: "Noto Sans", sans-serif !important;
-}
-
-// Estilos para tabs dentro de .content
-.fondo-llaveMX ~ .content .pgn__tabs .nav-link {
-  font-family: "Noto Sans", sans-serif !important;
-  color: #611232;
-  border: none;
-  border-bottom: 2px solid transparent;
-}
-
-.fondo-llaveMX ~ .content .pgn__tabs .nav-link.active {
-  color: #611232;
-  font-weight: bold;
-  border-bottom: 2px solid #611232;
-  background-color: transparent;
-}
-
-.fondo-llaveMX ~ .content .main-content {
-  padding: 0;
-}
-
-.fondo-llaveMX ~ .content .mw-xs {
-  max-width: 100% !important;
-}
-
-.fondo-llaveMX ~ .content .register-button,
-.fondo-llaveMX ~ .content button[type="submit"] {
-  background-color: #0C3B5D !important;
-  border-color: #0C3B5D !important;
-  width: 100%;
 }

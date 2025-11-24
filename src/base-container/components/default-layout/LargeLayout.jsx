@@ -5,10 +5,11 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { Hyperlink, Image } from '@openedx/paragon';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import messages from './messages';
 
-const LargeLayout = () => {
+const LargeLayout = ({ children }) => {
   const { formatMessage } = useIntl();
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
@@ -53,10 +54,21 @@ const LargeLayout = () => {
               </a>
             </div>
           </div>
+          <div className="form-content">
+            {children}
+          </div>
         </div>
       </div>
     </div>
   );
+};
+
+LargeLayout.propTypes = {
+  children: PropTypes.node,
+};
+
+LargeLayout.defaultProps = {
+  children: null,
 };
 
 export default LargeLayout;

@@ -3,17 +3,12 @@ import React from 'react';
 import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Hyperlink, Image } from '@openedx/paragon';
-import classNames from 'classnames';
-import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import messages from './messages';
 
 const LargeLayout = ({ children }) => {
   const { formatMessage } = useIntl();
-  const location = useLocation();
-  const isLoginPage = location.pathname === '/login';
-  const isRegisterPage = location.pathname === '/register';
 
   return (
     <div className="fondo-llaveMX">
@@ -36,24 +31,6 @@ const LargeLayout = ({ children }) => {
             {' '}y nuestro{' '}
             <a href="#" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>
           </p>
-          <div className="acciones">
-            <div className="col-6">
-              <a 
-                href="/login" 
-                className={classNames('login-button', { 'active': isLoginPage })}
-              >
-                Iniciar sesión
-              </a>
-            </div>
-            <div className="col-6">
-              <a 
-                href="/register" 
-                className={classNames('create-button', { 'active': isRegisterPage })}
-              >
-                Crear cuenta
-              </a>
-            </div>
-          </div>
           <div className="form-content">
             {children}
           </div>

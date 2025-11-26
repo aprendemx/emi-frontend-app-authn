@@ -17,18 +17,15 @@ const LargeLayout = ({ fullName }) => {
           <Image className="logo position-absolute" alt={getConfig().SITE_NAME} src={getConfig().LOGO_URL} />
         </Hyperlink>
         <div className="min-vh-100 d-flex align-items-center">
-          <div className="large-screen-left-container mr-n4.5 large-yellow-line mt-5"/>
-          <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" width="100%"/><br/>
-          <div>
-            <h1 className="welcome-to-platform data-hj-suppress">
-              {formatMessage(messages['welcome.to.platform'], {siteName: getConfig().SITE_NAME, fullName})}
-            </h1>
-            <h2 className="complete-your-profile">
-              {formatMessage(messages['complete.your.profile.1'])}
-              <div className="text-accent-a">
-                {formatMessage(messages['complete.your.profile.2'])}
+          <div className="container-llaveMX">
+            <div className="left-section">
+              <div className="boxLogin">
+                <h1>
+                  {formatMessage(messages['welcome.to.platform'], {siteName: getConfig().SITE_NAME, fullName})}
+                </h1>
+                <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" />
               </div>
-            </h2>
+            </div>
           </div>
         </div>
       </div>

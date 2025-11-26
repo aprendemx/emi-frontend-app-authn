@@ -201,3 +201,85 @@
   border: 3px solid $accent-b;
   transform: rotate(102.02deg);
 }
+
+// LlaveMX Styles
+* { 
+  box-sizing: border-box; 
+}
+
+.fondo-llaveMX {
+  position: relative;
+  overflow: hidden;
+  // background-image: url('fondo-llave.svg');
+  background-size: cover; 
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.container-llaveMX {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font: bold noto-sans !important;
+  max-width: 1170px;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 130px auto 140px;
+}
+
+.container-llaveMX .left-section {
+  flex: 1;
+  padding: 0px 30px 30px 0px;
+  align-items: center;
+}
+
+.container-llaveMX .boxLogin {
+  width: 554px;
+}
+
+.container-llaveMX .left-section h1 {
+  display: flex;
+  font-size: 40px;
+  color: #a57f2c;
+  font-family: "Noto Sans", sans-serif !important;
+  font-optical-sizing: auto !important;
+  font-weight: bold !important;
+  font-style: normal !important;
+  font-variation-settings: "wdth" 100 !important;
+  margin-bottom: 20px;
+  line-height: normal;
+}
+
+.container-llaveMX .left-section img {
+  height: 90px;
+}
+
+@media (max-width: 1040px) {
+  .container-llaveMX {
+    display: block;
+    max-width: 643px;
+    margin: 85px auto 85px;
+  }
+  
+  .container-llaveMX .boxLogin {
+    max-width: 554px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .container-llaveMX {
+    margin: 55px auto 55px;
+  }
+
+  .container-llaveMX .left-section h1 {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-llaveMX .left-section h1 {
+    font-size: 25px;
+  }
+}

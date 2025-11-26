@@ -16,7 +16,7 @@ const LargeLayout = ({ fullName }) => {
         <div className="left-section">
           <div className="boxLogin">
             <h1>
-              {formatMessage(messages['welcome.to.platform'], {siteName: getConfig().SITE_NAME, fullName})}
+              Bienvenido a {getConfig().SITE_NAME}, {fullName}
             </h1>
             <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" />
           </div>

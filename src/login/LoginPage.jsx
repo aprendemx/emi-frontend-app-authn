@@ -233,7 +233,7 @@ const LoginPage = (props) => {
         />
         
         {/* Separador */}
-        {providers.some(p => p.id === 'llavemx') && (
+        {providers.some(p => p.id === 'oa2-llavemx') && (
           <AuthSeparator isLoginPage={true} />
         )}
         
@@ -284,7 +284,7 @@ const LoginPage = (props) => {
           </Link>
           <ThirdPartyAuth
             currentProvider={currentProvider}
-            providers={providers.filter(p => p.id !== 'llavemx')}
+            providers={providers.filter(p => p.id !== 'oa2-llavemx')}
             secondaryProviders={secondaryProviders}
             handleInstitutionLogin={handleInstitutionLogin}
             thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}

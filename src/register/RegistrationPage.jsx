@@ -784,7 +784,7 @@ const RegistrationPage = (props) => {
             />
             
             {/* Separador */}
-            {providers.some(p => p.id === 'llavemx') && (
+            {providers.some(p => p.id === 'oa2-llavemx') && (
               <AuthSeparator isLoginPage={false} />
             )}
             
@@ -1055,7 +1055,7 @@ const RegistrationPage = (props) => {
               {!registrationEmbedded && (
                 <ThirdPartyAuth
                   currentProvider={currentProvider}
-                  providers={providers.filter(p => p.id !== 'llavemx')}
+                  providers={providers.filter(p => p.id !== 'oa2-llavemx')}
                   secondaryProviders={secondaryProviders}
                   handleInstitutionLogin={handleInstitutionLogin}
                   thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}

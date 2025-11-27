@@ -12,34 +12,13 @@ import { LOGIN_PAGE, REGISTER_PAGE } from '../data/constants';
 const LlaveMXBlock = ({ providers, isLoginPage }) => {
   const { formatMessage } = useIntl();
   
-  console.log('LlaveMXBlock - providers:', providers);
-  console.log('LlaveMXBlock - isLoginPage:', isLoginPage);
-  
-  // Mostrar detalles de cada proveedor
-  providers.forEach((provider, index) => {
-    console.log(`Provider ${index}:`, {
-      id: provider.id,
-      name: provider.name,
-      loginUrl: provider.loginUrl,
-      registerUrl: provider.registerUrl
-    });
-  });
-  
   // Filtrar solo el proveedor de Llave MX
-  const llaveMXProvider = providers.filter(provider => {
-    console.log(`Comparando provider.id "${provider.id}" === "llavemx":`, provider.id === 'llavemx');
-    return provider.id === 'llavemx';
-  });
-  
-  console.log('LlaveMXBlock - llaveMXProvider:', llaveMXProvider);
+  const llaveMXProvider = providers.filter(provider => provider.id === 'oa2-llavemx');
   
   // Si no hay proveedor Llave MX, no renderizar nada
   if (!llaveMXProvider.length) {
-    console.log('LlaveMXBlock - No hay proveedores Llave MX, retornando null');
     return null;
   }
-
-  console.log('LlaveMXBlock - Renderizando bloque de Llave MX');
 
   return (
     <div className="llavemx-block">

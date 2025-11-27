@@ -33,6 +33,17 @@ const LlaveMXBlock = ({ providers, isLoginPage }) => {
             : 'Usa tu identidad Llave MX para crear tu cuenta automáticamente.'}
         </p>
       </div>
+      
+      {/* Logo y términos de Llave MX */}
+      <div className="llavemx-footer">
+        <img src="https://aprende.gob.mx/images/llaveMX.png" alt="Llave MX" className="llavemx-footer__logo" />
+        <p className="llavemx-footer__terms">
+          Al {isLoginPage ? 'iniciar sesión' : 'registrarme'} declaro que he leído los{' '}
+          <a href="https://www.archivos.atdt.gob.mx/storage/app/media/Transparencia/TyC/TerminosLlaveMX.pdf" target="_blank" rel="noopener noreferrer">Términos y Condiciones</a>
+          {' '}y nuestro{' '}
+          <a href="https://www.archivos.atdt.gob.mx/storage/app/media/Transparencia/PORTAL%20ATDT/AVISOS%20DE%20PRIVACIDAD/ATDT_Aviso%20de%20Privacidad%20Integral%20Llave%20MX.pdf" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>.
+        </p>
+      </div>
     </div>
   );
 };

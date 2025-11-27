@@ -13,6 +13,12 @@
   }
 }
 
+// Ocultar el flex cuando está dentro de fondo-llaveMX
+.fondo-llaveMX + .layout,
+.layout:has(.fondo-llaveMX) {
+  display: block;
+}
+
 .content {
   @include media-breakpoint-up('xl') {
     display: flex;
@@ -221,11 +227,7 @@
 }
 
 .container-llaveMX {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  font: bold noto-sans !important;
+  display: block;
   max-width: 1170px;
   width: 100%;
   padding: 60px 30px;
@@ -233,11 +235,7 @@
 }
 
 .container-llaveMX .left-section {
-  flex: 1;
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: none;
 }
 
 .container-llaveMX .boxLogin {
@@ -267,16 +265,34 @@
 }
 
 .container-llaveMX .right-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  display: block;
   width: 100%;
   max-width: 600px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 40px;
-  margin-left: 30px;
+  margin: 0 auto;
+}
+
+.container-llaveMX .right-section .llavemx-logo {
+  height: 56px;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.container-llaveMX .right-section .terminos {
+  font-weight: normal;
+  text-align: center;
+  color: #434343;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.container-llaveMX .right-section .terminos a {
+  color: #611232;
+  text-decoration: underline;
 }
 
 .container-llaveMX .right-section .pgn__tabs {
@@ -308,7 +324,6 @@
 @media (max-width: 1040px) {
   .container-llaveMX {
     padding: 50px 30px;
-    flex-direction: column;
   }
   
   .container-llaveMX .boxLogin {
@@ -316,13 +331,7 @@
     width: 100%;
   }
   
-  .container-llaveMX .left-section {
-    padding: 30px;
-    margin-bottom: 30px;
-  }
-  
   .container-llaveMX .right-section {
-    margin-left: 0;
     max-width: 100%;
   }
 }
@@ -338,11 +347,6 @@
 
   .container-llaveMX .left-section h1 {
     font-size: 36px;
-  }
-  
-  .container-llaveMX .left-section {
-    padding: 20px;
-    margin-bottom: 20px;
   }
   
   .container-llaveMX .left-section img {

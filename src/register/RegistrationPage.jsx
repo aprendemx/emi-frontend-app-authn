@@ -43,6 +43,8 @@ import {
   PasswordField,
   RedirectLogistration,
   ThirdPartyAuthAlert,
+  LlaveMXBlock,
+  AuthSeparator,
 } from '../common-components';
 import { getThirdPartyAuthContext as getRegistrationDataFromBackend } from '../common-components/data/actions';
 import EnterpriseSSO from '../common-components/EnterpriseSSO';
@@ -774,6 +776,19 @@ const RegistrationPage = (props) => {
               failureCount={errorCode.count}
               context={{ provider: currentProvider, errorMessage: thirdPartyAuthErrorMessage }}
             />
+            
+            {/* Bloque principal: Llave MX */}
+            <LlaveMXBlock 
+              providers={providers} 
+              isLoginPage={false}
+            />
+            
+            {/* Separador */}
+            {providers.some(p => p.id === 'llavemx') && (
+              <AuthSeparator isLoginPage={false} />
+            )}
+            
+            {/* Formulario tradicional de registro */}
             <Form id="registration-form" name="registration-form" autoComplete={"off"} >
 
               <TextoField
@@ -1040,7 +1055,7 @@ const RegistrationPage = (props) => {
               {!registrationEmbedded && (
                 <ThirdPartyAuth
                   currentProvider={currentProvider}
-                  providers={providers}
+                  providers={providers.filter(p => p.id !== 'llavemx')}
                   secondaryProviders={secondaryProviders}
                   handleInstitutionLogin={handleInstitutionLogin}
                   thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}

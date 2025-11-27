@@ -27,6 +27,8 @@ import {
   PasswordField,
   RedirectLogistration,
   ThirdPartyAuthAlert,
+  LlaveMXBlock,
+  AuthSeparator,
 } from '../common-components';
 import { getThirdPartyAuthContext } from '../common-components/data/actions';
 import { thirdPartyAuthContextSelector } from '../common-components/data/selectors';
@@ -223,6 +225,19 @@ const LoginPage = (props) => {
           messageType={activationMsgType}
         />
         {showResetPasswordSuccessBanner && <ResetPasswordSuccess />}
+        
+        {/* Bloque principal: Llave MX */}
+        <LlaveMXBlock 
+          providers={providers} 
+          isLoginPage={true}
+        />
+        
+        {/* Separador */}
+        {providers.some(p => p.id === 'llavemx') && (
+          <AuthSeparator isLoginPage={true} />
+        )}
+        
+        {/* Formulario tradicional */}
         <Form id="sign-in-form" name="sign-in-form">
           <FormGroup
             name="emailOrUsername"
@@ -269,7 +284,7 @@ const LoginPage = (props) => {
           </Link>
           <ThirdPartyAuth
             currentProvider={currentProvider}
-            providers={providers}
+            providers={providers.filter(p => p.id !== 'llavemx')}
             secondaryProviders={secondaryProviders}
             handleInstitutionLogin={handleInstitutionLogin}
             thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}

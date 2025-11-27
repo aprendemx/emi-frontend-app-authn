@@ -4,6 +4,8 @@ export { default as EmbeddedRegistrationRoute } from './EmbeddedRegistrationRout
 export { default as UnAuthOnlyRoute } from './UnAuthOnlyRoute';
 export { default as NotFoundPage } from './NotFoundPage';
 export { default as SocialAuthProviders } from './SocialAuthProviders';
+export { default as LlaveMXBlock } from './LlaveMXBlock';
+export { default as AuthSeparator } from './AuthSeparator';
 export { default as ThirdPartyAuthAlert } from './ThirdPartyAuthAlert';
 export { default as InstitutionLogistration } from './InstitutionLogistration';
 export { RenderInstitutionButton } from './InstitutionLogistration';

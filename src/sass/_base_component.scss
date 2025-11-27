@@ -116,7 +116,65 @@ $llavemx-blanco: #ffffff;
   flex: 1;
 }
 
-// Estilos para el separador
+// Estilos para el separador colapsable
+.auth-separator-wrapper {
+  margin: 30px 0;
+}
+
+.auth-separator-toggle {
+  background: transparent;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Noto Sans", sans-serif;
+  
+  &:hover {
+    background-color: #f5f5f5;
+    border-color: $llavemx-vino;
+  }
+  
+  &:focus {
+    outline: 2px solid $llavemx-vino;
+    outline-offset: 2px;
+  }
+}
+
+.auth-separator-toggle__icon {
+  font-size: 12px;
+  color: $llavemx-vino;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.auth-separator-toggle__text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.auth-separator-content {
+  margin-top: 24px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Estilos antiguos del separador (ya no se usan pero los dejo por compatibilidad)
 .auth-separator {
   display: flex;
   align-items: center;
@@ -663,15 +721,26 @@ html,
     font-size: 15px;
   }
   
-  // Separador en móvil
-  .auth-separator__text {
-    font-size: 13px;
-    padding: 0 12px;
+  // Separador colapsable en móvil
+  .auth-separator-toggle {
+    padding: 10px 16px;
+  }
+  
+  .auth-separator-toggle__text {
+    font-size: 14px;
   }
   
   .llavemx-block__description {
     font-size: 13px;
     margin-top: 10px;
+  }
+  
+  .llavemx-footer__logo {
+    max-width: 120px;
+  }
+  
+  .llavemx-footer__terms {
+    font-size: 11px;
   }
   
   .container-llaveMX {

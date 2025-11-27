@@ -232,65 +232,64 @@ const LoginPage = (props) => {
           isLoginPage={true}
         />
         
-        {/* Separador */}
+        {/* Separador con formulario tradicional colapsable */}
         {providers.some(p => p.id === 'oa2-llavemx') && (
-          <AuthSeparator isLoginPage={true} />
+          <AuthSeparator isLoginPage={true}>
+            <Form id="sign-in-form" name="sign-in-form">
+              <FormGroup
+                name="emailOrUsername"
+                value={formFields.emailOrUsername}
+                autoComplete="on"
+                handleChange={handleOnChange}
+                handleFocus={handleOnFocus}
+                errorMessage={errors.emailOrUsername}
+                floatingLabel={formatMessage(messages['login.user.identity.label'])}
+              />
+              <PasswordField
+                name="password"
+                value={formFields.password}
+                autoComplete="off"
+                showScreenReaderText={false}
+                showRequirements={false}
+                handleChange={handleOnChange}
+                handleFocus={handleOnFocus}
+                errorMessage={errors.password}
+                floatingLabel={formatMessage(messages['login.password.label'])}
+              />
+              <StatefulButton
+                name="sign-in"
+                id="sign-in"
+                type="submit"
+                variant="brand"
+                className="login-button-width"
+                state={submitState}
+                labels={{
+                  default: formatMessage(messages['sign.in.button']),
+                  pending: '',
+                }}
+                onClick={handleSubmit}
+                onMouseDown={(event) => event.preventDefault()}
+              />
+              <Link
+                id="forgot-password"
+                name="forgot-password"
+                className="btn btn-link font-weight-500 text-body"
+                to={updatePathWithQueryParams(RESET_PAGE)}
+                onClick={trackForgotPasswordLinkClick}
+              >
+                {formatMessage(messages['forgot.password'])}
+              </Link>
+              <ThirdPartyAuth
+                currentProvider={currentProvider}
+                providers={providers.filter(p => p.id !== 'oa2-llavemx')}
+                secondaryProviders={secondaryProviders}
+                handleInstitutionLogin={handleInstitutionLogin}
+                thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
+                isLoginPage
+              />
+            </Form>
+          </AuthSeparator>
         )}
-        
-        {/* Formulario tradicional */}
-        <Form id="sign-in-form" name="sign-in-form">
-          <FormGroup
-            name="emailOrUsername"
-            value={formFields.emailOrUsername}
-            autoComplete="on"
-            handleChange={handleOnChange}
-            handleFocus={handleOnFocus}
-            errorMessage={errors.emailOrUsername}
-            floatingLabel={formatMessage(messages['login.user.identity.label'])}
-          />
-          <PasswordField
-            name="password"
-            value={formFields.password}
-            autoComplete="off"
-            showScreenReaderText={false}
-            showRequirements={false}
-            handleChange={handleOnChange}
-            handleFocus={handleOnFocus}
-            errorMessage={errors.password}
-            floatingLabel={formatMessage(messages['login.password.label'])}
-          />
-          <StatefulButton
-            name="sign-in"
-            id="sign-in"
-            type="submit"
-            variant="brand"
-            className="login-button-width"
-            state={submitState}
-            labels={{
-              default: formatMessage(messages['sign.in.button']),
-              pending: '',
-            }}
-            onClick={handleSubmit}
-            onMouseDown={(event) => event.preventDefault()}
-          />
-          <Link
-            id="forgot-password"
-            name="forgot-password"
-            className="btn btn-link font-weight-500 text-body"
-            to={updatePathWithQueryParams(RESET_PAGE)}
-            onClick={trackForgotPasswordLinkClick}
-          >
-            {formatMessage(messages['forgot.password'])}
-          </Link>
-          <ThirdPartyAuth
-            currentProvider={currentProvider}
-            providers={providers.filter(p => p.id !== 'oa2-llavemx')}
-            secondaryProviders={secondaryProviders}
-            handleInstitutionLogin={handleInstitutionLogin}
-            thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
-            isLoginPage
-          />
-        </Form>
       </div>
     </>
   );

@@ -783,13 +783,10 @@ const RegistrationPage = (props) => {
               isLoginPage={false}
             />
             
-            {/* Separador */}
+            {/* Separador con formulario tradicional colapsable */}
             {providers.some(p => p.id === 'oa2-llavemx') && (
-              <AuthSeparator isLoginPage={false} />
-            )}
-            
-            {/* Formulario tradicional de registro */}
-            <Form id="registration-form" name="registration-form" autoComplete={"off"} >
+              <AuthSeparator isLoginPage={false}>
+                <Form id="registration-form" name="registration-form" autoComplete={"off"} >
 
               <TextoField
 
@@ -1062,6 +1059,8 @@ const RegistrationPage = (props) => {
                 />
               )}
             </Form>
+              </AuthSeparator>
+            )}
           </div>
         )}
 

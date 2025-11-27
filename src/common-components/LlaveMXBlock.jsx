@@ -12,13 +12,21 @@ import { LOGIN_PAGE, REGISTER_PAGE } from '../data/constants';
 const LlaveMXBlock = ({ providers, isLoginPage }) => {
   const { formatMessage } = useIntl();
   
+  console.log('LlaveMXBlock - providers:', providers);
+  console.log('LlaveMXBlock - isLoginPage:', isLoginPage);
+  
   // Filtrar solo el proveedor de Llave MX
   const llaveMXProvider = providers.filter(provider => provider.id === 'llavemx');
   
+  console.log('LlaveMXBlock - llaveMXProvider:', llaveMXProvider);
+  
   // Si no hay proveedor Llave MX, no renderizar nada
   if (!llaveMXProvider.length) {
+    console.log('LlaveMXBlock - No hay proveedores Llave MX, retornando null');
     return null;
   }
+
+  console.log('LlaveMXBlock - Renderizando bloque de Llave MX');
 
   return (
     <div className="llavemx-block">

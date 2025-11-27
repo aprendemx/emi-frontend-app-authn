@@ -212,74 +212,103 @@
   overflow: hidden;
   // background-image: url('fondo-llave.svg');
   background-size: cover; 
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #e8f4f8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
 .container-llaveMX {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   font: bold noto-sans !important;
   max-width: 1170px;
   width: 100%;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin: 130px auto 140px;
+  padding: 60px 30px;
+  margin: 0 auto;
 }
 
 .container-llaveMX .left-section {
   flex: 1;
-  padding: 0px 30px 30px 0px;
+  padding: 40px;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .container-llaveMX .boxLogin {
-  width: 554px;
+  max-width: 554px;
+  width: 100%;
+  text-align: center;
 }
 
 .container-llaveMX .left-section h1 {
-  display: flex;
-  font-size: 40px;
+  display: block;
+  font-size: 48px;
   color: #a57f2c;
   font-family: "Noto Sans", sans-serif !important;
   font-optical-sizing: auto !important;
   font-weight: bold !important;
   font-style: normal !important;
   font-variation-settings: "wdth" 100 !important;
-  margin-bottom: 20px;
-  line-height: normal;
+  margin-bottom: 30px;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .container-llaveMX .left-section img {
-  height: 90px;
+  height: 120px;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 1040px) {
   .container-llaveMX {
-    display: block;
-    max-width: 643px;
-    margin: 85px auto 85px;
+    padding: 50px 30px;
   }
   
   .container-llaveMX .boxLogin {
     max-width: 554px;
     width: 100%;
-    margin: 0 auto;
+  }
+  
+  .container-llaveMX .left-section {
+    padding: 30px;
   }
 }
 
 @media (max-width: 640px) {
+  .fondo-llaveMX {
+    padding: 30px 15px;
+  }
+  
   .container-llaveMX {
-    margin: 55px auto 55px;
+    padding: 40px 20px;
   }
 
   .container-llaveMX .left-section h1 {
-    font-size: 35px;
+    font-size: 36px;
+  }
+  
+  .container-llaveMX .left-section {
+    padding: 20px;
+  }
+  
+  .container-llaveMX .left-section img {
+    height: 100px;
   }
 }
 
 @media (max-width: 480px) {
   .container-llaveMX .left-section h1 {
-    font-size: 25px;
+    font-size: 28px;
+  }
+  
+  .container-llaveMX .left-section img {
+    height: 80px;
   }
 }

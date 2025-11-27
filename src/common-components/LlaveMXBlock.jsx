@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import SocialAuthProviders from './SocialAuthProviders';
+import { LOGIN_PAGE, REGISTER_PAGE } from '../data/constants';
 
 /**
  * Bloque principal de autenticación Llave MX
@@ -24,7 +25,7 @@ const LlaveMXBlock = ({ providers, isLoginPage }) => {
       <div className="llavemx-block__content">
         <SocialAuthProviders
           socialAuthProviders={llaveMXProvider}
-          referrer={isLoginPage ? 'login' : 'register'}
+          referrer={isLoginPage ? LOGIN_PAGE : REGISTER_PAGE}
         />
         <p className="llavemx-block__description">
           {isLoginPage 

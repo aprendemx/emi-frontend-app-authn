@@ -11,21 +11,16 @@ const LargeLayout = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="w-50 d-flex">
-      <div className="col-md-9 bg-primary-400">
-        <div className="min-vh-100  align-items-center">
-
-          <div className={classNames({'large-yellow-line mr-n4.5': getConfig().SITE_NAME === 'edX'})}/>
-          <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" width="350px"/>
-          <div></div>
+    <div className="fondo-llaveMX">
+      <div className="container-llaveMX">
+        <div className="left-section">
+          <div className="boxLogin">
+            <h1>
+              {getConfig().SITE_NAME}
+            </h1>
+            <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" />
+          </div>
         </div>
-      </div>
-      <div className="col-md-3 bg-white p-0">
-        <svg className="ml-n1 w-100 h-100 large-screen-svg-primary" preserveAspectRatio="xMaxYMin meet">
-          <g transform="skewX(171.6)">
-            <rect x="0" y="0" height="100%" width="100%" />
-          </g>
-        </svg>
       </div>
     </div>
   );

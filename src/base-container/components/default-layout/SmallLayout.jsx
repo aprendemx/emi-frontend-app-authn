@@ -10,12 +10,18 @@ const SmallLayout = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <>
-      <div className="small-screen-top-stripe" />
-      <div className="d-flex py-5 align-items-center justify-content-center">
-        <div className={classNames({'small-yellow-line mr-n4.5 mt-n5.5': getConfig().SITE_NAME === 'edX'})}/>
+    <div className="fondo-llaveMX">
+      <div className="container-llaveMX">
+        <div className="left-section">
+          <div className="boxLogin">
+            <h1>
+              {getConfig().SITE_NAME}
+            </h1>
+            <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" />
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

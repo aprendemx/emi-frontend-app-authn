@@ -4,3 +4,16 @@
 @import "~@edx/brand/paragon/overrides";
 
 @import "sass/style";
+
+// Sobrescribir fondos azules globales
+body,
+html {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+#root,
+#root > div {
+  background-color: transparent !important;
+  background-image: none !important;
+}

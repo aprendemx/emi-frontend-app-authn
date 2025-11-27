@@ -213,12 +213,23 @@
   box-sizing: border-box; 
 }
 
+// Sobrescribir fondos azules del body/html
+body,
+html,
+#root,
+[data-testid="redux-provider"],
+[id="root"] > div {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
 .fondo-llaveMX {
   position: relative;
   overflow: hidden;
   // background-image: url('fondo-llave.svg');
   background-size: cover; 
-  background-color: #ffffff;
+  background-color: #ffffff !important;
+  background-image: none !important;
   min-height: 100vh;
   display: flex;
   align-items: center;

@@ -1,6 +1,8 @@
 
 .layout {
   display: flex;
+  background-color: transparent !important;
+  background-image: none !important;
 
   @include media-breakpoint-down('lg') {
     flex-direction: column;
@@ -17,6 +19,7 @@
 .fondo-llaveMX + .layout,
 .layout:has(.fondo-llaveMX) {
   display: block;
+  background-color: transparent !important;
 }
 
 .content {
@@ -137,6 +140,11 @@
 
 .extra-large-screen-top-stripe { display: none; }
 
+// Ocultar el stripe cuando hay fondo de LlaveMX
+body:has(.fondo-llaveMX) .extra-large-screen-top-stripe {
+  display: none !important;
+}
+
 @include media-breakpoint-up('xl') {
  .extra-large-screen-top-stripe {
    display: flex;
@@ -153,6 +161,11 @@
      $info-200 75%,
   );
    background-repeat: no-repeat;
+ }
+ 
+ // Ocultar cuando hay LlaveMX
+ body:has(.fondo-llaveMX) .extra-large-screen-top-stripe {
+   display: none !important;
  }
 }
 

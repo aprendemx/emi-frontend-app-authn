@@ -15,8 +15,21 @@ const LlaveMXBlock = ({ providers, isLoginPage }) => {
   console.log('LlaveMXBlock - providers:', providers);
   console.log('LlaveMXBlock - isLoginPage:', isLoginPage);
   
+  // Mostrar detalles de cada proveedor
+  providers.forEach((provider, index) => {
+    console.log(`Provider ${index}:`, {
+      id: provider.id,
+      name: provider.name,
+      loginUrl: provider.loginUrl,
+      registerUrl: provider.registerUrl
+    });
+  });
+  
   // Filtrar solo el proveedor de Llave MX
-  const llaveMXProvider = providers.filter(provider => provider.id === 'llavemx');
+  const llaveMXProvider = providers.filter(provider => {
+    console.log(`Comparando provider.id "${provider.id}" === "llavemx":`, provider.id === 'llavemx');
+    return provider.id === 'llavemx';
+  });
   
   console.log('LlaveMXBlock - llaveMXProvider:', llaveMXProvider);
   

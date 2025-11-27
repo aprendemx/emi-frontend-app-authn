@@ -303,6 +303,43 @@
   text-decoration: underline;
 }
 
+// Ocultar el título "O bien, inicia sesión con:" por defecto
+.container-llaveMX .right-section .h4 {
+  display: none;
+}
+
+// Reordenar el contenido: tabs deben ir después del botón de llave MX
+.container-llaveMX .right-section {
+  display: flex;
+  flex-direction: column;
+}
+
+// El logo de llave MX va primero
+.container-llaveMX .right-section .llavemx-logo {
+  order: 1;
+}
+
+// Los términos van segundo
+.container-llaveMX .right-section .terminos {
+  order: 2;
+}
+
+// El botón de llave MX va tercero (justo después de términos)
+.container-llaveMX .right-section .row.m-0 {
+  order: 3;
+  margin-bottom: 24px !important;
+}
+
+// Las tabs van cuarto
+.container-llaveMX .right-section .pgn__tabs {
+  order: 4;
+}
+
+// El contenido del tab va último
+.container-llaveMX .right-section .tab-content {
+  order: 5;
+}
+
 .container-llaveMX .right-section .pgn__tabs {
   margin-bottom: 30px;
   border-bottom: 2px solid #e0e0e0;
@@ -356,7 +393,8 @@
 // Estilo para el botón de Llave MX (social auth)
 .container-llaveMX .right-section .btn-social,
 .container-llaveMX .right-section .btn-tertiary,
-.container-llaveMX .right-section .btn-outline-primary {
+.container-llaveMX .right-section .btn-outline-primary,
+.container-llaveMX .right-section .btn-oa2-llavemx {
   background-color: #ffffff !important;
   border: 2px solid #611232 !important;
   color: #611232 !important;
@@ -367,14 +405,29 @@
   width: 100%;
   text-align: center;
   transition: all 0.3s ease;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .container-llaveMX .right-section .btn-social:hover,
 .container-llaveMX .right-section .btn-tertiary:hover,
-.container-llaveMX .right-section .btn-outline-primary:hover {
+.container-llaveMX .right-section .btn-outline-primary:hover,
+.container-llaveMX .right-section .btn-oa2-llavemx:hover {
   background-color: #f5f5f5 !important;
   border-color: #611232 !important;
   color: #611232 !important;
+}
+
+// Estilos específicos para el icono y texto del botón llave MX
+.container-llaveMX .right-section .btn-oa2-llavemx .pgn__icon {
+  color: #611232 !important;
+}
+
+.container-llaveMX .right-section .btn-oa2-llavemx #provider-name {
+  color: #611232 !important;
+  font-family: "Noto Sans", sans-serif !important;
+  font-weight: 500;
 }
 
 // Sobrescribir estilos específicos de Paragon

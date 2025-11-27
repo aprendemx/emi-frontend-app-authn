@@ -13,6 +13,14 @@ const SmallLayout = ({ children }) => {
   return (
     <div className="fondo-llaveMX">
       <div className="container-llaveMX">
+        <div className="left-section">
+          <div className="boxLogin">
+            <h1>
+              {getConfig().SITE_NAME}
+            </h1>
+            <img src="https://aprende.gob.mx/images/cursos-amx.png" alt="AprendeMX-Logo" />
+          </div>
+        </div>
         <div className="right-section">
           <img src="https://aprende.gob.mx/images/llaveMX.png" alt="Llave MX" className="llavemx-logo" />
           <p className="terminos">

@@ -227,7 +227,11 @@
 }
 
 .container-llaveMX {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
   max-width: 1170px;
   width: 100%;
   padding: 60px 30px;
@@ -235,11 +239,16 @@
 }
 
 .container-llaveMX .left-section {
-  display: none;
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-llaveMX .boxLogin {
-  max-width: 554px;
   width: 100%;
   text-align: center;
 }
@@ -265,14 +274,13 @@
 }
 
 .container-llaveMX .right-section {
-  display: block;
-  width: 100%;
+  flex: 1;
+  min-width: 300px;
   max-width: 600px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 40px;
-  margin: 0 auto;
 }
 
 .container-llaveMX .right-section .llavemx-logo {
@@ -324,15 +332,18 @@
 @media (max-width: 1040px) {
   .container-llaveMX {
     padding: 50px 30px;
+    flex-direction: column;
+    align-items: center;
   }
   
-  .container-llaveMX .boxLogin {
-    max-width: 554px;
+  .container-llaveMX .left-section,
+  .container-llaveMX .right-section {
+    max-width: 600px;
     width: 100%;
   }
   
-  .container-llaveMX .right-section {
-    max-width: 100%;
+  .container-llaveMX .left-section {
+    padding: 30px;
   }
 }
 

@@ -26,17 +26,17 @@ const SocialAuthProviders = (props) => {
       id={provider.id}
       key={provider.id}
       type="button"
-      className={`btn-social btn-${provider.id} ${index % 2 === 0 ? 'mr-3' : ''}`}
+      className={`btn-llavemx btn-llavemx-${provider.id} ${index % 2 === 0 ? 'mr-3' : ''}`}
       data-provider-url={referrer === LOGIN_PAGE ? provider.loginUrl : provider.registerUrl}
       onClick={handleSubmit}
     >
       {provider.iconImage ? (
         <div aria-hidden="true">
-          <img className="btn-tpa__image-icon" src={provider.iconImage} alt={`icon ${provider.name}`} />
+          <img className="btn-llavemx__icon" src={provider.iconImage} alt={`icon ${provider.name}`} />
         </div>
       )
         : (
-          <div className="btn-tpa__font-container" aria-hidden="true">
+          <div className="btn-llavemx__icon-container" aria-hidden="true">
             {SUPPORTED_ICON_CLASSES.includes(provider.iconClass) ? (
               <FontAwesomeIcon icon={['fab', provider.iconClass]} />)
               : (

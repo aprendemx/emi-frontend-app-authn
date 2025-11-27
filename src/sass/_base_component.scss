@@ -1,3 +1,7 @@
+// Variables de colores LlaveMX
+$llavemx-vino: #611232;
+$llavemx-dorado: #a57f2c;
+$llavemx-blanco: #ffffff;
 
 .layout {
   display: flex;
@@ -323,7 +327,7 @@ html,
 }
 
 .container-llaveMX .right-section .terminos a {
-  color: #611232;
+  color: $llavemx-vino;
   text-decoration: underline;
 }
 
@@ -370,7 +374,7 @@ html,
 }
 
 .container-llaveMX .right-section .nav-link {
-  color: #611232;
+  color: $llavemx-vino;
   font-family: "Noto Sans", sans-serif !important;
   font-weight: 500;
   font-size: 16px;
@@ -380,23 +384,23 @@ html,
 }
 
 .container-llaveMX .right-section .nav-link.active {
-  color: #611232;
+  color: $llavemx-vino;
   font-weight: bold;
-  border-bottom: 3px solid #611232;
+  border-bottom: 3px solid $llavemx-vino;
   background-color: transparent;
 }
 
 .container-llaveMX .right-section .nav-link:hover {
-  border-bottom: 3px solid #a57f2c;
+  border-bottom: 3px solid $llavemx-dorado;
 }
 
 // Estilos para los botones dentro del formulario
 .container-llaveMX .right-section button[type="submit"],
 .container-llaveMX .right-section .btn-brand,
 .container-llaveMX .right-section .stateful-button-state-default {
-  background-color: #611232 !important;
-  border-color: #611232 !important;
-  color: #ffffff !important;
+  background-color: $llavemx-vino !important;
+  border-color: $llavemx-vino !important;
+  color: $llavemx-blanco !important;
   font-family: "Noto Sans", sans-serif !important;
   font-weight: 500;
   padding: 12px 24px;
@@ -414,18 +418,13 @@ html,
   opacity: 0.9;
 }
 
-// Estilo para el botón de Llave MX (social auth)
-.container-llaveMX .right-section .btn-social,
-.container-llaveMX .right-section .btn-tertiary,
-.container-llaveMX .right-section .btn-outline-primary,
-.container-llaveMX .right-section .btn-oa2-llavemx,
-.container-llaveMX .right-section button.btn-oa2-llavemx,
-.container-llaveMX .right-section .btn.btn-oa2-llavemx {
-  background-color: #ffffff !important;
+// Estilo para los botones de autenticación social (LlaveMX)
+.container-llaveMX .right-section .btn-llavemx {
+  background-color: $llavemx-blanco !important;
   background-image: none !important;
-  background: #ffffff !important;
-  border: 2px solid #611232 !important;
-  color: #611232 !important;
+  background: $llavemx-blanco !important;
+  border: 2px solid $llavemx-vino !important;
+  color: $llavemx-vino !important;
   font-family: "Noto Sans", sans-serif !important;
   font-weight: 500;
   padding: 12px 24px;
@@ -438,26 +437,41 @@ html,
   justify-content: flex-start;
 }
 
-.container-llaveMX .right-section .btn-social:hover,
-.container-llaveMX .right-section .btn-tertiary:hover,
-.container-llaveMX .right-section .btn-outline-primary:hover,
-.container-llaveMX .right-section .btn-oa2-llavemx:hover,
-.container-llaveMX .right-section button.btn-oa2-llavemx:hover,
-.container-llaveMX .right-section .btn.btn-oa2-llavemx:hover {
+.container-llaveMX .right-section .btn-llavemx:hover {
   background-color: #f5f5f5 !important;
   background-image: none !important;
   background: #f5f5f5 !important;
-  border-color: #611232 !important;
-  color: #611232 !important;
+  border-color: $llavemx-vino !important;
+  color: $llavemx-vino !important;
+}
+
+// Estilos para el contenedor de icono
+.container-llaveMX .right-section .btn-llavemx__icon-container {
+  background-color: $llavemx-vino !important;
+  color: $llavemx-blanco !important;
+  font-size: 11px;
+  margin-left: -6px;
+  padding-top: 10px;
+  min-width: 30px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-llaveMX .right-section .btn-llavemx__icon {
+  background-color: transparent;
+  max-height: 24px;
+  max-width: 24px;
 }
 
 // Estilos específicos para el icono y texto del botón llave MX
-.container-llaveMX .right-section .btn-oa2-llavemx .pgn__icon {
-  color: #611232 !important;
+.container-llaveMX .right-section .btn-llavemx .pgn__icon {
+  color: $llavemx-blanco !important;
 }
 
-.container-llaveMX .right-section .btn-oa2-llavemx #provider-name {
-  color: #611232 !important;
+.container-llaveMX .right-section .btn-llavemx #provider-name {
+  color: $llavemx-vino !important;
   font-family: "Noto Sans", sans-serif !important;
   font-weight: 500;
 }

@@ -418,8 +418,12 @@ html,
 .container-llaveMX .right-section .btn-social,
 .container-llaveMX .right-section .btn-tertiary,
 .container-llaveMX .right-section .btn-outline-primary,
-.container-llaveMX .right-section .btn-oa2-llavemx {
+.container-llaveMX .right-section .btn-oa2-llavemx,
+.container-llaveMX .right-section button.btn-oa2-llavemx,
+.container-llaveMX .right-section .btn.btn-oa2-llavemx {
   background-color: #ffffff !important;
+  background-image: none !important;
+  background: #ffffff !important;
   border: 2px solid #611232 !important;
   color: #611232 !important;
   font-family: "Noto Sans", sans-serif !important;
@@ -437,8 +441,12 @@ html,
 .container-llaveMX .right-section .btn-social:hover,
 .container-llaveMX .right-section .btn-tertiary:hover,
 .container-llaveMX .right-section .btn-outline-primary:hover,
-.container-llaveMX .right-section .btn-oa2-llavemx:hover {
+.container-llaveMX .right-section .btn-oa2-llavemx:hover,
+.container-llaveMX .right-section button.btn-oa2-llavemx:hover,
+.container-llaveMX .right-section .btn.btn-oa2-llavemx:hover {
   background-color: #f5f5f5 !important;
+  background-image: none !important;
+  background: #f5f5f5 !important;
   border-color: #611232 !important;
   color: #611232 !important;
 }

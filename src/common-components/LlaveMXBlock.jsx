@@ -12,8 +12,12 @@ import { LOGIN_PAGE, REGISTER_PAGE } from '../data/constants';
 const LlaveMXBlock = ({ providers, isLoginPage, currentProvider }) => {
   const { formatMessage } = useIntl();
   
+  console.log('LlaveMXBlock - currentProvider:', currentProvider);
+  console.log('LlaveMXBlock - providers:', providers);
+  
   // Si el usuario viene de Llave MX, no mostrar este bloque
   if (currentProvider === 'oa2-llavemx') {
+    console.log('LlaveMXBlock - Ocultando bloque porque currentProvider es oa2-llavemx');
     return null;
   }
   

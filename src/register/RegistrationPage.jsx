@@ -779,13 +779,14 @@ const RegistrationPage = (props) => {
             
             {/* Bloque principal: Llave MX */}
             <LlaveMXBlock 
-              providers={providers} 
+              providers={providers}
+              currentProvider={currentProvider}
               isLoginPage={false}
             />
             
             {/* Separador con formulario tradicional colapsable */}
             {providers.some(p => p.id === 'oa2-llavemx') && (
-              <AuthSeparator isLoginPage={false}>
+              <AuthSeparator isLoginPage={false} currentProvider={currentProvider}>
                 <Form id="registration-form" name="registration-form" autoComplete={"off"} >
 
               <TextoField

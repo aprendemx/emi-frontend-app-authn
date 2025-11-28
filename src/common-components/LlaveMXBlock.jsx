@@ -9,8 +9,13 @@ import { LOGIN_PAGE, REGISTER_PAGE } from '../data/constants';
  * Bloque principal de autenticación Llave MX
  * Se muestra arriba del formulario tradicional
  */
-const LlaveMXBlock = ({ providers, isLoginPage }) => {
+const LlaveMXBlock = ({ providers, isLoginPage, currentProvider }) => {
   const { formatMessage } = useIntl();
+  
+  // Si el usuario viene de Llave MX, no mostrar este bloque
+  if (currentProvider === 'oa2-llavemx') {
+    return null;
+  }
   
   // Filtrar solo el proveedor de Llave MX
   const llaveMXProvider = providers.filter(provider => provider.id === 'oa2-llavemx');
@@ -60,10 +65,12 @@ LlaveMXBlock.propTypes = {
     }),
   ).isRequired,
   isLoginPage: PropTypes.bool,
+  currentProvider: PropTypes.string,
 };
 
 LlaveMXBlock.defaultProps = {
   isLoginPage: false,
+  currentProvider: null,
 };
 
 export default LlaveMXBlock;

@@ -228,13 +228,14 @@ const LoginPage = (props) => {
         
         {/* Bloque principal: Llave MX */}
         <LlaveMXBlock 
-          providers={providers} 
+          providers={providers}
+          currentProvider={currentProvider}
           isLoginPage={true}
         />
         
         {/* Separador con formulario tradicional colapsable */}
         {providers.some(p => p.id === 'oa2-llavemx') && (
-          <AuthSeparator isLoginPage={true}>
+          <AuthSeparator isLoginPage={true} currentProvider={currentProvider}>
             <Form id="sign-in-form" name="sign-in-form">
               <FormGroup
                 name="emailOrUsername"

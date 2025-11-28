@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 /**
  * Separador colapsable entre el bloque de Llave MX y el formulario tradicional
  */
-const AuthSeparator = ({ isLoginPage, children }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const AuthSeparator = ({ isLoginPage, children, currentProvider }) => {
+  // Si viene de Llave MX, expandir por defecto
+  const [isExpanded, setIsExpanded] = useState(currentProvider === 'oa2-llavemx');
   
   const text = isLoginPage 
     ? 'Otras formas de acceder' 
@@ -14,6 +15,15 @@ const AuthSeparator = ({ isLoginPage, children }) => {
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
+  
+  // Si viene de Llave MX, no mostrar el botón, solo el contenido
+  if (currentProvider === 'oa2-llavemx') {
+    return (
+      <div className="auth-separator-content">
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div className="auth-separator-wrapper">
@@ -41,11 +51,13 @@ const AuthSeparator = ({ isLoginPage, children }) => {
 AuthSeparator.propTypes = {
   isLoginPage: PropTypes.bool,
   children: PropTypes.node,
+  currentProvider: PropTypes.string,
 };
 
 AuthSeparator.defaultProps = {
   isLoginPage: false,
   children: null,
+  currentProvider: null,
 };
 
 export default AuthSeparator;

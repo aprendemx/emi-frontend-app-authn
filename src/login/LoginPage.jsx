@@ -225,14 +225,14 @@ const LoginPage = (props) => {
           messageType={activationMsgType}
         />
         {showResetPasswordSuccessBanner && <ResetPasswordSuccess />}
-        
+
         {/* Bloque principal: Llave MX */}
-        <LlaveMXBlock 
+        <LlaveMXBlock
           providers={providers}
           currentProvider={currentProvider}
           isLoginPage={true}
         />
-        
+
         {/* Separador con formulario tradicional colapsable */}
         {providers.some(p => p.id === 'oa2-llavemx') && (
           <AuthSeparator isLoginPage={true} currentProvider={currentProvider}>
@@ -291,7 +291,7 @@ const LoginPage = (props) => {
             </Form>
           </AuthSeparator>
         )}
-      </div>
+      </div >
     </>
   );
 };

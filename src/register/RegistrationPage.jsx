@@ -661,7 +661,7 @@ const RegistrationPage = (props) => {
       // Para registro normal: enviar los valores del formulario
       _payload.ocupacion = formFields.ocupacion?.catalogoCode || '';
       _payload.maximo_nivel = formFields.maximo_nivel?.catalogoCode || '';
-      
+
       if (formFields.eres_docente) {
         _payload.cct = formFields.cct?.toUpperCase() || '';
         _payload.funcion = formFields.funcion?.catalogoCode || '';
@@ -776,297 +776,297 @@ const RegistrationPage = (props) => {
               failureCount={errorCode.count}
               context={{ provider: currentProvider, errorMessage: thirdPartyAuthErrorMessage }}
             />
-            
+
             {/* Bloque principal: Llave MX */}
-            <LlaveMXBlock 
+            <LlaveMXBlock
               providers={providers}
               currentProvider={currentProvider}
               isLoginPage={false}
             />
-            
+
             {/* Separador con formulario tradicional colapsable */}
             {providers.some(p => p.id === 'oa2-llavemx') && (
-              <AuthSeparator 
-                isLoginPage={false} 
+              <AuthSeparator
+                isLoginPage={false}
                 currentProvider={currentProvider}
                 autoExpand={pipelineUserDetails && Object.keys(pipelineUserDetails).length > 0}
               >
                 <Form id="registration-form" name="registration-form" autoComplete={"off"} >
 
-              <TextoField
+                  <TextoField
 
-                name="nombres"
-                value={formFields.nombres}
-                handleChange={handleOnChange}
-                handleErrorChange={handleErrorChange}
-                errorMessage={errors.nombres}
-                helpText={[formatMessage(messages['help.text.nombres'])]}
-                floatingLabel='Nombre'
-                autoComplete={"off"}
-              />
+                    name="nombres"
+                    value={formFields.nombres}
+                    handleChange={handleOnChange}
+                    handleErrorChange={handleErrorChange}
+                    errorMessage={errors.nombres}
+                    helpText={[formatMessage(messages['help.text.nombres'])]}
+                    floatingLabel='Nombre'
+                    autoComplete={"off"}
+                  />
 
-              <TextoField
-                name="primer_apellido"
-                value={formFields.primer_apellido}
-                handleChange={handleOnChange}
-                handleErrorChange={handleErrorChange}
-                errorMessage={errors.primer_apellido}
-                helpText={[formatMessage(messages['help.text.primer_apellido'])]}
-                floatingLabel='Primer apellido'
-                autoComplete={"off"}
-              />
+                  <TextoField
+                    name="primer_apellido"
+                    value={formFields.primer_apellido}
+                    handleChange={handleOnChange}
+                    handleErrorChange={handleErrorChange}
+                    errorMessage={errors.primer_apellido}
+                    helpText={[formatMessage(messages['help.text.primer_apellido'])]}
+                    floatingLabel='Primer apellido'
+                    autoComplete={"off"}
+                  />
 
-              <TextoField
-                name="segundo_apellido"
-                value={formFields.segundo_apellido}
-                handleChange={handleOnChange}
-                handleErrorChange={handleErrorChange}
-                errorMessage={errors.segundo_apellido}
-                helpText={[formatMessage(messages['help.text.segundo_apellido'])]}
-                floatingLabel='Segundo apellido'
-                autoComplete={"off"}
-              />
+                  <TextoField
+                    name="segundo_apellido"
+                    value={formFields.segundo_apellido}
+                    handleChange={handleOnChange}
+                    handleErrorChange={handleErrorChange}
+                    errorMessage={errors.segundo_apellido}
+                    helpText={[formatMessage(messages['help.text.segundo_apellido'])]}
+                    floatingLabel='Segundo apellido'
+                    autoComplete={"off"}
+                  />
 
-              <EstadoField
-                estadoList={estadoList}
-                selectedEstado={formFields.estado}
-                helpText={[formatMessage(messages['help.text.estado'])]}
-                errorMessage={errors.estado || ''}
-                onChangeHandler={handleOnChangeEstado}
-                handleErrorChange={handleErrorChange}
-                onBlurHandler={() => { }}
-                onFocusHandler={() => { }}
-                target={'estado'}
-                autoComplete={"off"}
-              />
-              {formFields.estado && parseInt(formFields.estado.estadoCode) <= 32 && (
-                <TextoField
-                  name="curp"
-                  value={formFields.curp}
-                  handleChange={handleOnChange}
-                  handleErrorChange={handleErrorChange}
-                  errorMessage={errors.curp}
-                  helpText={[formatMessage(messages['help.text.curp'])]}
-                  floatingLabel='C.U.R.P.'
-                  autoComplete={"off"}
-                />
-              )}
-
-
-
-              <EmailField
-                name="email"
-                value={formFields.email}
-                confirmEmailValue={configurableFormFields?.confirm_email}
-                handleErrorChange={handleErrorChange}
-                handleChange={handleOnChange}
-                errorMessage={errors.email}
-                helpText={[formatMessage(messages['help.text.email'])]}
-                floatingLabel={formatMessage(messages['registration.email.label'])}
-                autoComplete={"off"}
-              />
-
-
-
-              {formFields.estado && parseInt(formFields.estado.estadoCode) <= 32 && (
-
-                <TextoField
-                  name="municipio"
-                  value={formFields.municipio}
-                  handleChange={handleOnChange}
-                  handleErrorChange={handleErrorChange}
-                  errorMessage={errors.municipio}
-                  helpText={[formatMessage(messages['help.text.municipio'])]}
-                  floatingLabel='Municipio/Alcaldía'
-                  autoComplete={"off"}
-                />
-
-
-
-
-              )}
-              {formFields.estado && parseInt(formFields.estado.estadoCode) > 32 && (
-
-                <div>
                   <EstadoField
-                    estadoList={countryList}
-                    selectedEstado={formFields.pais}
-                    helpText={[formatMessage(messages['help.text.pais'])]}
-                    errorMessage={errors.pais || ''}
+                    estadoList={estadoList}
+                    selectedEstado={formFields.estado}
+                    helpText={[formatMessage(messages['help.text.estado'])]}
+                    errorMessage={errors.estado || ''}
                     onChangeHandler={handleOnChangeEstado}
                     handleErrorChange={handleErrorChange}
                     onBlurHandler={() => { }}
                     onFocusHandler={() => { }}
-                    target={'pais'}
+                    target={'estado'}
                     autoComplete={"off"}
                   />
-                  <TextoField
-                    name="dni"
-                    value={formFields.dni}
-                    handleChange={handleOnChange}
+                  {formFields.estado && parseInt(formFields.estado.estadoCode) <= 32 && (
+                    <TextoField
+                      name="curp"
+                      value={formFields.curp}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.curp}
+                      helpText={[formatMessage(messages['help.text.curp'])]}
+                      floatingLabel='C.U.R.P.'
+                      autoComplete={"off"}
+                    />
+                  )}
+
+
+
+                  <EmailField
+                    name="email"
+                    value={formFields.email}
+                    confirmEmailValue={configurableFormFields?.confirm_email}
                     handleErrorChange={handleErrorChange}
-                    errorMessage={errors.dni}
-                    helpText={[formatMessage(messages['help.text.dni'])]}
-                    floatingLabel='ID / Cédula de Identidad / DNI '
+                    handleChange={handleOnChange}
+                    errorMessage={errors.email}
+                    helpText={[formatMessage(messages['help.text.email'])]}
+                    floatingLabel={formatMessage(messages['registration.email.label'])}
                     autoComplete={"off"}
                   />
 
 
-                </div>
 
-              )}
+                  {formFields.estado && parseInt(formFields.estado.estadoCode) <= 32 && (
 
-
-
-              {!flags.autoGeneratedUsernameEnabled && (
-                <UsernameField
-                  name="username"
-                  spellCheck="false"
-                  value={formFields.username}
-                  handleChange={handleOnChange}
-                  handleErrorChange={handleErrorChange}
-                  errorMessage={errors.username}
-                  helpText={[formatMessage(messages['help.text.username.1']), formatMessage(messages['help.text.username.2'])]}
-                  floatingLabel={formatMessage(messages['registration.username.label'])}
-                  autoComplete={"off"}
-
-                />
-              )}
-              {!currentProvider && (
-                <PasswordField
-                  name="password"
-                  value={formFields.password}
-                  handleChange={handleOnChange}
-                  handleErrorChange={handleErrorChange}
-                  errorMessage={errors.password}
-                  floatingLabel={formatMessage(messages['registration.password.label'])}
-                  autoComplete={"off"}
-                />
-              )}
-
-              <CatalogoField
-                catalogoList={maximoNivelList}
-                selectedCatalogo={formFields.maximo_nivel}
-                helpText={[formatMessage(messages['help.text.maximo_nivel'])]}
-                errorMessage={errors.maximo_nivel || ''}
-                onChangeHandler={handleOnChangeEstado}
-                handleErrorChange={handleErrorChange}
-                onBlurHandler={() => { }}
-                onFocusHandler={() => { }}
-                target={'maximo_nivel'}
-              />
-
-              <CatalogoField
-                catalogoList={ocupacionList}
-                selectedCatalogo={formFields.ocupacion}
-                helpText={[formatMessage(messages['help.text.ocupacion'])]}
-                errorMessage={errors.ocupacion || ''}
-                onChangeHandler={handleOnChangeEstado}
-                handleErrorChange={handleErrorChange}
-                onBlurHandler={() => { }}
-                onFocusHandler={() => { }}
-                target={'ocupacion'}
-              />
-              <br />
-              <EresDocente onChangeHandler={handleOnChange} value={formFields.eres_docente} errorMessage={errors.eres_docente} />
+                    <TextoField
+                      name="municipio"
+                      value={formFields.municipio}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.municipio}
+                      helpText={[formatMessage(messages['help.text.municipio'])]}
+                      floatingLabel='Municipio/Alcaldía'
+                      autoComplete={"off"}
+                    />
 
 
-              {formFields.eres_docente && (
-                <TextoField
-                  name="cct"
-                  value={formFields.cct}
-                  handleChange={handleOnChange}
-                  handleErrorChange={handleErrorChange}
-                  errorMessage={errors.cct}
-                  helpText={[formatMessage(messages['help.text.cct'])]}
-                  floatingLabel='Clave del Centro de Trabajo CCT'
-
-                />
-              )}
 
 
-              {formFields.eres_docente && (
-                <CatalogoField
-                  catalogoList={funcionList}
-                  selectedCatalogo={formFields.funcion}
-                  helpText={[formatMessage(messages['help.text.funcion'])]}
-                  errorMessage={errors.funcion || ''}
-                  onChangeHandler={handleOnChangeEstado}
-                  handleErrorChange={handleErrorChange}
-                  onBlurHandler={() => { }}
-                  onFocusHandler={() => { }}
-                  target={'funcion'}
-                />
-              )}
-              {formFields.eres_docente && (
-                <CatalogoField
-                  catalogoList={nivelList}
-                  selectedCatalogo={formFields.nivel_Educativo}
-                  helpText={[formatMessage(messages['help.text.nivel_Educativo'])]}
-                  errorMessage={errors.nivel_Educativo || ''}
-                  onChangeHandler={handleOnChangeEstado}
-                  handleErrorChange={handleErrorChange}
-                  onBlurHandler={() => { }}
-                  onFocusHandler={() => { }}
-                  target={'nivel_Educativo'}
-                />
-              )}
-              {formFields.eres_docente && (
-                <TextoField
-                  name="asignatura"
-                  value={formFields.asignatura}
-                  handleChange={handleOnChange}
-                  handleErrorChange={handleErrorChange}
-                  errorMessage={errors.asignatura}
-                  helpText={[formatMessage(messages['help.text.asignatura'])]}
-                  floatingLabel='Campo formativo'
-                />
-              )
+                  )}
+                  {formFields.estado && parseInt(formFields.estado.estadoCode) > 32 && (
 
-              }
-
-              <ConfigurableRegistrationForm
-                email={formFields.email}
-                fieldErrors={errors}
-                formFields={configurableFormFields}
-                setFieldErrors={registrationEmbedded ? setTemporaryErrors : setErrors}
-                setFormFields={setConfigurableFormFields}
-                autoSubmitRegisterForm={autoSubmitRegForm}
-                fieldDescriptions={fieldDescriptions}
-              />
-              <Cuentanos onChangeHandler={handleOnChange} value={formFields.cuentanos} errorMessage={errors.cuentanos} />
-
-              <HonorCode value={formFields.honor_code} onChangeHandler={handleOnChange} errorMessage={errors.honor_code} />
-              <TermsOfService onChangeHandler={handleOnChange} value={formFields.tos} errorMessage={errors.tos} />
+                    <div>
+                      <EstadoField
+                        estadoList={countryList}
+                        selectedEstado={formFields.pais}
+                        helpText={[formatMessage(messages['help.text.pais'])]}
+                        errorMessage={errors.pais || ''}
+                        onChangeHandler={handleOnChangeEstado}
+                        handleErrorChange={handleErrorChange}
+                        onBlurHandler={() => { }}
+                        onFocusHandler={() => { }}
+                        target={'pais'}
+                        autoComplete={"off"}
+                      />
+                      <TextoField
+                        name="dni"
+                        value={formFields.dni}
+                        handleChange={handleOnChange}
+                        handleErrorChange={handleErrorChange}
+                        errorMessage={errors.dni}
+                        helpText={[formatMessage(messages['help.text.dni'])]}
+                        floatingLabel='ID / Cédula de Identidad / DNI '
+                        autoComplete={"off"}
+                      />
 
 
-              <StatefulButton
-                id="register-user"
-                name="register-user"
-                type="submit"
-                variant="brand"
-                className="register-button mt-4 mb-4"
-                state={submitState}
-                labels={{
-                  default: buttonLabel,
-                  pending: '',
-                }}
-                onClick={handleSubmit}
-                onMouseDown={(e) => e.preventDefault()}
-              />
-              {!registrationEmbedded && (
-                <ThirdPartyAuth
-                  currentProvider={currentProvider}
-                  providers={providers.filter(p => p.id !== 'oa2-llavemx')}
-                  secondaryProviders={secondaryProviders}
-                  handleInstitutionLogin={handleInstitutionLogin}
-                  thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
-                />
-              )}
-            </Form>
+                    </div>
+
+                  )}
+
+
+
+                  {!flags.autoGeneratedUsernameEnabled && (
+                    <UsernameField
+                      name="username"
+                      spellCheck="false"
+                      value={formFields.username}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.username}
+                      helpText={[formatMessage(messages['help.text.username.1']), formatMessage(messages['help.text.username.2'])]}
+                      floatingLabel={formatMessage(messages['registration.username.label'])}
+                      autoComplete={"off"}
+
+                    />
+                  )}
+                  {!currentProvider && (
+                    <PasswordField
+                      name="password"
+                      value={formFields.password}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.password}
+                      floatingLabel={formatMessage(messages['registration.password.label'])}
+                      autoComplete={"off"}
+                    />
+                  )}
+
+                  <CatalogoField
+                    catalogoList={maximoNivelList}
+                    selectedCatalogo={formFields.maximo_nivel}
+                    helpText={[formatMessage(messages['help.text.maximo_nivel'])]}
+                    errorMessage={errors.maximo_nivel || ''}
+                    onChangeHandler={handleOnChangeEstado}
+                    handleErrorChange={handleErrorChange}
+                    onBlurHandler={() => { }}
+                    onFocusHandler={() => { }}
+                    target={'maximo_nivel'}
+                  />
+
+                  <CatalogoField
+                    catalogoList={ocupacionList}
+                    selectedCatalogo={formFields.ocupacion}
+                    helpText={[formatMessage(messages['help.text.ocupacion'])]}
+                    errorMessage={errors.ocupacion || ''}
+                    onChangeHandler={handleOnChangeEstado}
+                    handleErrorChange={handleErrorChange}
+                    onBlurHandler={() => { }}
+                    onFocusHandler={() => { }}
+                    target={'ocupacion'}
+                  />
+                  <br />
+                  <EresDocente onChangeHandler={handleOnChange} value={formFields.eres_docente} errorMessage={errors.eres_docente} />
+
+
+                  {formFields.eres_docente && (
+                    <TextoField
+                      name="cct"
+                      value={formFields.cct}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.cct}
+                      helpText={[formatMessage(messages['help.text.cct'])]}
+                      floatingLabel='Clave del Centro de Trabajo CCT'
+
+                    />
+                  )}
+
+
+                  {formFields.eres_docente && (
+                    <CatalogoField
+                      catalogoList={funcionList}
+                      selectedCatalogo={formFields.funcion}
+                      helpText={[formatMessage(messages['help.text.funcion'])]}
+                      errorMessage={errors.funcion || ''}
+                      onChangeHandler={handleOnChangeEstado}
+                      handleErrorChange={handleErrorChange}
+                      onBlurHandler={() => { }}
+                      onFocusHandler={() => { }}
+                      target={'funcion'}
+                    />
+                  )}
+                  {formFields.eres_docente && (
+                    <CatalogoField
+                      catalogoList={nivelList}
+                      selectedCatalogo={formFields.nivel_Educativo}
+                      helpText={[formatMessage(messages['help.text.nivel_Educativo'])]}
+                      errorMessage={errors.nivel_Educativo || ''}
+                      onChangeHandler={handleOnChangeEstado}
+                      handleErrorChange={handleErrorChange}
+                      onBlurHandler={() => { }}
+                      onFocusHandler={() => { }}
+                      target={'nivel_Educativo'}
+                    />
+                  )}
+                  {formFields.eres_docente && (
+                    <TextoField
+                      name="asignatura"
+                      value={formFields.asignatura}
+                      handleChange={handleOnChange}
+                      handleErrorChange={handleErrorChange}
+                      errorMessage={errors.asignatura}
+                      helpText={[formatMessage(messages['help.text.asignatura'])]}
+                      floatingLabel='Campo formativo'
+                    />
+                  )
+
+                  }
+
+                  <ConfigurableRegistrationForm
+                    email={formFields.email}
+                    fieldErrors={errors}
+                    formFields={configurableFormFields}
+                    setFieldErrors={registrationEmbedded ? setTemporaryErrors : setErrors}
+                    setFormFields={setConfigurableFormFields}
+                    autoSubmitRegisterForm={autoSubmitRegForm}
+                    fieldDescriptions={fieldDescriptions}
+                  />
+                  <Cuentanos onChangeHandler={handleOnChange} value={formFields.cuentanos} errorMessage={errors.cuentanos} />
+
+                  <HonorCode value={formFields.honor_code} onChangeHandler={handleOnChange} errorMessage={errors.honor_code} />
+                  <TermsOfService onChangeHandler={handleOnChange} value={formFields.tos} errorMessage={errors.tos} />
+
+
+                  <StatefulButton
+                    id="register-user"
+                    name="register-user"
+                    type="submit"
+                    variant="brand"
+                    className="register-button mt-4 mb-4"
+                    state={submitState}
+                    labels={{
+                      default: buttonLabel,
+                      pending: '',
+                    }}
+                    onClick={handleSubmit}
+                    onMouseDown={(e) => e.preventDefault()}
+                  />
+                  {!registrationEmbedded && (
+                    <ThirdPartyAuth
+                      currentProvider={currentProvider}
+                      providers={providers.filter(p => p.id !== 'oa2-llavemx')}
+                      secondaryProviders={secondaryProviders}
+                      handleInstitutionLogin={handleInstitutionLogin}
+                      thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
+                    />
+                  )}
+                </Form>
               </AuthSeparator>
             )}
-          </div>
+          </div >
         )}
 
       </>

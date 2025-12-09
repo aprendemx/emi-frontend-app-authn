@@ -124,12 +124,15 @@ const Logistration = (props) => {
                   </Tabs>
                 )
                 : (!isValidTpaHint() && !hideRegistrationLink && (
+                  /* [MODIFICACIÓN] Se ocultan las pestañas de navegación tradicional
                   <Tabs defaultActiveKey={selectedPage} id="controlled-tab" onSelect={(tabKey) => handleOnSelect(tabKey, selectedPage)}>
                     <Tab title={formatMessage(messages['logistration.register'])} eventKey={REGISTER_PAGE} />
                     <Tab title={formatMessage(messages['logistration.sign.in'])} eventKey={LOGIN_PAGE} />
                   </Tabs>
+                  */
+                  null
                 ))}
-              { key && (
+              {key && (
                 <Navigate to={updatePathWithQueryParams(key)} replace />
               )}
               <div id="main-content" className="main-content">

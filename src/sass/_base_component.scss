@@ -579,18 +579,18 @@ html,
       display: block;
       font-family: "Noto Sans", sans-serif !important;
       font-weight: 800 !important;
-      font-size: 42px !important; // Ajustado para balance
+      font-size: 36px !important; // Reducido de 42px (Slightly smaller)
       color: #a57f2c !important;
-      margin-bottom: 5px; // Reducido drásticamente el espacio
-      line-height: 1;
+      margin-bottom: 0px !important; // Aún más compacto
+      line-height: 1.1;
       text-transform: none;
       letter-spacing: -0.5px;
     }
 
     img {
-      height: 110px; // Más grande para ser "llamativo"
+      height: 150px; // Aumentado de 110px (Proportionally larger)
       object-fit: contain;
-      margin-top: 0; // Sin margen extra
+      margin-top: 5px;
       align-self: flex-start;
     }
   }
@@ -609,9 +609,9 @@ html,
     -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);
 
     .llavemx-logo {
-      max-width: 200px; // Controlar tamaño logo LlaveMX
+      max-width: 140px; // Reducido 30% (de 200px -> 140px)
       height: auto;
-      margin-bottom: 20px;
+      margin-bottom: 30px; // Más aire alrededor (More whitespace)
     }
 
     p.terminos {

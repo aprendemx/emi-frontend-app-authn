@@ -53,13 +53,13 @@ $llavemx-blanco: #ffffff;
 
 // Estilos globales para el botón de Llave MX (en vista de pestañas)
 .btn-llavemx {
-  background-color: #611232 !important; // Valor del cliente
-  color: white !important;
+  background-color: #611232 !important; // Fondo Sólido VINO (Primario)
+  color: white !important; // Texto Blanco
+  border: 1px solid #611232 !important; // Borde sólido
   width: 100%;
-  padding: 6px; // Valor del cliente
+  padding: 6px;
   margin: 0px 0;
-  border: none;
-  border-radius: 5px; // Valor del cliente
+  border-radius: 5px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -566,10 +566,11 @@ html,
 .container-llaveMX .left-section {
   flex: 1;
   padding: 0px 30px 30px 0px; // Valor del cliente
-  align-items: center; // Valor del cliente
+  align-items: flex-start; // Alineación IZQUIERDA (Corrección de diseño)
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: left; // Asegurar texto a la izquierda
 }
 
 .container-llaveMX .boxLogin {

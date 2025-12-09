@@ -578,20 +578,20 @@ html,
     h1 {
       display: block;
       font-family: "Noto Sans", sans-serif !important;
-      font-weight: 800 !important; // Extra Bold para impacto
-      font-size: 48px !important; // Más grande para "Meterle Meteke"
-      color: #a57f2c !important; // Dorado
-      margin-bottom: 30px;
-      line-height: 1.1;
+      font-weight: 800 !important;
+      font-size: 42px !important; // Ajustado para balance
+      color: #a57f2c !important;
+      margin-bottom: 5px; // Reducido drásticamente el espacio
+      line-height: 1;
       text-transform: none;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
     }
 
     img {
-      height: 90px;
+      height: 110px; // Más grande para ser "llamativo"
       object-fit: contain;
-      margin-top: 10px;
-      align-self: flex-start; // Asegurar logo a la izquierda
+      margin-top: 0; // Sin margen extra
+      align-self: flex-start;
     }
   }
 
@@ -643,11 +643,12 @@ html,
       color: #ffffff !important;
       border: 1px solid #611232 !important;
       border-radius: 8px !important; // Un poco más moderno que 5px
-      padding: 12px 24px !important;
+      padding: 0 24px !important; // Padding horizontal solo
+      height: 48px !important; // ALTURA FIJA PARA IGUALAR
       font-size: 16px !important;
       font-weight: 600 !important;
       width: 100%;
-      display: flex;
+      display: flex !important;
       justify-content: center;
       align-items: center;
       cursor: pointer;
@@ -655,6 +656,7 @@ html,
       box-shadow: 0 4px 6px rgba(97, 18, 50, 0.2); // Sombra sutil color vino
       transition: all 0.2s ease-in-out;
       margin-bottom: 15px; // Separación vertical
+      line-height: 1 !important; // Reset line-height
 
       &:hover {
         background-color: #4a0d26 !important;
@@ -672,16 +674,18 @@ html,
       color: #611232 !important;
       border: 2px solid #611232 !important; // Borde un poco más grueso para carácter
       border-radius: 8px !important;
-      padding: 12px 24px !important;
+      padding: 0 24px !important;
+      height: 48px !important; // ALTURA FIJA PARA IGUALAR
       font-size: 16px !important;
       font-weight: 600 !important;
       width: 100%;
-      display: flex;
+      display: flex !important;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s ease-in-out;
+      line-height: 1 !important;
 
       &:hover {
         background-color: #fafafa !important;

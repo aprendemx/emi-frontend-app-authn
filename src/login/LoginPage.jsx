@@ -234,6 +234,7 @@ const LoginPage = (props) => {
         />
 
         {/* Separador con formulario tradicional colapsable */}
+        {/* [MODIFICACIÓN] Se oculta el formulario tradicional para forzar el uso de LlaveMX
         {providers.some(p => p.id === 'oa2-llavemx') && (
           <AuthSeparator isLoginPage={true} currentProvider={currentProvider}>
             <Form id="sign-in-form" name="sign-in-form">
@@ -291,6 +292,7 @@ const LoginPage = (props) => {
             </Form>
           </AuthSeparator>
         )}
+        */}
       </div >
     </>
   );

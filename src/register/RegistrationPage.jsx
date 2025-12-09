@@ -785,11 +785,12 @@ const RegistrationPage = (props) => {
             />
 
             {/* Separador con formulario tradicional colapsable */}
-            {providers.some(p => p.id === 'oa2-llavemx') && (
+            {/* Solo mostrar el formulario si hay datos de LlaveMX (Retorno de Auth) */}
+            {pipelineUserDetails && Object.keys(pipelineUserDetails).length > 0 && (
               <AuthSeparator
                 isLoginPage={false}
                 currentProvider={currentProvider}
-                autoExpand={pipelineUserDetails && Object.keys(pipelineUserDetails).length > 0}
+                autoExpand={true}
               >
                 <Form id="registration-form" name="registration-form" autoComplete={"off"} >
 

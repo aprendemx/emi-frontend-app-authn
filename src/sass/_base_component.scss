@@ -536,9 +536,9 @@ html,
   overflow: hidden;
   position: relative;
   overflow: hidden;
-  // background-image: url('fondo-llave.svg'); // Mantener comentado si no existe el asset aún
+  // Simulación del patrón orgánico (Gris leve a la izquierda desvaneciéndose a blanco)
+  background: linear-gradient(90deg, #f4f6f8 0%, #f9fafb 40%, #ffffff 100%) !important;
   background-size: cover;
-  background-color: rgba(255, 255, 255, 0.6) !important; // Valor del cliente
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -592,6 +592,9 @@ html,
       object-fit: contain;
       margin-top: 5px;
       align-self: flex-start;
+      // Filtro para convertir logo de colores a "Charcoal Grey" (Gris Carbón Uniforme)
+      filter: grayscale(100%) contrast(100%) brightness(30%);
+      opacity: 0.9;
     }
   }
 

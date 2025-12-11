@@ -594,7 +594,9 @@ html,
     }
 
     img {
-      height: 150px; // Aumentado de 110px (Proportionally larger)
+      height: 180px; // Logo más grande
+      width: auto;
+      max-width: 100%;
       object-fit: contain;
       margin-top: 35px;
       align-self: center;
@@ -607,18 +609,20 @@ html,
   // SECCION DERECHA (TARJETA)
   .right-section {
     flex: 0 0 450px; // Ancho fijo elegante, no tan ancho como 554px
+    max-width: 100%; // Prevenir desbordamiento
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
     border-radius: 16px; // Bordes más suaves y modernos
     padding: 40px;
+    box-sizing: border-box; // Incluir padding en el ancho total
     // Sombra "Elevada" Premium
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);
     -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);
 
     .llavemx-logo {
-      max-width: 140px; // Reducido 30% (de 200px -> 140px)
+      max-width: 180px; // Logo más grande
       height: auto;
       margin-bottom: 30px; // Más aire alrededor (More whitespace)
     }
@@ -720,23 +724,34 @@ html,
   .container-llaveMX {
     flex-direction: column;
     align-items: center;
-    gap: 40px;
-    margin-top: 60px; // Menos margen en tablet
+    gap: 30px;
+    margin: 60px auto;
+    padding: 0 30px;
+    max-width: 100%;
   }
 
   .container-llaveMX .left-section {
     text-align: center !important;
     align-items: center !important;
-    padding-right: 0;
+    padding: 20px 0;
     max-width: 100%;
+    width: 100%;
   }
 
   .container-llaveMX .left-section img {
     align-self: center;
+    height: 140px;
   }
 
   .container-llaveMX .left-section h1 {
     text-align: center !important;
+    font-size: 32px !important;
+  }
+
+  .container-llaveMX .right-section {
+    width: 100%;
+    max-width: 500px;
+    padding: 35px 30px;
   }
 }
 
@@ -935,14 +950,16 @@ html,
 
 @media (max-width: 640px) {
   .fondo-llaveMX {
-    padding: 30px 15px;
+    padding: 20px 15px;
   }
 
   // Botón de Llave MX en móvil
   .btn-llavemx {
-    padding: 14px 20px;
-    font-size: 15px;
-    min-height: 52px;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    height: 48px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .btn-llavemx__icon-container {
@@ -953,6 +970,14 @@ html,
 
   .btn-llavemx #provider-name {
     font-size: 15px;
+  }
+
+  .btn-llavemx-secondary {
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    height: 48px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   // Separador colapsable en móvil
@@ -978,44 +1003,89 @@ html,
   }
 
   .container-llaveMX {
-    padding: 40px 20px;
+    padding: 30px 15px;
+    margin: 40px auto;
+    overflow-x: hidden;
+  }
+
+  .container-llaveMX .left-section {
+    text-align: center !important;
+    align-items: center !important;
+    padding: 15px 0;
+    width: 100%;
   }
 
   .container-llaveMX .left-section h1 {
-    font-size: 36px;
+    font-size: 28px !important;
+    text-align: center !important;
+    word-wrap: break-word;
   }
 
   .container-llaveMX .left-section img {
-    height: 100px;
+    height: 120px;
+    max-width: 100%;
   }
 
   .container-llaveMX .right-section {
-    padding: 30px 20px;
+    padding: 25px 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .container-llaveMX .right-section .llavemx-logo {
+    max-width: 150px;
+  }
+
+  .container-llaveMX .right-section .llavemx-buttons-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
   }
 }
 
 @media (max-width: 480px) {
+  .container-llaveMX {
+    padding: 25px 12px;
+    margin: 30px auto;
+  }
+
   .container-llaveMX .left-section {
     text-align: center !important;
     align-items: center !important;
+    padding: 10px 0;
   }
 
   .container-llaveMX .left-section h1 {
-    font-size: 28px;
+    font-size: 24px !important;
     text-align: center !important;
+    line-height: 1.2;
+    margin-bottom: 15px !important;
   }
 
   .container-llaveMX .left-section img {
-    height: 80px;
+    height: 100px;
+    max-width: 90%;
     align-self: center !important;
   }
 
   .container-llaveMX .right-section {
     padding: 20px 15px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .container-llaveMX .right-section .llavemx-logo {
+    max-width: 130px;
   }
 
   .container-llaveMX .right-section .nav-link {
-    padding: 10px 16px;
+    padding: 10px 12px;
     font-size: 14px;
+  }
+
+  .container-llaveMX .right-section .terminos {
+    font-size: 13px;
+    padding: 0 5px;
   }
 }

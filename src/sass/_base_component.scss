@@ -73,6 +73,7 @@ $llavemx-blanco: #ffffff;
   display: flex !important;
   align-items: center;
   justify-content: center;
+}
 .fondo-llaveMX .btn-llavemx:hover,
 .llavemx-block .btn-llavemx:hover {
   background-color: #4a0d26 !important; // Vino más oscuro
@@ -101,6 +102,7 @@ $llavemx-blanco: #ffffff;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
 .fondo-llaveMX .btn-llavemx-secondary:hover,
 .llavemx-block .btn-llavemx-secondary:hover {
   background-color: #f8f9fa !important;
@@ -1004,8 +1006,4 @@ html,
     padding: 10px 16px;
     font-size: 14px;
   }
-}
-
-// Cierre de selectores abiertos
-}
 }

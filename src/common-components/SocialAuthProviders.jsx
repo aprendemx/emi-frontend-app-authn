@@ -5,10 +5,12 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Icon } from '@openedx/paragon';
 import { Login } from '@openedx/paragon/icons';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import messages from './messages';
 import { LOGIN_PAGE, SUPPORTED_ICON_CLASSES } from '../data/constants';
+import { isLlaveMXProvider } from '../data/llavemx';
 
 const SocialAuthProviders = (props) => {
   const { formatMessage } = useIntl();
@@ -21,37 +23,47 @@ const SocialAuthProviders = (props) => {
     window.location.href = getConfig().LMS_BASE_URL + url;
   }
 
-  const socialAuth = socialAuthProviders.map((provider, index) => (
-    <button
-      id={provider.id}
-      key={provider.id}
-      type="button"
-      className={`btn-llavemx btn-llavemx-${provider.id} ${index % 2 === 0 ? 'mr-3' : ''}`}
-      data-provider-url={referrer === LOGIN_PAGE ? provider.loginUrl : provider.registerUrl}
-      onClick={handleSubmit}
-    >
-      {provider.iconImage ? (
-        <div aria-hidden="true">
-          <img className="btn-llavemx__icon" src={provider.iconImage} alt={`icon ${provider.name}`} />
-        </div>
-      )
-        : (
-          <div className="btn-llavemx__icon-container" aria-hidden="true">
-            {SUPPORTED_ICON_CLASSES.includes(provider.iconClass) ? (
-              <FontAwesomeIcon icon={['fab', provider.iconClass]} />)
-              : (
-                <Icon className="h-75" src={Login} />
-              )}
+  const socialAuth = socialAuthProviders.map((provider, index) => {
+    const isLlaveMX = isLlaveMXProvider(provider.id);
+
+    const buttonClass = classNames({
+      'btn-llavemx': isLlaveMX,
+      [`btn-llavemx-${provider.id}`]: isLlaveMX,
+      'mr-3': index % 2 === 0,
+    });
+
+    return (
+      <button
+        id={provider.id}
+        key={provider.id}
+        type="button"
+        className={buttonClass}
+        data-provider-url={referrer === LOGIN_PAGE ? provider.loginUrl : provider.registerUrl}
+        onClick={handleSubmit}
+      >
+        {provider.iconImage ? (
+          <div aria-hidden="true">
+            <img className="btn-llavemx__icon" src={provider.iconImage} alt={`icon ${provider.name}`} />
           </div>
-        )}
-      <span id="provider-name" className="notranslate mr-auto pl-2" aria-hidden="true">{provider.name}</span>
-      <span className="sr-only">
-        {referrer === LOGIN_PAGE
-          ? formatMessage(messages['sso.sign.in.with'], { providerName: provider.name })
-          : formatMessage(messages['sso.create.account.using'], { providerName: provider.name })}
-      </span>
-    </button>
-  ));
+        )
+          : (
+            <div className="btn-llavemx__icon-container" aria-hidden="true">
+              {SUPPORTED_ICON_CLASSES.includes(provider.iconClass) ? (
+                <FontAwesomeIcon icon={['fab', provider.iconClass]} />)
+                : (
+                  <Icon className="h-75" src={Login} />
+                )}
+            </div>
+          )}
+        <span id="provider-name" className="notranslate mr-auto pl-2" aria-hidden="true">{provider.name}</span>
+        <span className="sr-only">
+          {referrer === LOGIN_PAGE
+            ? formatMessage(messages['sso.sign.in.with'], { providerName: provider.name })
+            : formatMessage(messages['sso.create.account.using'], { providerName: provider.name })}
+        </span>
+      </button>
+    );
+  });
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{socialAuth}</>;

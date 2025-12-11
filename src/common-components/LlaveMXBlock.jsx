@@ -4,6 +4,11 @@ import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Link } from 'react-router-dom';
 import { LOGIN_PAGE, REGISTER_PAGE } from '../data/constants';
+import {
+  isLlaveMXProvider,
+  LLAVEMX_PRIVACY_URL,
+  LLAVEMX_TERMS_URL,
+} from '../data/llavemx';
 
 /**
  * Bloque principal de autenticación Llave MX
@@ -13,12 +18,12 @@ const LlaveMXBlock = ({ providers, isLoginPage, currentProvider }) => {
   const { formatMessage } = useIntl();
 
   // Si el usuario viene de Llave MX, no mostrar este bloque
-  if (currentProvider === 'oa2-llavemx') {
+  if (isLlaveMXProvider(currentProvider)) {
     return null;
   }
 
   // Filtrar el proveedor de Llave MX para obtener URLs
-  const llaveMXProvider = providers.find(provider => provider.id === 'oa2-llavemx');
+  const llaveMXProvider = providers.find(provider => isLlaveMXProvider(provider.id));
 
   // Si no hay proveedor Llave MX, no renderizar nada
   if (!llaveMXProvider) {
@@ -39,9 +44,9 @@ const LlaveMXBlock = ({ providers, isLoginPage, currentProvider }) => {
         {/* 2. Términos y Privacidad (En medio) */}
         <p className="llavemx-footer__terms">
           Al iniciar sesión declaro que he leído los{' '}
-          <a href="https://www.archivos.atdt.gob.mx/storage/app/media/Transparencia/TyC/TerminosLlaveMX.pdf" target="_blank" rel="noopener noreferrer">Términos y Condiciones</a>
+          <a href={LLAVEMX_TERMS_URL} target="_blank" rel="noopener noreferrer">Términos y Condiciones</a>
           {' '}y nuestro{' '}
-          <a href="https://www.archivos.atdt.gob.mx/storage/app/media/Transparencia/PORTAL%20ATDT/AVISOS%20DE%20PRIVACIDAD/ATDT_Aviso%20de%20Privacidad%20Integral%20Llave%20MX.pdf" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>.
+          <a href={LLAVEMX_PRIVACY_URL} target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>.
         </p>
       </div>
 

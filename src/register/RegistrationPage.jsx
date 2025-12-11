@@ -52,6 +52,7 @@ import ThirdPartyAuth from '../common-components/ThirdPartyAuth';
 import {
   COMPLETE_STATE, PENDING_STATE, REGISTER_PAGE,
 } from '../data/constants';
+import { isLlaveMXProvider } from '../data/llavemx';
 import {
   getAllPossibleQueryParams, getTpaHint, getTpaProvider, isHostAvailableInQueryParams, setCookie,
 } from '../data/utils';
@@ -360,25 +361,17 @@ const RegistrationPage = (props) => {
   const buttonLabel = "Crear una cuenta";
 
   // 🔹 Flag para saber si el proveedor actual es Llave MX
-  const isLlaveMX = currentProvider === 'llavemx';
+  const isLlaveMX = isLlaveMXProvider(currentProvider);
 
   /**
    * Set the userPipelineDetails data in formFields for only first time
    */
   useEffect(() => {
-    console.log('[LLAVE MX] useEffect ejecutándose...', {
-      userPipelineDataLoaded,
-      thirdPartyAuthApiStatus,
-      pipelineUserDetails
-    });
-
     if (!userPipelineDataLoaded && thirdPartyAuthApiStatus === COMPLETE_STATE) {
       if (thirdPartyAuthErrorMessage) {
         setErrorCode(prevState => ({ type: TPA_AUTHENTICATION_FAILURE, count: prevState.count + 1 }));
       }
       if (pipelineUserDetails && Object.keys(pipelineUserDetails).length !== 0) {
-        console.log('[LLAVE MX] pipelineUserDetails recibido:', pipelineUserDetails);
-
         // ✅ Extraer SOLO los campos que Llave MX entrega (sin fallbacks cruzados)
         const {
           username,
@@ -397,18 +390,6 @@ const RegistrationPage = (props) => {
           correoVerificado,
           telefonoVerificado,
         } = pipelineUserDetails;
-
-        console.log('[LLAVE MX] Campos extraídos:', {
-          username,
-          email,
-          name,
-          nombres,
-          primer_apellido,
-          segundo_apellido,
-          curp,
-          estado,
-          municipio
-        });
 
         // ✅ Mapear estado usando estadoList
         let estadoObj = '';
@@ -458,7 +439,6 @@ const RegistrationPage = (props) => {
           cuentanos: '',
         }));
 
-        console.log('[LLAVE MX] formFields actualizado con datos reales de Llave MX');
         dispatch(setUserPipelineDataLoaded(true));
       }
     }
@@ -559,7 +539,6 @@ const RegistrationPage = (props) => {
   };
 
   const handleErrorChange = (fieldName, error) => {
-    console.log(error);
     if (registrationEmbedded) {
       setTemporaryErrors(prevErrors => ({
         ...prevErrors,
@@ -695,13 +674,11 @@ const RegistrationPage = (props) => {
     setErrors({ ...fieldErrors });
 
     dispatch(setEmailSuggestionInStore(emailSuggestion));
-    console.log(fieldErrors);
     // returning if not valid
     if (!isValid) {
       setErrorCode(prevState => ({ type: FORM_SUBMISSION_ERROR, count: prevState.count + 1 }));
       return;
     }
-    console.log(fieldErrors);
     // Preparing payload for submission
     payload = prepareRegistrationPayload(
       payload,
@@ -711,9 +688,7 @@ const RegistrationPage = (props) => {
       queryParams);
     try {
       dispatch(registerNewUser(payload));
-      console.log("no es aquí");
     } catch (e) {
-      console.log(e);
     }
   };
 
@@ -1058,7 +1033,7 @@ const RegistrationPage = (props) => {
                   {!registrationEmbedded && (
                     <ThirdPartyAuth
                       currentProvider={currentProvider}
-                      providers={providers.filter(p => p.id !== 'oa2-llavemx')}
+                      providers={providers.filter(p => !isLlaveMXProvider(p.id))}
                       secondaryProviders={secondaryProviders}
                       handleInstitutionLogin={handleInstitutionLogin}
                       thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}

@@ -5,7 +5,7 @@ $llavemx-blanco: #ffffff;
 
 // Estilos para el bloque principal de Llave MX
 .fondo-llaveMX .llavemx-block {
-  margin-bottom: 24px;
+  margin-bottom: 32px; // Separación de 32px
 }
 
 .fondo-llaveMX .llavemx-block__content {
@@ -25,19 +25,21 @@ $llavemx-blanco: #ffffff;
 
 // Estilos para el footer (logo y términos) de Llave MX
 .fondo-llaveMX .llavemx-footer {
-  margin-top: 20px;
+  margin-top: 32px; // Separación de 32px
+  margin-bottom: 32px; // Separación de 32px
   text-align: center;
 }
 
 .fondo-llaveMX .llavemx-footer__logo {
   max-width: 80px;
-  margin: 0 auto 12px;
+  margin: 0 auto 32px; // Separación de 32px entre logo y texto
   display: block;
 }
 
 .fondo-llaveMX .llavemx-footer__terms {
+  font-family: "Noto Sans", sans-serif !important; // Fuente Noto Sans
   font-size: 12px;
-  color: #666;
+  color: #434343 !important; // Color #434343
   line-height: 1.5;
   margin: 0;
 
@@ -113,13 +115,14 @@ $llavemx-blanco: #ffffff;
 
 .fondo-llaveMX .llavemx-buttons-container {
   display: flex;
-  gap: 16px;
-  margin-top: 40px;
+  gap: 32px; // Separación de 32px entre botones
+  margin-top: 0; // Sin margen adicional arriba
   width: 100%;
 
-  // En móviles, apilar
+  // En móviles, apilar con gap de 16px
   @media (max-width: 480px) {
     flex-direction: column;
+    gap: 16px;
   }
 }
 
@@ -763,10 +766,11 @@ html,
 }
 
 .container-llaveMX .right-section .terminos {
+  font-family: "Noto Sans", sans-serif !important; // Fuente Noto Sans
   font-weight: normal;
   text-align: center;
-  color: #434343;
-  margin-bottom: 24px;
+  color: #434343 !important; // Color #434343
+  margin-bottom: 32px; // Separación de 32px
   font-size: 14px;
   line-height: 1.4;
 }

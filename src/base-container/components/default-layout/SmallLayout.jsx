@@ -16,7 +16,7 @@ const SmallLayout = ({ children }) => {
         <div className="left-section">
           <div className="boxLogin">
             <h1>
-              Cursos Aprende
+              Cursos @prende.mx
             </h1>
             <img src="https://cursos.aprende.gob.mx/static/indigo/images/Logo_marquesina_1.ff17638b6c25.png" alt="AprendeMX-Logo" />
           </div>

@@ -3,9 +3,8 @@ $llavemx-vino: #611232;
 $llavemx-dorado: #a57f2c;
 $llavemx-blanco: #ffffff;
 
-// Estilos para el bloque principal de Llave MX
 .fondo-llaveMX .llavemx-block {
-  margin-bottom: 32px; // Separación de 32px
+  margin-bottom: 32px;
 }
 
 .fondo-llaveMX .llavemx-block__content {
@@ -23,23 +22,21 @@ $llavemx-blanco: #ffffff;
   line-height: 1.4;
 }
 
-// Estilos para el footer (logo y términos) de Llave MX
 .fondo-llaveMX .llavemx-footer {
-  margin-top: 32px; // Separación de 32px
-  margin-bottom: 32px; // Separación de 32px
+  margin: 32px 0;
   text-align: center;
 }
 
 .fondo-llaveMX .llavemx-footer__logo {
   max-width: 80px;
-  margin: 0 auto 32px; // Separación de 32px entre logo y texto
+  margin: 0 auto 32px;
   display: block;
 }
 
 .fondo-llaveMX .llavemx-footer__terms {
-  font-family: "Noto Sans", sans-serif !important; // Fuente Noto Sans
+  font-family: "Noto Sans", sans-serif !important;
   font-size: 12px;
-  color: #434343 !important; // Color #434343
+  color: #434343 !important;
   line-height: 1.5;
   margin: 0;
 
@@ -53,37 +50,32 @@ $llavemx-blanco: #ffffff;
   }
 }
 
-// Estilos globales para el botón de Llave MX (en vista de pestañas)
 .fondo-llaveMX .btn-llavemx,
 .llavemx-block .btn-llavemx {
-  background-color: #611232 !important; // Fondo Sólido VINO (Primario)
-  color: white !important; // Texto Blanco
-  border: 1px solid #611232 !important; // Borde sólido
+  background-color: #611232 !important;
+  color: white !important;
+  border: 1px solid #611232 !important;
   width: 100%;
   padding: 6px;
-  margin: 0px 0;
+  margin: 0;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   font-family: "Noto Sans", sans-serif !important;
-  font-optical-sizing: auto !important;
-  font-style: normal !important;
-  font-variation-settings: "wdth" 100 !important;
   text-align: center;
   text-decoration: none;
   display: flex !important;
   align-items: center;
   justify-content: center;
-}
-.fondo-llaveMX .btn-llavemx:hover,
-.llavemx-block .btn-llavemx:hover {
-  background-color: #4a0d26 !important; // Vino más oscuro
-  background-image: none !important;
-  background: #4a0d26 !important;
-  border-color: #4a0d26 !important;
-  color: $llavemx-blanco !important;
-  transform: translateY(-2px);
+
+  &:hover {
+    background-color: #4a0d26 !important;
+    background-image: none !important;
+    border-color: #4a0d26 !important;
+    color: $llavemx-blanco !important;
+    transform: translateY(-2px);
+  }
 }
 
 .fondo-llaveMX .btn-llavemx-secondary,
@@ -93,7 +85,7 @@ $llavemx-blanco: #ffffff;
   border: 1px solid #611232 !important;
   border-radius: 5px;
   width: 100%;
-  margin: 0px;
+  margin: 0;
   padding: 6px;
   font-family: "Noto Sans", sans-serif !important;
   font-weight: 500;
@@ -104,32 +96,30 @@ $llavemx-blanco: #ffffff;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-}
-.fondo-llaveMX .btn-llavemx-secondary:hover,
-.llavemx-block .btn-llavemx-secondary:hover {
-  background-color: #f8f9fa !important;
-  border-color: #4a0d26 !important;
-  color: #4a0d26 !important;
-  text-decoration: none !important;
+
+  &:hover {
+    background-color: #f8f9fa !important;
+    border-color: #4a0d26 !important;
+    color: #4a0d26 !important;
+    text-decoration: none !important;
+  }
 }
 
 .fondo-llaveMX .llavemx-buttons-container {
   display: flex;
-  gap: 32px; // Separación de 32px entre botones
-  margin-top: 0; // Sin margen adicional arriba
+  gap: 32px;
+  margin-top: 0;
   width: 100%;
 
-  // En móviles, apilar con gap de 16px
   @media (max-width: 480px) {
     flex-direction: column;
     gap: 16px;
   }
 }
 
-// Estilos para el contenedor de icono
 .fondo-llaveMX .btn-llavemx__icon-container,
 .llavemx-block .btn-llavemx__icon-container {
-  background-color: rgba(255, 255, 255, 0.15) !important; // Icono transparente
+  background-color: rgba(255, 255, 255, 0.15) !important;
   color: $llavemx-blanco !important;
   font-size: 14px;
   margin-left: -12px;
@@ -158,14 +148,13 @@ $llavemx-blanco: #ffffff;
 
 .fondo-llaveMX .btn-llavemx #provider-name,
 .llavemx-block .btn-llavemx #provider-name {
-  color: $llavemx-blanco !important; // Texto Blanco
+  color: $llavemx-blanco !important;
   font-family: "Noto Sans", sans-serif !important;
   font-weight: 600;
   font-size: 16px;
   flex: 1;
 }
 
-// Estilos para el separador colapsable
 .auth-separator-wrapper {
   margin: 30px 0;
 }
@@ -217,14 +206,12 @@ $llavemx-blanco: #ffffff;
     opacity: 0;
     transform: translateY(-10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-// Estilos antiguos del separador (ya no se usan pero los dejo por compatibilidad)
 .auth-separator {
   display: flex;
   align-items: center;
@@ -265,14 +252,12 @@ $llavemx-blanco: #ffffff;
   }
 }
 
-// Media queries proporcionadas por el cliente
 @media (max-width: 1040px) {
   .container-llaveMX {
-    display: block; // Comportamiento block
+    display: block;
     max-width: 643px;
-    margin: 85px auto 85px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin: 85px auto;
+    padding: 0 20px;
   }
 
   .container-llaveMX .boxLogin {
@@ -288,27 +273,19 @@ $llavemx-blanco: #ffffff;
   }
 
   .container-llaveMX .left-section img {
-    align-self: center; // Centrar logo en móvil
+    align-self: center;
   }
 }
 
 @media (max-width: 640px) {
   .container-llaveMX {
-    margin: 55px auto 55px;
+    margin: 55px auto;
   }
 
   .container-llaveMX .left-section h1 {
     font-size: 35px;
-    justify-content: center; // Centrar texto
+    justify-content: center;
   }
-
-  .llavemx-buttons-container {
-    // Equivalente a .col-6 en diseño responsivo
-    // Mantendremos flex pero ajustado
-  }
-
-  // Ajuste para botones en móvil para que sigan comportándose bien
-  // El cliente pide: .col-6 { width: 100%; text-align: center; } en 640px
 }
 
 @media (max-width: 480px) {
@@ -321,8 +298,7 @@ $llavemx-blanco: #ffffff;
   }
 }
 
-// Ocultar el flex cuando está dentro de fondo-llaveMX
-.fondo-llaveMX+.layout,
+.fondo-llaveMX + .layout,
 .layout:has(.fondo-llaveMX) {
   display: block;
   background-color: transparent !important;
@@ -444,7 +420,6 @@ $llavemx-blanco: #ffffff;
   display: none;
 }
 
-// Ocultar el stripe cuando hay fondo de LlaveMX
 body:has(.fondo-llaveMX) .extra-large-screen-top-stripe {
   display: none !important;
 }
@@ -466,7 +441,6 @@ body:has(.fondo-llaveMX) .extra-large-screen-top-stripe {
     background-repeat: no-repeat;
   }
 
-  // Ocultar cuando hay LlaveMX
   body:has(.fondo-llaveMX) .extra-large-screen-top-stripe {
     display: none !important;
   }
@@ -525,17 +499,15 @@ body:has(.fondo-llaveMX) .extra-large-screen-top-stripe {
   transform: rotate(102.02deg);
 }
 
-// LlaveMX Styles
 * {
   box-sizing: border-box;
 }
 
-// Sobrescribir fondos azules del body/html
 body,
 html,
 #root,
 [data-testid="redux-provider"],
-[id="root"]>div {
+[id="root"] > div {
   background-color: #ffffff !important;
   background-image: none !important;
 }
@@ -543,9 +515,6 @@ html,
 .fondo-llaveMX {
   position: relative;
   overflow: hidden;
-  position: relative;
-  overflow: hidden;
-  // Simulación del patrón orgánico (Gris leve a la izquierda desvaneciéndose a blanco)
   background: linear-gradient(90deg, #f4f6f8 0%, #f9fafb 40%, #ffffff 100%) !important;
   background-size: cover;
   min-height: 100vh;
@@ -554,80 +523,70 @@ html,
   justify-content: center;
 }
 
-// ==========================================
-// ESTILOS LLAVEMX - DISEÑO PREMIUM & OVERRIDE
-// ==========================================
-
-// Forzar especificidad alta con ID del contenedor si es posible, o anidamiento profundo
 .container-llaveMX {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; // Centrado horizontal global
-  align-items: flex-start; // Alineación superior para mejor balance
+  justify-content: center;
+  align-items: flex-start;
   font-family: "Noto Sans", sans-serif !important;
   max-width: 1100px;
   width: 100%;
   padding: 0 20px;
   margin: 100px auto 140px;
   background-color: transparent;
-  gap: 60px; // Espacio generoso entre columnas
+  gap: 60px;
 
-  // SECCION IZQUIERDA (BRANDING)
   .left-section {
     flex: 1;
     min-width: 300px;
-    max-width: 500px; // Limitar ancho para que no se extienda demasiado
+    max-width: 500px;
     padding: 20px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center !important; // CENTRADO
-    text-align: center !important; // TEXTO CENTRADO
+    align-items: center !important;
+    text-align: center !important;
 
     h1 {
       display: block;
       font-family: "Noto Sans", sans-serif !important;
       font-weight: 800 !important;
-      font-size: 36px !important; // Reducido de 42px (Slightly smaller)
+      font-size: 36px !important;
       color: #a57f2c !important;
-      margin-bottom: 0px !important; // Aún más compacto
+      margin-bottom: 0 !important;
       line-height: 1.1;
       text-transform: none;
       letter-spacing: -0.5px;
     }
 
     img {
-      height: 180px; // Logo más grande
+      height: 180px;
       width: auto;
       max-width: 100%;
       object-fit: contain;
       margin-top: 35px;
       align-self: center;
-      // Filtro para convertir logo de colores a "Charcoal Grey" (Gris Carbón Uniforme)
       filter: grayscale(100%) contrast(100%) brightness(30%);
       opacity: 0.9;
     }
   }
 
-  // SECCION DERECHA (TARJETA)
   .right-section {
-    flex: 0 0 450px; // Ancho fijo elegante, no tan ancho como 554px
-    max-width: 100%; // Prevenir desbordamiento
+    flex: 0 0 450px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    border-radius: 16px; // Bordes más suaves y modernos
+    border-radius: 16px;
     padding: 40px;
-    box-sizing: border-box; // Incluir padding en el ancho total
-    // Sombra "Elevada" Premium
+    box-sizing: border-box;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);
-    -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);
 
     .llavemx-logo {
-      max-width: 180px; // Logo más grande
+      max-width: 180px;
       height: auto;
-      margin-bottom: 30px; // Más aire alrededor (More whitespace)
+      margin-bottom: 30px;
     }
 
     p.terminos {
@@ -645,22 +604,17 @@ html,
     }
   }
 
-  // BOTONES (Override agresivo)
-  // Usamos selectores anidados para ganar especificidad sobre Paragon
   .boxLogin,
   .right-section {
-
-    // BOTÓN PRIMARIO (SOLID VINO)
     .btn-llavemx,
     button.btn-llavemx,
     a.btn-llavemx {
       background-color: #611232 !important;
-      background: #611232 !important;
       color: #ffffff !important;
       border: 1px solid #611232 !important;
-      border-radius: 8px !important; // Un poco más moderno que 5px
-      padding: 0 24px !important; // Padding horizontal solo
-      height: 48px !important; // ALTURA FIJA PARA IGUALAR
+      border-radius: 8px !important;
+      padding: 0 24px !important;
+      height: 48px !important;
       font-size: 16px !important;
       font-weight: 600 !important;
       width: 100%;
@@ -669,29 +623,27 @@ html,
       align-items: center;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 4px 6px rgba(97, 18, 50, 0.2); // Sombra sutil color vino
+      box-shadow: 0 4px 6px rgba(97, 18, 50, 0.2);
       transition: all 0.2s ease-in-out;
-      margin-bottom: 15px; // Separación vertical
-      line-height: 1 !important; // Reset line-height
+      margin-bottom: 15px;
+      line-height: 1 !important;
 
       &:hover {
         background-color: #4a0d26 !important;
-        transform: translateY(-2px); // Efecto "Levantar"
+        transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba(97, 18, 50, 0.3);
       }
     }
 
-    // BOTÓN SECUNDARIO (OUTLINE)
     .btn-llavemx-secondary,
     button.btn-llavemx-secondary,
     a.btn-llavemx-secondary {
       background-color: #ffffff !important;
-      background: #ffffff !important;
       color: #611232 !important;
-      border: 2px solid #611232 !important; // Borde un poco más grueso para carácter
+      border: 2px solid #611232 !important;
       border-radius: 8px !important;
       padding: 0 24px !important;
-      height: 48px !important; // ALTURA FIJA PARA IGUALAR
+      height: 48px !important;
       font-size: 16px !important;
       font-weight: 600 !important;
       width: 100%;
@@ -709,20 +661,18 @@ html,
       }
     }
 
-    // Contenedor de botones
     .llavemx-buttons-container {
       width: 100%;
       display: flex;
-      gap: 15px; // Espacio entre botones
+      gap: 15px;
 
       @media (max-width: 640px) {
-        flex-direction: column; // Apilar en móvil
+        flex-direction: column;
       }
     }
   }
 }
 
-// Media Queries de Ajuste (Móvil)
 @media (max-width: 1040px) {
   .container-llaveMX {
     flex-direction: column;
@@ -731,207 +681,185 @@ html,
     margin: 60px auto;
     padding: 0 30px;
     max-width: 100%;
-  }
 
-  .container-llaveMX .left-section {
-    text-align: center !important;
-    align-items: center !important;
-    padding: 20px 0;
-    max-width: 100%;
-    width: 100%;
-  }
+    .left-section {
+      text-align: center !important;
+      align-items: center !important;
+      padding: 20px 0;
+      max-width: 100%;
+      width: 100%;
 
-  .container-llaveMX .left-section img {
-    align-self: center;
-    height: 140px;
-  }
+      img {
+        align-self: center;
+        height: 140px;
+      }
 
-  .container-llaveMX .left-section h1 {
-    text-align: center !important;
-    font-size: 32px !important;
-  }
+      h1 {
+        text-align: center !important;
+        font-size: 32px !important;
+      }
+    }
 
-  .container-llaveMX .right-section {
-    width: 100%;
-    max-width: 500px;
-    padding: 35px 30px;
+    .right-section {
+      width: 100%;
+      max-width: 500px;
+      padding: 35px 30px;
+    }
   }
 }
 
 
-.container-llaveMX .right-section .llavemx-logo {
-  height: 56px;
-  margin: 0 auto 20px;
-  display: block;
-}
-
-.container-llaveMX .right-section .terminos {
-  font-family: "Noto Sans", sans-serif !important; // Fuente Noto Sans
-  font-weight: normal;
-  text-align: center;
-  color: #434343 !important; // Color #434343
-  margin-bottom: 32px; // Separación de 32px
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.container-llaveMX .right-section .terminos a {
-  color: $llavemx-vino;
-  text-decoration: underline;
-}
-
-// Ocultar el título "O bien, inicia sesión con:" por defecto
-.container-llaveMX .right-section .h4 {
-  display: none;
-}
-
-// Reordenar el contenido: tabs deben ir después del botón de llave MX
 .container-llaveMX .right-section {
-  display: flex;
-  flex-direction: column;
-}
+  .llavemx-logo {
+    height: 56px;
+    margin: 0 auto 20px;
+    display: block;
+  }
 
-// El logo de llave MX va primero
-.container-llaveMX .right-section .llavemx-logo {
-  order: 1;
-}
+  .terminos {
+    font-family: "Noto Sans", sans-serif !important;
+    font-weight: normal;
+    text-align: center;
+    color: #434343 !important;
+    margin-bottom: 32px;
+    font-size: 14px;
+    line-height: 1.4;
 
-// Los términos van segundo
-.container-llaveMX .right-section .terminos {
-  order: 2;
-}
+    a {
+      color: $llavemx-vino;
+      text-decoration: underline;
+    }
+  }
 
-// El botón de llave MX va tercero (justo después de términos)
-.container-llaveMX .right-section .row.m-0 {
-  order: 3;
-  margin-bottom: 24px !important;
-}
+  .h4 {
+    display: none;
+  }
 
-// Las tabs van cuarto
-.container-llaveMX .right-section .pgn__tabs {
-  order: 4;
-}
+  .llavemx-logo {
+    order: 1;
+  }
 
-// El contenido del tab va último
-.container-llaveMX .right-section .tab-content {
-  order: 5;
-}
+  .terminos {
+    order: 2;
+  }
 
-.container-llaveMX .right-section .pgn__tabs {
-  margin-bottom: 30px;
-  border-bottom: 2px solid #e0e0e0;
-}
+  .row.m-0 {
+    order: 3;
+    margin-bottom: 24px !important;
+  }
 
-.container-llaveMX .right-section .nav-link {
-  color: $llavemx-vino;
-  font-family: "Noto Sans", sans-serif !important;
-  font-weight: 500;
-  font-size: 16px;
-  border: none;
-  border-bottom: 3px solid transparent;
-  padding: 12px 24px;
-}
+  .pgn__tabs {
+    order: 4;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e0e0;
+  }
 
-.container-llaveMX .right-section .nav-link.active {
-  color: $llavemx-vino;
-  font-weight: bold;
-  border-bottom: 3px solid $llavemx-vino;
-  background-color: transparent;
-}
+  .tab-content {
+    order: 5;
+  }
 
-.container-llaveMX .right-section .nav-link:hover {
-  border-bottom: 3px solid $llavemx-dorado;
-}
+  .nav-link {
+    color: $llavemx-vino;
+    font-family: "Noto Sans", sans-serif !important;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 24px;
 
-// Estilos para los botones dentro del formulario
-.container-llaveMX .right-section button[type="submit"],
-.container-llaveMX .right-section .btn-brand,
-.container-llaveMX .right-section .stateful-button-state-default {
-  background-color: $llavemx-vino !important;
-  border-color: $llavemx-vino !important;
-  color: $llavemx-blanco !important;
-  font-family: "Noto Sans", sans-serif !important;
-  font-weight: 500;
-  padding: 12px 24px;
-  border-radius: 5px;
-  width: 100%;
-  text-align: center;
-  transition: all 0.3s ease;
-}
+    &.active {
+      color: $llavemx-vino;
+      font-weight: bold;
+      border-bottom: 3px solid $llavemx-vino;
+      background-color: transparent;
+    }
 
-.container-llaveMX .right-section button[type="submit"]:hover,
-.container-llaveMX .right-section .btn-brand:hover,
-.container-llaveMX .right-section .stateful-button-state-default:hover {
-  background-color: #7a1640 !important;
-  border-color: #7a1640 !important;
-  opacity: 0.9;
-}
+    &:hover {
+      border-bottom: 3px solid $llavemx-dorado;
+    }
+  }
 
-// Estilo para los botones de autenticación social (LlaveMX)
-.container-llaveMX .right-section .btn-llavemx {
-  background-color: $llavemx-blanco !important;
-  background-image: none !important;
-  background: $llavemx-blanco !important;
-  border: 2px solid $llavemx-vino !important;
-  color: $llavemx-vino !important;
-  font-family: "Noto Sans", sans-serif !important;
-  font-weight: 500;
-  padding: 12px 24px;
-  border-radius: 5px;
-  width: 100%;
-  text-align: center;
-  transition: all 0.3s ease;
-  display: flex !important;
-  align-items: center;
-  justify-content: flex-start;
-}
+  button[type="submit"],
+  .btn-brand,
+  .stateful-button-state-default {
+    background-color: $llavemx-vino !important;
+    border-color: $llavemx-vino !important;
+    color: $llavemx-blanco !important;
+    font-family: "Noto Sans", sans-serif !important;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
 
-.container-llaveMX .right-section .btn-llavemx:hover {
-  background-color: #f5f5f5 !important;
-  background-image: none !important;
-  background: #f5f5f5 !important;
-  border-color: $llavemx-vino !important;
-  color: $llavemx-vino !important;
-}
+    &:hover {
+      background-color: #7a1640 !important;
+      border-color: #7a1640 !important;
+      opacity: 0.9;
+    }
+  }
 
-// Estilos para el contenedor de icono
-.container-llaveMX .right-section .btn-llavemx__icon-container {
-  background-color: $llavemx-vino !important;
-  color: $llavemx-blanco !important;
-  font-size: 11px;
-  margin-left: -6px;
-  padding-top: 10px;
-  min-width: 30px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .btn-llavemx {
+    background-color: $llavemx-blanco !important;
+    background-image: none !important;
+    border: 2px solid $llavemx-vino !important;
+    color: $llavemx-vino !important;
+    font-family: "Noto Sans", sans-serif !important;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
 
-.container-llaveMX .right-section .btn-llavemx__icon {
-  background-color: transparent;
-  max-height: 24px;
-  max-width: 24px;
-}
+    &:hover {
+      background-color: #f5f5f5 !important;
+      background-image: none !important;
+      border-color: $llavemx-vino !important;
+      color: $llavemx-vino !important;
+    }
+  }
 
-// Estilos específicos para el icono y texto del botón llave MX
-.container-llaveMX .right-section .btn-llavemx .pgn__icon {
-  color: $llavemx-blanco !important;
-}
+  .btn-llavemx__icon-container {
+    background-color: $llavemx-vino !important;
+    color: $llavemx-blanco !important;
+    font-size: 11px;
+    margin-left: -6px;
+    padding-top: 10px;
+    min-width: 30px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.container-llaveMX .right-section .btn-llavemx #provider-name {
-  color: $llavemx-vino !important;
-  font-family: "Noto Sans", sans-serif !important;
-  font-weight: 500;
-}
+  .btn-llavemx__icon {
+    background-color: transparent;
+    max-height: 24px;
+    max-width: 24px;
+  }
 
-// Sobrescribir estilos específicos de Paragon
-.container-llaveMX .right-section .btn {
-  font-family: "Noto Sans", sans-serif !important;
-}
+  .btn-llavemx .pgn__icon {
+    color: $llavemx-blanco !important;
+  }
 
-.container-llaveMX .right-section .stateful-button {
-  width: 100%;
+  .btn-llavemx #provider-name {
+    color: $llavemx-vino !important;
+    font-family: "Noto Sans", sans-serif !important;
+    font-weight: 500;
+  }
+
+  .btn {
+    font-family: "Noto Sans", sans-serif !important;
+  }
+
+  .stateful-button {
+    width: 100%;
+  }
 }
 
 @media (max-width: 1040px) {
@@ -939,16 +867,16 @@ html,
     padding: 50px 30px;
     flex-direction: column;
     align-items: center;
-  }
 
-  .container-llaveMX .left-section,
-  .container-llaveMX .right-section {
-    max-width: 600px;
-    width: 100%;
-  }
+    .left-section,
+    .right-section {
+      max-width: 600px;
+      width: 100%;
+    }
 
-  .container-llaveMX .left-section {
-    padding: 30px;
+    .left-section {
+      padding: 30px;
+    }
   }
 }
 
@@ -957,7 +885,6 @@ html,
     padding: 20px 15px;
   }
 
-  // Botón de Llave MX en móvil
   .btn-llavemx {
     padding: 12px 16px !important;
     font-size: 15px !important;
@@ -984,7 +911,6 @@ html,
     box-sizing: border-box !important;
   }
 
-  // Separador colapsable en móvil
   .auth-separator-toggle {
     padding: 10px 16px;
   }
@@ -1010,41 +936,41 @@ html,
     padding: 30px 15px;
     margin: 40px auto;
     overflow-x: hidden;
-  }
 
-  .container-llaveMX .left-section {
-    text-align: center !important;
-    align-items: center !important;
-    padding: 15px 0;
-    width: 100%;
-  }
+    .left-section {
+      text-align: center !important;
+      align-items: center !important;
+      padding: 15px 0;
+      width: 100%;
 
-  .container-llaveMX .left-section h1 {
-    font-size: 28px !important;
-    text-align: center !important;
-    word-wrap: break-word;
-  }
+      h1 {
+        font-size: 28px !important;
+        text-align: center !important;
+        word-wrap: break-word;
+      }
 
-  .container-llaveMX .left-section img {
-    height: 120px;
-    max-width: 100%;
-  }
+      img {
+        height: 120px;
+        max-width: 100%;
+      }
+    }
 
-  .container-llaveMX .right-section {
-    padding: 25px 20px;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
+    .right-section {
+      padding: 25px 20px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
 
-  .container-llaveMX .right-section .llavemx-logo {
-    max-width: 150px;
-  }
+      .llavemx-logo {
+        max-width: 150px;
+      }
 
-  .container-llaveMX .right-section .llavemx-buttons-container {
-    width: 100%;
-    flex-direction: column;
-    gap: 12px;
+      .llavemx-buttons-container {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
   }
 }
 
@@ -1052,44 +978,44 @@ html,
   .container-llaveMX {
     padding: 25px 12px;
     margin: 30px auto;
-  }
 
-  .container-llaveMX .left-section {
-    text-align: center !important;
-    align-items: center !important;
-    padding: 10px 0;
-  }
+    .left-section {
+      text-align: center !important;
+      align-items: center !important;
+      padding: 10px 0;
 
-  .container-llaveMX .left-section h1 {
-    font-size: 24px !important;
-    text-align: center !important;
-    line-height: 1.2;
-    margin-bottom: 15px !important;
-  }
+      h1 {
+        font-size: 24px !important;
+        text-align: center !important;
+        line-height: 1.2;
+        margin-bottom: 15px !important;
+      }
 
-  .container-llaveMX .left-section img {
-    height: 100px;
-    max-width: 90%;
-    align-self: center !important;
-  }
+      img {
+        height: 100px;
+        max-width: 90%;
+        align-self: center !important;
+      }
+    }
 
-  .container-llaveMX .right-section {
-    padding: 20px 15px;
-    width: 100%;
-    max-width: 100%;
-  }
+    .right-section {
+      padding: 20px 15px;
+      width: 100%;
+      max-width: 100%;
 
-  .container-llaveMX .right-section .llavemx-logo {
-    max-width: 130px;
-  }
+      .llavemx-logo {
+        max-width: 130px;
+      }
 
-  .container-llaveMX .right-section .nav-link {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
+      .nav-link {
+        padding: 10px 12px;
+        font-size: 14px;
+      }
 
-  .container-llaveMX .right-section .terminos {
-    font-size: 13px;
-    padding: 0 5px;
+      .terminos {
+        font-size: 13px;
+        padding: 0 5px;
+      }
+    }
   }
 }

@@ -73,20 +73,15 @@ const LlaveMXBlock = ({ providers, isLoginPage, currentProvider }) => {
 
           {/* Botón DERECHO: Crear Cuenta (Estilo BORDEADO) */}
           {isLoginPage ? (
-            // Si estamos en Login, es un Link para ir a Registro
-            <Link to={REGISTER_PAGE} className="btn-llavemx-secondary">
+            // Si estamos en Login, redirige a Llave MX para registro
+            <a href="https://www.llave.gob.mx/RegistroCiudadano.xhtml" className="btn-llavemx-secondary">
               Crear cuenta
-            </Link>
+            </a>
           ) : (
-            // Si estamos en Registro, es un BOTÓN funcional de Auth (Registro)
-            // NOTA: Usamos registerAuthUrl
-            <button
-              type="button"
-              className="btn-llavemx-secondary"
-              onClick={() => window.location.href = registerAuthUrl}
-            >
+            // Si estamos en Registro, redirige a Llave MX para registro
+            <a href="https://www.llave.gob.mx/RegistroCiudadano.xhtml" className="btn-llavemx-secondary">
               Crear cuenta
-            </button>
+            </a>
           )}
 
         </div>

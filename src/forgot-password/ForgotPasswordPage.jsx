@@ -98,7 +98,7 @@ const ForgotPasswordPage = (props) => {
     <BaseContainer>
       <Helmet>
         <title>{formatMessage(messages['forgot.password.page.title'],
-          { siteName: getConfig().SITE_NAME })}
+          { siteName: 'Cursos @prende.mx' })}
         </title>
       </Helmet>
       <div>
@@ -112,7 +112,7 @@ const ForgotPasswordPage = (props) => {
               {formatMessage(messages['forgot.password.page.heading'])}
             </h2>
             <p className="mb-4">
-              {formatMessage(messages['forgot.password.page.instructions'])}
+             Por favor, introduce tu dirección de correo electrónico y te enviaremos un mensaje con instrucciones sobre cómo restablecer tu contraseña.
             </p>
             <FormGroup
               floatingLabel={formatMessage(messages['forgot.password.page.email.field.label'])}
@@ -152,9 +152,9 @@ const ForgotPasswordPage = (props) => {
               </Hyperlink>
             )}
             <p className="mt-5.5 small text-gray-700">
-              {formatMessage(messages['additional.help.text'], { platformName })}
+              Para obtener ayuda adicional envíanos un ticket a
               <span>
-                <Hyperlink isInline destination={`mailto:${getConfig().INFO_EMAIL}`}>{getConfig().INFO_EMAIL}</Hyperlink>
+                <Hyperlink isInline destination={`https://soporte.mexicox.gob.mx`}>https://soporte.mexicox.gob.mx</Hyperlink>
               </span>
             </p>
           </Form>

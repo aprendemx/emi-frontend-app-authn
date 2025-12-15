@@ -50,13 +50,13 @@ describe('Logistration', () => {
           marketingEmailsOptIn: true,
         },
         formFields: {
-          name: '', email: '', username: '', password: '',
+          name: '', email: '', username: '', password: '', nombres:'', estado:'', primer_apellido:'', segundo_apellido:'', ocupacion:'', municipio:''
         },
         emailSuggestion: {
           suggestion: '', type: '',
         },
         errors: {
-          name: '', email: '', username: '', password: '',
+          name: '', email: '', username: '', password: '', nombres:'', estado:'', primer_apellido:'', segundo_apellido:'', ocupacion:'', municipio:''
         },
       },
       registrationResult: { success: false, redirectUrl: '' },

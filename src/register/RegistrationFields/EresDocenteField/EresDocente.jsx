@@ -1,40 +1,33 @@
 import React from 'react';
 
+import { getConfig } from '@edx/frontend-platform';
 import { FormattedMessage, useIntl } from '@edx/frontend-platform/i18n';
 import { Form, Hyperlink } from '@openedx/paragon';
 import PropTypes from 'prop-types';
 
 import messages from '../../messages';
 
-const TermsOfService = (props) => {
+const EresDocente = (props) => {
   const { formatMessage } = useIntl();
   const {
     errorMessage, onChangeHandler, value,
   } = props;
 
   return (
-    <div id="terms-of-service" className="micro text-muted pt-2">
+    <div id="eres-docente" className="micro text-muted">
       <Form.Checkbox
         className="form-field--checkbox mt-1"
-        id="tos"
+        id="eres_docente"
         checked={value}
-        name="tos"
+        name="eres_docente"
         value={value}
         onChange={onChangeHandler}
       >
         <FormattedMessage
-          id="register.page.terms.of.service_"
-          defaultMessage="He leído y acepto el Aviso de privacidad de la Plataforma {platformName}.&nbsp;{termsOfService}"
-          description="Text that appears on registration form stating terms of service.
-                       It is a legal document that users must agree to."
-          values={{
-            platformName: 'Cursos @prende.mx',
-            termsOfService: (
-              <Hyperlink variant="muted" destination={"https://cursos.aprende.gob.mx/tos"} target="_blank">
-                {formatMessage(messages['aviso.de.privacidad'])}
-              </Hyperlink>
-            ),
-          }}
+          id="register.page.eres_docente"
+          defaultMessage="¿Eres docente?"
+          description="Si tienes alguna relación con la educación, selecciona esta casilla."
+
         />
       </Form.Checkbox>
       {errorMessage && (
@@ -46,15 +39,15 @@ const TermsOfService = (props) => {
   );
 };
 
-TermsOfService.defaultProps = {
+EresDocente.defaultProps = {
   errorMessage: '',
   value: false,
 };
 
-TermsOfService.propTypes = {
+EresDocente.propTypes = {
   errorMessage: PropTypes.string,
   onChangeHandler: PropTypes.func.isRequired,
   value: PropTypes.bool,
 };
 
-export default TermsOfService;
+export default EresDocente;

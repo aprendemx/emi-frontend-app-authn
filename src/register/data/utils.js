@@ -5,6 +5,8 @@ import messages from '../messages';
 import validateEmail from '../RegistrationFields/EmailField/validator';
 import validateName from '../RegistrationFields/NameField/validator';
 import validateUsername from '../RegistrationFields/UsernameField/validator';
+import validateEstado from '../RegistrationFields/EstadoField/validator';
+import validateCurp from '../RegistrationFields/CurpField/validator';
 
 /**
  * It validates the password field value
@@ -39,15 +41,8 @@ export const isFormValid = (
   const fieldErrors = { ...errors };
   let isValid = true;
   let emailSuggestion = { suggestion: '', type: '' };
-
   Object.keys(payload).forEach(key => {
     switch (key) {
-    case 'name':
-      if (!fieldErrors.name) {
-        fieldErrors.name = validateName(payload.name, formatMessage);
-      }
-      if (fieldErrors.name) { isValid = false; }
-      break;
     case 'email': {
       if (!fieldErrors.email) {
         const {
@@ -78,6 +73,26 @@ export const isFormValid = (
       }
       if (fieldErrors.password) { isValid = false; }
       break;
+
+      case 'estado':
+        if (!fieldErrors.estado) {
+            fieldErrors.estado = validateEstado(payload.estado, formatMessage);
+        }
+        if (fieldErrors.estado) { isValid = false; }
+        break;
+
+
+        case 'curp':
+          if (parseInt(fieldErrors.estado)>32) {
+            break;
+          }
+        if (!fieldErrors.curp) {
+            fieldErrors.curp = validateCurp(payload.curp, formatMessage);
+        }
+          if (fieldErrors.curp) { isValid = false; }
+        break;
+
+
     default:
       break;
     }
@@ -135,7 +150,19 @@ export const prepareRegistrationPayload = (
   }
 
   payload.totalRegistrationTime = totalRegistrationTime;
-  payload = snakeCaseObject(payload);
+
+  payload.estado = payload.estado.estadoCode;
+  payload.pais = payload.pais.estadoCode;
+  payload.ocupacion = payload.ocupacion.catalogoCode;
+  payload.maximo_nivel = payload.maximo_nivel.catalogoCode;
+  if (payload.eres_docente) {
+    payload.funcion = payload.funcion.catalogoCode;
+    payload.nivel_Educativo = payload.nivel_Educativo.catalogoCode;
+  } else {
+    payload.funcion = '0'
+    payload.nivel_Educativo = '0'
+  }
+
 
   // add query params to the payload
   payload = { ...payload, ...queryParams };

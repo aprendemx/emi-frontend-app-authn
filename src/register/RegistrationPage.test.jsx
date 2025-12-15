@@ -64,13 +64,13 @@ describe('RegistrationPage', () => {
       marketingEmailsOptIn: true,
     },
     formFields: {
-      name: '', email: '', username: '', password: '',
+      name: '', email: '', username: '', password: '',nombres:'',estado:'',municipio:'',ocupacion:'',primer_apellido:'',segundo_apellido:'',
     },
     emailSuggestion: {
       suggestion: '', type: '',
     },
     errors: {
-      name: '', email: '', username: '', password: '',
+      name: '', email: '', username: '', password: '',nombres:'',estado:'',municipio:'',ocupacion:'',primer_apellido:'',segundo_apellido:'',
     },
   };
 
@@ -674,6 +674,12 @@ describe('RegistrationPage', () => {
             ...registrationFormData,
             formFields: {
               name: 'John Doe',
+              nombres:'John Doe',
+              primer_apellido:'Doe',
+              segundo_apellido:'González',
+              estado:9,
+              municipio:'Azcapotzalco',
+              ocupacion:'Maestro',
               username: 'john_doe',
               email: 'john.doe@yopmail.com',
               password: 'password1',

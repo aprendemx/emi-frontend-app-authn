@@ -56,7 +56,7 @@ const HonorCode = (props) => {
   }
 
   return (
-    <div id="honor-code" className="micro text-muted">
+    <div id="honor-code" className="micro text-muted text-muted pt-2">
       <Form.Checkbox
         className="form-field--checkbox mt-1"
         id="honor-code"
@@ -66,13 +66,13 @@ const HonorCode = (props) => {
         onChange={onChangeHandler}
       >
         <FormattedMessage
-          id="register.page.honor.code"
-          defaultMessage="I agree to the {platformName}&nbsp;{tosAndHonorCode}"
-          description="Text that appears on registration form stating honor code"
+          id="register.page.honor.code_"
+          defaultMessage="He leído y acepto el Código de honor de la Plataforma {platformName}&nbsp;{tosAndHonorCode}."
+          description="He leído y acepto el Código de honor de la Plataforma {platformName}&nbsp;{tosAndHonorCode}."
           values={{
-            platformName: getConfig().SITE_NAME,
+            platformName: ' Cursos @prende.mx',
             tosAndHonorCode: (
-              <Hyperlink variant="muted" destination={getConfig().TOS_AND_HONOR_CODE || '#'} target="_blank">
+              <Hyperlink variant="muted" destination={"https://cursos.aprende.gob.mx/honor"} target="_blank">
                 {formatMessage(messages['honor.code'])}
               </Hyperlink>
             ),

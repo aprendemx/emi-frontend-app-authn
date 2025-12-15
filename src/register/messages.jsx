@@ -58,6 +58,17 @@ const messages = defineMessages({
     defaultMessage: 'For account activation and important updates',
     description: 'Help text for email field on registration page',
   },
+  'help.text.dni': {
+    id: 'help.text.dni',
+    defaultMessage: 'ID / Cédula de Identidad / DNI ',
+    description: 'ID / Cédula de Identidad / DNI ',
+  },
+  'help.text.pais': {
+    id: 'help.text.pais',
+    defaultMessage: 'País de origen ',
+    description: 'País de origen ',
+  },
+
   // Form buttons
   'create.account.for.free.button': {
     id: 'create.account.for.free.button',
@@ -101,11 +112,34 @@ const messages = defineMessages({
     defaultMessage: 'Select your country or region of residence',
     description: 'Error message when no country/region is selected',
   },
+
+
+
   'invalid.country.field.error': {
     id: 'invalid.country.field.error',
     defaultMessage: 'Country must match with an option available in the dropdown.',
     description: 'Error message when country is invalid',
   },
+
+
+
+  'empty.pais.field.error': {
+    id: 'empty.pais.field.error',
+    defaultMessage: 'Select your country or region of residence',
+    description: 'Error message when no country/region is selected',
+  },
+
+
+
+  'invalid.pais.field.error': {
+    id: 'invalid.pais.field.error',
+    defaultMessage: 'Country must match with an option available in the dropdown.',
+    description: 'Error message when country is invalid',
+  },
+
+
+
+
   'email.do.not.match': {
     id: 'email.do.not.match',
     defaultMessage: 'The email addresses do not match.',
@@ -182,13 +216,19 @@ const messages = defineMessages({
   },
   'honor.code': {
     id: 'honor.code',
-    defaultMessage: 'Honor Code',
-    description: 'Text for the hyperlink that redirects user to the honor code',
+    defaultMessage: 'Leer Código de Honor Code',
+    description: 'Texto hiperenlazado al código de honor',
   },
   'terms.of.service': {
     id: 'terms.of.service',
-    defaultMessage: 'Terms of Service',
+    defaultMessage: 'Aviso de privacidad',
     description: 'Text for the hyperlink that redirects user to the terms of service',
+  },
+
+  'aviso.de.privacidad': {
+    id: 'aviso.de.privacidad',
+    defaultMessage: 'Aviso de privacidad',
+    description: 'Aviso de privacidad',
   },
   // miscellaneous strings
   'registration.username.suggestion.label': {
@@ -201,6 +241,208 @@ const messages = defineMessages({
     defaultMessage: 'Did you mean',
     description: 'Did you mean alert suggestion',
   },
+
+
+  'empty.curp.field.error': {
+    id: 'empty.curp.field.error',
+    defaultMessage: 'CURP no puede estar vacío',
+    description: 'CURP no puede estar vacío',
+  },
+  'empty.estado.field.error': {
+    id: 'empty.estado.field.error',
+    defaultMessage: 'Selecciona un estado',
+    description: 'Debes seleccionar un estado',
+  },
+  'invalid.estado.field.error': {
+    id: 'invalid.estado.field.error',
+    defaultMessage: 'Selecciona un estado',
+    description: 'Debes seleccionar un estado',
+  },
+  'help.text.nombres': {
+    id: 'help.text.nombres',
+    defaultMessage: 'Escribe tu nombre(s)',
+    description: 'Debes Escribe tu nombre(s)',
+  },
+  'registration.pais.label': {
+    id: 'registration.pais.label',
+    defaultMessage: 'País de orígen',
+    description: 'Selecciona el país de origen',
+  },
+  'registration.estado.label': {
+    id: 'registration.estado.label',
+    defaultMessage: 'Estado de residencia',
+    description: 'Selecciona el  estado de residencia',
+  },
+
+    'help.text.primer_apellido': {
+    id: 'help.text.primer_apellido',
+    defaultMessage: 'Escribe tu primer apellido',
+    description: 'Debes Escribe tu primer apellido',
+    },
+    'help.text.segundo_apellido': {
+    id: 'help.text.segundo_apellido',
+    defaultMessage: 'Escribe tu segundo apellido',
+    description: 'Debes Escribe tu segundo apellido'
+    },
+
+
+  'help.text.municipio': {
+    id: 'help.text.municipio',
+    defaultMessage: 'Escribe tu municipio',
+    description: 'Debes Escribe tu municipio',
+  },
+
+  'help.text.estado': {
+    id: 'help.text.estado',
+    defaultMessage: 'Selecciona tu estado',
+    description: 'Debes seleccionar tu estado',
+  },
+
+
+  'help.text.funcion': {
+    id: 'help.text.funcion',
+    defaultMessage: 'Selecciona tu función en tu escuela',
+    description: 'Selecciona tu función en tu escuela',
+  },
+
+  'registration.funcion.label': {
+    id: 'registration.funcion.label',
+    defaultMessage: 'Selecciona la función que desempeñas en tu escuela',
+    description: 'Selecciona la función que desempeñas en tu escuela',
+  },
+  'empty.funcion.field.error': {
+    id: 'empty.funcion.field.error',
+    defaultMessage: 'Selecciona la función que desempeñas en tu escuela',
+    description: 'Selecciona la función que desempeñas en tu escuela',
+  },
+  'invalid.funcion.field.error': {
+    id: 'invalid.funcion.field.error',
+    defaultMessage: 'Selecciona la función que desempeñas en tu escuela',
+    description: 'Selecciona la función que desempeñas en tu escuela',
+  },
+
+  'help.text.ocupacion': {
+    id: 'help.text.ocupacion',
+    defaultMessage: 'Escribe tu ocupación(s)',
+    description: 'Debes Escribe tu ocupación(s)',
+  },
+
+  'registration.ocupacion.label': {
+    id: 'registration.ocupacion.label',
+    defaultMessage: 'Selecciona la ocupación que desempeñas',
+    description: 'Selecciona la función que desempeñas',
+  },
+  'empty.ocupacion.field.error': {
+    id: 'empty.ocupacion.field.error',
+    defaultMessage: 'Selecciona la ocupación que desempeñas',
+    description: 'Selecciona la ocupacion que desempeñas',
+  },
+  'invalid.ocupacion.field.error': {
+    id: 'invalid.ocupacion.field.error',
+    defaultMessage: 'Selecciona la ocupación que desempeñas',
+    description: 'Selecciona la ocupacion que desempeñas',
+  },
+
+
+  'help.text.nivel_Educativo': {
+    id: 'help.text.nivel_Educativo',
+    defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+    description: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+  },
+  'registration.nivel_Educativo.label': {
+    id: 'registration.nivel_Educativo.label',
+    defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+    description: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+  },
+  'empty.nivel_Educativo.field.error': {
+    id: 'empty.nivel_Educativo.field.error',
+    defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+    description: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+  },
+  'invalid.nivel_Educativo.field.error': {
+    id: 'invalid.nivel_Educativo.field.error',
+    defaultMessage: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+    description: 'Selecciona el nivel educativo en que desarrollas tu actividad',
+  },
+
+
+  'help.text.maximo_nivel': {
+    id: 'help.text.maximo_nivel',
+    defaultMessage: 'Selecciona el máximo nivel educativo que cursaste',
+    description: 'Selecciona el máximo nivel educativo que cursaste',
+  },
+  'registration.maximo_nivel.label': {
+    id: 'registration.nivel_Educativo.label',
+    defaultMessage: 'Selecciona el máximo nivel educativo que cursaste',
+    description: 'Selecciona el máximo nivel educativo que cursaste',
+  },
+  'empty.maximo_nivel.field.error': {
+    id: 'empty.nivel_Educativo.field.error',
+    defaultMessage: 'Selecciona el máximo nivel educativo que cursaste',
+    description: 'Selecciona el máximo nivel educativo que cursaste',
+  },
+  'invalid.maximo_nivel.field.error': {
+    id: 'invalid.nivel_Educativo.field.error',
+    defaultMessage: 'Selecciona el máximo nivel educativo que cursaste',
+    description: 'Selecciona el máximo nivel educativo que cursaste',
+  },
+
+
+
+
+
+  'help.text.asignatura': {
+    id: 'help.text.asignatura',
+    defaultMessage: 'Escribe el campo formativo en el que te especializas',
+    description: 'Escribe el campo formativo en el que te especializas',
+  },
+
+
+ 'help.text.cct': {
+    id: 'help.text.cct',
+    defaultMessage: 'Escribe la Clave del Centro de Trabajo donde te desarrollas',
+    description: 'Escribe la Clave del Centro de Trabajo donde te desarrollas',
+  },
+
+
+ 'help.text.curp': {
+    id: 'help.text.curp',
+    defaultMessage: 'Escribe tu CURP',
+    description: 'Escribe tu CURP',
+  },
+
+
+
+
+
+
+  'curp.validation.message': {
+    id: 'curp.validation.message',
+    defaultMessage: 'CURP inválido',
+    description: 'CURP inválido',
+  },
+
+
+
+  'registration.municipio.label': {
+    id: 'registration.municipio.label',
+    defaultMessage: 'Selecciona tu municipio',
+    description: 'Selecciona tu municipio',
+  },
+  'empty.municipio.field.error': {
+    id: 'empty.municipio.field.error',
+    defaultMessage: 'Selecciona tu municipio',
+    description: 'Selecciona tu municipio',
+  },
+  'invalid.municipio.field.error': {
+    id: 'invalid.municipio.field.error',
+    defaultMessage: 'Selecciona tu municipio',
+    description: 'Selecciona tu municipio',
+  },
+
+
+
+
 });
 
 export default messages;

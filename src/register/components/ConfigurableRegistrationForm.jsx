@@ -9,6 +9,7 @@ import { FIELDS } from '../data/constants';
 import messages from '../messages';
 import { CountryField, HonorCode, TermsOfService } from '../RegistrationFields';
 
+
 /**
  * Fields on registration page that are not the default required fields (name, email, username, password).
  * These configurable required fields are defined on the backend using REGISTRATION_EXTRA_FIELDS setting.
@@ -176,6 +177,8 @@ const ConfigurableRegistrationForm = (props) => {
       </span>,
     );
   }
+
+
 
   if (flags.showMarketingEmailOptInCheckbox) {
     formFieldDescriptions.push(

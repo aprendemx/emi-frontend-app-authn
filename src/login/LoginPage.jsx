@@ -77,6 +77,7 @@ const LoginPage = (props) => {
   const [formFields, setFormFields] = useState({ ...backedUpFormData.formFields });
   const [errorCode, setErrorCode] = useState({ type: '', count: 0, context: {} });
   const [errors, setErrors] = useState({ ...backedUpFormData.errors });
+  const [showTraditionalForm, setShowTraditionalForm] = useState(false);
   const tpaHint = getTpaHint();
 
   useEffect(() => {
@@ -176,6 +177,12 @@ const LoginPage = (props) => {
     sendTrackEvent('edx.bi.password-reset_form.toggled', { category: 'user-engagement' });
   };
 
+  const handleShowTraditionalForm = (e) => {
+    e.preventDefault();
+    setShowTraditionalForm(true);
+    sendTrackEvent('edx.bi.login.traditional_form.toggled', { category: 'user-engagement' });
+  };
+
   const { provider, skipHintedLogin } = getTpaProvider(tpaHint, providers, secondaryProviders);
 
   if (tpaHint) {
@@ -234,8 +241,7 @@ const LoginPage = (props) => {
         />
 
         {/* Separador con formulario tradicional colapsable */}
-        {/* [MODIFICACIÓN] Se oculta el formulario tradicional para forzar el uso de LlaveMX
-        {providers.some(p => p.id === 'oa2-llavemx') && (
+        {providers.some(p => p.id === 'oa2-llavemx') && showTraditionalForm && (
           <AuthSeparator isLoginPage={true} currentProvider={currentProvider}>
             <Form id="sign-in-form" name="sign-in-form">
               <FormGroup
@@ -292,7 +298,22 @@ const LoginPage = (props) => {
             </Form>
           </AuthSeparator>
         )}
-        */}
+
+        {/* Pie de página para mostrar formulario tradicional */}
+        {providers.some(p => p.id === 'oa2-llavemx') && !showTraditionalForm && (
+          <div className="mt-4 text-center">
+            <p className="small text-muted">
+              ¿No tienes acceso a Llave MX?{' '}
+              <a
+                href="#"
+                onClick={handleShowTraditionalForm}
+                className="text-primary font-weight-500"
+              >
+                Inicia sesión con tu cuenta de usuario
+              </a>
+            </p>
+          </div>
+        )}
       </div >
     </>
   );

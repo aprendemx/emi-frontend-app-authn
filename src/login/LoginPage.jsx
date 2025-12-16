@@ -37,6 +37,7 @@ import ThirdPartyAuth from '../common-components/ThirdPartyAuth';
 import {
   DEFAULT_STATE, PENDING_STATE, RESET_PAGE,
 } from '../data/constants';
+import { isLlaveMXProvider } from '../data/llavemx';
 import {
   getActivationStatus,
   getAllPossibleQueryParams,
@@ -243,10 +244,10 @@ const LoginPage = (props) => {
         />
 
         {/* Debug info */}
-        {console.log('LoginPage render - showTraditionalForm:', showTraditionalForm, 'has llavemx:', providers.some(p => p.id === 'oa2-llavemx'))}
+        {console.log('LoginPage render - showTraditionalForm:', showTraditionalForm, 'has llavemx:', providers.some(p => isLlaveMXProvider(p.id)))}
 
         {/* Separador con formulario tradicional colapsable */}
-        {providers.some(p => p.id === 'oa2-llavemx') && showTraditionalForm && (
+        {providers.some(p => isLlaveMXProvider(p.id)) && showTraditionalForm && (
           <div className="mt-4">
             <h3>Formulario Tradicional Visible!</h3>
             <AuthSeparator isLoginPage={true} currentProvider={currentProvider}>
@@ -296,7 +297,7 @@ const LoginPage = (props) => {
               </Link>
               <ThirdPartyAuth
                 currentProvider={currentProvider}
-                providers={providers.filter(p => p.id !== 'oa2-llavemx')}
+                providers={providers.filter(p => !isLlaveMXProvider(p.id))}
                 secondaryProviders={secondaryProviders}
                 handleInstitutionLogin={handleInstitutionLogin}
                 thirdPartyAuthApiStatus={thirdPartyAuthApiStatus}
@@ -308,7 +309,7 @@ const LoginPage = (props) => {
         )}
 
         {/* Pie de página para mostrar formulario tradicional */}
-        {providers.some(p => p.id === 'oa2-llavemx') && !showTraditionalForm && (
+        {providers.some(p => isLlaveMXProvider(p.id)) && !showTraditionalForm && (
           <div className="mt-4 text-center">
             <p className="small text-muted">
               ¿No tienes acceso a Llave MX?{' '}

@@ -250,7 +250,7 @@ const LoginPage = (props) => {
         {providers.some(p => isLlaveMXProvider(p.id)) && showTraditionalForm && (
           <div className="mt-4">
             <h3>Formulario Tradicional Visible!</h3>
-            <AuthSeparator isLoginPage={true} currentProvider={currentProvider}>
+            <AuthSeparator isLoginPage={true} currentProvider={currentProvider} autoExpand={true}>
             <Form id="sign-in-form" name="sign-in-form">
               <FormGroup
                 name="emailOrUsername"

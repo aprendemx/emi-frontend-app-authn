@@ -180,9 +180,7 @@ const LoginPage = (props) => {
 
   const handleShowTraditionalForm = (e) => {
     e.preventDefault();
-    console.log('Toggling traditional form, current state:', showTraditionalForm);
     setShowTraditionalForm(true);
-    console.log('Traditional form should now be visible');
     sendTrackEvent('edx.bi.login.traditional_form.toggled', { category: 'user-engagement' });
   };
 
@@ -243,14 +241,9 @@ const LoginPage = (props) => {
           isLoginPage={true}
         />
 
-        {/* Debug info */}
-        {console.log('LoginPage render - showTraditionalForm:', showTraditionalForm, 'has llavemx:', providers.some(p => isLlaveMXProvider(p.id)))}
-
         {/* Separador con formulario tradicional colapsable */}
         {providers.some(p => isLlaveMXProvider(p.id)) && showTraditionalForm && (
-          <div className="mt-4">
-            <h3>Formulario Tradicional Visible!</h3>
-            <AuthSeparator isLoginPage={true} currentProvider={currentProvider} autoExpand={true}>
+          <AuthSeparator isLoginPage={true} currentProvider={currentProvider} autoExpand={true}>
             <Form id="sign-in-form" name="sign-in-form">
               <FormGroup
                 name="emailOrUsername"
@@ -305,25 +298,33 @@ const LoginPage = (props) => {
               />
             </Form>
           </AuthSeparator>
-          </div>
         )}
+      </div>
 
-        {/* Pie de página para mostrar formulario tradicional */}
-        {providers.some(p => isLlaveMXProvider(p.id)) && !showTraditionalForm && (
-          <div className="mt-4 text-center">
-            <p className="small text-muted">
-              ¿No tienes acceso a Llave MX?{' '}
-              <a
-                href="#"
-                onClick={handleShowTraditionalForm}
-                className="text-primary font-weight-500"
-              >
-                Inicia sesión con tu cuenta de usuario
-              </a>
-            </p>
+      {/* Pie de página para mostrar formulario tradicional - Fuera del contenedor */}
+      {providers.some(p => isLlaveMXProvider(p.id)) && !showTraditionalForm && (
+        <div className="traditional-login-notice">
+          <div className="container-fluid">
+            <div className="row justify-content-center">
+              <div className="col-md-6 col-lg-4">
+                <p className="text-center mb-0 py-3">
+                  <small>
+                    ¡Aviso! Puedes realizar el ingreso tradicional con cuenta de usuario de cursos aprendemx{' '}
+                    <a
+                      href="#"
+                      onClick={handleShowTraditionalForm}
+                      className="font-weight-bold"
+                      style={{ textDecoration: 'underline' }}
+                    >
+                      aquí
+                    </a>.
+                  </small>
+                </p>
+              </div>
+            </div>
           </div>
-        )}
-      </div >
+        </div>
+      )}
     </>
   );
 };

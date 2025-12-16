@@ -1,3 +1,23 @@
 .login-button-width {
     min-width: 6rem;
 }
+
+.traditional-login-notice {
+    background-color: #fffbea;
+    border-top: 1px solid #f5e6c3;
+    margin-top: 2rem;
+    
+    p {
+        color: #7a6a3a;
+        font-size: 0.875rem;
+        
+        a {
+            color: #5a4a2a;
+            
+            &:hover {
+                color: #3a2a1a;
+                text-decoration: underline !important;
+            }
+        }
+    }
+}

@@ -304,25 +304,19 @@ const LoginPage = (props) => {
       {/* Pie de página para mostrar formulario tradicional - Fuera del contenedor */}
       {providers.some(p => isLlaveMXProvider(p.id)) && !showTraditionalForm && (
         <div className="traditional-login-notice">
-          <div className="container-fluid">
-            <div className="row justify-content-center">
-              <div className="col-md-6 col-lg-4">
-                <p className="text-center mb-0 py-3">
-                  <small>
-                    ¡Aviso! Puedes realizar el ingreso tradicional con cuenta de usuario de cursos aprendemx{' '}
-                    <a
-                      href="#"
-                      onClick={handleShowTraditionalForm}
-                      className="font-weight-bold"
-                      style={{ textDecoration: 'underline' }}
-                    >
-                      aquí
-                    </a>.
-                  </small>
-                </p>
-              </div>
-            </div>
-          </div>
+          <p className="text-center mb-0 py-3">
+            <small>
+              ¡Aviso! Puedes realizar el ingreso tradicional con cuenta de usuario de cursos aprendemx{' '}
+              <a
+                href="#"
+                onClick={handleShowTraditionalForm}
+                className="font-weight-bold"
+                style={{ textDecoration: 'underline' }}
+              >
+                aquí
+              </a>.
+            </small>
+          </p>
         </div>
       )}
     </>

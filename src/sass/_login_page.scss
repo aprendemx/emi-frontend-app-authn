@@ -5,7 +5,12 @@
 .traditional-login-notice {
     background-color: #fffbea;
     border-top: 1px solid #f5e6c3;
-    margin-top: 2rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
     
     p {
         color: #7a6a3a;

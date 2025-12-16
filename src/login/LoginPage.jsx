@@ -179,7 +179,9 @@ const LoginPage = (props) => {
 
   const handleShowTraditionalForm = (e) => {
     e.preventDefault();
+    console.log('Toggling traditional form, current state:', showTraditionalForm);
     setShowTraditionalForm(true);
+    console.log('Traditional form should now be visible');
     sendTrackEvent('edx.bi.login.traditional_form.toggled', { category: 'user-engagement' });
   };
 
@@ -240,9 +242,14 @@ const LoginPage = (props) => {
           isLoginPage={true}
         />
 
+        {/* Debug info */}
+        {console.log('LoginPage render - showTraditionalForm:', showTraditionalForm, 'has llavemx:', providers.some(p => p.id === 'oa2-llavemx'))}
+
         {/* Separador con formulario tradicional colapsable */}
         {providers.some(p => p.id === 'oa2-llavemx') && showTraditionalForm && (
-          <AuthSeparator isLoginPage={true} currentProvider={currentProvider}>
+          <div className="mt-4">
+            <h3>Formulario Tradicional Visible!</h3>
+            <AuthSeparator isLoginPage={true} currentProvider={currentProvider}>
             <Form id="sign-in-form" name="sign-in-form">
               <FormGroup
                 name="emailOrUsername"
@@ -297,6 +304,7 @@ const LoginPage = (props) => {
               />
             </Form>
           </AuthSeparator>
+          </div>
         )}
 
         {/* Pie de página para mostrar formulario tradicional */}

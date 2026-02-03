@@ -3,7 +3,7 @@ $card-gap: 24px;
 .recommendations-container__card-list {
   gap: $card-gap $card-gap;
 
-  @media (-pgn-size-breakpoint-max-width-sm) {
+  @media (--pgn-size-breakpoint-max-width-sm) {
     margin-bottom: 0 !important;
   }
 

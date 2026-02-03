@@ -351,7 +351,7 @@ $llavemx-blanco: #ffffff;
   margin-bottom: 0.5rem;
   font-weight: 700;
 
-  @media (-pgn-size-breakpoint-max-width-xl) {
+  @media (--pgn-size-breakpoint-max-width-xl) {
     font-size: 1.375rem;
     line-height: 1.75rem;
   }
@@ -363,7 +363,7 @@ $llavemx-blanco: #ffffff;
 }
 
 .large-screen-left-container {
-  @media (-pgn-size-breakpoint-max-width-xl) {
+  @media (--pgn-size-breakpoint-max-width-xl) {
     flex: 0 0 25%;
     max-width: 25%;
   }
@@ -418,7 +418,7 @@ body:has(.fondo-llaveMX) .extra-large-screen-top-stripe {
   display: none !important;
 }
 
-@include media-breakpoint-up('xl') {
+@media (min-width: 1200px) {
   .extra-large-screen-top-stripe {
     display: flex;
     height: 0.5rem;

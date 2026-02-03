@@ -140,8 +140,6 @@ const Logistration = ({
                     <Tab title={formatMessage(messages['logistration.register'])} eventKey={REGISTER_PAGE} />
                     <Tab title={formatMessage(messages['logistration.sign.in'])} eventKey={LOGIN_PAGE} />
                   </Tabs>
-                  */
-                  null
                 ))}
               {key && (
                 <Navigate to={updatePathWithQueryParams(key)} replace />

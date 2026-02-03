@@ -389,10 +389,10 @@ $llavemx-blanco: #ffffff;
     display: flex;
     height: 0.5rem;
     background-image: linear-gradient(102.02deg,
-        $brand-700,
-        $brand-700 10%,
-        $brand 10%,
-        $brand 90%,
+        $llavemx-vino,
+        $llavemx-vino 10%,
+        $llavemx-dorado 10%,
+        $llavemx-dorado 90%,
         $primary-700 90%,
         $primary-700 100%,
       );
@@ -405,9 +405,9 @@ $llavemx-blanco: #ffffff;
     display: flex;
     height: 0.5rem;
     background-image: linear-gradient(102.02deg,
-        $brand-700 10%,
-        $brand 10%,
-        $brand 65%,
+        $llavemx-vino 10%,
+        $llavemx-dorado 10%,
+        $llavemx-dorado 65%,
         $primary-700 65%,
         $primary-700 75%,
         $accent-a 75%,
@@ -429,9 +429,9 @@ body:has(.fondo-llaveMX) .extra-large-screen-top-stripe {
     display: flex;
     height: 0.5rem;
     background-image: linear-gradient(102.02deg,
-        $brand-700 10%,
-        $brand 10%,
-        $brand 45%,
+        $llavemx-vino 10%,
+        $llavemx-dorado 10%,
+        $llavemx-dorado 45%,
         $primary-700 45%,
         $primary-700 55%,
         $accent-a 55%,

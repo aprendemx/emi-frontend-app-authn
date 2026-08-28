@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Form, Button } from '@openedx/paragon';
+import React from "react";
+import PropTypes from "prop-types";
+import { Form, Button } from "@openedx/paragon";
+import { getConfig } from "@edx/frontend-platform";
 
 const TermsAndPrivacy = ({
   honorCode,
@@ -11,15 +12,15 @@ const TermsAndPrivacy = ({
   privacyPolicyError,
 }) => {
   // URLs específicas para los documentos
-  const honorCodeUrl = 'https://emi.aprende.gob.mx/honor';
-  const privacyPolicyUrl = 'https://emi.aprende.gob.mx/privacy';
+  const honorCodeUrl = `${getConfig().LMS_BASE_URL}/honor`;
+  const privacyPolicyUrl = `${getConfig().LMS_BASE_URL}/privacy`;
 
   const handleHonorCodeClick = () => {
-    window.open(honorCodeUrl, '_blank', 'noopener,noreferrer');
+    window.open(honorCodeUrl, "_blank", "noopener,noreferrer");
   };
 
   const handlePrivacyPolicyClick = () => {
-    window.open(privacyPolicyUrl, '_blank', 'noopener,noreferrer');
+    window.open(privacyPolicyUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -46,9 +47,7 @@ const TermsAndPrivacy = ({
         </div>
       </div>
       {honorCodeError && (
-        <div className="text-danger-300 small mb-2 ms-4">
-          {honorCodeError}
-        </div>
+        <div className="text-danger-300 small mb-2 ms-4">{honorCodeError}</div>
       )}
 
       {/* Aviso de Privacidad */}
@@ -91,8 +90,8 @@ TermsAndPrivacy.propTypes = {
 };
 
 TermsAndPrivacy.defaultProps = {
-  honorCodeError: '',
-  privacyPolicyError: '',
+  honorCodeError: "",
+  privacyPolicyError: "",
 };
 
 export default TermsAndPrivacy;

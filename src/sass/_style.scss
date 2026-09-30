@@ -41,11 +41,20 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
 
 .main-content {
   padding-top: calc(var(--pgn-spacing-spacer-base) * 1.5) !important;
-  min-width: 464px !important;
+  min-width: 500px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: auto; // remove 80vh
 }
 
 .welcome-page-content {
-  min-width: 464px !important;
+  min-width: 500px !important;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .stateful-button-width {
@@ -91,8 +100,15 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
   background-color: var(--pgn-color-white) !important;
   font-size: 0.875rem;
   line-height: 1.5;
-  height: 2.75rem;
-
+  height: 3rem; // antes 2.5rem; aumenta altura para que el ojo no se vea comprimido
+  border-radius: 8px !important; // restore original control radius
+  border: 1px solid #d1d5db !important;
+  margin-bottom: 0.75rem;
+  
+  &:focus {
+    border-color: rgb(139, 31, 65) !important;
+    box-shadow: 0 0 0 1px rgb(139, 31, 65) !important;
+  }
 }
 
 .btn-social {
@@ -211,6 +227,28 @@ $elevation-level-2-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
   display: inherit;
   margin: 0 auto;
   margin-bottom: 2rem;
+}
+
+// Estilos para el botón principal de login/registro
+.btn-brand {
+  background-color: rgb(166, 39, 81) !important;
+  border-color: rgb(166, 39, 81) !important;
+  border-radius: 8px !important;
+  color: white !important;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem !important;
+  
+  &:hover,
+  &:focus {
+    background-color: rgb(139, 31, 65) !important;
+    border-color: rgb(139, 31, 65) !important;
+    color: white !important;
+  }
+  
+  &:active {
+    background-color: rgb(120, 25, 55) !important;
+    border-color: rgb(120, 25, 55) !important;
+  }
 }
 
 .institute-icon {
@@ -347,6 +385,24 @@ select.form-control {
   }
 }
 
+// Mejorar el estilo del enlace de "forgot password"
+#forgot-password.btn-link {
+  color: rgb(139, 31, 65) !important;
+  font-size: 0.875rem;
+  text-decoration: none;
+  padding: 0;
+  
+  &:hover {
+    color: rgb(120, 25, 55) !important;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    color: rgb(120, 25, 55) !important;
+    box-shadow: none;
+  }
+}
+
 .icon-size {
   width: 2.3rem;
 }
@@ -374,12 +430,100 @@ select.form-control {
 }
 
 .pgn__form-group {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+// Estilos adicionales para mejorar la apariencia del formulario
+.form-group {
+  margin-bottom: 1rem;
+}
+
+// Reducir espaciado en elementos específicos del formulario
+.pgn__form-group {
+  margin-bottom: 1rem !important;
+}
+
+// Compactar botones
+.btn {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+// Mejorar la apariencia de los campos de entrada con floating labels
+.has-floating-label .pgn__form-control-floating-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+// Espaciado entre elementos del formulario
+#sign-in-form {
+  .pgn__form-group,
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-text {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  // Reducir espaciado general del formulario
+  padding: 1rem;
+  
+  // Compactar el contenedor del formulario
+  .mw-xs {
+    padding: 0;
+    max-width: 400px;
+  }
+  
+  // Espaciado más compacto para elementos específicos
+  .alert {
+    margin-bottom: 0.75rem;
+  }
+  
+  // Botones más compactos
+  .btn-brand,
+  .logistration-button {
+    padding: 0.625rem 1rem;
+    margin-bottom: 0.75rem;
+    height: auto;
+  }
 }
 
 .form-text-size {
   margin-top: 0.188rem !important;
   line-height: 1.25rem;
+}
+
+// Brand color for Sign in / Register tab labels
+$emi-logistration-accent: rgb(166, 39, 81);
+
+// Target React-Bootstrap Tabs anchors via event keys used in this app
+// Applies to Logistration, Forgot Password, and Reset Password tabs
+a[data-rb-event-key="/register"],
+a[data-rb-event-key="/login"] {
+  color: $emi-logistration-accent !important;
+}
+
+a[data-rb-event-key="/register"].active,
+a[data-rb-event-key="/login"].active,
+a[data-rb-event-key="/register"]:hover,
+a[data-rb-event-key="/login"]:hover,
+a[data-rb-event-key="/register"]:focus,
+a[data-rb-event-key="/login"]:focus {
+  color: $emi-logistration-accent !important;
+}
+
+// Ensure the bottom border (underline) uses the guinda brand color only for Register/Sign in tabs
+#root .layout .content .nav.nav-tabs a[data-rb-event-key="/register"].active,
+#root .layout .content .nav.nav-tabs a[data-rb-event-key="/login"].active,
+#root .layout .content .nav.nav-tabs a[data-rb-event-key="/register"]:hover,
+#root .layout .content .nav.nav-tabs a[data-rb-event-key="/login"]:hover,
+.nav.nav-tabs a[data-rb-event-key="/register"].active,
+.nav.nav-tabs a[data-rb-event-key="/login"].active,
+.nav.nav-tabs a[data-rb-event-key="/register"]:hover,
+.nav.nav-tabs a[data-rb-event-key="/login"]:hover {
+  border-bottom: 2px solid $emi-logistration-accent !important;
 }
 
 @media (min-width: 1024px) {
@@ -453,6 +597,199 @@ select.form-control {
   color: var(--pgn-color-primary-700)
 }
 
+// Estilos para centrar el formulario y ocultar elementos laterales
+.layout .w-50 {
+  display: none !important;
+}
+
+// Hacer que el layout ocupe todo el ancho cuando se oculta el lado izquierdo
+.layout {
+  justify-content: center !important;
+  align-items: flex-start !important; // top align, not vertically centered
+  min-height: auto; // remove 90vh
+  padding-top: 2.5rem; // give some top space similar to reference
+}
+
+// Centrar el formulario correctamente
+.content {
+  display: flex !important;
+  flex-direction: column !important; // stack children vertically (logo above form)
+  justify-content: flex-start !important;
+  align-items: center !important; // center horizontally
+  min-height: auto; // remove 90vh stretch
+  width: 100% !important;
+  padding: 2rem 1rem 3rem !important; // a bit more breathing room
+}
+
+// Asegurar que el contenedor del formulario esté centrado
+.mw-xs {
+  width: 100%;
+  max-width: 640px; // widen a bit more
+  margin: 0 auto;
+}
+
+// Centrar específicamente el formulario de registro e inicio de sesión
+#registration-form,
+#sign-in-form {
+  max-width: 520px; // slightly wider than before
+  margin: 0 auto;
+  padding: 2rem; // keep comfortable padding
+}
+
+// Centrar también el contenedor principal del contenido
+#main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  max-width: 640px; // match mw-xs width increase
+  margin: 0 auto;
+}
+
+// Ajustar elementos del formulario para mantener alineación correcta
+#main-content .form-group,
+#main-content .pgn__form-group {
+  text-align: left;
+}
+
+// Centrar el layout en pantallas grandes
+@media (min-width: 1200px) {
+  .layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; // stay top aligned
+    min-height: auto; // no forced viewport height
+    padding-top: 4rem; // a bit more top spacing on large screens
+  }
+  
+  .content {
+    width: auto !important;
+    margin-top: 0 !important;
+    padding: 2rem 2rem 3rem !important;
+  }
+  
+  .mw-xs,
+  #registration-form,
+  #sign-in-form,
+  #main-content {
+    max-width: 680px; // give extra width on very large screens
+  }
+}
+
+// Unificar bordes entre campo y decorador (icono de mostrar/ocultar)
 .pgn__form-control-decorator-trailing {
   right: 0 !important;
+  top: 0;
+  height: 80%;
+  border-left: 0 !important; // quitar división
+}
+.pgn__form-control-decorator-trailing .btn,
+.pgn__form-control-decorator-trailing button {
+  height: 100% !important;
+  border: 0 !important;
+  background: transparent !important;
+  border-radius: 0 12px 12px 0 !important; // restore previous radius for trailing decorator
+  box-shadow: none !important;
+  // centrar el ícono vertical y horizontalmente
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.75rem; // espacio horizontal cómodo
+  line-height: 1; // evitar que el ícono herede alturas extrañas
+}
+
+// Consistent card styling
+.login-card {
+  background: #fff;
+  border-radius: 12px; // keep outer container radius
+  overflow: hidden; // clip inner content so all 4 corners look rounded
+  padding: 1.75rem 1.5rem 1.5rem;
+}
+
+// Footer under the card
+.login-footer {
+  color: #6b7280;
+  font-size: 0.8125rem;
+}
+
+.emi-brand-logo {
+  height: 80px;
+  width: auto;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 464px) {
+  .emi-brand-logo {
+    height: 88px;
+    margin-bottom: 2rem;
+  }
+}
+
+// Fix: asegurar borde redondeado uniforme SOLO para el contenedor exterior
+// sin afectar elementos internos. Sobrescribe la regla de _breakpoints.scss
+// que aplica `border-radius: 50px 0` a `.layout .content`.
+@media (min-width: 576px) {
+  [dir='ltr'] #root .layout > .content,
+  [dir='rtl'] #root .layout > .content {
+    // asegurar cuatro esquinas iguales
+    border-radius: 50px !important;
+    // hacer visible el contorno del contenedor exterior
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important; // gris claro para delinear
+    box-shadow: $elevation-level-2-shadow; // sombra sutil
+  }
+}
+
+// Global background overrides to ensure full-white backgrounds
+.bg-primary-400,
+.bg-light-200 {
+  background-color: #ffffff !important;
+}
+
+// Remove any gradient backgrounds on layout stripes just in case
+.small-screen-top-stripe,
+.medium-screen-top-stripe,
+.extra-large-screen-top-stripe {
+  background: none !important;
+  background-image: none !important;
+}
+
+// Force a clean white background and remove brand blue blobs on layout pseudo-elements
+html, body, #root { background: #fff !important; }
+#root .layout { background: #fff !important; }
+
+// The brand stylesheet adds big blue shadows using ::before/::after on .layout. Disable them.
+[dir='ltr'] #root .layout::before,
+[dir='ltr'] #root .layout::after,
+[dir='rtl'] #root .layout::before,
+[dir='rtl'] #root .layout::after {
+  box-shadow: none !important;
+  background: none !important;
+  content: none !important;
+}
+
+// In case alternative selectors are used without #root
+[dir='ltr'] .layout::before,
+[dir='ltr'] .layout::after,
+[dir='rtl'] .layout::before,
+[dir='rtl'] .layout::after {
+  box-shadow: none !important;
+  background: none !important;
+  content: none !important;
+}
+
+.gov-edu-logo {
+  display: block;
+  margin: 0.5rem auto 0; // pequeño espacio debajo del logo EMI
+  height: 28px; // 80% aprox. del alto del logo principal (35px-40px habitual)
+  width: auto;
+  opacity: 0.95; // ligero suavizado visual
+}
+
+@media (max-width: 464px) {
+  .gov-edu-logo {
+    height: 24px;
+  }
 }

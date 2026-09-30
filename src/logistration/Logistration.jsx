@@ -103,6 +103,14 @@ const Logistration = ({
 
   return (
     <BaseContainer>
+      {/* Logo de EMI sobre Registro / Iniciar sesión */}
+      <div className="text-center mt-3">
+        <img
+          src={`${getConfig().LMS_BASE_URL}/static/emi/images/EMI_completo_negro.png`}
+          alt="Escuela Mexicana de Inglés"
+          className="emi-brand-logo"
+        />
+      </div>
       <div>
         {disablePublicAccountCreation
           ? (

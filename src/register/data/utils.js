@@ -1,33 +1,27 @@
 import { snakeCaseObject } from '@edx/frontend-platform';
 
-import { LETTER_REGEX, NUMBER_REGEX } from '../../data/constants';
-import messages from '../messages';
+import {
+  LETTER_REGEX,
+  NUMBER_REGEX,
+} from '../../data/constants';
 import validateEmail from '../RegistrationFields/EmailField/validator';
 import validateName from '../RegistrationFields/NameField/validator';
 import validateUsername from '../RegistrationFields/UsernameField/validator';
 
 /**
- * It validates the password field value
- * @param value
- * @param formatMessage
- * @returns {string}
+ * Validación de contraseña
  */
 export const validatePasswordField = (value, formatMessage) => {
   let fieldError = '';
   if (!value || !LETTER_REGEX.test(value) || !NUMBER_REGEX.test(value) || value.length < 8) {
-    fieldError = formatMessage(messages['password.validation.message']);
+    fieldError = 'La contraseña debe tener al menos 8 caracteres, incluyendo letras y números';
   }
   return fieldError;
 };
 
 /**
- * It accepts complete registration data as payload and checks if the form is valid.
- * @param payload
- * @param errors
- * @param configurableFormFields
- * @param fieldDescriptions
- * @param formatMessage
- * @returns {{fieldErrors, isValid: boolean}}
+ * Valida los campos conocidos y los que vienen en fieldDescriptions (backend).
+ * Para tus campos extra, la validación se hace en los componentes Field.
  */
 export const isFormValid = (
   payload,
@@ -40,78 +34,89 @@ export const isFormValid = (
   let isValid = true;
   let emailSuggestion = { suggestion: '', type: '' };
 
-  Object.keys(payload).forEach(key => {
+  Object.keys(payload).forEach((key) => {
     switch (key) {
-    case 'name':
-      if (!fieldErrors.name) {
-        fieldErrors.name = validateName(payload.name, formatMessage);
-      }
-      if (fieldErrors.name) { isValid = false; }
-      break;
-    case 'email': {
-      if (!fieldErrors.email) {
-        const {
-          fieldError, confirmEmailError, suggestion,
-        } = validateEmail(payload.email, configurableFormFields?.confirm_email, formatMessage);
-        if (fieldError) {
-          fieldErrors.email = fieldError;
-          isValid = false;
+      case 'name':
+        if (!fieldErrors.name) {
+          fieldErrors.name = validateName(payload.name, formatMessage);
         }
-        if (confirmEmailError) {
-          fieldErrors.confirm_email = confirmEmailError;
-          isValid = false;
+        if (fieldErrors.name) { isValid = false; }
+        break;
+      case 'email': {
+        if (!fieldErrors.email) {
+          const { fieldError, confirmEmailError, suggestion } = validateEmail(
+            payload.email,
+            configurableFormFields?.confirm_email,
+            formatMessage,
+          );
+          if (fieldError) {
+            fieldErrors.email = fieldError;
+            isValid = false;
+          }
+          if (confirmEmailError) {
+            fieldErrors.confirm_email = confirmEmailError;
+            isValid = false;
+          }
+          emailSuggestion = suggestion;
         }
-        emailSuggestion = suggestion;
+        if (fieldErrors.email) { isValid = false; }
+        break;
       }
-      if (fieldErrors.email) { isValid = false; }
-      break;
-    }
-    case 'username':
-      if (!fieldErrors.username) {
-        fieldErrors.username = validateUsername(payload.username, formatMessage);
-      }
-      if (fieldErrors.username) { isValid = false; }
-      break;
-    case 'password':
-      if (!fieldErrors.password) {
-        fieldErrors.password = validatePasswordField(payload.password, formatMessage);
-      }
-      if (fieldErrors.password) { isValid = false; }
-      break;
-    default:
-      break;
+      case 'username':
+        if (!fieldErrors.username) {
+          fieldErrors.username = validateUsername(payload.username, formatMessage);
+        }
+        if (fieldErrors.username) { isValid = false; }
+        break;
+      case 'password':
+        if (!fieldErrors.password) {
+          fieldErrors.password = validatePasswordField(payload.password, formatMessage);
+        }
+        if (fieldErrors.password) { isValid = false; }
+        break;
+      default:
+        break;
     }
   });
 
-  // Don't validate when country field is optional or hidden and not present on registration form
+  // Validación de country si está
   if (configurableFormFields?.country && !configurableFormFields.country?.displayValue) {
-    fieldErrors.country = formatMessage(messages['empty.country.field.error']);
+    fieldErrors.country = 'Selecciona un país';
     isValid = false;
   } else if (configurableFormFields?.country && !configurableFormFields.country?.countryCode) {
-    fieldErrors.country = formatMessage(messages['invalid.country.field.error']);
+    fieldErrors.country = 'Selecciona un país válido';
     isValid = false;
   }
 
-  Object.keys(fieldDescriptions).forEach(key => {
+  // Validación de campos requeridos desde backend
+  Object.keys(fieldDescriptions).forEach((key) => {
     if (key === 'country' && !configurableFormFields?.country?.displayValue) {
-      fieldErrors[key] = formatMessage(messages['empty.country.field.error']);
+      fieldErrors[key] = 'Selecciona un país';
     } else if (!configurableFormFields[key]) {
       fieldErrors[key] = fieldDescriptions[key].error_message;
     }
     if (fieldErrors[key]) { isValid = false; }
   });
 
+  // Validación de términos y condiciones (ambos requeridos)
+  if (!payload.honorCode) {
+    fieldErrors.honorCode = 'Debes aceptar el código de honor para continuar';
+    isValid = false;
+  }
+
+  if (!payload.privacyPolicy) {
+    fieldErrors.privacyPolicy = 'Debes aceptar el aviso de privacidad para continuar';
+    isValid = false;
+  }
+
   return { isValid, fieldErrors, emailSuggestion };
 };
 
 /**
- * It prepares a payload for registration data that can be passed to registration API endpoint.
- * @param initPayload
- * @param configurableFormFields
- * @param showMarketingEmailOptInCheckbox
- * @param totalRegistrationTime
- * @param queryParams
- * @returns {*}
+ * Prepara el payload que se envía al LMS.
+ * - Incluye extras en la RAÍZ (no usa meta).
+ * - Convierte claves a snake_case.
+ * - Añade honor_code, terms_of_service y total_registration_time.
  */
 export const prepareRegistrationPayload = (
   initPayload,
@@ -121,23 +126,104 @@ export const prepareRegistrationPayload = (
   queryParams,
 ) => {
   let payload = { ...initPayload };
-  Object.keys(configurableFormFields).forEach((fieldName) => {
-    if (fieldName === 'country') {
-      payload[fieldName] = configurableFormFields[fieldName].countryCode;
-    } else {
-      payload[fieldName] = configurableFormFields[fieldName];
-    }
-  });
 
-  // Don't send the marketing email opt-in value if the flag is turned off
+  // Mapear name a first_name y last_name para auth_user
+  if (payload.name) {
+    const nameParts = payload.name.trim().split(' ');
+    payload.first_name = nameParts[0] || '';
+    payload.last_name = nameParts.slice(1).join(' ') || '';
+    // MANTENER name porque el endpoint base lo requiere
+    // No eliminar payload.name
+  }
+
+  // Campos que van directamente a auth_userprofile (predefinidos por edX)
+  // phone_number: reconocido por la API, va directo a auth_userprofile
+  // state: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile
+  // country: reconocido por REGISTRATION_EXTRA_FIELDS, va a auth_userprofile
+
+  // Para phone_number: enviar vacío siempre
+  payload.phone_number = '';
+
+  // Para state: enviar solo el código de 2 letras
+  if (configurableFormFields?.state?.estadoCode) {
+    payload.state = configurableFormFields.state.estadoCode; // ej. "NL", "CDMX"
+  }
+
+  // Country si existe
+  if (configurableFormFields?.country?.countryCode) {
+    payload.country = configurableFormFields.country.countryCode;
+  }
+
+  // Campos mexicanos adicionales van en meta como JSON
+  // Solo los no reconocidos por edX van a meta
+  const metaFields = {};
+  if (payload.first_lastname) {
+    metaFields.first_lastname = payload.first_lastname;
+    delete payload.first_lastname;
+  }
+  if (payload.second_lastname) {
+    metaFields.second_lastname = payload.second_lastname;
+    delete payload.second_lastname;
+  }
+  if (payload.municipality) {
+    metaFields.municipality = payload.municipality;
+    delete payload.municipality;
+  }
+
+  // Campos escolares: si es estudiante los envía, si no los envía vacíos
+  if (payload.isStudent) {
+    if (payload.school_name) {
+      metaFields.school_name = payload.school_name;
+    }
+    if (payload.cct) {
+      metaFields.cct = payload.cct;
+    }
+    if (payload.grade) {
+      metaFields.grade = payload.grade;
+    }
+  } else {
+    // No es estudiante: campos vacíos
+    metaFields.school_name = '';
+    metaFields.cct = '';
+    metaFields.grade = '';
+  }
+  // Remover estos campos del payload principal
+  delete payload.school_name;
+  delete payload.cct;
+  delete payload.grade;
+  delete payload.isStudent; // No enviar el checkbox al backend
+
+  if (payload.curp) {
+    metaFields.curp = payload.curp;
+    delete payload.curp;
+  }
+
+  // Si hay campos meta, agregarlos como JSON string
+  if (Object.keys(metaFields).length > 0) {
+    payload.meta = JSON.stringify(metaFields);
+  }
+
+  // Marketing opt-in
   if (!showMarketingEmailOptInCheckbox) {
     delete payload.marketingEmailsOptIn;
   }
 
+  // Requeridos por API - basados en los checkboxes reales
+  payload.terms_of_service = Boolean(payload.privacyPolicy);
+  payload.honor_code = Boolean(payload.honorCode);
+
+  // Remover los campos de checkbox del payload final
+  delete payload.honorCode;
+  delete payload.privacyPolicy;
+
+  // Tiempo total
   payload.totalRegistrationTime = totalRegistrationTime;
+
+  // Convierte a snake_case
   payload = snakeCaseObject(payload);
 
-  // add query params to the payload
+  // Añade query params
   payload = { ...payload, ...queryParams };
+
   return payload;
 };

@@ -24,8 +24,8 @@ const HonorCode = (props) => {
       <div id="honor-code" className="micro text-muted mt-4">
         <FormattedMessage
           id="register.page.terms.of.service.and.honor.code"
-          defaultMessage="By creating an account, you agree to the {tosAndHonorCode} and you acknowledge that {platformName} and each
-                Member process your personal data in accordance with the {privacyPolicy}."
+          defaultMessage="Al crear una cuenta, aceptas los {tosAndHonorCode} y reconoces que {platformName} y cada
+                Miembro procesan tus datos personales de acuerdo con la {privacyPolicy}."
           description="Text that appears on registration form stating honor code and privacy policy"
           values={{
             platformName: getConfig().SITE_NAME,
@@ -67,7 +67,7 @@ const HonorCode = (props) => {
       >
         <FormattedMessage
           id="register.page.honor.code"
-          defaultMessage="I agree to the {platformName}&nbsp;{tosAndHonorCode}"
+          defaultMessage="Acepto el {tosAndHonorCode} de {platformName}"
           description="Text that appears on registration form stating honor code"
           values={{
             platformName: getConfig().SITE_NAME,

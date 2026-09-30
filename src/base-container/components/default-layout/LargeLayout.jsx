@@ -17,18 +17,7 @@ const LargeLayout = () => {
           <Image className="logo position-absolute" alt={getConfig().SITE_NAME} src={getConfig().LOGO_WHITE_URL} />
         </Hyperlink>
         <div className="min-vh-100 d-flex align-items-center">
-          <div className={classNames({ 'large-yellow-line mr-n4.5': getConfig().SITE_NAME === 'edX' })} />
-          <h1
-            className={classNames(
-              'display-2 text-white mw-xs',
-              { 'ml-6': getConfig().SITE_NAME !== 'edX' },
-            )}
-          >
-            {formatMessage(messages['start.learning'])}
-            <div className="text-accent-a">
-              {formatMessage(messages['with.site.name'], { siteName: getConfig().SITE_NAME })}
-            </div>
-          </h1>
+          {/* Contenido vacío - solo fondo degradado */}
         </div>
       </div>
       <div className="col-md-3 bg-white p-0">

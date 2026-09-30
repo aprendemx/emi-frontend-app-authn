@@ -154,7 +154,7 @@ const ResetPasswordPage = (props) => {
             <Tab title={tabTitle} eventKey={LOGIN_PAGE} />
           </Tabs>
           <div id="main-content" className="main-content">
-            <div className="mw-xs">
+            <div className="mw-xs login-card">
               <ResetPasswordFailure errorCode={errorCode} errorMsg={props.errorMsg} />
               <h4>{formatMessage(messages['reset.password'])}</h4>
               <p className="mb-4">{formatMessage(messages['reset.password.page.instructions'])}</p>
@@ -193,6 +193,16 @@ const ResetPasswordPage = (props) => {
                 />
               </Form>
             </div>
+          </div>
+          <div className="text-center mt-3 mb-4 login-footer">
+            © 2025 Escuela Mexicana de Inglés. Todos los derechos reservados.
+          </div>
+          <div className="text-center mb-4">
+            <img
+              src="https://aprende.gob.mx/images/logo_educacion_aprende_negro.png"
+              alt="Gobierno de México - Secretaría de Educación Pública"
+              className="gov-edu-logo"
+            />
           </div>
         </div>
       </BaseContainer>

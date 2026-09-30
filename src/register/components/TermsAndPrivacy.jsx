@@ -1,0 +1,98 @@
+import React from 'react';
+
+import { getConfig } from '@edx/frontend-platform';
+import { Button, Form } from '@openedx/paragon';
+import PropTypes from 'prop-types';
+
+const TermsAndPrivacy = ({
+  honorCode,
+  privacyPolicy,
+  onHonorCodeChange,
+  onPrivacyPolicyChange,
+  honorCodeError,
+  privacyPolicyError,
+}) => {
+  // URLs específicas para los documentos
+  const honorCodeUrl = `${getConfig().LMS_BASE_URL}/honor`;
+  const privacyPolicyUrl = `${getConfig().LMS_BASE_URL}/privacy`;
+
+  const handleHonorCodeClick = () => {
+    window.open(honorCodeUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const handlePrivacyPolicyClick = () => {
+    window.open(privacyPolicyUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  return (
+    <div className="terms-and-privacy mb-3">
+      {/* Código de Honor */}
+      <div className="d-flex align-items-start mb-2">
+        <Form.Checkbox
+          id="honorCode"
+          name="honorCode"
+          checked={honorCode}
+          onChange={onHonorCodeChange}
+          className="me-2"
+        />
+        <div className="d-flex align-items-center flex-wrap">
+          <span className="me-2">He leído y acepto el</span>
+          <Button
+            variant="link"
+            className="p-0 text-decoration-underline text-primary"
+            onClick={handleHonorCodeClick}
+            size="sm"
+          >
+            Código de honor de la Plataforma
+          </Button>
+        </div>
+      </div>
+      {honorCodeError && (
+        <div className="text-danger-300 small mb-2 ms-4">{honorCodeError}</div>
+      )}
+
+      {/* Aviso de Privacidad */}
+      <div className="d-flex align-items-start mb-2">
+        <Form.Checkbox
+          id="privacyPolicy"
+          name="privacyPolicy"
+          checked={privacyPolicy}
+          onChange={onPrivacyPolicyChange}
+          className="me-2"
+        />
+        <div className="d-flex align-items-center flex-wrap">
+          <span className="me-2">He leído y acepto el</span>
+          <Button
+            variant="link"
+            className="p-0 text-decoration-underline text-primary"
+            onClick={handlePrivacyPolicyClick}
+            size="sm"
+          >
+            Aviso de privacidad de la Plataforma
+          </Button>
+        </div>
+      </div>
+      {privacyPolicyError && (
+        <div className="text-danger-300 small mb-2 ms-4">
+          {privacyPolicyError}
+        </div>
+      )}
+    </div>
+  );
+};
+
+TermsAndPrivacy.propTypes = {
+  honorCode: PropTypes.bool.isRequired,
+  privacyPolicy: PropTypes.bool.isRequired,
+  onHonorCodeChange: PropTypes.func.isRequired,
+  onPrivacyPolicyChange: PropTypes.func.isRequired,
+  honorCodeError: PropTypes.string,
+  privacyPolicyError: PropTypes.string,
+};
+
+TermsAndPrivacy.defaultProps = {
+  honorCodeError: '',
+  privacyPolicyError: '',
+};
+
+export default TermsAndPrivacy;

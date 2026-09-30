@@ -46,7 +46,7 @@ const AccountActivationMessage = ({ messageType }) => {
       activationMessage = (
         <FormattedMessage
           id="account.activation.error.message"
-          defaultMessage="Something went wrong, please {supportLink} to resolve this issue."
+          defaultMessage="Ocurrió un error, por favor {supportLink} para resolver este problema."
           description="Account activation error message"
           values={{ supportLink }}
         />

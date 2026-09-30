@@ -106,7 +106,7 @@ const ForgotPasswordPage = (props) => {
           <Tab title={tabTitle} eventKey={LOGIN_PAGE} />
         </Tabs>
         <div id="main-content" className="main-content">
-          <Form id="forget-password-form" name="forget-password-form" className="mw-xs">
+          <Form id="forget-password-form" name="forget-password-form" className="mw-xs login-card">
             <ForgotPasswordAlert email={bannerEmail} emailError={formErrors} status={status} />
             <h2 className="h4">
               {formatMessage(messages['forgot.password.page.heading'])}
@@ -158,6 +158,16 @@ const ForgotPasswordPage = (props) => {
               </span>
             </p>
           </Form>
+        </div>
+        <div className="text-center mt-3 mb-4 login-footer">
+          © 2025 Escuela Mexicana de Inglés. Todos los derechos reservados.
+        </div>
+        <div className="text-center mb-4">
+          <img
+            src="https://aprende.gob.mx/images/logo_educacion_aprende_negro.png"
+            alt="Gobierno de México - Secretaría de Educación Pública"
+            className="gov-edu-logo"
+          />
         </div>
       </div>
     </BaseContainer>

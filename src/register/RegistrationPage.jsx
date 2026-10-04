@@ -34,7 +34,6 @@ import {
   EmailField,
   EstadoField,
   NameField,
-  PhoneField,
   UsernameField,
 } from './RegistrationFields';
 import {

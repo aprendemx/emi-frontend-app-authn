@@ -8,7 +8,7 @@ const messages = defineMessages({
   },
   'reset.password.page.title': {
     id: 'reset.password.page.title',
-    defaultMessage: 'Restablecer contraseña | {siteName}',
+    defaultMessage: 'Reset Password | {siteName}',
     description: 'reset password page title',
   },
   'reset.password.page.heading': {
@@ -58,17 +58,17 @@ const messages = defineMessages({
   },
   'reset.server.rate.limit.error': {
     id: 'reset.server.rate.limit.error',
-    defaultMessage: 'Demasiadas solicitudes.',
+    defaultMessage: 'Too many requests.',
     description: 'Rate limit error title',
   },
   'reset.password.success.heading': {
     id: 'reset.password.success.heading',
-    defaultMessage: 'Contraseña restablecida',
+    defaultMessage: 'Password reset complete.',
     description: 'Reset password success heading',
   },
   'reset.password.success': {
     id: 'reset.password.success',
-    defaultMessage: 'Tu contraseña se ha restablecido. Inicia sesión en tu cuenta.',
+    defaultMessage: 'Your password has been reset. Sign in to your account.',
     description: 'Reset password success message',
   },
   'internal.server.error.message': {
@@ -85,62 +85,62 @@ const messages = defineMessages({
   // --- Compat: claves usadas por componentes ---
   'password.validation.message': {
     id: 'password.validation.message',
-    defaultMessage: 'La contraseña no cumple con los criterios',
+    defaultMessage: 'Password criteria has not been met',
     description: 'Validation error shown under password field',
   },
   'confirm.your.password': {
     id: 'confirm.your.password',
-    defaultMessage: 'Confirma tu contraseña',
+    defaultMessage: 'Confirm your password',
     description: 'Validation error shown under confirm password field when empty',
   },
   'passwords.do.not.match': {
     id: 'passwords.do.not.match',
-    defaultMessage: 'Las contraseñas no coinciden',
+    defaultMessage: 'Passwords do not match',
     description: 'Validation error when passwords do not match',
   },
   'sign.in': {
     id: 'sign.in',
-    defaultMessage: 'Iniciar sesión',
+    defaultMessage: 'Sign in',
     description: 'Tab link text to go back to login',
   },
   'reset.password': {
     id: 'reset.password',
-    defaultMessage: 'Restablecer contraseña',
+    defaultMessage: 'Reset password',
     description: 'Generic reset password label',
   },
   'reset.password.page.instructions': {
     id: 'reset.password.page.instructions',
-    defaultMessage: 'Ingresa y confirma tu nueva contraseña.',
+    defaultMessage: 'Enter and confirm your new password.',
     description: 'Instructions shown on reset page',
   },
   'new.password.label': {
     id: 'new.password.label',
-    defaultMessage: 'Nueva contraseña',
+    defaultMessage: 'New password',
     description: 'Floating label for new password field',
   },
   'confirm.password.label': {
     id: 'confirm.password.label',
-    defaultMessage: 'Confirmar contraseña',
+    defaultMessage: 'Confirm password',
     description: 'Floating label for confirm password field',
   },
   'reset.password.failure.heading': {
     id: 'reset.password.failure.heading',
-    defaultMessage: 'No pudimos restablecer tu contraseña.',
+    defaultMessage: 'We couldn\'t reset your password.',
     description: 'Heading for reset password failure alert',
   },
   'rate.limit.error': {
     id: 'rate.limit.error',
-    defaultMessage: 'Se produjeron demasiadas solicitudes. Inténtalo más tarde.',
+    defaultMessage: 'An error has occurred because of too many requests. Please try again after some time.',
     description: 'Alias for rate limit message',
   },
   'internal.server.error': {
     id: 'internal.server.error',
-    defaultMessage: 'Ocurrió un error. Intenta refrescar la página o verifica tu conexión a internet.',
+    defaultMessage: 'An error has occurred. Try refreshing the page, or check your internet connection.',
     description: 'Alias for internal server error message',
   },
   'reset.password.form.submission.error': {
     id: 'reset.password.form.submission.error',
-    defaultMessage: 'Revisa tus respuestas e inténtalo de nuevo.',
+    defaultMessage: 'Please check your responses and try again.',
     description: 'Form submission generic error',
   },
 });

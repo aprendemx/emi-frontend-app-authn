@@ -7,6 +7,5 @@ export { default as TermsOfService } from './TermsOfServiceField/TermsOfService'
 
 // Nuevos campos adicionales
 export { default as ApellidoField } from './ApellidoField';
-export { default as PhoneField } from './PhoneField';
 export { default as EstadoField } from './EstadoField';
 export { default as CurpField } from './CurpField/CurpField';

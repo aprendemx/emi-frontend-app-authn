@@ -3,59 +3,59 @@ import { defineMessages } from '@edx/frontend-platform/i18n';
 const messages = defineMessages({
   'progressive.profiling.page.title': {
     id: 'progressive.profiling.page.title',
-    defaultMessage: 'Bienvenido(a) | {siteName}',
+    defaultMessage: 'Welcome | {siteName}',
     description: 'progressive profiling page title',
   },
   'progressive.profiling.page.heading': {
     id: 'progressive.profiling.page.heading',
-    defaultMessage: 'Unas cuantas preguntas nos ayudarán a conocerte mejor.',
+    defaultMessage: 'A few questions for you will help us get smarter.',
     description: 'The page heading for the progressive profiling page.',
   },
   'optional.fields.information.link': {
     id: 'optional.fields.information.link',
-    defaultMessage: 'Más información sobre cómo usamos esta información.',
+    defaultMessage: 'Learn more about how we use this information.',
     description: 'Optional fields page information link',
   },
   'optional.fields.submit.button': {
     id: 'optional.fields.submit.button',
-    defaultMessage: 'Enviar',
+    defaultMessage: 'Submit',
     description: 'Submit button text',
   },
   'optional.fields.skip.button': {
     id: 'optional.fields.skip.button',
-    defaultMessage: 'Omitir por ahora',
+    defaultMessage: 'Skip for now',
     description: 'Skip button text',
   },
   'optional.fields.next.button': {
     id: 'optional.fields.next.button',
-    defaultMessage: 'Siguiente',
+    defaultMessage: 'Next',
     description: 'Next button text',
   },
   // modal dialog box
   'continue.to.platform': {
     id: 'continue.to.platform',
-    defaultMessage: 'Continuar a {platformName}',
+    defaultMessage: 'Continue to {platformName}',
     description: 'Button text for modal when user chooses "skip for now" option',
   },
   'modal.title': {
     id: 'modal.title',
-    defaultMessage: 'Gracias por contarnos.',
+    defaultMessage: 'Thanks for letting us know.',
     description: 'Heading for welcome page modal',
   },
   'modal.description': {
     id: 'modal.description',
-    defaultMessage: 'Puedes completar tu perfil en configuración cuando quieras.',
+    defaultMessage: 'You can complete your profile in settings at any time if you change your mind.',
     description: 'Modal body text',
   },
   // error message
   'welcome.page.error.heading': {
     id: 'welcome.page.error.heading',
-    defaultMessage: 'No pudimos actualizar tu perfil',
+    defaultMessage: 'We couldn\'t update your profile',
     description: 'Error message heading',
   },
   'welcome.page.error.message': {
     id: 'welcome.page.error.message',
-    defaultMessage: 'Ocurrió un error. Puedes completar tu perfil en configuración cuando quieras.',
+    defaultMessage: 'An error occurred. You can complete your profile in settings at any time.',
     description: 'Error message body',
   },
 });

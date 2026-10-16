@@ -34,7 +34,6 @@ import {
   EmailField,
   EstadoField,
   NameField,
-  PhoneField,
   UsernameField,
 } from './RegistrationFields';
 import {
@@ -96,7 +95,6 @@ const RegistrationPage = (props) => {
   const tpaHint = useMemo(() => getTpaHint(), []);
 
   const [formFields, setFormFields] = useState({
-    ...backedUpFormData.formFields,
     first_lastname: '',
     second_lastname: '',
     phone_number: '',
@@ -109,17 +107,17 @@ const RegistrationPage = (props) => {
     curp: '',
     honorCode: false, // Nuevo: checkbox código de honor
     privacyPolicy: false, // Nuevo: checkbox aviso de privacidad
+    ...backedUpFormData.formFields,
   });
   const [configurableFormFields, setConfigurableFormFields] = useState({
-    ...backedUpFormData.configurableFormFields,
     state: {
       displayValue: '',
       estadoCode: '',
       estadoName: '',
     },
+    ...backedUpFormData.configurableFormFields,
   });
   const [errors, setErrors] = useState({
-    ...backedUpFormData.errors,
     first_lastname: '',
     second_lastname: '',
     phone_number: '',
@@ -129,6 +127,7 @@ const RegistrationPage = (props) => {
     cct: '',
     grade: '',
     curp: '',
+    ...backedUpFormData.errors,
   });
   const [errorCode, setErrorCode] = useState({ type: '', count: 0 });
   const [formStartTime, setFormStartTime] = useState(null);
